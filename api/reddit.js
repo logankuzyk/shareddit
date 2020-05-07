@@ -86,7 +86,7 @@ getComments = async (postID, permalink) => {
   return output;
 };
 
-getData = async (postID, permalink) => {
+module.exports.getData = async (postID, permalink) => {
   let output = {};
   output.image = await getImage(postID);
   output.title = await getTitle(postID);
