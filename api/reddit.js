@@ -47,17 +47,18 @@ buildCommentChain = (comments, permalink) => {
   } else {
     for (let comment of comments) {
       let parsed = {
-        score: comment.score,
+        score: comment.score + " points",
         author: comment.author.name,
         body: comment.body,
         bodyMD: comment.body_html,
         time: longTime(comment.created_utc),
       };
       if (comment.permalink == permalink) {
-        return parsed;
+        return [parsed];
       } else if (buildCommentChain(comment.replies, permalink) != undefined) {
-        parsed.next = buildCommentChain(comment.replies, permalink);
-        return parsed;
+        let array = buildCommentChain(comment.replies, permalink);
+        array.push(parsed);
+        return array;
       } else {
         continue;
       }
@@ -79,9 +80,7 @@ getTitle = async (postID) => {
 
 // Returns comments up to given comment permalink.
 getComments = async (postID, permalink) => {
-  let comments = await r
-    .getSubmission(postID)
-    .expandReplies({ limit: Infinity, depth: Infinity }).comments;
+  let comments = await r.getSubmission(postID).expandReplies().comments;
   let output = buildCommentChain(comments, permalink);
   return output;
 };
@@ -100,7 +99,7 @@ module.exports.getData = async (params) => {
     "/" +
     params.commentID +
     "/";
-  output.image = await getImage(postID);
+  output.link = await getImage(postID);
   output.title = await getTitle(postID);
   output.comments = await getComments(postID, permalink);
   return output;
