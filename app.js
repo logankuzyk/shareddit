@@ -6,7 +6,7 @@ var logger = require("morgan");
 var hbs = require("express-handlebars");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+var apiRouter = require("./routes/api");
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/r", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -48,8 +48,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-
-// app.listen(3000, 'localhost', function(err) {
-//   if (err) return console.log(err);
-//   console.log("Listening at http://%s:%s", 'localhost', 3000);
-// });
