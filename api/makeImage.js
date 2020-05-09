@@ -1,7 +1,9 @@
-const htmlToImage = require("node-html-to-image");
 const fs = require("fs");
 const handlebars = require("handlebars");
-const imgur = require("imgur");
+const puppeteer = require("puppeteer");
+const sizeOf = require("image-size");
+const unirest = require("unirest");
+const imageToBase64 = require("image-to-base64");
 const dotenv = require("dotenv").config();
 
 generateHTML = async (data) => {
@@ -17,6 +19,7 @@ generateHTML = async (data) => {
       child: renderedComments,
     };
     if (i === data.comments.length - 1) {
+      params.id = "content";
       params.link = data.link;
     }
     renderedComments = template(params);
@@ -25,23 +28,43 @@ generateHTML = async (data) => {
 };
 
 uploadImage = async () => {
-  imgur.setAPIUrl("imgur-apiv3.p.rapidapi.com");
-  imgur.setClientId(process.env.RAPIDKEY);
+  let img = await imageToBase64(__dirname + "/../cache/output.png");
   let url = "";
-  imgur.uploadFile(__dirname + "/image.png").then((json) => {
-    console.log(json.data.link);
-    url = json.data.link;
+  return new Promise((resolve, reject) => {
+    unirest("POST", "https://imgur-apiv3.p.rapidapi.com/3/image")
+      .headers({
+        "x-rapidapi-host": "imgur-apiv3.p.rapidapi.com",
+        "x-rapidapi-key": process.env.RAPID_KEY,
+        authorization: "Bearer " + process.env.IMGUR_ACCESS_TOKEN,
+      })
+      .field("image", img)
+      .end((res) => {
+        if (res.error) {
+          reject();
+          throw new Error(res.error);
+        }
+        url = res.body.data.link;
+        resolve(url);
+      });
   });
 };
 
-generateImage = async (html) => {
-  htmlToImage({
-    output: __dirname + "/image.png",
-    html: html,
+generateImage = async (html, size) => {
+  const browser = await puppeteer.launch({ defaultViewport: null });
+  const page = await browser.newPage();
+  await page.setContent(html);
+  console.log({ width: size.width });
+  await page.screenshot({
+    path: __dirname + "/../cache/output.png",
+    fullPage: true,
   });
+  await browser.close();
 };
 
 module.exports = async (data) => {
   let source = await generateHTML(data);
-  generateImage(source).then(uploadImage);
+  await generateImage(source, sizeOf(__dirname + "/../cache/input.png"));
+  let url = await uploadImage();
+  console.log(url);
+  return url;
 };
