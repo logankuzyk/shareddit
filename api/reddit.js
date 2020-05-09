@@ -1,4 +1,6 @@
 const Reddit = require("snoowrap");
+const fs = require("fs");
+const request = require("request");
 const dotenv = require("dotenv").config();
 
 const r = new Reddit({
@@ -8,6 +10,10 @@ const r = new Reddit({
   username: process.env.USERNAME,
   password: process.env.PASSWORD,
 });
+
+downloadImage = async (url) => {
+  request(url).pipe(fs.createWriteStream(__dirname + "/../cache/input.png"));
+};
 
 longTime = (utc) => {
   let date = new Date();
@@ -100,6 +106,7 @@ module.exports.getData = async (params) => {
     params.commentID +
     "/";
   output.link = await getImage(postID);
+  downloadImage(output.link);
   output.title = await getTitle(postID);
   output.comments = await getComments(postID, permalink);
   return output;
