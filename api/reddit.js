@@ -12,6 +12,9 @@ const r = new Reddit({
 });
 
 downloadImage = async (url) => {
+  if (!fs.existsSync(__dirname + "/../cache")) {
+    fs.mkdirSync(__dirname + "/../cache");
+  }
   request(url).pipe(fs.createWriteStream(__dirname + "/../cache/input.png"));
 };
 
