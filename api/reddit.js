@@ -108,9 +108,16 @@ module.exports.getData = async (params) => {
     "/" +
     params.commentID +
     "/";
-  output.link = await getImage(postID);
-  downloadImage(output.link);
-  output.title = await getTitle(postID);
-  output.comments = await getComments(postID, permalink);
+
+  try {
+    await console.log("before " + r.ratelimitRemaining);
+    output.link = await getImage(postID);
+    downloadImage(output.link);
+    output.title = await getTitle(postID);
+    output.comments = await getComments(postID, permalink);
+    await console.log("after " + r.ratelimitRemaining);
+  } catch (err) {
+    console.log(err);
+  }
   return output;
 };
