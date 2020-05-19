@@ -49,10 +49,11 @@ uploadImage = async () => {
   });
 };
 
-generateImage = async (html, size) => {
+generateImage = async (html) => {
   const browser = await puppeteer.launch({ defaultViewport: null });
   const page = await browser.newPage();
   await page.setContent(html);
+  let size = sizeOf(__dirname + "/../cache/input.png");
   console.log({ width: size.width });
   await page.screenshot({
     path: __dirname + "/../cache/output.png",
@@ -63,7 +64,7 @@ generateImage = async (html, size) => {
 
 module.exports = async (data) => {
   let source = await generateHTML(data);
-  await generateImage(source, sizeOf(__dirname + "/../cache/input.png"));
+  await generateImage(source);
   let url = await uploadImage();
   console.log(url);
   return url;
