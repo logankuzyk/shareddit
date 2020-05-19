@@ -50,29 +50,23 @@ longTime = (utc) => {
   }
 };
 
-buildCommentChain = (comments, permalink) => {
-  if (comments.length == 0) {
-    return;
+buildCommentChain = async (id) => {
+  let comment = await r.getComment(id);
+  let parsed = {
+    score: (await comment.score) + " points",
+    author: await comment.author.name,
+    body: await comment.body,
+    bodyMD: await comment.body_html,
+    time: await longTime(await comment.created_utc),
+    parent: await comment.parent_id,
+  };
+  console.log(parsed);
+  if (!parsed.parent.startsWith("t1")) {
+    return [parsed];
   } else {
-    for (let comment of comments) {
-      let parsed = {
-        score: comment.score + " points",
-        author: comment.author.name,
-        body: comment.body,
-        bodyMD: comment.body_html,
-        time: longTime(comment.created_utc),
-      };
-      if (comment.permalink == permalink) {
-        return [parsed];
-      } else if (buildCommentChain(comment.replies, permalink) != undefined) {
-        let array = buildCommentChain(comment.replies, permalink);
-        array.push(parsed);
-        return array;
-      } else {
-        continue;
-      }
-    }
-    return;
+    let arr = await buildCommentChain(parsed.parent);
+    arr.push(parsed);
+    return arr;
   }
 };
 
@@ -85,13 +79,6 @@ getImage = async (postID) => {
 getTitle = async (postID) => {
   let title = await r.getSubmission(postID).title;
   return title;
-};
-
-// Returns comments up to given comment permalink.
-getComments = async (postID, permalink) => {
-  let comments = await r.getSubmission(postID).expandReplies().comments;
-  let output = buildCommentChain(comments, permalink);
-  return output;
 };
 
 module.exports.getData = async (params) => {
@@ -114,7 +101,7 @@ module.exports.getData = async (params) => {
     output.link = await getImage(postID);
     downloadImage(output.link);
     output.title = await getTitle(postID);
-    output.comments = await getComments(postID, permalink);
+    output.comments = await buildCommentChain(params.commentID);
     await console.log("after " + r.ratelimitRemaining);
   } catch (err) {
     console.log(err);
