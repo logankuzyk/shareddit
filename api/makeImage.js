@@ -6,27 +6,69 @@ const unirest = require("unirest");
 const imageToBase64 = require("image-to-base64");
 const dotenv = require("dotenv").config();
 
+// Uses handlebars to generate the comment HTML and returns [the source].
 generateHTML = async (data) => {
-  let source = fs.readFileSync(__dirname + "/../views/image.hbs", "utf8");
-  const template = handlebars.compile(source);
-  let renderedComments = "";
-  for (const [i, comment] of data.comments.entries()) {
-    let params = {
-      author: comment.author,
-      commentHTML: comment.bodyMD,
-      score: comment.score,
-      time: comment.time,
-      child: renderedComments,
-    };
-    if (i === data.comments.length - 1) {
-      params.id = "content";
-      params.link = data.link;
+  let render = {};
+  // Comment parameters:
+  //   author,
+  //   score,
+  //   time,
+  //   commentHTML,
+  //   child,
+  render.comment = handlebars.compile(
+    fs.readFileSync(__dirname + "/../views/comment.hbs", "utf8")
+  );
+  // Title parameters:
+  //   score,
+  //   link (original image link),
+  //   submissionTitle,
+  //   time,
+  //   author,
+  //   commentsCount,
+  render.title = handlebars.compile(
+    fs.readFileSync(__dirname + "/../views/title.hbs", "utf8")
+  );
+  // Final parameters (HTML code):
+  //   submission,
+  //   image,
+  //   comments,
+  render.final = handlebars.compile(
+    fs.readFileSync(__dirname + "/../views/final.hbs", "utf8")
+  );
+  let params = {
+    title: {
+      score: data.submission.score,
+      link: data.submission.link,
+      submissionTitle: data.submission.title,
+      time: data.submission.time,
+      author: data.submission.author,
+      commentsCount: data.submission.commentsCount,
+    },
+    final: {
+      submission: "",
+      // image: data.submission.link,
+      comments: "",
+    },
+  };
+  params.final.submission = render.title(params.title);
+  // No comments, simply return image and title.
+  if (data.comments) {
+    for (let comment of data.comments) {
+      params.comments = {
+        author: comment.author,
+        commentHTML: comment.bodyMD,
+        score: comment.score,
+        time: comment.time,
+        child: params.final.comment,
+      };
+      params.final.comment = render.comment(params.comments);
     }
-    renderedComments = template(params);
   }
-  return renderedComments;
+  // console.log(render.final(params.final));
+  return render.final(params.final);
 };
 
+// Encodes image and uploads it with the Imgur API, returns direct URL of uploaded image.
 uploadImage = async () => {
   let img = await imageToBase64(__dirname + "/../cache/output.png");
   let url = "";
@@ -49,6 +91,7 @@ uploadImage = async () => {
   });
 };
 
+// Renders HTML with puppeteer and takes a screenshot, saving it to the cache folder.
 generateImage = async (html) => {
   const browser = await puppeteer.launch({ defaultViewport: null });
   const page = await browser.newPage();
