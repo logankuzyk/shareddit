@@ -1,15 +1,11 @@
-<div id="{{ id }}">
 <link rel="stylesheet" href="https://www.redditstatic.com/reddit.6-fmKdWEVQE.css">
-<div>
-  <img src={{ link }} style="width:100vw">
-</div>
 <div class="thing noncollapsed comment">
-<p class="parent"></p>
-<div class="midcol unvoted">
-  <div class="arrow up login-required access-required"></div>
-  <div class="arrow down login-required access-required"></div>
-</div>
-  <div class="entry unvoted">
+  <p class="parent"></p>
+  <div class="midcol unvoted">
+    <div class="arrow up login-required access-required"></div>
+    <div class="arrow down login-required access-required"></div>
+  </div>
+  <div class="entry unvoted" id="comment">
     <p class="tagline">
       <a class="expand">[–]</a>
       <a class="author may-blank id-t2_3rv0g">{{ author }}</a><span class="userattrs"></span>&#32;
@@ -36,5 +32,4 @@
   <div class="child">
     {{{ child }}}
   </div>
-</div>
 </div>
