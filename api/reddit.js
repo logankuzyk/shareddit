@@ -18,6 +18,7 @@ downloadImage = async (url) => {
   request(url).pipe(fs.createWriteStream(__dirname + "/../cache/input.png"));
 };
 
+// Turns current UTC epoch time into a readable format, the same shown on reddit comments.
 longTime = (utc) => {
   let date = new Date();
   let delta = date.getTime() / 1000 - utc;
@@ -50,6 +51,7 @@ longTime = (utc) => {
   }
 };
 
+// Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a comment "thing" (t1).
 buildCommentChain = async (id) => {
   let comment = await r.getComment(id);
   let parsed = {
@@ -70,15 +72,17 @@ buildCommentChain = async (id) => {
   }
 };
 
-getImage = async (postID) => {
-  let url = await r.getSubmission(postID).url;
-  return url;
-};
-
-// Returns title text.
-getTitle = async (postID) => {
-  let title = await r.getSubmission(postID).title;
-  return title;
+postInfo = async (id) => {
+  let post = await r.getSubmission(id);
+  let output = {
+    score: await post.score,
+    link: await post.url,
+    title: await r.getSubmission(id).title,
+    time: await longTime(await post.created_utc),
+    author: await post.author.name,
+    commentsCount: await post.num_comments,
+  };
+  return output;
 };
 
 module.exports.getData = async (params) => {
@@ -95,13 +99,14 @@ module.exports.getData = async (params) => {
     "/" +
     params.commentID +
     "/";
-
+  console.log(params);
   try {
     await console.log("before " + r.ratelimitRemaining);
-    output.link = await getImage(postID);
-    downloadImage(output.link);
-    output.title = await getTitle(postID);
-    output.comments = await buildCommentChain(params.commentID);
+    output.submission = await postInfo(postID);
+    downloadImage(output.submission.link);
+    if (params.commentID) {
+      output.comments = await buildCommentChain(params.commentID);
+    }
     await console.log("after " + r.ratelimitRemaining);
   } catch (err) {
     console.log(err);
