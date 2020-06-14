@@ -61,9 +61,10 @@ generateHTML = async (data) => {
         time: comment.time,
         child: params.final.comment,
       };
-      params.final.comment = render.comment(params.comments);
+      params.final.comments = render.comment(params.comments);
     }
   }
+  // console.log(params.final);
   // console.log(render.final(params.final));
   return render.final(params.final);
 };
