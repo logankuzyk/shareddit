@@ -51,7 +51,7 @@ longTime = (utc) => {
   }
 };
 
-// Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a comment "thing" (t1).
+// Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 buildCommentChain = async (id) => {
   let comment = await r.getComment(id);
   let parsed = {
@@ -67,7 +67,7 @@ buildCommentChain = async (id) => {
     return [parsed];
   } else {
     let arr = await buildCommentChain(parsed.parent);
-    arr.push(parsed);
+    arr.unshift(parsed);
     return arr;
   }
 };

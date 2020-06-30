@@ -59,7 +59,7 @@ generateHTML = async (data) => {
         commentHTML: comment.bodyMD,
         score: comment.score,
         time: comment.time,
-        child: params.final.comment,
+        child: params.final.comments,
       };
       params.final.comments = render.comment(params.comments);
     }
@@ -94,7 +94,10 @@ uploadImage = async () => {
 
 // Renders HTML with puppeteer and takes a screenshot, saving it to the cache folder.
 generateImage = async (html) => {
-  const browser = await puppeteer.launch({ defaultViewport: null });
+  const browser = await puppeteer.launch({
+    defaultViewport: null,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
   await page.setContent(html);
   let size = sizeOf(__dirname + "/../cache/input.png");
