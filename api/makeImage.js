@@ -99,7 +99,12 @@ generateImage = async (html) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
+  // await page.setViewport({
+  //   width: 1080,
+  //   height: 1080,
+  // });
   await page.setContent(html);
+  console.log(html);
   let size = sizeOf(__dirname + "/../cache/input.png");
   console.log({ width: size.width });
   await page.screenshot({

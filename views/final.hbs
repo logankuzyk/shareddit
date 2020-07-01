@@ -1,7 +1,14 @@
 <style>
+  #content {
+    max-height: 1080px;
+    max-width: 1080px;
+  }
+
   #image {
     padding-top: 2%;
     padding-bottom: 2%;
+    height: 1080px;
+    width: 1080px;
   }
 
   #comments {
@@ -9,14 +16,18 @@
     padding-right: 1%;
     padding-bottom: 1%;
     padding-left: 1%;
+    height: 1080px;
+    width: 1080px;
   }
 </style>
-<div id="submission">
-  {{{ submission }}}
-</div>
-{{!-- <div id="image">
-  <img src="{{ image }}" />
-</div> --}}
-<div id="comments">
-  {{{ comments }}}
+<div id="content">
+  <div id="submission">
+    {{{ submission }}}
+  </div>
+  {{!-- <div id="image">
+    <img src="{{ image }}" />
+  </div> --}}
+  <div id="comments">
+    {{{ comments }}}
+  </div>
 </div>
