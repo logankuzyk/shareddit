@@ -12,9 +12,13 @@ const r = new Reddit({
 });
 
 downloadImage = async (url) => {
+  if (!fs.existsSync(__dirname + "/../cache")) {
+    fs.mkdirSync(__dirname + "/../cache");
+  }
   request(url).pipe(fs.createWriteStream(__dirname + "/../cache/input.png"));
 };
 
+// Turns current UTC epoch time into a readable format, the same shown on reddit comments.
 longTime = (utc) => {
   let date = new Date();
   let delta = date.getTime() / 1000 - utc;
@@ -47,47 +51,37 @@ longTime = (utc) => {
   }
 };
 
-buildCommentChain = (comments, permalink) => {
-  if (comments.length == 0) {
-    return;
+// Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
+buildCommentChain = async (id) => {
+  let comment = await r.getComment(id);
+  let parsed = {
+    score: (await comment.score) + " points",
+    author: await comment.author.name,
+    body: await comment.body,
+    bodyMD: await comment.body_html,
+    time: await longTime(await comment.created_utc),
+    parent: await comment.parent_id,
+  };
+  console.log(parsed);
+  if (!parsed.parent.startsWith("t1")) {
+    return [parsed];
   } else {
-    for (let comment of comments) {
-      let parsed = {
-        score: comment.score + " points",
-        author: comment.author.name,
-        body: comment.body,
-        bodyMD: comment.body_html,
-        time: longTime(comment.created_utc),
-      };
-      if (comment.permalink == permalink) {
-        return [parsed];
-      } else if (buildCommentChain(comment.replies, permalink) != undefined) {
-        let array = buildCommentChain(comment.replies, permalink);
-        array.push(parsed);
-        return array;
-      } else {
-        continue;
-      }
-    }
-    return;
+    let arr = await buildCommentChain(parsed.parent);
+    arr.unshift(parsed);
+    return arr;
   }
 };
 
-getImage = async (postID) => {
-  let url = await r.getSubmission(postID).url;
-  return url;
-};
-
-// Returns title text.
-getTitle = async (postID) => {
-  let title = await r.getSubmission(postID).title;
-  return title;
-};
-
-// Returns comments up to given comment permalink.
-getComments = async (postID, permalink) => {
-  let comments = await r.getSubmission(postID).expandReplies().comments;
-  let output = buildCommentChain(comments, permalink);
+postInfo = async (id) => {
+  let post = await r.getSubmission(id);
+  let output = {
+    score: await post.score,
+    link: await post.url,
+    title: await r.getSubmission(id).title,
+    time: await longTime(await post.created_utc),
+    author: await post.author.name,
+    commentsCount: await post.num_comments,
+  };
   return output;
 };
 
@@ -105,9 +99,17 @@ module.exports.getData = async (params) => {
     "/" +
     params.commentID +
     "/";
-  output.link = await getImage(postID);
-  downloadImage(output.link);
-  output.title = await getTitle(postID);
-  output.comments = await getComments(postID, permalink);
+  console.log(params);
+  try {
+    await console.log("before " + r.ratelimitRemaining);
+    output.submission = await postInfo(postID);
+    downloadImage(output.submission.link);
+    if (params.commentID) {
+      output.comments = await buildCommentChain(params.commentID);
+    }
+    await console.log("after " + r.ratelimitRemaining);
+  } catch (err) {
+    console.log(err);
+  }
   return output;
 };
