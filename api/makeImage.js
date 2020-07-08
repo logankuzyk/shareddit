@@ -1,7 +1,6 @@
 const fs = require("fs");
 const handlebars = require("handlebars");
 const puppeteer = require("puppeteer");
-const sizeOf = require("image-size");
 const unirest = require("unirest");
 const dotenv = require("dotenv").config();
 
@@ -96,14 +95,14 @@ generateImage = async (html) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  // await page.setViewport({
-  //   width: 1080,
-  //   height: 1080,
-  // });
+  await page.setViewport({
+    width: 1080,
+    height: 1080,
+  });
   await page.setContent(html);
   console.log(html);
-  let buffer = await page.screenshot({
-    fullPage: true,
+  const inputElement = await page.$("#content");
+  let buffer = await inputElement.screenshot({
     encoding: "base64",
   });
 
@@ -111,6 +110,8 @@ generateImage = async (html) => {
 
   return buffer;
 };
+
+cacheUrl = async (url) => {};
 
 module.exports = async (data) => {
   let source = await generateHTML(data);
