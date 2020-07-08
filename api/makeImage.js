@@ -3,7 +3,6 @@ const handlebars = require("handlebars");
 const puppeteer = require("puppeteer");
 const sizeOf = require("image-size");
 const unirest = require("unirest");
-const imageToBase64 = require("image-to-base64");
 const dotenv = require("dotenv").config();
 
 // Uses handlebars to generate the comment HTML and returns [the source].
@@ -64,14 +63,12 @@ generateHTML = async (data) => {
       params.final.comments = render.comment(params.comments);
     }
   }
-  // console.log(params.final);
-  // console.log(render.final(params.final));
+
   return render.final(params.final);
 };
 
-// Encodes image and uploads it with the Imgur API, returns direct URL of uploaded image.
-uploadImage = async () => {
-  let img = await imageToBase64(__dirname + "/../cache/output.png");
+// Takes base64 encoded image and uploads it with the Imgur API, returns direct URL of uploaded image.
+uploadImage = async (img) => {
   let url = "";
   return new Promise((resolve, reject) => {
     unirest("POST", "https://imgur-apiv3.p.rapidapi.com/3/image")
@@ -105,19 +102,20 @@ generateImage = async (html) => {
   // });
   await page.setContent(html);
   console.log(html);
-  let size = sizeOf(__dirname + "/../cache/input.png");
-  console.log({ width: size.width });
-  await page.screenshot({
-    path: __dirname + "/../cache/output.png",
+  let buffer = await page.screenshot({
     fullPage: true,
+    encoding: "base64",
   });
+
   await browser.close();
+
+  return buffer;
 };
 
 module.exports = async (data) => {
   let source = await generateHTML(data);
-  await generateImage(source);
-  let url = await uploadImage();
+  let image = await generateImage(source);
+  let url = await uploadImage(image);
   console.log(url);
   return url;
 };

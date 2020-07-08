@@ -11,13 +11,6 @@ const r = new Reddit({
   password: process.env.PASSWORD,
 });
 
-downloadImage = async (url) => {
-  if (!fs.existsSync(__dirname + "/../cache")) {
-    fs.mkdirSync(__dirname + "/../cache");
-  }
-  request(url).pipe(fs.createWriteStream(__dirname + "/../cache/input.png"));
-};
-
 // Turns current UTC epoch time into a readable format, the same shown on reddit comments.
 longTime = (utc) => {
   let date = new Date();
@@ -88,22 +81,10 @@ postInfo = async (id) => {
 module.exports.getData = async (params) => {
   let output = {};
   let postID = params.postID;
-  let permalink =
-    "/r/" +
-    params.sub +
-    "/" +
-    "comments/" +
-    params.postID +
-    "/" +
-    params.title +
-    "/" +
-    params.commentID +
-    "/";
   console.log(params);
   try {
     await console.log("before " + r.ratelimitRemaining);
     output.submission = await postInfo(postID);
-    downloadImage(output.submission.link);
     if (params.commentID) {
       output.comments = await buildCommentChain(params.commentID);
     }
