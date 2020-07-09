@@ -10,7 +10,7 @@ router.get(
     res.render("site/generated", {
       title: data.title,
       // Render the page, right now it just displays the Imgur image. Probably want to pass the frontend off to a different route.
-      link: "<img src='" + data.url + "'/>",
+      link: data.url,
     });
   }
 );
