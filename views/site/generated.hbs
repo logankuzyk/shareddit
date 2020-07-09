@@ -20,16 +20,9 @@
 </head>
 <style>
   nav {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 </style>
-<script>
-  generate = () => {
-    let link = document.getElementById("input").value;
-    link = new URL(link).pathname;
-    window.location.replace(link);
-  };
-</script>
 <html>
   <nav class="navbar navbar-light bg-light">
     <div class="container">
@@ -38,26 +31,33 @@
       >
     </div>
   </nav>
-  <div class="container">
-    <form>
+<div class="container">
+  <form>
       <div class="form-group">
         <input
           type="url"
           class="form-control mx-2 my-1"
           placeholder="reddit post/comment permalink"
-          id="input"
         />
         <p class="mx-2">
           image parameters go here
         </p>
-        <button
-          type="button"
-          class="btn btn-primary btn-block mx-2 my-1"
-          onclick="generate()"
-        >
+        <button type="button" class="btn btn-primary btn-block mx-2 my-1">
           generate
         </button>
       </div>
-    </form>
-  </div>
+      <div>
+          {{{ link }}}
+      </div>
+      <div class="form-group"></div>
+      <button type="button" class="btn btn-primary btn-block mx-2 my-1">
+        download
+      </button>
+      <button type="button" class="btn btn-primary btn-block mx-2 my-1">
+        copy imgur link
+      </button>
+    </div>
+    </div>
+  </form>
+</div>
 </html>
