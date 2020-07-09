@@ -57,13 +57,17 @@
         <p class="mx-2">
           image parameters go here
         </p>
-        <button type="button" class="btn btn-primary btn-block mx-2 my-1">
+        <button
+          type="button"
+          class="btn btn-primary btn-block mx-2 my-1"
+          onclick="generate()"
+        >
           generate
         </button>
     </form>
       </div>
       <div>
-         <img src="{{ link }}"/>
+         <img src="{{ link }}"/ class="img-fluid">
       </div>
       <div class="form-group"></div>
       <form method="get" action="{{ link }}">
