@@ -23,6 +23,21 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 </style>
+<script>
+  generate = () => {
+    let link = document.getElementById("input").value;
+    link = new URL(link).pathname;
+    window.location.replace(link);
+  };
+
+  copy = (link) => {
+    navigator.clipboard.writeText(link).then(function() {
+    /* clipboard successfully set */
+    }, function() {
+    /* clipboard write failed */
+    });
+  }
+</script>
 <html>
   <nav class="navbar navbar-light bg-light">
     <div class="container">
@@ -32,7 +47,7 @@
     </div>
   </nav>
 <div class="container">
-  <form>
+    <form>
       <div class="form-group">
         <input
           type="url"
@@ -45,19 +60,21 @@
         <button type="button" class="btn btn-primary btn-block mx-2 my-1">
           generate
         </button>
+    </form>
       </div>
       <div>
-          {{{ link }}}
+         <img src="{{ link }}"/>
       </div>
       <div class="form-group"></div>
-      <button type="button" class="btn btn-primary btn-block mx-2 my-1">
-        download
-      </button>
-      <button type="button" class="btn btn-primary btn-block mx-2 my-1">
+      <form method="get" action="{{ link }}">
+        <button type="button" class="btn btn-primary btn-block mx-2 my-1" onclick="window.open('{{ link }}')">
+            download
+        </button>
+      </form>
+      <button type="button" class="btn btn-primary btn-block mx-2 my-1" onclick="copy('{{ link }}')">
         copy imgur link
       </button>
     </div>
     </div>
-  </form>
 </div>
 </html>
