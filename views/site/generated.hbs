@@ -55,9 +55,9 @@
           placeholder="reddit post/comment permalink"
           id="input"
         />
-        <p class="mx-2">
+        {{!-- <p class="mx-2">
           image parameters go here
-        </p>
+        </p> --}}
         <button
           type="button"
           class="btn btn-primary btn-block mx-2 my-1"
@@ -66,7 +66,6 @@
           generate
         </button>
     </form>
-    </div>
     <div>
         <img src="{{ link }}"/ class="img-fluid">
     </div>
@@ -76,27 +75,10 @@
         download
     </button>
     </form>
-    <div class="modal fade" id="copiedLink" tabindex="-1" role="dialog" aria-labelledby="copiedLinkLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            {{!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> --}}
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            link copied
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">cool</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <button type="button" class="btn btn-primary btn-block mx-2 my-1" onclick="copy('{{ link }}')" data-toggle="modal" data-target="#copiedLink">
         copy imgur link
     </button>
+</div>
 </div>
 </div>
 </div>
