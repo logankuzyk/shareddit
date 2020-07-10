@@ -55,7 +55,6 @@ buildCommentChain = async (id) => {
     time: await longTime(await comment.created_utc),
     parent: await comment.parent_id,
   };
-  console.log(parsed);
   if (!parsed.parent.startsWith("t1")) {
     return [parsed];
   } else {
@@ -81,7 +80,6 @@ postInfo = async (id) => {
 module.exports.getData = async (params) => {
   let output = {};
   let postID = params.postID;
-  console.log(params);
   try {
     await console.log("before " + r.ratelimitRemaining);
     output.submission = await postInfo(postID);

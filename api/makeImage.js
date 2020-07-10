@@ -100,7 +100,6 @@ generateImage = async (html) => {
     height: 1080,
   });
   await page.setContent(html);
-  console.log(html);
   const inputElement = await page.$("#content");
   let buffer = await inputElement.screenshot({
     encoding: "base64",
