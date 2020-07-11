@@ -23,6 +23,7 @@ generateHTML = async (data) => {
   //   time,
   //   author,
   //   commentsCount,
+  //   sub,
   render.title = handlebars.compile(
     fs.readFileSync(__dirname + "/../views/title.hbs", "utf8")
   );
@@ -41,6 +42,7 @@ generateHTML = async (data) => {
       time: data.submission.time,
       author: data.submission.author,
       commentsCount: data.submission.commentsCount,
+      sub: data.submission.sub,
     },
     final: {
       submission: "",

@@ -83,6 +83,7 @@ module.exports.getData = async (params) => {
   try {
     await console.log("before " + r.ratelimitRemaining);
     output.submission = await postInfo(postID);
+    output.submission.sub = params.sub;
     if (params.commentID) {
       output.comments = await buildCommentChain(params.commentID);
     }
