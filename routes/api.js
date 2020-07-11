@@ -48,7 +48,7 @@ getImage = async (id, params) => {
 };
 
 router.get(
-  "/:sub/comments/:postID/:title/:commentID?",
+  "/:sub/comments/:postID/:title?/:commentID?",
   async (req, res, next) => {
     let id = null;
     if (req.params.commentID) {
