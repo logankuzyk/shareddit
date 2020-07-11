@@ -5,6 +5,7 @@ const router = express.Router();
 router.get("/", function (req, res, next) {
   res.render("site/index", {
     title: "shareddit: share reddit posts with images",
+    body: "",
   });
 });
 

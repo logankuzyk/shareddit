@@ -3,6 +3,7 @@ const router = express.Router();
 const backend = require("../api/main");
 const handlebars = require("handlebars");
 const { Storage } = require("@google-cloud/storage");
+const fs = require("fs");
 
 const storage = new Storage();
 
@@ -29,7 +30,6 @@ getImage = async (id, params) => {
   let gcsname = id;
   let file = bucket.file(gcsname);
   let link = data.url;
-  // let buff = Buffer.from(pdfdata, "binary").toString("utf-8");
 
   let stream = file.createWriteStream({
     metadata: {
@@ -57,10 +57,14 @@ router.get(
       id = req.params.postID;
     }
     let data = await getImage(id, req.params);
-    res.render("site/generated", {
+    let body = await handlebars.compile(
+      fs.readFileSync(__dirname + "/../views/site/generated.hbs", "utf8")
+    );
+    body = await body({ link: data.url });
+    res.render("site/index", {
       title: data.title,
+      body: body,
       // Render the page, right now it just displays the Imgur image. Probably want to pass the frontend off to a different route.
-      link: data.url,
     });
   }
 );
