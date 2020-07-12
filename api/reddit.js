@@ -69,11 +69,28 @@ postInfo = async (id) => {
   let output = {
     score: await post.score,
     link: await post.url,
-    title: await r.getSubmission(id).title,
+    title: await post.title,
     time: await longTime(await post.created_utc),
     author: await post.author.name,
     commentsCount: await post.num_comments,
   };
+  let link = new URL(output.link);
+  if (link.hostname == "www.reddit.com") {
+    output.type = "text";
+    console.log("text submission");
+    output.text = await post.selftext_html;
+    if (output.text) {
+      output.hasText = true;
+    } else {
+      output.hasText = false;
+    }
+  } else if (link.pathname.indexOf(".") >= 0) {
+    output.type = "image";
+    console.log("image submission");
+  } else {
+    output.type = "link";
+    console.log("link submission");
+  }
   return output;
 };
 

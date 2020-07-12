@@ -14,7 +14,7 @@ generateHTML = async (data) => {
   //   commentHTML,
   //   child,
   render.comment = handlebars.compile(
-    fs.readFileSync(__dirname + "/../views/comment.hbs", "utf8")
+    fs.readFileSync(__dirname + "/../views/api/comment.hbs", "utf8")
   );
   // Title parameters:
   //   score,
@@ -24,15 +24,15 @@ generateHTML = async (data) => {
   //   author,
   //   commentsCount,
   //   sub,
-  render.title = handlebars.compile(
-    fs.readFileSync(__dirname + "/../views/title.hbs", "utf8")
-  );
+  // render.title = handlebars.compile(
+  //   fs.readFileSync(__dirname + "/../views/title.hbs", "utf8")
+  // );
   // Final parameters (HTML code):
   //   submission,
   //   image,
   //   comments,
   render.final = handlebars.compile(
-    fs.readFileSync(__dirname + "/../views/final.hbs", "utf8")
+    fs.readFileSync(__dirname + "/../views/api/final.hbs", "utf8")
   );
   let params = {
     title: {
@@ -43,6 +43,7 @@ generateHTML = async (data) => {
       author: data.submission.author,
       commentsCount: data.submission.commentsCount,
       sub: data.submission.sub,
+      text: data.submission.text,
     },
     final: {
       submission: "",
@@ -50,6 +51,27 @@ generateHTML = async (data) => {
       comments: "",
     },
   };
+  if (data.submission.type == "text") {
+    if (data.submission.hasText) {
+      render.text = handlebars.compile(
+        fs.readFileSync(__dirname + "/../views/api/selfText.hbs", "utf8")
+      );
+      params.title.text = render.text({ text: data.submission.text });
+    }
+
+    render.title = handlebars.compile(
+      fs.readFileSync(__dirname + "/../views/api/textSubmission.hbs", "utf8")
+    );
+  } else if (data.submission == "image") {
+    render.title = handlebars.compile(
+      fs.readFileSync(__dirname + "/../views/api/imageSubmission.hbs", "utf8")
+    );
+  } else {
+    // Non image link.
+    render.title = handlebars.compile(
+      fs.readFileSync(__dirname + "/../views/api/linkSubmission.hbs", "utf8")
+    );
+  }
   params.final.submission = render.title(params.title);
   // No comments, simply return image and title.
   if (data.comments) {
@@ -64,7 +86,7 @@ generateHTML = async (data) => {
       params.final.comments = render.comment(params.comments);
     }
   }
-
+  console.log(render.final(params.final));
   return render.final(params.final);
 };
 
