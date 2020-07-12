@@ -3,6 +3,7 @@ const handlebars = require("handlebars");
 const puppeteer = require("puppeteer");
 const unirest = require("unirest");
 const dotenv = require("dotenv").config();
+const makeThumbnail = require("simple-thumbnail");
 
 // Uses handlebars to generate the comment HTML and returns [the source].
 generateHTML = async (data) => {
@@ -51,7 +52,11 @@ generateHTML = async (data) => {
       comments: "",
     },
   };
-  if (data.submission.type == "text") {
+  if (data.submission.type == "image") {
+    render.title = handlebars.compile(
+      fs.readFileSync(__dirname + "/../views/api/imageSubmission.hbs", "utf8")
+    );
+  } else {
     if (data.submission.hasText) {
       render.text = handlebars.compile(
         fs.readFileSync(__dirname + "/../views/api/selfText.hbs", "utf8")
@@ -59,17 +64,12 @@ generateHTML = async (data) => {
       params.title.text = render.text({ text: data.submission.text });
     }
 
+    if (data.submission.type == "text") {
+      params.title.link = "self." + params.title.sub;
+    }
+
     render.title = handlebars.compile(
       fs.readFileSync(__dirname + "/../views/api/textSubmission.hbs", "utf8")
-    );
-  } else if (data.submission == "image") {
-    render.title = handlebars.compile(
-      fs.readFileSync(__dirname + "/../views/api/imageSubmission.hbs", "utf8")
-    );
-  } else {
-    // Non image link.
-    render.title = handlebars.compile(
-      fs.readFileSync(__dirname + "/../views/api/linkSubmission.hbs", "utf8")
     );
   }
   params.final.submission = render.title(params.title);
@@ -86,7 +86,6 @@ generateHTML = async (data) => {
       params.final.comments = render.comment(params.comments);
     }
   }
-  console.log(render.final(params.final));
   return render.final(params.final);
 };
 

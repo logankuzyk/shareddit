@@ -84,11 +84,18 @@ postInfo = async (id) => {
     } else {
       output.hasText = false;
     }
-  } else if (link.pathname.indexOf(".") >= 0) {
+  } else if (
+    link.pathname.indexOf(".jpg") >= 0 ||
+    link.pathname.indexOf(".jpeg") >= 0 ||
+    link.pathname.indexOf(".gif") >= 0 ||
+    link.pathname.indexOf(".png") >= 0
+  ) {
+    console.log(link.pathname);
     output.type = "image";
     console.log("image submission");
   } else {
     output.type = "link";
+    output.link = link.hostname;
     console.log("link submission");
   }
   return output;
