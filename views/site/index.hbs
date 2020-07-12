@@ -44,11 +44,14 @@
                 class="form-control my-1"
                 placeholder="reddit post/comment permalink"
                 id="input"
+                pattern=".*\.reddit\..*"
+                title="only reddit links work"
+                required
                 />
                 <button
-                type="button"
+                type="submit"
                 class="btn btn-primary btn-block my-1"
-                onclick="generate()"
+                onsubmit="generate()"
                 >
                 generate
                 </button>
