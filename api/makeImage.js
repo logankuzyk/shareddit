@@ -98,8 +98,9 @@ generateImage = async (html) => {
   });
   const page = await browser.newPage();
   await page.setViewport({
-    width: 1080,
-    height: 1080,
+    width: 1920,
+    height: 1920,
+    deviceScaleFactor: 2,
   });
   await page.setContent(html);
   const inputElement = await page.$("#content");
