@@ -50,17 +50,28 @@ getImage = async (id, params) => {
 router.get(
   "/:sub/comments/:postID/:title?/:commentID?",
   async (req, res, next) => {
-    let id = null;
-    if (req.params.commentID) {
-      id = req.params.commentID;
-    } else {
-      id = req.params.postID;
+    let body = null;
+    let data = null;
+    try {
+      let id = null;
+      if (req.params.commentID) {
+        id = req.params.commentID;
+      } else {
+        id = req.params.postID;
+      }
+      data = await getImage(id, req.params);
+      body = await handlebars.compile(
+        fs.readFileSync(__dirname + "/../views/site/generated.hbs", "utf8")
+      );
+      body = await body({ link: data.url });
+    } catch (e) {
+      console.log("Error:");
+      console.error(e);
+      res.render("error", {
+        body: e,
+      });
+      return;
     }
-    let data = await getImage(id, req.params);
-    let body = await handlebars.compile(
-      fs.readFileSync(__dirname + "/../views/site/generated.hbs", "utf8")
-    );
-    body = await body({ link: data.url });
     res.render("site/index", {
       title: data.title,
       body: body,
