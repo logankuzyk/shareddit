@@ -19,7 +19,9 @@
   generate = () => {
     let link = document.getElementById("input").value;
     link = new URL(link).pathname;
+    console.log(link)
     window.location.replace(link);
+    return false;
   };
 
   copy = (link) => {
@@ -28,6 +30,7 @@
     }, function() {
     /* clipboard write failed */
     });
+    return false;
   }
 </script>
 <html>
@@ -38,7 +41,7 @@
   </nav>
     <div class="container">
         <div class="form-group">
-            <form>
+            <form onsubmit="return generate()">
                 <input
                 type="url"
                 class="form-control my-1"
@@ -51,7 +54,6 @@
                 <button
                 type="submit"
                 class="btn btn-primary btn-block my-1"
-                onsubmit="generate()"
                 >
                 generate
                 </button>
