@@ -105,7 +105,6 @@ module.exports.getData = async (params) => {
   let output = {};
   let postID = params.postID;
   try {
-    await console.log("before " + r.ratelimitRemaining);
     output.submission = await postInfo(postID);
     output.submission.sub = params.sub;
     if (params.commentID) {
