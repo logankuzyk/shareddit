@@ -36,7 +36,8 @@ refresh = async () => {
   console.log("expiration " + r.ratelimitExpiration);
 };
 
-module.exports = async () => {
+module.exports.start = async () => {
+  console.log("bot started");
   while (true) {
     if (Date.now() % 20000 == 0) {
       try {
