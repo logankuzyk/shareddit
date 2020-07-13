@@ -3,7 +3,6 @@ const handlebars = require("handlebars");
 const puppeteer = require("puppeteer");
 const unirest = require("unirest");
 const dotenv = require("dotenv").config();
-const makeThumbnail = require("simple-thumbnail");
 
 // Uses handlebars to generate the comment HTML and returns [the source].
 generateHTML = async (data) => {
