@@ -1,6 +1,4 @@
 const Reddit = require("snoowrap");
-const fs = require("fs");
-const request = require("request");
 const dotenv = require("dotenv").config();
 
 const r = new Reddit({
