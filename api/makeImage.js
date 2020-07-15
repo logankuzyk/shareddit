@@ -114,6 +114,7 @@ uploadImage = async (img) => {
 generateImage = async (html) => {
   const browser = await puppeteer.launch({
     defaultViewport: null,
+    userDataDir: __dirname + "/../chrome_data",
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
