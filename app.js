@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var hbs = require("express-handlebars");
 
-var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
 
 var app = express();
@@ -28,7 +27,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
 app.use("/r", apiRouter);
 
 // catch 404 and forward to error handler
@@ -44,10 +42,6 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error", {
-    title: "shareddit: error",
-    body: err.status + " - that's an error",
-  });
 });
 
 module.exports = app;
