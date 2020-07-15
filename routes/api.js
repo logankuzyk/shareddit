@@ -50,7 +50,6 @@ getImage = async (id, params) => {
 router.get(
   "/:sub/comments/:postID/:title?/:commentID?",
   async (req, res, next) => {
-    let body = null;
     let data = null;
     try {
       let id = null;
@@ -60,23 +59,14 @@ router.get(
         id = req.params.postID;
       }
       data = await getImage(id, req.params);
-      body = await handlebars.compile(
-        fs.readFileSync(__dirname + "/../views/site/generated.hbs", "utf8")
-      );
-      body = await body({ link: data.url });
     } catch (e) {
       console.log("Error:");
       console.error(e);
-      res.render("error", {
-        body: e,
-      });
+      res.sendStatus(500);
       return;
     }
-    res.render("site/index", {
-      title: data.title,
-      body: body,
-      // Render the page, right now it just displays the Imgur image. Probably want to pass the frontend off to a different route.
-    });
+    res.send({ image: data.url });
+    res.end();
   }
 );
 
