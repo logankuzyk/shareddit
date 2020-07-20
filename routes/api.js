@@ -18,65 +18,63 @@ getImage = async (id, params) => {
         .bucket(process.env.BUCKET_NAME)
         .file(id)
         .download();
+      link = link.toString("utf8");
       return { title: "", url: link };
     }
   }
 
-  //Image has not been generated before.
-  console.log("new image");
-  let data = await backend.generate(params);
+  if (params) {
+    //Image has not been generated before.
+    console.log("new image");
+    let data = await backend.generate(params);
 
-  let bucket = storage.bucket(process.env.BUCKET_NAME);
-  let gcsname = id;
-  let file = bucket.file(gcsname);
-  let link = data.url;
+    let bucket = storage.bucket(process.env.BUCKET_NAME);
+    let gcsname = id;
+    let file = bucket.file(gcsname);
+    let link = data.url;
 
-  let stream = file.createWriteStream({
-    metadata: {
-      contentType: "application/json",
-    },
-  });
-  stream.on("error", (err) => {
-    console.log(err);
-  });
-  stream.on("finish", () => {
-    console.log(gcsname);
-  });
-  stream.end(Buffer.from(link));
+    let stream = file.createWriteStream({
+      metadata: {
+        contentType: "application/json",
+      },
+    });
+    stream.on("error", (err) => {
+      console.log(err);
+    });
+    stream.on("finish", () => {
+      console.log(gcsname);
+    });
+    stream.end(Buffer.from(link));
 
-  return data;
+    return data;
+  }
 };
+
+// router.get("/image/:id", async (req, res, next) => {
+//   let data = null;
+//   try {
+//     data = await getImage(id);
+//     res.send(data);
+//   } catch (e) {
+//     console.log("Error:");
+//     console.error(e);
+//     res.sendStatus(500);
+//     return;
+//   }
+// });
 
 router.get(
   "/:sub/comments/:postID/:title?/:commentID?",
   async (req, res, next) => {
-    let body = null;
-    let data = null;
-    try {
-      let id = null;
-      if (req.params.commentID) {
-        id = req.params.commentID;
-      } else {
-        id = req.params.postID;
-      }
-      data = await getImage(id, req.params);
-      body = await handlebars.compile(
-        fs.readFileSync(__dirname + "/../views/site/generated.hbs", "utf8")
-      );
-      body = await body({ link: data.url });
-    } catch (e) {
-      console.log("Error:");
-      console.error(e);
-      res.render("error", {
-        body: e,
-      });
-      return;
+    let id = null;
+    if (req.params.commentID) {
+      id = req.params.commentID;
+    } else {
+      id = req.params.postID;
     }
-    res.render("site/index", {
-      title: data.title,
-      body: body,
-      // Render the page, right now it just displays the Imgur image. Probably want to pass the frontend off to a different route.
-    });
+    let data = await getImage(id, req.params);
+    res.send({ image: data.url });
+    res.end();
   }
 );
 
