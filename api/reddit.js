@@ -1,6 +1,4 @@
 const Reddit = require("snoowrap");
-const fs = require("fs");
-const request = require("request");
 const dotenv = require("dotenv").config();
 
 const r = new Reddit({
@@ -105,7 +103,6 @@ module.exports.getData = async (params) => {
   let output = {};
   let postID = params.postID;
   try {
-    await console.log("before " + r.ratelimitRemaining);
     output.submission = await postInfo(postID);
     output.submission.sub = params.sub;
     if (params.commentID) {
