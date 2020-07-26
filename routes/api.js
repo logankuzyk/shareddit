@@ -93,4 +93,19 @@ router.get(
     res.end();
   }
 );
+
+router.get(
+  "/:sub/comments/:postID/:title?/:censor?",
+  async (req, res, next) => {
+    let id = null;
+    if (req.params.commentID) {
+      id = req.params.commentID;
+    } else {
+      id = req.params.postID;
+    }
+    let data = await getImage(id, req.params);
+    res.send({ image: data.url });
+    res.end();
+  }
+);
 module.exports = router;
