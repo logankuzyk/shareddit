@@ -8,18 +8,30 @@ const fs = require("fs");
 const storage = new Storage();
 
 getImage = async (id, params) => {
+  if (params.censor) {
+    params.censor = true;
+  } else {
+    params.censor = false;
+  }
   const [files] = await storage.bucket(process.env.BUCKET_NAME).getFiles();
   console.log(id);
 
   for (let file of files) {
-    if (file.id == id) {
+    fileObject = JSON.parse(file.name);
+    if (fileObject.censor) {
+      fileObject.censor = true;
+    } else {
+      fileObject.censor = false;
+    }
+    if (fileObject.id == id && fileObject.censor == params.censor) {
       console.log("old image");
       let link = await storage
         .bucket(process.env.BUCKET_NAME)
         .file(id)
         .download();
       link = link.toString("utf8");
-      return { title: "", url: link };
+      // title: fileObject.title,
+      return { url: link };
     }
   }
 
@@ -27,9 +39,13 @@ getImage = async (id, params) => {
     //Image has not been generated before.
     console.log("new image");
     let data = await backend.generate(params);
-
     let bucket = storage.bucket(process.env.BUCKET_NAME);
-    let gcsname = id;
+    // title: data.title
+    let gcsname = { name: id, censor: false };
+    if (params.censor) {
+      gcsname.censor = true;
+    }
+    gcsname = JSON.stringify(gcsname);
     let file = bucket.file(gcsname);
     let link = data.url;
 
@@ -64,7 +80,7 @@ getImage = async (id, params) => {
 // });
 
 router.get(
-  "/:sub/comments/:postID/:title?/:commentID?",
+  "/:sub/comments/:postID/:title?/:commentID?/:censor?",
   async (req, res, next) => {
     let id = null;
     if (req.params.commentID) {
@@ -77,5 +93,4 @@ router.get(
     res.end();
   }
 );
-
 module.exports = router;
