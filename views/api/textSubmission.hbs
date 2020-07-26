@@ -79,11 +79,8 @@
           >{{ time }}</time
         >
         by
-        <a
-          href="https://www.reddit.com/user/redditpirateroberts"
-          class="author may-blank id-t2_xgjw6"
-          >{{ author }}</a
-        ><span class="RESUserTag" res-prevent-cloning-1594582475913="">
+        <a class="author may-blank id-t2_3rv0g" {{#if censor}} style="color: {{color}}" {{/if}}>{{{ author }}}</a>
+        <span class="RESUserTag" res-prevent-cloning-1594582475913="">
           <a
             class="userTagLink RESUserTagImage truncateTag"
             title="set a tag"

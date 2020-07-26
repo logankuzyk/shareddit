@@ -1,8 +1,9 @@
 <style>
- #content {
+  #content {
     max-width: 720px;
     margin-right: 15px;
     margin-top: 15px;
+    position: fixed;
   }
 
   #comments {
@@ -11,8 +12,23 @@
     padding-bottom: 1%;
     padding-left: 1%;
   }
+
+  #watermark {
+    position: absolute;
+    opacity: 50%;
+    bottom: 8px;
+    right: 8px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
 </style>
 <div id="content">
   <div id="submission">{{{ submission }}}</div>
-  <div id="comments">{{{ comments }}}</div>
+  <div id="comments">
+    {{{ comments }}}
+    {{!-- &#x1F4F7 camera emoji --}}
+    <div id="watermark">via shareddit.com</div>
+  </div>
 </div>
