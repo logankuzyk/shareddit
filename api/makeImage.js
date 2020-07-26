@@ -2,11 +2,14 @@ const fs = require("fs");
 const handlebars = require("handlebars");
 const puppeteer = require("puppeteer");
 const unirest = require("unirest");
+const uniqolor = require("uniqolor");
+const { title } = require("process");
 const dotenv = require("dotenv").config();
 
 // Uses handlebars to generate the comment HTML and returns [the source].
 generateHTML = async (data) => {
   let render = {};
+  let color = {};
   // Comment parameters:
   //   author,
   //   score,
@@ -40,7 +43,6 @@ generateHTML = async (data) => {
       link: data.submission.link,
       submissionTitle: data.submission.title,
       time: data.submission.time,
-      author: data.submission.author,
       commentsCount: data.submission.commentsCount,
       sub: data.submission.sub,
       text: data.submission.text,
@@ -51,6 +53,44 @@ generateHTML = async (data) => {
       comments: "",
     },
   };
+  let postAuthor = data.submission.author;
+  if (data.censor) {
+    params.title.author = "&#9608&#9608&#9608&#9608&#9608&#9608";
+    params.title.censor = true;
+    if (color[postAuthor]) {
+      params.title.color = color[postAuthor];
+    } else {
+      color[postAuthor] = await uniqolor(postAuthor).color;
+      params.title.color = color[postAuthor];
+    }
+  } else {
+    params.title.author = postAuthor;
+  }
+  // No comments, simply return image and title.
+  if (data.comments) {
+    for (let comment of data.comments) {
+      params.comments = {
+        commentHTML: comment.bodyMD,
+        score: comment.score,
+        time: comment.time,
+        child: params.final.comments,
+      };
+      let author = comment.author;
+      if (data.censor) {
+        params.comments.author = "&#9608&#9608&#9608&#9608&#9608&#9608";
+        params.comments.censor = true;
+        if (color[author]) {
+          params.comments.color = color[author];
+        } else {
+          color[author] = await uniqolor(author).color;
+          params.comments.color = color[author];
+        }
+      } else {
+        params.comments.author = author;
+      }
+      params.final.comments = render.comment(params.comments);
+    }
+  }
   if (data.submission.type == "image") {
     render.title = handlebars.compile(
       fs.readFileSync(__dirname + "/../views/api/imageSubmission.hbs", "utf8")
@@ -72,19 +112,6 @@ generateHTML = async (data) => {
     );
   }
   params.final.submission = render.title(params.title);
-  // No comments, simply return image and title.
-  if (data.comments) {
-    for (let comment of data.comments) {
-      params.comments = {
-        author: comment.author,
-        commentHTML: comment.bodyMD,
-        score: comment.score,
-        time: comment.time,
-        child: params.final.comments,
-      };
-      params.final.comments = render.comment(params.comments);
-    }
-  }
   return render.final(params.final);
 };
 
@@ -133,8 +160,6 @@ generateImage = async (html) => {
 
   return buffer;
 };
-
-cacheUrl = async (url) => {};
 
 module.exports = async (data) => {
   let source = await generateHTML(data);
