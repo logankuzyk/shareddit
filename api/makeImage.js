@@ -55,7 +55,8 @@ generateHTML = async (data) => {
   };
   let postAuthor = data.submission.author;
   if (data.censor) {
-    params.title.author = "&#9608&#9608&#9608&#9608&#9608&#9608";
+    params.title.author =
+      "&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608";
     params.title.censor = true;
     if (color[postAuthor]) {
       params.title.color = color[postAuthor];
@@ -77,7 +78,8 @@ generateHTML = async (data) => {
       };
       let author = comment.author;
       if (data.censor) {
-        params.comments.author = "&#9608&#9608&#9608&#9608&#9608&#9608";
+        params.comments.author =
+          "&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608&#9608";
         params.comments.censor = true;
         if (color[author]) {
           params.comments.color = color[author];
