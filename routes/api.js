@@ -23,11 +23,11 @@ getImage = async (id, params) => {
     } else {
       fileObject.censor = false;
     }
-    if (fileObject.id == id && fileObject.censor == params.censor) {
+    if (fileObject.name == id && fileObject.censor == params.censor) {
       console.log("old image");
       let link = await storage
         .bucket(process.env.BUCKET_NAME)
-        .file(id)
+        .file(file.name)
         .download();
       link = link.toString("utf8");
       // title: fileObject.title,
