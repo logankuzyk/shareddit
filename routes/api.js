@@ -80,9 +80,12 @@ getImage = async (id, params) => {
 // });
 
 router.get(
-  "/:sub/comments/:postID/:title?/:commentID?/redact?",
+  "/:sub/comments/:postID/:title?/:commentID?(/redact)?",
   async (req, res, next) => {
-    req.params.censor = true;
+    if (req.params.redact) {
+      req.params.censor = true;
+    }
+
     let id = null;
     if (req.params.commentID) {
       id = req.params.commentID;
@@ -95,16 +98,21 @@ router.get(
   }
 );
 
-router.get("/:sub/comments/:postID/:title?/redact?", async (req, res, next) => {
-  req.params.censor = true;
-  let id = null;
-  if (req.params.commentID) {
-    id = req.params.commentID;
-  } else {
-    id = req.params.postID;
+router.get(
+  "/:sub/comments/:postID/:title?(/redact)?",
+  async (req, res, next) => {
+    if (req.params.redact) {
+      req.params.censor = true;
+    }
+    let id = null;
+    if (req.params.commentID) {
+      id = req.params.commentID;
+    } else {
+      id = req.params.postID;
+    }
+    let data = await getImage(id, req.params);
+    res.send({ image: data.url });
+    res.end();
   }
-  let data = await getImage(id, req.params);
-  res.send({ image: data.url });
-  res.end();
-});
+);
 module.exports = router;
