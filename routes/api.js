@@ -8,11 +8,7 @@ const fs = require("fs");
 const storage = new Storage();
 
 getImage = async (id, params) => {
-  if (params.censor) {
-    params.censor = true;
-  } else {
-    params.censor = false;
-  }
+  console.log(params);
   const [files] = await storage.bucket(process.env.BUCKET_NAME).getFiles();
   console.log(id);
 
@@ -82,7 +78,7 @@ getImage = async (id, params) => {
 router.get(
   "/:sub/comments/:postID/:title?/:commentID?(/redact)?",
   async (req, res, next) => {
-    if (req.params.redact) {
+    if (req.params["0"]) {
       req.params.censor = true;
     }
 
