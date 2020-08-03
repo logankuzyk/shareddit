@@ -69,7 +69,6 @@ getOldImage = async (params) => {
       .download();
     options = options.toString("utf8");
     options = JSON.parse(options);
-    console.log(options);
   } catch {
     return { url: await getNewImage(params) };
   }
@@ -109,7 +108,7 @@ router.get("/:sub/comments/:postID/:title/redact", async (req, res, next) => {
 });
 
 router.get(
-  "/:sub/comments/:postID/:title/:commentID?",
+  "/:sub/comments/:postID/:title/:commentID",
   async (req, res, next) => {
     req.params.redact = false;
     let data = await getOldImage(req.params);
