@@ -82,17 +82,27 @@ getOldImage = async (params) => {
       return link;
     }
   });
-  return await { url: link };
+  return { url: await link };
 };
 
+router.get("/:sub/comments/:postID/:title", async (req, res, next) => {
+  req.params.redact = false;
+  let data = await getOldImage(req.params);
+  res.send({ image: data.url });
+  res.end();
+});
+
+router.get("/:sub/comments/:postID/:title/redact", async (req, res, next) => {
+  req.params.redact = true;
+  let data = await getOldImage(req.params);
+  res.send({ image: data.url });
+  res.end();
+});
+
 router.get(
-  "/:sub/comments/:postID/:title?/:commentID?(/redact)?",
+  "/:sub/comments/:postID/:title/:commentID?",
   async (req, res, next) => {
-    if (req.params["0"]) {
-      req.params.redact = true;
-    } else {
-      req.params.redact = false;
-    }
+    req.params.redact = false;
     let data = await getOldImage(req.params);
     res.send({ image: data.url });
     res.end();
@@ -100,14 +110,10 @@ router.get(
 );
 
 router.get(
-  "/:sub/comments/:postID/:title?(/redact)?",
+  "/:sub/comments/:postID/:title/:commentID/redact",
   async (req, res, next) => {
-    if (req.params["0"]) {
-      req.params.redact = true;
-    } else {
-      req.params.redact = false;
-    }
-    let data = await getOldImage(req.params).then(console.log);
+    req.params.redact = true;
+    let data = await getOldImage(req.params);
     res.send({ image: data.url });
     res.end();
   }
