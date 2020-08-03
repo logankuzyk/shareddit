@@ -108,7 +108,7 @@ module.exports.getData = async (params) => {
     if (params.commentID) {
       output.comments = await buildCommentChain(params.commentID);
     }
-    if (params.censor) {
+    if (params.redact) {
       output.censor = true;
     }
     await console.log("after " + r.ratelimitRemaining);
