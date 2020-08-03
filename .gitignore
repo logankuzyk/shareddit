@@ -2,3 +2,4 @@
 .env
 /cache
 keys.json
+/chrome_data
