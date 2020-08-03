@@ -6,7 +6,6 @@ const fs = require("fs");
 
 const storage = new Storage();
 
-<<<<<<< HEAD
 getNewImage = async (params, imageObject) => {
   //Image has not been generated before.
   let postID = params.postID;
@@ -25,12 +24,6 @@ getNewImage = async (params, imageObject) => {
       self: {},
     };
   }
-=======
-getImage = async (id, params) => {
-  console.log(params);
-  const [files] = await storage.bucket(process.env.BUCKET_NAME).getFiles();
-  console.log(id);
->>>>>>> master
 
   if (params.commentID) {
     if (!imageObject.comments[commentID]) {
@@ -41,23 +34,11 @@ getImage = async (id, params) => {
     } else {
       imageObject.comments[commentID].link = link;
     }
-<<<<<<< HEAD
   } else {
     if (params.redact) {
       imageObject.self.redact = link;
     } else {
       imageObject.self.link = link;
-=======
-    if (fileObject.name == id && fileObject.censor == params.censor) {
-      console.log("old image");
-      let link = await storage
-        .bucket(process.env.BUCKET_NAME)
-        .file(file.name)
-        .download();
-      link = link.toString("utf8");
-      // title: fileObject.title,
-      return { url: link };
->>>>>>> master
     }
   }
 
