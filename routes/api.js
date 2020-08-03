@@ -1,96 +1,116 @@
 const express = require("express");
 const router = express.Router();
 const backend = require("../api/main");
-const handlebars = require("handlebars");
 const { Storage } = require("@google-cloud/storage");
 const fs = require("fs");
 
 const storage = new Storage();
 
-getImage = async (id, params) => {
-  if (params.censor) {
-    params.censor = true;
-  } else {
-    params.censor = false;
-  }
-  const [files] = await storage.bucket(process.env.BUCKET_NAME).getFiles();
-  console.log(id);
+getNewImage = async (params, imageObject) => {
+  //Image has not been generated before.
+  let postID = params.postID;
+  let commentID = params.commentID;
+  console.log("new image");
+  let data = await backend.generate(params);
+  let bucket = storage.bucket(process.env.BUCKET_NAME);
+  // title: data.title
+  let gcsname = postID;
+  let file = bucket.file(gcsname);
+  let link = data.url;
 
-  for (let file of files) {
-    fileObject = JSON.parse(file.name);
-    if (fileObject.censor) {
-      fileObject.censor = true;
+  if (!imageObject) {
+    imageObject = {
+      comments: {},
+      self: {},
+    };
+  }
+
+  if (params.commentID) {
+    if (params.redact) {
+      imageObject.comments[commentID].redact = link;
     } else {
-      fileObject.censor = false;
+      imageObject.comments[commentID].link = link;
     }
-    if (fileObject.id == id && fileObject.censor == params.censor) {
-      console.log("old image");
-      let link = await storage
-        .bucket(process.env.BUCKET_NAME)
-        .file(id)
-        .download();
-      link = link.toString("utf8");
-      // title: fileObject.title,
-      return { url: link };
+  } else {
+    if (params.redact) {
+      imageObject.self.redact = link;
+    } else {
+      imageObject.self.link = link;
     }
   }
 
-  if (params) {
-    //Image has not been generated before.
-    console.log("new image");
-    let data = await backend.generate(params);
-    let bucket = storage.bucket(process.env.BUCKET_NAME);
-    // title: data.title
-    let gcsname = { name: id, censor: false };
-    if (params.censor) {
-      gcsname.censor = true;
-    }
-    gcsname = JSON.stringify(gcsname);
-    let file = bucket.file(gcsname);
-    let link = data.url;
-
-    let stream = file.createWriteStream({
-      metadata: {
-        contentType: "application/json",
-      },
-    });
-    stream.on("error", (err) => {
-      console.log(err);
-    });
-    stream.on("finish", () => {
-      console.log(gcsname);
-    });
-    stream.end(Buffer.from(link));
-
-    return data;
-  }
+  let stream = file.createWriteStream({
+    metadata: {
+      contentType: "application/json",
+    },
+  });
+  stream.on("error", (err) => {
+    console.log(err);
+  });
+  stream.on("finish", () => {
+    console.log(gcsname);
+  });
+  stream.end(Buffer.from(JSON.stringify(imageObject)));
+  return data.url;
 };
 
-// router.get("/image/:id", async (req, res, next) => {
-//   let data = null;
-//   try {
-//     data = await getImage(id);
-//     res.send(data);
-//   } catch (e) {
-//     console.log("Error:");
-//     console.error(e);
-//     res.sendStatus(500);
-//     return;
-//   }
-// });
+getOldImage = async (params) => {
+  let postID = params.postID;
+  let commentID = params.commentID;
+  // console.log(postID);
+  let options = await storage
+    .bucket(process.env.BUCKET_NAME)
+    .file(postID)
+    .download();
+  options = options.toString("utf8");
+  options = JSON.parse(options);
+  console.log(options);
+  let link = new Promise((resolve, reject) => {
+    if (commentID && options.comments[commentID]) {
+      resolve(
+        params.redact
+          ? options.comments[commentID].redact
+          : options.comments[commentID].link
+      );
+    } else {
+      resolve(params.redact ? options.self.redact : options.self.link);
+    }
+  }).then(async (link) => {
+    if (!link) {
+      return await getNewImage(params);
+    } else {
+      return link;
+    }
+  });
+  return await { url: link };
+};
 
 router.get(
-  "/:sub/comments/:postID/:title?/:commentID?/:censor?",
+  "/:sub/comments/:postID/:title?/:commentID?(/redact)?",
   async (req, res, next) => {
-    let id = null;
-    if (req.params.commentID) {
-      id = req.params.commentID;
+    if (req.params["0"]) {
+      req.params.redact = true;
     } else {
-      id = req.params.postID;
+      req.params.redact = false;
     }
-    let data = await getImage(id, req.params);
+    let data = await getOldImage(req.params);
     res.send({ image: data.url });
     res.end();
   }
 );
+
+router.get(
+  "/:sub/comments/:postID/:title?(/redact)?",
+  async (req, res, next) => {
+    if (req.params["0"]) {
+      req.params.redact = true;
+    } else {
+      req.params.redact = false;
+    }
+    let data = await getOldImage(req.params).then(console.log);
+    res.send({ image: data.url });
+    res.end();
+  }
+);
+
 module.exports = router;
