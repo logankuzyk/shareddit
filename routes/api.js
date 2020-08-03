@@ -57,14 +57,20 @@ getNewImage = async (params, imageObject) => {
 getOldImage = async (params) => {
   let postID = params.postID;
   let commentID = params.commentID;
+  let options = "";
   // console.log(postID);
-  let options = await storage
-    .bucket(process.env.BUCKET_NAME)
-    .file(postID)
-    .download();
-  options = options.toString("utf8");
-  options = JSON.parse(options);
-  console.log(options);
+  try {
+    options = await storage
+      .bucket(process.env.BUCKET_NAME)
+      .file(postID)
+      .download();
+    options = options.toString("utf8");
+    options = JSON.parse(options);
+    console.log(options);
+  } catch {
+    return { url: await getNewImage(params) };
+  }
+
   let link = new Promise((resolve, reject) => {
     if (commentID && options.comments[commentID]) {
       resolve(
@@ -77,7 +83,7 @@ getOldImage = async (params) => {
     }
   }).then(async (link) => {
     if (!link) {
-      return await getNewImage(params);
+      return await getNewImage(params, options);
     } else {
       return link;
     }
