@@ -5,7 +5,7 @@ const r = new Reddit({
   userAgent: process.env.USERAGENT,
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  username: process.env.USERNAME,
+  username: "shareddit-bot",
   password: process.env.PASSWORD,
 });
 
@@ -42,6 +42,17 @@ longTime = (utc) => {
   }
 };
 
+prettyScore = (score) => {
+  if (score >= 10000) {
+    score /= 1000;
+    score = score.toString();
+    score = score.substring(0, 4) + "k";
+    return score;
+  } else {
+    return score;
+  }
+};
+
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 buildCommentChain = async (id) => {
   let comment = await r.getComment(id);
@@ -65,7 +76,7 @@ buildCommentChain = async (id) => {
 postInfo = async (id) => {
   let post = await r.getSubmission(id);
   let output = {
-    score: await post.score,
+    score: await prettyScore(await post.score),
     link: await post.url,
     title: await post.title,
     time: await longTime(await post.created_utc),
@@ -108,7 +119,7 @@ module.exports.getData = async (params) => {
     if (params.commentID) {
       output.comments = await buildCommentChain(params.commentID);
     }
-    if (params.censor) {
+    if (params.redact) {
       output.censor = true;
     }
     await console.log("after " + r.ratelimitRemaining);
