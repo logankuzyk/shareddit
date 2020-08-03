@@ -26,6 +26,9 @@ getNewImage = async (params, imageObject) => {
   }
 
   if (params.commentID) {
+    if (!imageObject.comments[commentID]) {
+      imageObject.comments[commentID] = {};
+    }
     if (params.redact) {
       imageObject.comments[commentID].redact = link;
     } else {
