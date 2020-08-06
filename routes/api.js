@@ -80,7 +80,7 @@ getOldImage = async (params) => {
           ? options.comments[commentID].redact
           : options.comments[commentID].link
       );
-    } else {
+    } else if (!commentID) {
       resolve(params.redact ? options.self.redact : options.self.link);
     }
   }).then(async (link) => {
