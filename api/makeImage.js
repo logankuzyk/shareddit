@@ -6,6 +6,22 @@ const uniqolor = require("uniqolor");
 const { title } = require("process");
 const dotenv = require("dotenv").config();
 
+buildAwards = (all_awardings) => {
+  render = handlebars.compile(
+    fs.readFileSync(__dirname + "/../views/api/award.hbs", "utf8")
+  );
+  let output = "";
+  for (let award of all_awardings) {
+    params = {
+      awardId: award.id,
+      imageSrc: award.static_icon_url,
+    };
+    if (award.count > 1) params.awardCount = award.count;
+    output += render(params);
+  }
+  return output;
+};
+
 // Uses handlebars to generate the comment HTML and returns [the source].
 generateHTML = async (data) => {
   let render = {};
@@ -46,6 +62,7 @@ generateHTML = async (data) => {
       commentsCount: data.submission.commentsCount,
       sub: data.submission.sub,
       text: data.submission.text,
+      awards: buildAwards(data.submission.awards),
     },
     final: {
       submission: "",
@@ -75,6 +92,7 @@ generateHTML = async (data) => {
         score: comment.score,
         time: comment.time,
         child: params.final.comments,
+        awards: buildAwards(comment.awards),
       };
       let author = comment.author;
       if (data.censor) {

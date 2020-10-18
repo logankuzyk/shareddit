@@ -63,6 +63,7 @@ buildCommentChain = async (id) => {
     bodyMD: await comment.body_html,
     time: await longTime(await comment.created_utc),
     parent: await comment.parent_id,
+    awards: await comment.all_awardings,
   };
   if (!parsed.parent.startsWith("t1")) {
     return [parsed];
@@ -82,6 +83,7 @@ postInfo = async (id) => {
     time: await longTime(await post.created_utc),
     author: await post.author.name,
     commentsCount: await post.num_comments,
+    awards: await post.all_awardings,
   };
   let link = new URL(output.link);
   if (link.hostname == "www.reddit.com") {
