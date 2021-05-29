@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const backend = require("../api/main");
 const { Storage } = require("@google-cloud/storage");
+const dotenv = require("dotenv").config();
 const fs = require("fs");
 
 const storage = new Storage();
