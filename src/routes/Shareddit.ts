@@ -3,12 +3,6 @@ import { Request, Response } from 'express';
 
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
-interface getSharedditImageParams {
-    sub: string;
-    postID: string;
-    commentID?: string;
-}
-
 /**
  * Get generated image.
  * 
@@ -17,7 +11,7 @@ interface getSharedditImageParams {
  * @returns 
  */
 export async function getSharedditImage(req: Request, res: Response) {
-    const params = req.params;
+    const { params } = req;
 
     return res.status(OK).json(params);
 }

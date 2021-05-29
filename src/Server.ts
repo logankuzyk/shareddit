@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Add APIs
-app.use('*', BaseRouter);
+app.use('/', BaseRouter);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
