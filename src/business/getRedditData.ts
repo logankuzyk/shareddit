@@ -18,6 +18,7 @@ const buildCommentChain = async (commentID: string): Promise<RedditComment[]> =>
     bodyHTML: comment.body_html,
     prettyDate: await longTime(comment.created_utc),
     parentID: comment.parent_id,
+    //@ts-ignore
     awards: comment.all_awardings,
   };
   if (!output.parentID.startsWith("t1")) {
@@ -39,6 +40,7 @@ const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
     title: post.title,
     prettyDate: await longTime(post.created_utc),
     commentsCount: post.num_comments,
+    //@ts-ignore
     awards: post.all_awardings,
     bodyHTML: post.selftext_html,
     type: await determinePostType(url),
