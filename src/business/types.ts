@@ -22,7 +22,7 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
     score: string;
     postedDate?: Date;
     prettyDate: string;
-    bodyHTML?: string;
+    bodyHTML: string | undefined | null;
     awards: string[];
     title: string;
     link?: string;
