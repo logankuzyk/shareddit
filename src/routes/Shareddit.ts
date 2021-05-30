@@ -1,6 +1,8 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response } from 'express';
 
+import renderImage from '../business/renderImage'
+
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
 /**
@@ -8,10 +10,12 @@ const { BAD_REQUEST, CREATED, OK } = StatusCodes;
  * 
  * @param req 
  * @param res 
- * @returns 
+ * @returns
  */
 export async function getSharedditImage(req: Request, res: Response) {
     const { params } = req;
 
-    return res.status(OK).json(params);
+    const url = await renderImage(params);
+
+    return res.status(OK).json({ image: url });
 }
