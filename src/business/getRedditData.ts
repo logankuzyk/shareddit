@@ -2,16 +2,11 @@ import Reddit from 'snoowrap';
 
 import { SkeletonRedditSubmission, FleshedRedditSubmission, RedditComment } from './types';
 import { determinePostType, longTime, prettyScore }  from '../util';
+import { login } from './getCredentials';
 
 const dotenv = require("dotenv").config();
 
-const r = new Reddit({
-  userAgent: process.env.USERAGENT,
-  clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-});
+const r = new Reddit(login());
 
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 const buildCommentChain = async (commentID: string): Promise<RedditComment[]> => {

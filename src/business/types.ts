@@ -1,5 +1,13 @@
 import { Request } from 'express';
 
+export interface SnoowrapCredentials {
+    userAgent: string;
+    clientId: string;
+    clientSecret: string;
+    username: string;
+    password: string;
+}
+
 export interface RedditComment {
     author: string;
     score: string;
