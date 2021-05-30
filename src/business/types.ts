@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 export interface RedditComment {
     author: string;
     score: string;
@@ -10,9 +12,9 @@ export interface RedditComment {
 }
 
 export interface SkeletonRedditSubmission {
-    sub?: string;
-    postID?: string;
-    title?: string;
+    sub: string;
+    postID: string;
+    urlTitle?: string;
     commentID?: string;
     redact?: boolean;
 }
@@ -29,4 +31,5 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
     comments?: RedditComment[];
     commentsCount: number;
     type: "image" | "link" | "text";
+    
 }
