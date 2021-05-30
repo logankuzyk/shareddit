@@ -15,6 +15,7 @@ const r = new Reddit({
 
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 const buildCommentChain = async (commentID: string): Promise<RedditComment[]> => {
+  //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
     score: await prettyScore(comment.score),
