@@ -54,7 +54,7 @@ const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
   return output;
 };
 
-export const getRedditData = async (params: SkeletonRedditSubmission): Promise<FleshedRedditSubmission | undefined> => {
+export default async (params: SkeletonRedditSubmission): Promise<FleshedRedditSubmission | undefined> => {
     try {
       const { postID, commentID } = params;
       const post: FleshedRedditSubmission = await postInfo(postID);
