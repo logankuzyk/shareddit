@@ -1,4 +1,9 @@
-import { Request } from 'express';
+export interface Award {
+    url: string;
+    height: number;
+    width: number;
+    sizes?: Award[];
+}
 
 export interface SnoowrapCredentials {
     userAgent: string;
@@ -14,9 +19,8 @@ export interface RedditComment {
     postedDate?: Date;
     prettyDate: string;
     bodyHTML: string;
-    awards: string[];
+    awards: Award[];
     parentID: string;
-    //child: RedditComment | null; could work?
 }
 
 export interface SkeletonRedditSubmission {
@@ -33,11 +37,10 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
     postedDate?: Date;
     prettyDate: string;
     bodyHTML: string | undefined | null;
-    awards: string[];
+    awards: Award[];
     title: string;
     link?: string;
     comments?: RedditComment[];
     commentsCount: number;
     type: "image" | "link" | "text";
-    
 }
