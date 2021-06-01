@@ -1,14 +1,14 @@
-import Reddit from "snoowrap";
+import Reddit from 'snoowrap';
 
 import {
   SkeletonRedditSubmission,
   FleshedRedditSubmission,
   RedditComment,
-} from "./types";
-import { determinePostType, longTime, prettyScore } from "./util";
-import { login } from "./getCredentials";
+} from './types';
+import { determinePostType, longTime, prettyScore } from './util';
+import { login } from './getCredentials';
 
-const dotenv = require("dotenv").config();
+const dotenv = require('dotenv').config();
 
 const r = new Reddit(login());
 
@@ -27,7 +27,7 @@ const buildCommentChain = async (
     //@ts-ignore
     awards: comment.all_awardings,
   };
-  if (!output.parentID.startsWith("t1")) {
+  if (!output.parentID.startsWith('t1')) {
     return [output];
   } else {
     let arr = await buildCommentChain(output.parentID);

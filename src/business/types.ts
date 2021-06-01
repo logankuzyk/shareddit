@@ -42,5 +42,5 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   link?: string;
   comments?: RedditComment[];
   commentsCount: number;
-  type: "image" | "link" | "text";
+  type: 'image' | 'link' | 'text';
 }
