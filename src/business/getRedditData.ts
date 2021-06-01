@@ -1,15 +1,21 @@
-import Reddit from 'snoowrap';
+import Reddit from "snoowrap";
 
-import { SkeletonRedditSubmission, FleshedRedditSubmission, RedditComment } from './types';
-import { determinePostType, longTime, prettyScore }  from '../util';
-import { login } from './getCredentials';
+import {
+  SkeletonRedditSubmission,
+  FleshedRedditSubmission,
+  RedditComment,
+} from "./types";
+import { determinePostType, longTime, prettyScore } from "./util";
+import { login } from "./getCredentials";
 
 const dotenv = require("dotenv").config();
 
 const r = new Reddit(login());
 
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
-const buildCommentChain = async (commentID: string): Promise<RedditComment[]> => {
+const buildCommentChain = async (
+  commentID: string
+): Promise<RedditComment[]> => {
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
@@ -32,7 +38,7 @@ const buildCommentChain = async (commentID: string): Promise<RedditComment[]> =>
 
 const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
-  const url = new URL(post.url)
+  const url = new URL(post.url);
   const output: FleshedRedditSubmission = {
     score: await prettyScore(post.score),
     author: post.author.name,
@@ -52,17 +58,19 @@ const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
   return output;
 };
 
-export default async (params: SkeletonRedditSubmission): Promise<FleshedRedditSubmission> => {
-    try {
-      const { postID, commentID } = params;
-      const post: FleshedRedditSubmission = await postInfo(postID);
-    
-      if (commentID) {
-        post.comments = await buildCommentChain(commentID);
-      }
+export default async (
+  params: SkeletonRedditSubmission
+): Promise<FleshedRedditSubmission> => {
+  try {
+    const { postID, commentID } = params;
+    const post: FleshedRedditSubmission = await postInfo(postID);
 
-      return post;
-    } catch (err) {
-      throw err;
+    if (commentID) {
+      post.comments = await buildCommentChain(commentID);
     }
-}
+
+    return post;
+  } catch (err) {
+    throw err;
+  }
+};
