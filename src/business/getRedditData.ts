@@ -52,7 +52,7 @@ const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
   return output;
 };
 
-export default async (params: SkeletonRedditSubmission): Promise<FleshedRedditSubmission | undefined> => {
+export default async (params: SkeletonRedditSubmission): Promise<FleshedRedditSubmission> => {
     try {
       const { postID, commentID } = params;
       const post: FleshedRedditSubmission = await postInfo(postID);
@@ -63,7 +63,6 @@ export default async (params: SkeletonRedditSubmission): Promise<FleshedRedditSu
 
       return post;
     } catch (err) {
-      console.error(err.body)
-      return;
+      throw err;
     }
 }
