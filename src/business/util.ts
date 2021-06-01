@@ -1,3 +1,24 @@
+import axios, { AxiosRequestConfig } from 'axios';
+
+// Takes base64 encoded image and uploads it with the Imgur API, returns direct URL of uploaded image.
+export const imgurUpload = async (img: any) => {
+  const axiosOptions: AxiosRequestConfig = {
+    url: "https://imgur-apiv3.p.rapidapi.com/3/image",
+    method: 'POST',
+    timeout: 1000,
+    headers: {
+      "x-rapidapi-host": "imgur-apiv3.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_KEY,
+      authorization: "Bearer " + process.env.IMGUR_ACCESS_TOKEN,
+    },
+    data: {
+      image: img,
+    }
+  }
+  const res = await axios(axiosOptions)
+  return res.data.body.data.link;
+}
+
 export const determinePostType = async (
   url: URL
 ): Promise<"image" | "link" | "text"> => {
