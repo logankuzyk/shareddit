@@ -1,3 +1,11 @@
+export type RenderTypes =
+  | 'award'
+  | 'comment'
+  | 'everything'
+  | 'imageSubmission'
+  | 'textSubmission'
+  | 'selfText';
+
 export interface Award {
   url: string;
   height: number;
