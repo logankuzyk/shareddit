@@ -43,7 +43,6 @@ const generateHTML = async (data: FleshedRedditSubmission) => {
   let selfTextHTML: string = '';
   let commentHTML: string = '';
   //yes, yes
-  console.log(data.awards[0]);
   const titleParams: TitleRenderParams = {
     score: data.score,
     link: data.link,
@@ -115,7 +114,8 @@ const generateImage = async (html: string) => {
 export default async (data: FleshedRedditSubmission): Promise<string> => {
   const source = await generateHTML(data);
   const image = await generateImage(source);
-  const url = await imgurUpload(image);
-  console.log(url);
-  return url;
+  // const url = await imgurUpload(image);
+  // console.log(url);
+  // return image;
+  return `<img src="data:image/png;base64,${image}"></img>`;
 };

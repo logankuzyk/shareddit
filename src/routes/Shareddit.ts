@@ -31,8 +31,8 @@ export const getSharedditImage = async (req: Request, res: Response) => {
   );
 
   try {
-    const imageURL = await renderImage(generationParams);
-    return res.status(OK).json({ image: imageURL });
+    const imageElement = await renderImage(generationParams);
+    return res.send(imageElement);
   } catch (err) {
     console.error(err);
     return res.status(500);
