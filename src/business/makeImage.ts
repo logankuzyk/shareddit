@@ -72,13 +72,17 @@ const generateHTML = async (data: FleshedRedditSubmission) => {
   switch (data.type) {
     case 'image':
       titleHTML = render.imageSubmission(titleParams);
+      break;
     case 'text':
       titleParams.link = `self.${titleParams.sub}`;
       titleHTML = render.textSubmission(titleParams);
+      break;
     case 'link':
       titleHTML = render.imageSubmission(titleParams);
+      break;
     case 'image':
       titleHTML = render.imageSubmission(titleParams);
+      break;
   }
 
   return render.everything({ submission: titleHTML, comments: commentHTML });
