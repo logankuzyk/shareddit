@@ -2,6 +2,6 @@
 .env
 /cache
 keys.json
-/chrome_data
+/src/chrome_data
 /dist
 *.log
