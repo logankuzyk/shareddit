@@ -29,7 +29,12 @@ export const getSharedditImage = async (req: Request, res: Response) => {
   const generationParams: SkeletonRedditSubmission = await validateParams(
     params
   );
-  const imageURL = await renderImage(generationParams);
 
-  return res.status(OK).json({ image: imageURL });
+  try {
+    const imageURL = await renderImage(generationParams);
+    return res.status(OK).json({ image: imageURL });
+  } catch (err) {
+    console.error(err);
+    return res.status(500);
+  }
 };

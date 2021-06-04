@@ -36,7 +36,10 @@ const buildCommentChain = async (
   }
 };
 
-const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
+const postInfo = async (
+  postID: string,
+  redact: boolean
+): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
   const url = new URL(post.url);
   const output: FleshedRedditSubmission = {
@@ -53,6 +56,7 @@ const postInfo = async (postID: string): Promise<FleshedRedditSubmission> => {
     comments: [],
     sub: post.subreddit.name,
     postID: postID,
+    redact: redact,
   };
 
   return output;
@@ -62,8 +66,8 @@ export default async (
   params: SkeletonRedditSubmission
 ): Promise<FleshedRedditSubmission> => {
   try {
-    const { postID, commentID } = params;
-    const post: FleshedRedditSubmission = await postInfo(postID);
+    const { postID, commentID, redact } = params;
+    const post: FleshedRedditSubmission = await postInfo(postID, redact);
 
     if (commentID) {
       post.comments = await buildCommentChain(commentID);
