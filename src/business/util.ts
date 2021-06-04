@@ -20,8 +20,9 @@ export const imgurUpload = async (img: any) => {
 };
 
 export const determinePostType = async (
-  url: URL
+  link: string
 ): Promise<'image' | 'link' | 'text'> => {
+  const url = new URL(link);
   let type: 'image' | 'link' | 'text';
 
   if (url.hostname == 'www.reddit.com') {

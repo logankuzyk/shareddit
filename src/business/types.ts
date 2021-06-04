@@ -1,4 +1,4 @@
-export type RenderTypes =
+export type TemplateName =
   | 'award'
   | 'comment'
   | 'everything'
@@ -6,11 +6,19 @@ export type RenderTypes =
   | 'textSubmission'
   | 'selfText';
 
+export interface RenderTypes {
+  award: HandlebarsTemplateDelegate<any>;
+  comment: HandlebarsTemplateDelegate<any>;
+  everything: HandlebarsTemplateDelegate<any>;
+  imageSubmission: HandlebarsTemplateDelegate<any>;
+  textSubmission: HandlebarsTemplateDelegate<any>;
+}
+
 export interface Award {
   url: string;
   height: number;
   width: number;
-  sizes?: Award[];
+  count: number;
 }
 
 export interface SnoowrapCredentials {
@@ -36,7 +44,7 @@ export interface SkeletonRedditSubmission {
   postID: string;
   urlTitle?: string;
   commentID?: string;
-  redact?: boolean;
+  redact: boolean;
 }
 
 export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
@@ -51,4 +59,33 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   comments?: RedditComment[];
   commentsCount: number;
   type: 'image' | 'link' | 'text';
+  redact: boolean;
 }
+
+export interface AwardParams {
+  imageSrc: string;
+  awardCount?: number;
+}
+
+export interface CommentRenderParams {
+  author: string;
+  score: string;
+  prettyDate: string;
+  bodyHTML: string;
+  child: string;
+}
+
+export interface TitleRenderParams {
+  author: string;
+  score: string;
+  link?: string;
+  submissionTitle: string;
+  time: string;
+  commentsCount: number;
+  sub: string;
+  text?: string;
+  awards: string;
+  redact: boolean;
+}
+
+export interface EverythingParams {}

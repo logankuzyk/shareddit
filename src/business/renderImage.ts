@@ -1,7 +1,9 @@
-import { SkeletonRedditSubmission } from './types';
+import { FleshedRedditSubmission, SkeletonRedditSubmission } from './types';
+import getRedditData from './getRedditData';
+import makeImage from './makeImage';
 
 export default async (params: SkeletonRedditSubmission) => {
-    const { sub, postID, title, commentID } = params;
-
-    
-}
+  const redditData: FleshedRedditSubmission = await getRedditData(params);
+  const url = makeImage(redditData);
+  return url;
+};

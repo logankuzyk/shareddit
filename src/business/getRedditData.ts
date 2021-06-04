@@ -41,18 +41,17 @@ const postInfo = async (
   redact: boolean
 ): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
-  const url = new URL(post.url);
   const output: FleshedRedditSubmission = {
     score: await prettyScore(post.score),
     author: post.author.name,
-    link: url.hostname,
+    link: post.url,
     title: post.title,
     prettyDate: await longTime(post.created_utc),
     commentsCount: post.num_comments,
     //@ts-ignore
     awards: post.all_awardings,
     bodyHTML: post.selftext_html,
-    type: await determinePostType(url),
+    type: await determinePostType(await post.url),
     comments: [],
     sub: post.subreddit.name,
     postID: postID,
