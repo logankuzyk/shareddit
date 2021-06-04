@@ -19,7 +19,7 @@ const buildCommentChain = async (
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
-    score: await prettyScore(await comment.score),
+    score: `${await prettyScore(await comment.score)} points`,
     author: await comment.author.name,
     bodyHTML: await comment.body_html,
     prettyDate: await longTime(await comment.created_utc),
