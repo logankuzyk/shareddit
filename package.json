@@ -74,6 +74,7 @@
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "puppeteer": "^10.0.0",
+    "query-string": "^7.0.0",
     "snoowrap": "^1.23.0",
     "uniqolor": "^1.0.1"
   },
