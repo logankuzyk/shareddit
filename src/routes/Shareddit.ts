@@ -41,7 +41,7 @@ export const parseQueryString = async (req: Request, res: Response) => {
   }
 };
 
-export const getSharedditImage = async (req: Request, res: Response) => {
+export const redirectRedditPath = async (req: Request, res: Response) => {
   try {
     const { params } = req;
     const generationParams: SkeletonRedditSubmission = await validateParams(

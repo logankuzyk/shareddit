@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { getSharedditImage, parseQueryString } from './Shareddit';
+import { redirectRedditPath, parseQueryString } from './Shareddit';
 
 const sharedditRouter = Router();
 
-sharedditRouter.get('/r/:sub/comments/:postID/(:title)?', getSharedditImage);
+sharedditRouter.get('/r/:sub/comments/:postID/(:title)?', redirectRedditPath);
 sharedditRouter.get(
   '/r/:sub/comments/:postID/:title/:commentID',
-  getSharedditImage
+  redirectRedditPath
 );
 
 sharedditRouter.get('/*', parseQueryString);
