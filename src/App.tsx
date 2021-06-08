@@ -7,18 +7,18 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
 } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-import { Logo } from "./components/Logo";
+import theme from "./style/theme";
+import "./style/fonts.css";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
+          <Text fontFamily="Signika" fontWeight={500} fontSize="5xl">
+            shareddit
+          </Text>
           <Text>
             Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
           </Text>
