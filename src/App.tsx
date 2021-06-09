@@ -8,12 +8,12 @@ import {
   Code,
   Grid,
 } from "@chakra-ui/react";
-import theme from "./style/theme";
+import { theme } from "./style/theme";
 import "./style/fonts.css";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
+    <Box textAlign="center" fontSize="xl" bg="brand.background">
       <Grid minH="100vh" p={3}>
         <VStack spacing={8}>
           <Text fontFamily="Signika" fontWeight={500} fontSize="5xl">
