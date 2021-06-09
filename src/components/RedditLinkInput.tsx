@@ -15,6 +15,9 @@ export const RedditLinkInput: React.FC<RedditLinkInputProps> = ({}) => {
       border="4px"
       borderColor="brand.highlights"
       borderRadius="12px"
+      colorScheme="button"
+      _hover={{ borderColor: "button.600" }}
+      _focus={{ borderColor: "brand.focus" }}
     ></Input>
   );
 };
