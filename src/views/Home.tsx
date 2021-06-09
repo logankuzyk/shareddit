@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, Text, VStack, Grid, Button } from "@chakra-ui/react";
+import Helmet from "react-helmet";
 
 import { GenerateButton } from "../components/GenerateButton";
 import { RedditLinkInput } from "../components/RedditLinkInput";
@@ -9,12 +10,12 @@ import { ArrowDownIcon } from "@chakra-ui/icons";
 interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = ({}) => {
-  useEffect(() => {
-    document.title = "shareddit";
-  }, []);
-
   return (
     <Box textAlign="center" fontSize="xl">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>shareddit</title>
+      </Helmet>
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={8}>
           <SharedditLogo />
