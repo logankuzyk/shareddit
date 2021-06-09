@@ -18,4 +18,17 @@ export const theme = extendTheme({
       input: "#FFF1EB",
     },
   },
+  styles: {
+    global: {
+      body: {
+        backgroundColor: "brand.background",
+        color: "text.dark",
+        fontFamily: "Jost",
+      },
+      input: {
+        backgroundColor: "brand.input",
+        alignText: "center",
+      },
+    },
+  },
 });

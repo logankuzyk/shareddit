@@ -3,34 +3,47 @@ import {
   ChakraProvider,
   Box,
   Text,
-  Link,
   VStack,
-  Code,
   Grid,
+  Input,
+  Button,
 } from "@chakra-ui/react";
 import { theme } from "./style/theme";
 import "./style/fonts.css";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl" bg="brand.background">
+    <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
-          <Text fontFamily="Signika" fontWeight={500} fontSize="5xl">
+        <VStack maxW="lg" marginX="auto" spacing={8}>
+          <Text fontFamily="Signika" fontSize="5xl" fontWeight="semibold">
             shareddit
           </Text>
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
+          <Text fontSize="5xl" fontWeight="semibold">
+            The best way to screenshot reddit content.
           </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Input
+            size="lg"
+            minHeight="64px"
+            placeholder="enter reddit URL"
+            backgroundColor="brand.input"
+            textAlign="center"
+            fontWeight="semibold"
+            border="4px"
+            borderColor="brand.highlights"
+          ></Input>
+          <Button
+            size="lg"
+            minHeight="64px"
+            color="brand.input"
+            backgroundColor="brand.highlights"
+            border="4px"
+            borderColor="brand.highlights"
+            width="100%"
           >
-            Learn Chakra
-          </Link>
+            generate
+          </Button>
+          <Button>How it works{"\n"}</Button>
         </VStack>
       </Grid>
     </Box>
