@@ -15,7 +15,7 @@ export const GenerateButton: React.FC<GenerateButtonProps> = ({}) => {
       width="100%"
       borderRadius="12px"
       colorScheme="button"
-      _hover={{ borderColor: "button.600" }}
+      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
       _focus={{ borderColor: "brand.focus" }}
     >
       generate
