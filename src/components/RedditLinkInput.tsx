@@ -1,30 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Input, useToast } from "@chakra-ui/react";
-import { FieldProps, getIn, useField } from "formik";
+import React from "react";
+import { Input } from "@chakra-ui/react";
 
-export const RedditLinkInput: React.FC<FieldProps> = ({
-  label,
-  helpText,
-  ...props
-}) => {
-  const [field, meta] = useField(props);
-  const [didFocus, setDidFocus] = useState(false);
-  const handleFocus = () => setDidFocus(true);
-  const showFeedback =
-    (!!didFocus && field.value.trim().length > 2) || meta.touched;
+interface RedditLinkInputProps {}
 
-  const toast = useToast();
-
-  if (showFeedback) {
-    toast({
-      id: "form-validation",
-      status: "error",
-      title: helpText,
-      duration: 3000,
-      isClosable: true,
-    });
-  }
-
+export const RedditLinkInput: React.FC<RedditLinkInputProps> = ({}) => {
   return (
     <Input
       size="lg"
@@ -33,18 +12,12 @@ export const RedditLinkInput: React.FC<FieldProps> = ({
       backgroundColor="brand.input"
       textAlign="center"
       fontWeight="semibold"
-      marginBottom="var(--chakra-space-8)"
       border="4px"
       borderColor="brand.highlights"
       borderRadius="12px"
       colorScheme="button"
       _hover={{ borderColor: "button.600" }}
       _focus={{ borderColor: "brand.focus" }}
-      errorBorderColor="red.500"
-      isInvalid={showFeedback}
-      onFocus={handleFocus}
-      {...field}
-      {...props}
     ></Input>
   );
 };
