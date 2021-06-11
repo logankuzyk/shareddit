@@ -5,14 +5,16 @@ import * as yup from "yup";
 
 import { GenerateButton } from "./GenerateButton";
 import { RedditLinkInput } from "./RedditLinkInput";
+import { submitLink } from "../submitLink";
 
 export const LinkForm: React.FC = () => {
   const formik = useFormik({
     initialValues: {
       link: "",
     },
-    onSubmit: ({ link }) => {
-      alert(`this is a link ${link}`);
+    onSubmit: ({ link }, actions) => {
+      submitLink(link);
+      actions.setSubmitting(false);
     },
     validationSchema: yup.object({
       link: yup

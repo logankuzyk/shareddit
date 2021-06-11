@@ -17,12 +17,14 @@
     "@types/react-dom": "^16.9.13",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
+    "query-string": "^7.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
     "react-scripts": "4.0.3",
     "typescript": "^3.9.9",
+    "url-params-parser": "^1.0.4",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.9"
   },
@@ -48,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-helmet": "^6.1.1"
+    "@types/react-helmet": "^6.1.1",
+    "@types/url-params-parser": "^1.0.0"
   }
 }

@@ -22,6 +22,7 @@ export const GenerateButton: React.FC<FieldProps> = ({
       width="100%"
       borderRadius="12px"
       colorScheme="button"
+      isLoading={form.isSubmitting}
       _hover={
         error
           ? { borderColor: "error.600", backgroundColor: "error.500" }
