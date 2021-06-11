@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  FormControl,
-  Input,
-  Text,
-  useFormControl,
-} from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import { FieldProps, getIn } from "formik";
 
 export const RedditLinkInput: React.FC<FieldProps> = ({

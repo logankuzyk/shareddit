@@ -5,9 +5,7 @@ import Helmet from "react-helmet";
 import { LinkForm } from "../components/LinkForm";
 import { SharedditLogo } from "../components/SharedditLogo";
 
-interface HomeProps {}
-
-export const Home: React.FC<HomeProps> = ({}) => {
+export const Home: React.FC = () => {
   return (
     <Box textAlign="center" fontSize="xl">
       <Helmet>
