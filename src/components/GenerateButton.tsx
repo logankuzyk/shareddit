@@ -1,9 +1,12 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
+import { FieldProps, getIn } from "formik";
 
-interface GenerateButtonProps {}
-
-export const GenerateButton: React.FC<GenerateButtonProps> = ({}) => {
+export const GenerateButton: React.FC<FieldProps> = ({
+  field,
+  form,
+  ...props
+}) => {
   return (
     <Button
       size="lg"

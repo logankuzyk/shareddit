@@ -1,26 +1,50 @@
 import React from "react";
-import { VStack, Text, Button } from "@chakra-ui/react";
+import { Button, Box } from "@chakra-ui/react";
+import { Formik, Field, Form, FormikProvider, useFormik } from "formik";
+import * as yup from "yup";
 
 import { GenerateButton } from "./GenerateButton";
 import { RedditLinkInput } from "./RedditLinkInput";
-import { SharedditLogo } from "./SharedditLogo";
 import { ArrowDownIcon } from "@chakra-ui/icons";
 
-interface LinkFormProps {}
+export const LinkForm: React.FC = (props) => {
+  const formik = useFormik({
+    initialValues: {
+      link: "",
+    },
+    onSubmit: ({ link }) => {},
+  });
 
-export const LinkForm: React.FC<LinkFormProps> = ({}) => {
+  const schema = yup.object({
+    link: yup
+      .string()
+      .required()
+      .matches(
+        /reddit\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+        "Must be a reddit URL"
+      ),
+  });
+
   return (
-    <VStack maxW="lg" marginX="auto" spacing={8}>
-      <SharedditLogo />
-      <Text fontSize="5xl" fontWeight="semibold">
-        The best way to screenshot reddit content.
-      </Text>
-      <RedditLinkInput />
-      <GenerateButton />
-      <Button marginTop="100%">
-        How it works
-        {<ArrowDownIcon />}
-      </Button>
-    </VStack>
+    <Box width="100%">
+      <FormikProvider value={formik}>
+        <Formik
+          validationSchema={schema}
+          initialValues={{ link: "" }}
+          onSubmit={() => {}}
+        >
+          {() => (
+            <Form>
+              <Field name="link" component={RedditLinkInput}></Field>
+              <Field name="submit" component={GenerateButton}></Field>
+            </Form>
+          )}
+        </Formik>
+        <Button marginTop="100%">
+          How it works
+          {<ArrowDownIcon />}
+        </Button>
+      </FormikProvider>
+    </Box>
   );
 };
