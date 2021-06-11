@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@chakra-ui/react";
+import { FieldProps, getIn } from "formik";
 
-interface GenerateButtonProps {}
+export const GenerateButton: React.FC<FieldProps> = ({
+  field,
+  form,
+  ...props
+}) => {
+  const error = Boolean(
+    getIn(form.touched, "link") && getIn(form.errors, "link")
+  );
 
-export const GenerateButton: React.FC<GenerateButtonProps> = ({}) => {
   return (
     <Button
       size="lg"
       minHeight="64px"
       color="brand.input"
-      backgroundColor="brand.highlights"
+      backgroundColor={error ? "error.400" : "brand.highlights"}
       border="4px"
-      borderColor="brand.highlights"
+      borderColor={error ? "error.400" : "brand.highlights"}
       width="100%"
       borderRadius="12px"
       colorScheme="button"
-      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
-      _focus={{ borderColor: "brand.focus" }}
+      _hover={
+        error
+          ? { borderColor: "error.600", backgroundColor: "error.500" }
+          : { borderColor: "button.600", backgroundColor: "button.600" }
+      }
+      _focus={error ? {} : { borderColor: "brand.focus" }}
+      {...props}
+      {...field}
     >
-      generate
+      {error ? "please enter a reddit URL" : "generate"}
     </Button>
   );
 };

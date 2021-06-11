@@ -1,26 +1,35 @@
 import React from "react";
-import { VStack, Text, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Field, Form, FormikProvider, useFormik } from "formik";
+import * as yup from "yup";
 
 import { GenerateButton } from "./GenerateButton";
 import { RedditLinkInput } from "./RedditLinkInput";
-import { SharedditLogo } from "./SharedditLogo";
-import { ArrowDownIcon } from "@chakra-ui/icons";
 
-interface LinkFormProps {}
+export const LinkForm: React.FC = () => {
+  const formik = useFormik({
+    initialValues: {
+      link: "",
+    },
+    onSubmit: ({ link }) => {
+      alert(`this is a link ${link}`);
+    },
+    validationSchema: yup.object({
+      link: yup
+        .string()
+        .required()
+        .matches(/reddit.com/, "Must be a reddit URL"),
+    }),
+  });
 
-export const LinkForm: React.FC<LinkFormProps> = ({}) => {
   return (
-    <VStack maxW="lg" marginX="auto" spacing={8}>
-      <SharedditLogo />
-      <Text fontSize="5xl" fontWeight="semibold">
-        The best way to screenshot reddit content.
-      </Text>
-      <RedditLinkInput />
-      <GenerateButton />
-      <Button marginTop="100%">
-        How it works
-        {<ArrowDownIcon />}
-      </Button>
-    </VStack>
+    <Box width="100%">
+      <FormikProvider value={formik}>
+        <Form>
+          <Field name="link" component={RedditLinkInput}></Field>
+          <Field name="submit" type="submit" component={GenerateButton}></Field>
+        </Form>
+      </FormikProvider>
+    </Box>
   );
 };

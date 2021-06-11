@@ -22,6 +22,11 @@ export const theme = extendTheme({
       500: "#0A9396",
       600: "#087172",
     },
+    error: {
+      400: "#FF7547",
+      500: "#FF4000",
+      600: "#CC3300",
+    },
   },
   styles: {
     global: {
