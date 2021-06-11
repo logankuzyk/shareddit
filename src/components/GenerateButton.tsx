@@ -31,7 +31,7 @@ export const GenerateButton: React.FC<FieldProps> = ({
       {...props}
       {...field}
     >
-      {error ? "please enter a reddit URL" : "generate"}
+      {error ? "please enter a reddit URL" : "generate image"}
     </Button>
   );
 };
