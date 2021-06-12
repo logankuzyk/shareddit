@@ -1,15 +1,9 @@
-import StatusCodes from 'http-status-codes';
 import { Request, Response } from 'express';
 import queryString from 'query-string';
 
-import renderImage from '../business/renderImage';
-import {
-  FleshedRedditSubmission,
-  SkeletonRedditSubmission,
-} from 'src/business/types';
+import getRedditData from '../business/getRedditData';
+import { SkeletonRedditSubmission } from 'src/business/types';
 import { ParamsDictionary } from 'express-serve-static-core';
-
-const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
 const validateParams = async (
   params: ParamsDictionary | queryString.ParsedQuery<any>
@@ -27,17 +21,17 @@ const validateParams = async (
 
 export const parseQueryString = async (req: Request, res: Response) => {
   try {
-    const query = req.path;
+    const query = req.path.substr(1, req.path.length);
     const params = queryString.parse(query);
     const generationParams: SkeletonRedditSubmission = await validateParams(
       params
     );
 
-    const imageElement = await renderImage(generationParams);
-    return res.send(imageElement);
+    const sharedditSkeleton = await getRedditData(generationParams);
+    return res.send(sharedditSkeleton);
   } catch (err) {
     console.error(err);
-    return res.status(500);
+    return res.status(500).send();
   }
 };
 
@@ -53,6 +47,6 @@ export const redirectRedditPath = async (req: Request, res: Response) => {
     return res.redirect(`/${query}`);
   } catch (err) {
     console.error(err);
-    return res.status(500);
+    return res.status(500).send();
   }
 };

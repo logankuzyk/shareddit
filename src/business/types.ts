@@ -6,13 +6,13 @@ export type TemplateName =
   | 'textSubmission'
   | 'selfText';
 
-export interface RenderTypes {
-  award: HandlebarsTemplateDelegate<any>;
-  comment: HandlebarsTemplateDelegate<any>;
-  everything: HandlebarsTemplateDelegate<any>;
-  imageSubmission: HandlebarsTemplateDelegate<any>;
-  textSubmission: HandlebarsTemplateDelegate<any>;
-}
+// export interface RenderTypes {
+//   award: HandlebarsTemplateDelegate<any>;
+//   comment: HandlebarsTemplateDelegate<any>;
+//   everything: HandlebarsTemplateDelegate<any>;
+//   imageSubmission: HandlebarsTemplateDelegate<any>;
+//   textSubmission: HandlebarsTemplateDelegate<any>;
+// }
 
 export interface Award {
   url: string;
