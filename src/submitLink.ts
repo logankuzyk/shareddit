@@ -8,7 +8,7 @@ export const submitLink = (input: string) => {
       "/r/:sub/comments/:postID/:title/:commentID"
     ).namedParams;
     const query = queryString.stringify(params);
-    window.location.pathname = query;
+    window.location.pathname = `/generate/${query}`;
   } catch (err) {
     console.error(err);
   }
