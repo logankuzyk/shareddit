@@ -87,5 +87,3 @@ export interface TitleRenderParams {
   awards: string;
   redact: boolean;
 }
-
-export interface EverythingParams {}
