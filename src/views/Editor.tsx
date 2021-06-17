@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 
 import { SharedditLogo } from "../components/SharedditLogo";
 import { getParams } from "../util/getParams";
+import { LiveEditor } from "../components/LiveEditor";
 import { useEffect } from "react";
 
 export const Editor: React.FC = () => {
@@ -29,9 +30,7 @@ export const Editor: React.FC = () => {
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
           <SharedditLogo />
-          <Text fontSize="5xl" fontWeight="semibold">
-            Editor area goes here. Params: {JSON.stringify(params)}
-          </Text>
+          <LiveEditor />
         </VStack>
       </Grid>
     </Box>

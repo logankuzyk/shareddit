@@ -38,28 +38,19 @@ export interface RedditComment {
   awards: Award[];
   parentID: string;
 }
-
-export interface SkeletonRedditSubmission {
-  sub: string;
-  postID: string;
-  urlTitle?: string;
-  commentID?: string;
-  redact: boolean;
-}
-
-export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
+export interface FleshedRedditSubmission {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
   bodyHTML: string | undefined | null;
   awards: Award[];
   title: string;
   link?: string;
-  comments?: RedditComment[];
+  comments: RedditComment[];
   commentsCount: number;
   type: "image" | "link" | "text";
   redact: boolean;
+  sub: string;
 }
 
 export interface AwardParams {

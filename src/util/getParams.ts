@@ -13,8 +13,7 @@ export const getParams = async (): Promise<FleshedRedditSubmission | null> => {
       awards: params.awards,
       title: params.title,
       sub: params.sub,
-      postID: params.postID,
-      comments: params.comments ? params.comments : undefined,
+      comments: params.comments,
       commentsCount: params.commentsCount,
       type: params.type,
       redact: params.redact ? true : false,
@@ -28,8 +27,10 @@ export const getParams = async (): Promise<FleshedRedditSubmission | null> => {
     window.location.pathname.length
   );
   const urlParams = queryString.parse(path);
-  const queryParams = validateParams(urlParams);
-  const query = queryString.stringify(queryParams);
+  // console.log(urlParams);
+  // const queryParams = validateParams(urlParams);
+  // console.log(queryParams);
+  const query = queryString.stringify(urlParams);
   // const queryURL = "http://192.53.122.196/" + query;
   const queryURL = "http://localhost:3001/" + query;
 
