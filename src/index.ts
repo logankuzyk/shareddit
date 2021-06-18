@@ -3,7 +3,7 @@ import app from '@server';
 import logger from '@shared/Logger';
 
 // Start the server
-const port = Number(3001);
+const port = Number(process.env.PORT || 8080);
 app.listen(port, () => {
   logger.info('Express server started on port: ' + port);
 });
