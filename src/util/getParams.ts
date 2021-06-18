@@ -3,7 +3,9 @@ import queryString from "query-string";
 
 import { FleshedRedditSubmission } from "../types";
 
-export const getParams = async (): Promise<FleshedRedditSubmission | null> => {
+export const getParams = async (): Promise<
+  FleshedRedditSubmission | string
+> => {
   const validateParams = (params: any) => {
     const output: FleshedRedditSubmission = {
       author: params.author,
@@ -39,6 +41,6 @@ export const getParams = async (): Promise<FleshedRedditSubmission | null> => {
     return validateParams(res.data);
   } catch (err) {
     console.error(err);
-    return null;
+    return err.message;
   }
 };

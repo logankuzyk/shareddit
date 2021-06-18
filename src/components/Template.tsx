@@ -4,16 +4,19 @@ import React, { useState } from "react";
 import { Comment } from "./templates/Comment";
 import { FleshedRedditSubmission, ImageTheme } from "../types";
 
+import "../style/redditThemes/old.css";
+
 interface TemplateProps {
-  content: FleshedRedditSubmission | null;
+  content: FleshedRedditSubmission;
 }
 
 export const Template: React.FC<TemplateProps> = ({ content }) => {
   const [theme, setTheme] = useState<ImageTheme>("old");
   const [type, setType] = useState("");
+
   return (
     <Box>
-      <Comment {...content.comments[0]}></Comment>
+      <Comment comments={content.comments}></Comment>
     </Box>
   );
 };

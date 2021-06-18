@@ -1,28 +1,25 @@
 import React from "react";
 
 import "../../style/redditThemes/old.css";
+import { RedditComment } from "../../types";
 
-interface CommentProps {
+interface SingleCommentProps {
   score: string;
   author: string;
   prettyDate: string;
   awards: string;
   bodyMD: string;
   children: string;
-  color: string;
+  // color: string;
   redact: boolean;
 }
 
-export const Comment: React.FC<CommentProps> = ({
-  score,
-  author,
-  prettyDate,
-  awards,
-  bodyMD,
-  children,
-  color,
-  redact,
-}) => {
+interface CommentProps {
+  comments: RedditComment[];
+}
+
+export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
+  let { author, score, prettyDate, awards, bodyHTML } = comments[0];
   return (
     <div>
       <div className="thing noncollapsed comment">
@@ -36,13 +33,14 @@ export const Comment: React.FC<CommentProps> = ({
             <a className="expand">[–]</a>
             <a
               className="author may-blank id-t2_3rv0g"
-              color={redact ? "black" : color}
+              // color={redact ? "black" : color}
+              color="black"
             >
-              {{ author }}
+              {author}
             </a>
-            <span className="score unvoted">{{ score }}</span>
-            <time className="live-timestamp">{{ prettyDate }}</time>
-            <span className="awardings-bar">{{ awards }}</span>
+            <span className="score unvoted">{score}</span>
+            <time className="live-timestamp">{prettyDate}</time>
+            <span className="awardings-bar">{awards}</span>
           </p>
           <form
             action="#"
@@ -51,7 +49,7 @@ export const Comment: React.FC<CommentProps> = ({
           >
             <input type="hidden" name="thing_id" value="t1_fpoes9l" />
             <div className="usertext-body may-blank-within md-container">
-              {{ bodyMD }}
+              {bodyHTML}
             </div>
           </form>
           <ul className="flat-list buttons">
@@ -77,7 +75,7 @@ export const Comment: React.FC<CommentProps> = ({
             </li>
           </ul>
         </div>
-        <div className="child">{{ children }}</div>
+        <div className="child">{"children"}</div>
       </div>
     </div>
   );

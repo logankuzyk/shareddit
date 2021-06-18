@@ -22,13 +22,14 @@ const initialState: FleshedRedditSubmission = {
 };
 
 export const LiveEditor: React.FC = () => {
-  const [params, setParams] = useState<FleshedRedditSubmission>(initialState);
+  const [params, setParams] = useState<FleshedRedditSubmission | null>(null);
+  const [error, setError] = useState({ message: "" });
   // maybe just start with null and don't render until it's resolved?
 
   useEffect(() => {
     getParams().then((urlParams) => {
-      if (urlParams !== null) setParams(urlParams);
-      else console.log("Couldn't get data from reddit");
+      if (!(typeof urlParams == "string")) setParams(urlParams);
+      else setError({ message: urlParams });
     });
   }, []);
 
@@ -36,7 +37,11 @@ export const LiveEditor: React.FC = () => {
     <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
-          <Template content={params} />
+          {params ? (
+            <Template content={params} />
+          ) : (
+            <Text>{error.message}</Text>
+          )}
         </VStack>
       </Grid>
     </Box>
