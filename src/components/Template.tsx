@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Comment } from "./templates/Comment";
 import { FleshedRedditSubmission, ImageTheme } from "../types";
+import { ImageSubmission } from "./templates/ImageSubmission";
 interface TemplateProps {
   content: FleshedRedditSubmission;
 }
@@ -10,7 +11,7 @@ interface TemplateProps {
 export const Template: React.FC<TemplateProps> = ({ content }) => {
   const [theme, setTheme] = useState<ImageTheme>("old");
   const [type, setType] = useState(content.type);
-
+  console.log(content);
   return (
     <Box
       style={{
@@ -21,6 +22,7 @@ export const Template: React.FC<TemplateProps> = ({ content }) => {
         lineHeight: "normal",
       }}
     >
+      <ImageSubmission post={content} />
       {content.comments.length > 0 ? (
         <Comment comments={content.comments}></Comment>
       ) : (
