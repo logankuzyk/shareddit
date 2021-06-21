@@ -23,8 +23,10 @@ export const Editor: React.FC = () => {
         <VStack maxW="lg" marginX="auto" spacing={4}>
           {params ? (
             <Template content={params} />
-          ) : (
+          ) : error.message ? (
             <Text>{error.message}</Text>
+          ) : (
+            <Text>Loading...</Text>
           )}
         </VStack>
       </Grid>
