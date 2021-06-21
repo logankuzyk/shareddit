@@ -56,6 +56,7 @@ const postInfo = async (
     sub: sub,
     postID: postID,
     redact: redact,
+    comments: [],
   };
 
   return output;

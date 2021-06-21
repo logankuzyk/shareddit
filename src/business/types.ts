@@ -55,8 +55,8 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   bodyHTML: string | undefined | null;
   awards: Award[];
   title: string;
-  link?: string;
-  comments?: RedditComment[];
+  link: string;
+  comments: RedditComment[];
   commentsCount: number;
   type: 'image' | 'link' | 'text';
   redact: boolean;
