@@ -7,7 +7,7 @@ import { FleshedRedditSubmission } from "../types";
 
 export const Editor: React.FC = () => {
   const [params, setParams] = useState<FleshedRedditSubmission | null>(null);
-  const [error, setError] = useState({ message: "" });
+  const [error, setError] = useState<{ message: string }>({ message: "" });
   // maybe just start with null and don't render until it's resolved?
 
   useEffect(() => {
