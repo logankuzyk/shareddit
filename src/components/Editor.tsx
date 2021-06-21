@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, VStack, Text } from "@chakra-ui/react";
 
-import { SharedditLogo } from "./SharedditLogo";
 import { getParams } from "../util/getParams";
 import { Template } from "./Template";
 import { FleshedRedditSubmission } from "../types";

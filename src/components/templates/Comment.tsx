@@ -22,7 +22,15 @@ export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
   let { author, score, prettyDate, awards, bodyHTML } = comments[0];
   return (
     <div>
-      <div className="thing noncollapsed comment">
+      <div
+        className="thing noncollapsed comment"
+        style={{
+          margin: "0 8px 8px 10px !important",
+          border: "1px solid #e6e6e6 !important",
+          padding: "5px 8px 5px 5px !important",
+          overflow: "hidden",
+        }}
+      >
         <p className="parent"></p>
         <div className="midcol unvoted">
           <div className="arrow up login-required access-required"></div>
@@ -32,13 +40,13 @@ export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
           <p className="tagline">
             <a className="expand">[–]</a>
             <a
-              className="author may-blank id-t2_3rv0g"
+              className="author may-blank"
               // color={redact ? "black" : color}
               color="black"
             >
               {author}
             </a>
-            <span className="score unvoted">{score}</span>
+            <span className="score unvoted">{score + " "}</span>
             <time className="live-timestamp">{prettyDate}</time>
             <span className="awardings-bar">{awards}</span>
           </p>
@@ -48,9 +56,10 @@ export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
             id="form-t1_fpoes9lzos"
           >
             <input type="hidden" name="thing_id" value="t1_fpoes9l" />
-            <div className="usertext-body may-blank-within md-container">
-              {bodyHTML}
-            </div>
+            <div
+              className="usertext-body may-blank-within md-container"
+              dangerouslySetInnerHTML={{ __html: bodyHTML }}
+            />
           </form>
           <ul className="flat-list buttons">
             <li className="first">
