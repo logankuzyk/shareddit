@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import queryString from 'query-string';
 
 import getRedditData from '../business/getRedditData';
-import { SkeletonRedditSubmission } from 'src/business/types';
+import { SkeletonRedditSubmission } from '../business/types';
 import { ParamsDictionary } from 'express-serve-static-core';
 
 const validateParams = async (
