@@ -1,4 +1,5 @@
 import React from "react";
+import { cloneDeep } from "lodash";
 
 import "../../style/redditThemes/old.css";
 import { RedditComment } from "../../types";
@@ -19,7 +20,8 @@ interface CommentProps {
 }
 
 export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
-  let { author, score, prettyDate, awards, bodyHTML } = comments[0];
+  const childComments = cloneDeep(comments);
+  const { author, score, prettyDate, awards, bodyHTML } = childComments[0];
   return (
     <div>
       <div
@@ -84,7 +86,13 @@ export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
             </li>
           </ul>
         </div>
-        <div className="child">{"children"}</div>
+        <div className="child">
+          {childComments.length > 1 ? (
+            <Comment comments={childComments.slice(1)} />
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </div>
   );

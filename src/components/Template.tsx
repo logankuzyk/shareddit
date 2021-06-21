@@ -9,7 +9,7 @@ interface TemplateProps {
 
 export const Template: React.FC<TemplateProps> = ({ content }) => {
   const [theme, setTheme] = useState<ImageTheme>("old");
-  const [type, setType] = useState("");
+  const [type, setType] = useState(content.type);
 
   return (
     <Box
@@ -21,7 +21,11 @@ export const Template: React.FC<TemplateProps> = ({ content }) => {
         lineHeight: "normal",
       }}
     >
-      <Comment comments={content.comments}></Comment>
+      {content.comments.length > 0 ? (
+        <Comment comments={content.comments}></Comment>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };
