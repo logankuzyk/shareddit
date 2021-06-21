@@ -6,7 +6,7 @@ import { theme } from "./style/theme";
 import "./style/fonts.css";
 
 import { Home } from "./views/Home";
-import { Editor } from "./views/Editor";
+import { ImageGenerator } from "./views/ImageGenerator";
 import { NotFound } from "./views/NotFound";
 
 export const App = () => (
@@ -17,7 +17,7 @@ export const App = () => (
           <Home />
         </Route>
         <Route path="/generate">
-          <Editor />
+          <ImageGenerator />
         </Route>
         <Route>
           <NotFound />

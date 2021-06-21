@@ -4,10 +4,10 @@ import Helmet from "react-helmet";
 
 import { SharedditLogo } from "../components/SharedditLogo";
 import { getParams } from "../util/getParams";
-import { LiveEditor } from "../components/LiveEditor";
+import { Editor } from "../components/Editor";
 import { useEffect } from "react";
 
-export const Editor: React.FC = () => {
+export const ImageGenerator: React.FC = () => {
   const [params, setParams] = useState({});
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const Editor: React.FC = () => {
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
           <SharedditLogo />
-          <LiveEditor />
+          <Editor />
         </VStack>
       </Grid>
     </Box>
