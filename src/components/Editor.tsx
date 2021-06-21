@@ -34,9 +34,9 @@ export const Editor: React.FC = () => {
   }, []);
 
   return (
-    <Box textAlign="center" fontSize="xl">
+    <Box textAlign="center" fontSize="xl" width="100%">
       <Grid minH="100vh" p={3}>
-        <VStack maxW="lg" marginX="auto" spacing={4}>
+        <VStack minWidth="lg" maxW="lg" marginX="auto" spacing={4}>
           <FormikProvider value={formik}>
             <Field name="link" component={RedditLinkInput} />
             {params ? (
