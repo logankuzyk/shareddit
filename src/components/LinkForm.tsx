@@ -28,7 +28,11 @@ export const LinkForm: React.FC = () => {
     <Box width="100%">
       <FormikProvider value={formik}>
         <Form>
-          <Field name="link" component={RedditLinkInput}></Field>
+          <Field
+            name="link"
+            component={RedditLinkInput}
+            style={{ marginBottom: "var(--chakra-space-8)" }}
+          ></Field>
           <Field name="submit" type="submit" component={GenerateButton}></Field>
         </Form>
       </FormikProvider>
