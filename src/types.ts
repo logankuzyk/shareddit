@@ -45,7 +45,7 @@ export interface FleshedRedditSubmission {
   bodyHTML: string | undefined | null;
   awards: Award[];
   title: string;
-  link?: string;
+  link: string;
   comments: RedditComment[];
   commentsCount: number;
   type: "image" | "link" | "text";

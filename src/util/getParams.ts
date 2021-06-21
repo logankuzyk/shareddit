@@ -9,7 +9,7 @@ export const getParams = async (): Promise<
   const validateParams = (params: any) => {
     const output: FleshedRedditSubmission = {
       author: params.author,
-      score: params.prettyScore,
+      score: params.score,
       prettyDate: params.prettyDate,
       bodyHTML: params.bodyHTML,
       awards: params.awards,
@@ -18,6 +18,7 @@ export const getParams = async (): Promise<
       comments: params.comments,
       commentsCount: params.commentsCount,
       type: params.type,
+      link: params.link,
       redact: params.redact ? true : false,
     };
 
