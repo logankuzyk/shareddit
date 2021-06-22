@@ -6,8 +6,8 @@ import * as yup from "yup";
 import { getParams } from "../util/getParams";
 import { Template } from "./Template";
 import { FleshedRedditSubmission } from "../types";
-import { RedditLinkInput } from "./RedditLinkInput";
-import { GenerateButton } from "./GenerateButton";
+import { RedditLinkInput } from "./input/RedditLinkInput";
+import { GenerateButton } from "./input/GenerateButton";
 
 export const Editor: React.FC = () => {
   const [params, setParams] = useState<FleshedRedditSubmission | null>(null);

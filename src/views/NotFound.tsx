@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Grid, VStack, Text } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 import { SharedditLogo } from "../components/SharedditLogo";
-import { GoBackButton } from "../components/GoBackButton";
+import { GoBackButton } from "../components/input/GoBackButton";
 
 export const NotFound: React.FC = () => {
   return (

@@ -3,8 +3,8 @@ import { Box } from "@chakra-ui/react";
 import { Field, Form, FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
 
-import { GenerateButton } from "./GenerateButton";
-import { RedditLinkInput } from "./RedditLinkInput";
+import { GenerateButton } from "./input/GenerateButton";
+import { RedditLinkInput } from "./input/RedditLinkInput";
 import { submitLink } from "../submitLink";
 
 export const LinkForm: React.FC = () => {
