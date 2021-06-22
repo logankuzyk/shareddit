@@ -3,15 +3,14 @@ import { cloneDeep } from "lodash";
 
 import "../../style/redditThemes/old.css";
 import { FleshedRedditSubmission, RedditComment } from "../../types";
+import { RedditContext } from "../RedditContext";
+import { useContext } from "react";
 
-interface ImageSubmissionProps {
-  post: FleshedRedditSubmission;
-}
+export const ImageSubmission: React.FC = () => {
+  const context = useContext(RedditContext);
 
-export const ImageSubmission: React.FC<ImageSubmissionProps> = ({
-  post,
-}: ImageSubmissionProps) => {
-  const { author, score, prettyDate, sub, link, title, commentsCount } = post;
+  const { author, score, prettyDate, sub, link, title, commentsCount } =
+    context.content;
 
   return (
     <div>

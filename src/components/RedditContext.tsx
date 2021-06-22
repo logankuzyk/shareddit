@@ -6,49 +6,52 @@ import { getParams } from "../util/getParams";
 
 interface RedditContextState {
   content: FleshedRedditSubmission;
-  error: { message: string };
+  status: { message: string; status: "ok" | "error" | "loading" };
   theme: ImageTheme;
   downloadAs: "png" | "jpg";
 }
 
-export const RedditContext = createContext<null | RedditContextState>(null);
+const initialState: RedditContextState = {
+  content: {
+    author: "",
+    score: "",
+    prettyDate: "",
+    bodyHTML: "",
+    awards: [],
+    title: "",
+    sub: "",
+    comments: [],
+    commentsCount: 0,
+    type: "image",
+    link: "",
+    redact: false,
+  },
+  status: { message: "Loading...", status: "loading" },
+  theme: "old",
+  downloadAs: "png",
+};
+
+export const RedditContext = createContext<RedditContextState>(initialState);
 
 class RedditContextProvider extends Component {
-  state: RedditContextState = {
-    content: {
-      author: "",
-      score: "",
-      prettyDate: "",
-      bodyHTML: "",
-      awards: [],
-      title: "",
-      sub: "",
-      comments: [],
-      commentsCount: 0,
-      type: "image",
-      link: "",
-      redact: false,
-    },
-    error: { message: "" },
-    theme: "old",
-    downloadAs: "png",
-  };
+  state: RedditContextState = { ...initialState };
 
   componentDidMount() {
     getParams().then((urlParams) => {
-      if (!(typeof urlParams == "string"))
+      if (!(typeof urlParams == "string")) {
         this.setState({ content: urlParams });
-      else this.setState({ message: urlParams });
+        this.setState({ status: { message: "", status: "ok" } });
+      } else this.setState({ status: { message: urlParams, status: "error" } });
     });
   }
 
   render() {
     return (
       <RedditContext.Provider value={{ ...this.state }}>
-        {this.state.content !== null ? (
+        {this.state.status.status === "ok" ? (
           this.props.children
         ) : (
-          <Text>Loading...</Text>
+          <Text>{this.state.status.message}.</Text>
         )}
       </RedditContext.Provider>
     );

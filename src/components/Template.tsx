@@ -6,13 +6,12 @@ import { Comment } from "./templates/Comment";
 import { FleshedRedditSubmission, ImageTheme } from "../types";
 import { ImageSubmission } from "./templates/ImageSubmission";
 import { RedditContext } from "./RedditContext";
-import { useEffect } from "react";
 
-type Styles = {
-  [key in ImageTheme]: object;
+type RedditThemePropertyMap<T> = {
+  [key in ImageTheme]: T;
 };
 
-const styles: Styles = {
+const styles: RedditThemePropertyMap<object> = {
   old: {
     backgroundColor: "white",
     textAlign: "left",
@@ -26,18 +25,14 @@ const styles: Styles = {
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
 
-  if (data !== null) {
-    return (
-      <Box style={styles[data.theme]}>
-        <ImageSubmission post={data.content}></ImageSubmission>
-        {data.content.comments.length > 0 ? (
-          <Comment comments={data.content.comments} />
-        ) : (
-          <></>
-        )}
-      </Box>
-    );
-  } else {
-    return <Text>Loading...</Text>;
-  }
+  return (
+    <Box style={styles[data.theme]}>
+      <ImageSubmission />
+      {data.content.comments.length > 0 ? (
+        <Comment comments={data.content.comments} />
+      ) : (
+        <></>
+      )}
+    </Box>
+  );
 };
