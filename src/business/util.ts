@@ -56,12 +56,21 @@ export const longTime = async (utc: number): Promise<string> => {
   }
 };
 
-export const prettyScore = async (score: number): Promise<string> => {
+export const prettyScore = async (
+  score: number,
+  type: 'post' | 'comment'
+): Promise<string> => {
   let output: string = score.toString();
   if (Number(score) >= 10000) {
     score = Number(score) / 1000;
     output = score.toString();
     output = output.substring(0, 4) + 'k';
+  }
+
+  if (type === 'comment' && Number(score) === 1) {
+    output += ' point';
+  } else if (type === 'comment') {
+    output += ' points';
   }
   return output;
 };

@@ -37,6 +37,7 @@ export interface RedditComment {
   bodyHTML: string;
   awards: Award[];
   parentID: string;
+  color: null | string;
 }
 
 export interface SkeletonRedditSubmission {
@@ -60,6 +61,7 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   commentsCount: number;
   type: 'image' | 'link' | 'text';
   redact: boolean;
+  color: null | string;
 }
 
 export interface AwardParams {

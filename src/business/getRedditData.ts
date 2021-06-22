@@ -1,4 +1,5 @@
 import Reddit from 'snoowrap';
+import uniqolor from 'uniqolor';
 
 import {
   SkeletonRedditSubmission,
@@ -14,23 +15,25 @@ const r = new Reddit(login());
 
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 const buildCommentChain = async (
-  commentID: string
+  commentID: string,
+  redact: boolean
 ): Promise<RedditComment[]> => {
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
-    score: `${await prettyScore(await comment.score)} points`,
+    score: await prettyScore(await comment.score, 'comment'),
     author: await comment.author.name,
     bodyHTML: await comment.body_html,
     prettyDate: await longTime(await comment.created_utc),
     parentID: await comment.parent_id,
     //@ts-ignore
     awards: buildAwards(await comment.all_awardings),
+    color: redact ? uniqolor(await comment.author.name).color : null,
   };
   if (!output.parentID.startsWith('t1')) {
     return [output];
   } else {
-    let arr = await buildCommentChain(output.parentID);
+    let arr = await buildCommentChain(output.parentID, redact);
     arr.unshift(output);
     return arr;
   }
@@ -43,7 +46,7 @@ const postInfo = async (
 ): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
   const output: FleshedRedditSubmission = {
-    score: await prettyScore(await post.score),
+    score: await prettyScore(await post.score, 'post'),
     author: await post.author.name,
     link: await post.url,
     title: await post.title,
@@ -57,6 +60,7 @@ const postInfo = async (
     postID: postID,
     redact: redact,
     comments: [],
+    color: redact ? uniqolor(await post.author.name).color : null,
   };
 
   return output;
@@ -70,7 +74,7 @@ export default async (
     const post: FleshedRedditSubmission = await postInfo(postID, sub, redact);
 
     if (commentID) {
-      post.comments = await buildCommentChain(commentID);
+      post.comments = await buildCommentChain(commentID, redact);
     }
 
     return post;
