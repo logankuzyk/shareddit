@@ -50,7 +50,7 @@ export const Comment: React.FC<CommentProps> = ({ comments }: CommentProps) => {
             </a>
             <span className="score unvoted">{score + " "}</span>
             <time className="live-timestamp">{prettyDate}</time>
-            <span className="awardings-bar">{awards}</span>
+            <span className="awardings-bar">{}</span>
           </p>
           <form
             action="#"

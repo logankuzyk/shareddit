@@ -9,7 +9,7 @@ import { useContext } from "react";
 export const ImageSubmission: React.FC = () => {
   const context = useContext(RedditContext);
 
-  const { author, score, prettyDate, sub, link, title, commentsCount } =
+  const { author, score, prettyDate, sub, link, title, commentsCount, redact } =
     context.content;
 
   return (
@@ -69,7 +69,10 @@ export const ImageSubmission: React.FC = () => {
               submitted
               <time className="live-timestamp">{` ${prettyDate} `}</time>
               to <a href="google.com">/r/{sub}</a> by
-              <a className="author may-blank id-t2_3rv0g"> {author}</a>
+              <a className="author may-blank id-t2_3rv0g">
+                {" "}
+                {redact ? "■■■■■■" : author}
+              </a>
               <span
                 className="RESUserTag"
                 res-prevent-cloning-1589157309844=""
