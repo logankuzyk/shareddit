@@ -97,23 +97,6 @@ export const ImageSubmission: React.FC<ImageSubmissionProps> = ({
               <li className="link-save-button save-button login-required">
                 <a href="#">save</a>
               </li>
-              <li>
-                <form
-                  action="/post/hide"
-                  method="post"
-                  className="state-button hide-button"
-                >
-                  <input type="hidden" name="executed" value="hidden" />
-                  <span>
-                    <a
-                      className="noCtrlF"
-                      href="javascript:void 0"
-                      data-event-action="hide"
-                      data-text="hide"
-                    ></a>
-                  </span>
-                </form>
-              </li>
               <li className="give-gold-button">
                 <a
                   href="/gold?goldtype=gift&amp;months=1&amp;thing=t3_gh5hau"
