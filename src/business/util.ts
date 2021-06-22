@@ -1,3 +1,5 @@
+import { Award } from './types';
+
 export const determinePostType = async (
   link: string
 ): Promise<'image' | 'link' | 'text'> => {
@@ -60,6 +62,18 @@ export const prettyScore = async (score: number): Promise<string> => {
     score = Number(score) / 1000;
     output = score.toString();
     output = output.substring(0, 4) + 'k';
+  }
+  return output;
+};
+
+export const buildAwards = (all_awardings: Award[]) => {
+  let output = [];
+  for (let award of all_awardings) {
+    output.push({
+      // @ts-ignore
+      src: award.resized_static_icons[2].url,
+      count: award.count > 1 ? award.count : 1,
+    });
   }
   return output;
 };

@@ -5,7 +5,7 @@ import {
   FleshedRedditSubmission,
   RedditComment,
 } from './types';
-import { determinePostType, longTime, prettyScore } from './util';
+import { determinePostType, longTime, prettyScore, buildAwards } from './util';
 import { login } from './getCredentials';
 
 const dotenv = require('dotenv').config();
@@ -25,7 +25,7 @@ const buildCommentChain = async (
     prettyDate: await longTime(await comment.created_utc),
     parentID: await comment.parent_id,
     //@ts-ignore
-    awards: await comment.all_awardings,
+    awards: buildAwards(await comment.all_awardings),
   };
   if (!output.parentID.startsWith('t1')) {
     return [output];
@@ -50,7 +50,7 @@ const postInfo = async (
     prettyDate: await longTime(await post.created_utc),
     commentsCount: await post.num_comments,
     //@ts-ignore
-    awards: await post.all_awardings,
+    awards: buildAwards(await post.all_awardings),
     bodyHTML: await post.selftext_html,
     type: await determinePostType(await post.url),
     sub: sub,
