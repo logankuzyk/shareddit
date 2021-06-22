@@ -1,13 +1,16 @@
 import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Text } from "@chakra-ui/react";
 
 import { Comment } from "./templates/Comment";
 import { FleshedRedditSubmission, ImageTheme } from "../types";
 import { ImageSubmission } from "./templates/ImageSubmission";
+import { RedditContext } from "./RedditContext";
+import { useEffect } from "react";
 
 type Styles = {
   [key in ImageTheme]: object;
-}
+};
 
 const styles: Styles = {
   old: {
@@ -18,25 +21,23 @@ const styles: Styles = {
     lineHeight: "normal",
   },
   new: {},
-}
-interface TemplateProps {
-  content: FleshedRedditSubmission;
-}
+};
 
-export const Template: React.FC<TemplateProps> = ({ content }) => {
-  const [theme, setTheme] = useState<ImageTheme>("old");
-  const [type, setType] = useState(content.type);
+export const Template: React.FC = () => {
+  const data = useContext(RedditContext);
 
-  return (
-    <Box
-      style={styles[theme]}
-    >
-      <ImageSubmission post={content} />
-      {content.comments.length > 0 ? (
-        <Comment comments={content.comments}></Comment>
-      ) : (
-        <></>
-      )}
-    </Box>
-  );
+  if (data !== null) {
+    return (
+      <Box style={styles[data.theme]}>
+        <ImageSubmission post={data.content}></ImageSubmission>
+        {data.content.comments.length > 0 ? (
+          <Comment comments={data.content.comments} />
+        ) : (
+          <></>
+        )}
+      </Box>
+    );
+  } else {
+    return <Text>Loading...</Text>;
+  }
 };
