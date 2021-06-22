@@ -11,10 +11,10 @@ export const Editor: React.FC = () => {
 
   return (
     <Box textAlign="center" fontSize="xl" width="100%">
-      <Grid minH="100vh" p={3}>
-            <RedditContextProvider>
-             <Template /> 
-            </RedditContextProvider>
+      <Grid p={3}>
+        <RedditContextProvider>
+          <Template />
+        </RedditContextProvider>
       </Grid>
     </Box>
   );
