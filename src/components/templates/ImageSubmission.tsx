@@ -68,7 +68,7 @@ export const ImageSubmission: React.FC<ImageSubmissionProps> = ({
             <div className="expando-button expanded hide-when-pinned video"></div>
             <p className="tagline">
               submitted
-              <time className="live-timestamp">{prettyDate}</time>
+              <time className="live-timestamp">{` ${prettyDate} `}</time>
               to <a href="google.com">/r/{sub}</a> by
               <a className="author may-blank id-t2_3rv0g"> {author}</a>
               <span
