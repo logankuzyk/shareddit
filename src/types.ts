@@ -30,7 +30,7 @@ export interface FleshedRedditSubmission {
   link: string | null;
   comments: RedditComment[];
   commentsCount: number;
-  type: "image" | "link" | "text" | "album";
+  type: "image" | "link" | "text" | "album" | "video";
   redact: boolean;
   sub: string;
   color: string | null;
