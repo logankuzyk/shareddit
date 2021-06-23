@@ -30,7 +30,7 @@ export interface FleshedRedditSubmission {
   link: string | null;
   comments: RedditComment[];
   commentsCount: number;
-  type: "image" | "link" | "text" | "album" | "video";
+  type: SubmissionType;
   redact: boolean;
   sub: string;
   color: string | null;
@@ -41,3 +41,5 @@ export interface BackendResponse extends FleshedRedditSubmission {
 }
 
 export type ImageTheme = "old" | "new";
+
+export type SubmissionType = "image" | "link" | "text" | "album" | "video";
