@@ -26,7 +26,7 @@ export const Template: React.FC = () => {
   const { TitleTemplate, CommentTemplate } = templates.old(data.content.type);
 
   return (
-    <Box style={styles[data.theme]} padding="10px">
+    <Box style={styles[data.theme]} padding="10px" borderRadius="12px">
       <TitleTemplate />
       {data.content.comments.length > 0 ? (
         <CommentTemplate comments={data.content.comments} />

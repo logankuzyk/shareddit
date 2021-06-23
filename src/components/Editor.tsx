@@ -9,7 +9,15 @@ export const Editor: React.FC = () => {
     <Box textAlign="center" fontSize="xl" width="100%">
       <Grid p={3}>
         <RedditContextProvider>
-          <Template />
+          <Box
+            style={{
+              borderRadius: "12px",
+              borderColor: "#0A9396",
+              borderWidth: "4px",
+            }}
+          >
+            <Template />
+          </Box>
         </RedditContextProvider>
       </Grid>
     </Box>
