@@ -1,11 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import React, { useState, useContext } from "react";
-import { Text } from "@chakra-ui/react";
+import React, { useContext } from "react";
 
-import { Comment } from "./templates/Comment";
-import { FleshedRedditSubmission, ImageTheme } from "../types";
-import { ImageSubmission } from "./templates/ImageSubmission";
+import { ImageTheme } from "../types";
 import { RedditContext } from "./RedditContext";
+import templates from "./templates";
 
 type RedditThemePropertyMap<T> = {
   [key in ImageTheme]: T;
@@ -25,11 +23,13 @@ const styles: RedditThemePropertyMap<object> = {
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
 
+  const { TitleTemplate, CommentTemplate } = templates.old(data.content.type);
+
   return (
     <Box style={styles[data.theme]}>
-      <ImageSubmission />
+      <TitleTemplate />
       {data.content.comments.length > 0 ? (
-        <Comment comments={data.content.comments} />
+        <CommentTemplate comments={data.content.comments} />
       ) : (
         <></>
       )}
