@@ -45,23 +45,26 @@ const postInfo = async (
   redact: boolean
 ): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
+  const type = await determinePostType(
+    await post.url,
+    await post.is_video,
+    await post.is_self
+  );
+  const link =
+    type === 'image' || type === 'text'
+      ? await post.url
+      : await post.preview.images[0].source.url;
   const output: FleshedRedditSubmission = {
     score: await prettyScore(await post.score, 'post'),
     author: await post.author.name,
-    link: (await post.is_video)
-      ? await post.preview.images[0].source.url
-      : await post.url,
+    link: link,
     title: await post.title,
     prettyDate: await longTime(await post.created_utc),
     commentsCount: await post.num_comments,
     //@ts-ignore
     awards: buildAwards(await post.all_awardings),
     bodyHTML: await post.selftext_html,
-    type: await determinePostType(
-      await post.url,
-      await post.is_video,
-      await post.is_self
-    ),
+    type: type,
     sub: sub,
     postID: postID,
     redact: redact,
