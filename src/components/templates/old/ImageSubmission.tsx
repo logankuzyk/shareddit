@@ -17,7 +17,6 @@ export const ImageSubmission: React.FC = () => {
       <div
         className="thing id-t3_gh5hau linkflair linkflair-m-be odd link res-selected RES-keyNav-activeThing"
         id="thing_t3_gh5hau"
-        style={{ paddingTop: "1%" }}
       >
         <p className="parent"></p>
         <span className="rank"></span>
