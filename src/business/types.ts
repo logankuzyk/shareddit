@@ -1,23 +1,5 @@
-export type TemplateName =
-  | 'award'
-  | 'comment'
-  | 'everything'
-  | 'imageSubmission'
-  | 'textSubmission'
-  | 'selfText';
-
-// export interface RenderTypes {
-//   award: HandlebarsTemplateDelegate<any>;
-//   comment: HandlebarsTemplateDelegate<any>;
-//   everything: HandlebarsTemplateDelegate<any>;
-//   imageSubmission: HandlebarsTemplateDelegate<any>;
-//   textSubmission: HandlebarsTemplateDelegate<any>;
-// }
-
 export interface Award {
   url: string;
-  height: number;
-  width: number;
   count: number;
 }
 
@@ -32,12 +14,11 @@ export interface SnoowrapCredentials {
 export interface RedditComment {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
   bodyHTML: string;
   awards: Award[];
   parentID: string;
-  color: null | string;
+  color: string | null;
 }
 
 export interface SkeletonRedditSubmission {
@@ -51,41 +32,13 @@ export interface SkeletonRedditSubmission {
 export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
-  bodyHTML: string | undefined | null;
+  bodyHTML: string | null;
   awards: Award[];
   title: string;
-  link: string;
+  link: string | null;
   comments: RedditComment[];
   commentsCount: number;
   type: 'image' | 'link' | 'text';
-  redact: boolean;
-  color: null | string;
-}
-
-export interface AwardParams {
-  imageSrc: string;
-  awardCount?: number;
-}
-
-export interface CommentRenderParams {
-  author: string;
-  score: string;
-  prettyDate: string;
-  bodyHTML: string;
-  child: string;
-}
-
-export interface TitleRenderParams {
-  author: string;
-  score: string;
-  link?: string;
-  submissionTitle: string;
-  time: string;
-  commentsCount: number;
-  sub: string;
-  text?: string;
-  awards: string;
-  redact: boolean;
+  color: string | null;
 }
