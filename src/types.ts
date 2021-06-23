@@ -18,6 +18,7 @@ export interface RedditComment {
   bodyHTML: string;
   awards: Award[];
   parentID: string;
+  color: string | null;
 }
 export interface FleshedRedditSubmission {
   author: string;
@@ -32,6 +33,7 @@ export interface FleshedRedditSubmission {
   type: "image" | "link" | "text" | "album";
   redact: boolean;
   sub: string;
+  color: string | null;
 }
 
 export interface BackendResponse extends FleshedRedditSubmission {
