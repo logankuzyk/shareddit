@@ -25,6 +25,7 @@ const initialState: RedditContextState = {
     type: "image",
     link: "",
     redact: false,
+    color: null,
   },
   status: { message: "Loading...", status: "loading" },
   theme: "old",

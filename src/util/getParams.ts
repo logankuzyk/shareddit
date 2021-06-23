@@ -24,6 +24,7 @@ export const getParams = async (): Promise<
       type: params.type,
       link: params.link,
       redact: params.redact ? true : false,
+      color: params.color,
     };
 
     return output;

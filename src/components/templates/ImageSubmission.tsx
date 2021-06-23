@@ -47,7 +47,7 @@ export const ImageSubmission: React.FC = () => {
           data-outbound-expiration="0"
           rel="nofollow ugc"
         >
-          <img src={link} width="70" alt="" />
+          <img src={link ? link : ""} width="70" alt="" />
         </a>
         <div className="entry unvoted res-selected RES-keyNav-activeElement">
           <div className="top-matter">
@@ -149,7 +149,7 @@ export const ImageSubmission: React.FC = () => {
                 href="https://i.redd.it/m2wmwyol1zx41.png"
                 className="may-blank"
               >
-                <img className="preview" src={link} />
+                <img className="preview" src={link ? link : ""} />
               </a>
             </div>
           </div>
