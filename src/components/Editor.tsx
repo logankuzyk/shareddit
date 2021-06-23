@@ -3,6 +3,7 @@ import { Box, Grid, VStack, Text } from "@chakra-ui/react";
 
 import RedditContextProvider from "./RedditContext";
 import { Template } from "./Template";
+import { ImageOptions } from "./ImageOptions";
 
 export const Editor: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ export const Editor: React.FC = () => {
           >
             <Template />
           </Box>
+          <ImageOptions />
         </RedditContextProvider>
       </Grid>
     </Box>
