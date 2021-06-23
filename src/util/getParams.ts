@@ -7,6 +7,10 @@ export const getParams = async (): Promise<
   FleshedRedditSubmission | string
 > => {
   const validateParams = (params: any) => {
+    if (params && params.status && params.status.code === "error") {
+      throw new Error(params.status.message);
+    }
+
     const output: FleshedRedditSubmission = {
       author: params.author,
       score: params.score,
