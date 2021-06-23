@@ -1,19 +1,8 @@
 import React from "react";
 import { cloneDeep } from "lodash";
 
-import "../../style/redditThemes/old.css";
-import { RedditComment } from "../../types";
-
-interface SingleCommentProps {
-  score: string;
-  author: string;
-  prettyDate: string;
-  awards: string;
-  bodyMD: string;
-  children: string;
-  // color: string;
-  redact: boolean;
-}
+import "../../../style/redditThemes/old.css";
+import { RedditComment } from "../../../types";
 
 interface CommentProps {
   comments: RedditComment[];

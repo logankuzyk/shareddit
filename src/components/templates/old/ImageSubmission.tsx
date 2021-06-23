@@ -1,9 +1,9 @@
 import React from "react";
 import { cloneDeep } from "lodash";
 
-import "../../style/redditThemes/old.css";
-import { FleshedRedditSubmission, RedditComment } from "../../types";
-import { RedditContext } from "../RedditContext";
+import "../../../style/redditThemes/old.css";
+import { FleshedRedditSubmission, RedditComment } from "../../../types";
+import { RedditContext } from "../../RedditContext";
 import { useContext } from "react";
 
 export const ImageSubmission: React.FC = () => {

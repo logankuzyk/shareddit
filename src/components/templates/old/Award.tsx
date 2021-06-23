@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../style/redditThemes/old.css";
+import "../../../style/redditThemes/old.css";
 
 interface AwardProps {
   awardID: string;
