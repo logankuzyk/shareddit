@@ -1,14 +1,22 @@
-import { Award } from './types';
+import { Award, SubmissionType } from './types';
 
 export const determinePostType = async (
-  link: string
-): Promise<'image' | 'link' | 'text'> => {
+  link: string,
+  isVideo: boolean,
+  isSelf: boolean
+): Promise<SubmissionType> => {
   const url = new URL(link);
-  let type: 'image' | 'link' | 'text';
+  let type: SubmissionType = 'link';
 
-  if (url.hostname == 'www.reddit.com') {
-    //Image albums fall here too.
-    type = 'text';
+  if (isVideo) {
+    type = 'video';
+  } else if (url.hostname == 'www.reddit.com') {
+    if (url.pathname.match(/gallery/)) {
+      // console.log(url.pathname);
+      type = 'album';
+    } else if (isSelf) {
+      type = 'text';
+    }
   } else if (
     url.pathname.indexOf('.jpg') >= 0 ||
     url.pathname.indexOf('.jpeg') >= 0 ||
@@ -16,8 +24,6 @@ export const determinePostType = async (
     url.pathname.indexOf('.png') >= 0
   ) {
     type = 'image';
-  } else {
-    type = 'link';
   }
 
   return type;

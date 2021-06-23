@@ -39,6 +39,8 @@ export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   link: string | null;
   comments: RedditComment[];
   commentsCount: number;
-  type: 'image' | 'link' | 'text';
+  type: SubmissionType;
   color: string | null;
 }
+
+export type SubmissionType = 'image' | 'link' | 'text' | 'album' | 'video';
