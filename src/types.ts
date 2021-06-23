@@ -1,23 +1,5 @@
-export type TemplateName =
-  | "award"
-  | "comment"
-  | "everything"
-  | "imageSubmission"
-  | "textSubmission"
-  | "selfText";
-
-// export interface RenderTypes {
-//   award: HandlebarsTemplateDelegate<any>;
-//   comment: HandlebarsTemplateDelegate<any>;
-//   everything: HandlebarsTemplateDelegate<any>;
-//   imageSubmission: HandlebarsTemplateDelegate<any>;
-//   textSubmission: HandlebarsTemplateDelegate<any>;
-// }
-
 export interface Award {
-  url: string;
-  height: number;
-  width: number;
+  src: string;
   count: number;
 }
 
@@ -32,7 +14,6 @@ export interface SnoowrapCredentials {
 export interface RedditComment {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
   bodyHTML: string;
   awards: Award[];
@@ -42,41 +23,19 @@ export interface FleshedRedditSubmission {
   author: string;
   score: string;
   prettyDate: string;
-  bodyHTML: string | undefined | null;
+  bodyHTML: string | null;
   awards: Award[];
   title: string;
-  link: string;
+  link: string | null;
   comments: RedditComment[];
   commentsCount: number;
-  type: "image" | "link" | "text";
+  type: "image" | "link" | "text" | "album";
   redact: boolean;
   sub: string;
 }
 
-export interface AwardParams {
-  imageSrc: string;
-  awardCount?: number;
-}
-
-export interface CommentRenderParams {
-  author: string;
-  score: string;
-  prettyDate: string;
-  bodyHTML: string;
-  child: string;
-}
-
-export interface TitleRenderParams {
-  author: string;
-  score: string;
-  link?: string;
-  submissionTitle: string;
-  time: string;
-  commentsCount: number;
-  sub: string;
-  text?: string;
-  awards: string;
-  redact: boolean;
+export interface BackendResponse extends FleshedRedditSubmission {
+  status: { message: string; code: "ok" | "error" | "loading" };
 }
 
 export type ImageTheme = "old" | "new";
