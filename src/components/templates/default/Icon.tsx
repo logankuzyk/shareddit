@@ -35,6 +35,7 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
         color: darkMode ? "#AAAAAA" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         padding: 8,
+        fontSize: 14,
       }}
     >
       <Center>
