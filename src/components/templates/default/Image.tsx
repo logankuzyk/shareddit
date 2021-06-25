@@ -12,16 +12,12 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
     <Box
       style={{
         borderRadius: 12,
-        borderWidth: 4,
+        borderWidth: 1,
         borderColor: "#AAAAAA",
+        overflow: "hidden",
       }}
     >
-      <img
-        src={src}
-        width="100%"
-        height="100%"
-        style={{ borderRadius: 10 }}
-      ></img>
+      <img src={src} width="100%" height="100%"></img>
     </Box>
   );
 };
