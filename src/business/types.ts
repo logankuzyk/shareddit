@@ -14,11 +14,12 @@ export interface SnoowrapCredentials {
 export interface RedditComment {
   author: string;
   score: string;
-  prettyDate: string;
+  date: number;
   bodyHTML: string;
   awards: Award[];
-  parentID: string;
   color: string | null;
+  child?: RedditComment;
+  parentID: string;
 }
 
 export interface SkeletonRedditSubmission {
@@ -32,12 +33,12 @@ export interface SkeletonRedditSubmission {
 export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   author: string;
   score: string;
-  prettyDate: string;
+  date: number;
   bodyHTML: string | null;
   awards: Award[];
   title: string;
   link: string | null;
-  comments: RedditComment[];
+  comments?: RedditComment;
   commentsCount: number;
   type: SubmissionType;
   color: string | null;

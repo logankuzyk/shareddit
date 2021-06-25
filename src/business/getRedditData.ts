@@ -17,25 +17,25 @@ const r = new Reddit(login());
 const buildCommentChain = async (
   commentID: string,
   redact: boolean
-): Promise<RedditComment[]> => {
+): Promise<RedditComment> => {
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
-    score: await prettyScore(await comment.score, 'comment'),
+    score: await prettyScore(await comment.score),
     author: await comment.author.name,
     bodyHTML: await comment.body_html,
-    prettyDate: await longTime(await comment.created_utc),
+    date: Number(await comment.created_utc),
     parentID: await comment.parent_id,
     //@ts-ignore
     awards: buildAwards(await comment.all_awardings),
     color: redact ? uniqolor(await comment.author.name).color : null,
   };
   if (!output.parentID.startsWith('t1')) {
-    return [output];
+    return output;
   } else {
-    let arr = await buildCommentChain(output.parentID, redact);
-    arr.unshift(output);
-    return arr;
+    const parent = await buildCommentChain(output.parentID, redact);
+    parent.child = output;
+    return parent;
   }
 };
 
@@ -55,11 +55,11 @@ const postInfo = async (
       ? await post.url
       : await post.preview.images[0].source.url;
   const output: FleshedRedditSubmission = {
-    score: await prettyScore(await post.score, 'post'),
+    score: await prettyScore(await post.score),
     author: await post.author.name,
     link: link,
     title: await post.title,
-    prettyDate: await longTime(await post.created_utc),
+    date: Number(await post.created_utc),
     commentsCount: await post.num_comments,
     //@ts-ignore
     awards: buildAwards(await post.all_awardings),
@@ -68,7 +68,6 @@ const postInfo = async (
     sub: sub,
     postID: postID,
     redact: redact,
-    comments: [],
     color: redact ? uniqolor(await post.author.name).color : null,
   };
 
