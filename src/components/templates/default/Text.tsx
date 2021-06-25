@@ -21,7 +21,12 @@ export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
   return (
     <Box
       dangerouslySetInnerHTML={{ __html: styledBodyHTML }}
-      style={{ display: "inline-block", textAlign: "left", fontSize: 16 }}
+      style={{
+        display: "inline-block",
+        textAlign: "left",
+        fontSize: 16,
+        padding: 6,
+      }}
     ></Box>
   );
 };

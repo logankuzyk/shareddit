@@ -60,7 +60,7 @@ export const Comment: React.FC<CommentProps> = ({
       <Box
         style={{
           marginTop: 12,
-          marginBottom: 10,
+          marginBottom: 2,
           height: 1,
           backgroundColor: "#AAAAAA",
           width: "100%",
