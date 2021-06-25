@@ -40,6 +40,6 @@ export interface BackendResponse extends FleshedRedditSubmission {
   status: { message: string; code: "ok" | "error" | "loading" };
 }
 
-export type ImageTheme = "old" | "new";
+export type ImageTheme = "dark" | "light";
 
 export type SubmissionType = "image" | "link" | "text" | "album" | "video";
