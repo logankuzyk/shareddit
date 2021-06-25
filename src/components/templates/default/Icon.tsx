@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RedditContext } from "../../RedditContext";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { ArrowUpDownIcon, ChatIcon, CalendarIcon } from "@chakra-ui/icons";
 
 interface IconProps {
@@ -31,14 +31,17 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
       style={{
         display: "flex",
         borderRadius: "12px",
-        borderWidth: "4px",
-        color: darkMode ? "#AAAAAA" : "#AAAAAA",
+        borderWidth: "2px",
+        color: darkMode ? "#AAAAAA" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         padding: 8,
       }}
     >
-      <IconTemplate />
-      {text}
+      <Center>
+        <IconTemplate />
+        <Box width={2} />
+        {text}
+      </Center>
     </Box>
   );
 };
