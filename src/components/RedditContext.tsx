@@ -1,13 +1,13 @@
 import React, { Component, createContext } from "react";
 import { Text } from "@chakra-ui/react";
 
-import { FleshedRedditSubmission, ImageTheme } from "../types";
+import { FleshedRedditSubmission } from "../types";
 import { getParams } from "../util/getParams";
 
 interface RedditContextState {
   content: FleshedRedditSubmission;
   status: { message: string; status: "ok" | "error" | "loading" };
-  theme: ImageTheme;
+  darkMode: boolean;
   downloadAs: "png" | "jpg";
 }
 
@@ -28,8 +28,8 @@ const initialState: RedditContextState = {
     color: null,
   },
   status: { message: "Loading...", status: "loading" },
-  theme: "old",
   downloadAs: "png",
+  darkMode: false,
 };
 
 export const RedditContext = createContext<RedditContextState>(initialState);
