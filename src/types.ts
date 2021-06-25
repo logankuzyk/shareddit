@@ -14,21 +14,22 @@ export interface SnoowrapCredentials {
 export interface RedditComment {
   author: string;
   score: string;
-  prettyDate: string;
+  date: number;
   bodyHTML: string;
   awards: Award[];
-  parentID: string;
   color: string | null;
+  child?: RedditComment;
+  parentID: string;
 }
 export interface FleshedRedditSubmission {
   author: string;
   score: string;
-  prettyDate: string;
+  date: number;
   bodyHTML: string | null;
   awards: Award[];
   title: string;
   link: string | null;
-  comments: RedditComment[];
+  comments?: RedditComment;
   commentsCount: number;
   type: SubmissionType;
   redact: boolean;
