@@ -31,7 +31,7 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
       style={{
         display: "flex",
         borderRadius: "12px",
-        borderWidth: "2px",
+        borderWidth: 1,
         color: darkMode ? "#AAAAAA" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         padding: 8,
