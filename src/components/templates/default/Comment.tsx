@@ -45,6 +45,7 @@ export const Comment: React.FC<CommentProps> = ({
         style={{
           display: "flex",
           flexDirection: "row",
+          fontSize: 16,
         }}
       >
         <Center>
