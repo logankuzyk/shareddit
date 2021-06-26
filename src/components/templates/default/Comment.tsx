@@ -51,7 +51,7 @@ export const Comment: React.FC<CommentProps> = ({
         <Center>
           <Box width={4} />
           {author}
-          <Box width={8} />
+          <Box width={4} />
           <Icon icon="vote" text={score} />
           <Box width={4} />
           <Icon icon="date" text={dateString} />
