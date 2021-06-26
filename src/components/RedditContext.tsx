@@ -15,12 +15,11 @@ const initialState: RedditContextState = {
   content: {
     author: "",
     score: "",
-    prettyDate: "",
+    date: 0,
     bodyHTML: "",
     awards: [],
     title: "",
     sub: "",
-    comments: [],
     commentsCount: 0,
     type: "image",
     link: "",

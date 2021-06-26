@@ -14,7 +14,7 @@ export const getParams = async (): Promise<
     const output: FleshedRedditSubmission = {
       author: params.author,
       score: params.score,
-      prettyDate: params.prettyDate,
+      date: params.date,
       bodyHTML: params.bodyHTML,
       awards: params.awards,
       title: params.title,
