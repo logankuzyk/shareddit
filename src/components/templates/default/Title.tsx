@@ -71,7 +71,7 @@ export const Title: React.FC<TitleProps> = ({
           padding: 8,
         }}
       >
-        {`in ${sub} by ${author}`}
+        {`in /r/${sub} by ${author}`}
       </Box>
       <Box
         style={{
