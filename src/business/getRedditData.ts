@@ -24,7 +24,7 @@ const buildCommentChain = async (
     score: await prettyScore(await comment.score),
     author: await comment.author.name,
     bodyHTML: await comment.body_html,
-    date: Number(await comment.created_utc),
+    date: Number(String(await comment.created_utc) + '000'),
     parentID: await comment.parent_id,
     //@ts-ignore
     awards: buildAwards(await comment.all_awardings),
@@ -59,7 +59,7 @@ const postInfo = async (
     author: await post.author.name,
     link: link,
     title: await post.title,
-    date: Number(await post.created_utc),
+    date: Number(String(await post.created_utc) + '000'),
     commentsCount: await post.num_comments,
     //@ts-ignore
     awards: buildAwards(await post.all_awardings),
