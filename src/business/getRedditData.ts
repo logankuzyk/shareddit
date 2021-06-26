@@ -16,7 +16,8 @@ const r = new Reddit(login());
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 const buildCommentChain = async (
   commentID: string,
-  redact: boolean
+  redact: boolean,
+  child?: RedditComment
 ): Promise<RedditComment> => {
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
@@ -29,12 +30,12 @@ const buildCommentChain = async (
     //@ts-ignore
     awards: buildAwards(await comment.all_awardings),
     color: redact ? uniqolor(await comment.author.name).color : null,
+    child: child ? child : undefined,
   };
   if (!output.parentID.startsWith('t1')) {
     return output;
   } else {
-    const parent = await buildCommentChain(output.parentID, redact);
-    parent.child = output;
+    const parent = await buildCommentChain(output.parentID, redact, output);
     return parent;
   }
 };
