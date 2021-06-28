@@ -2,8 +2,6 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
-import https from 'https';
-import fs from 'fs';
 
 import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
@@ -61,17 +59,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     error: err.message,
   });
 });
-
-https
-  .createServer({
-    key: fs.readFileSync(
-      '/etc/letsencrypt/live/server.shareddit.com/privkey.pem'
-    ),
-    cert: fs.readFileSync(
-      '/etc/letsencrypt/live/server.shareddit.com/fullchain.pem'
-    ),
-  })
-  .listen(443);
 
 // Export express instance
 export default app;
