@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Center, Divider } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
 import { Icon } from "./Icon";

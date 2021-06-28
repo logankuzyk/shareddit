@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Box, Center } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
-import { Text } from "./Text";
 import { Icon } from "./Icon";
-import { RedditContext } from "../RedditContext";
+// import { RedditContext } from "../RedditContext";
 
 interface TitleProps {
   author: string;
@@ -23,7 +22,7 @@ export const Title: React.FC<TitleProps> = ({
   sub,
   commentsCount,
 }) => {
-  const { darkMode } = useContext(RedditContext);
+  // const { darkMode } = useContext(RedditContext);
 
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");

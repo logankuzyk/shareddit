@@ -4,7 +4,7 @@ import { TextSubmission } from "./TextSubmission";
 
 import { SubmissionType } from "../../types";
 
-export default function (template: SubmissionType): {
+export default function templates(template: SubmissionType): {
   TitleTemplate: React.FC<any>;
   CommentTemplate: React.FC<any>;
 } {

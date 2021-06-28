@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Box, Grid, VStack, Text } from "@chakra-ui/react";
+import React from "react";
+import { Box, Grid } from "@chakra-ui/react";
 
 import RedditContextProvider from "./RedditContext";
 import { Template } from "./Template";

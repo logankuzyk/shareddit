@@ -1,15 +1,11 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
-import { FieldProps } from "formik";
 
 interface DownloadButtonProps {
   download: () => void;
 }
 
-export const DownloadButton: React.FC<DownloadButtonProps> = ({
-  download,
-  ...props
-}) => {
+export const DownloadButton: React.FC<DownloadButtonProps> = ({ download }) => {
   return (
     <Button
       onClick={download}

@@ -1,13 +1,8 @@
-import { Box, propNames } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { useContext } from "react";
 
-import { ImageTheme } from "../types";
 import { RedditContext } from "./RedditContext";
 import templates from "./templates";
-
-type RedditThemePropertyMap<T> = {
-  [key in ImageTheme]: T;
-};
 
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
