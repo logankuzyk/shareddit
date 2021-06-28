@@ -39,8 +39,7 @@ export const getParams = async (): Promise<
   // const queryParams = validateParams(urlParams);
   // console.log(queryParams);
   const query = queryString.stringify(urlParams);
-  // const queryURL = "http://192.53.122.196/" + query;
-  const queryURL = "http://192.53.122.196:8080/" + query;
+  const queryURL = "https://server.shareddit.com/" + query;
 
   try {
     const res = await axios.get(queryURL);
