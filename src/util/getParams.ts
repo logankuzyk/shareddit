@@ -40,7 +40,7 @@ export const getParams = async (): Promise<
   // console.log(queryParams);
   const query = queryString.stringify(urlParams);
   // const queryURL = "http://192.53.122.196/" + query;
-  const queryURL = "http://localhost:3001/" + query;
+  const queryURL = "http://192.53.122.196:8080/" + query;
 
   try {
     const res = await axios.get(queryURL);
