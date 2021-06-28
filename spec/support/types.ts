@@ -1,24 +1,26 @@
-import { Response } from 'supertest';
-
-export interface SharedditResponse extends Response {
-  body: FleshedRedditSubmission;
-}
 export interface Award {
   url: string;
-  height: number;
-  width: number;
   count: number;
+}
+
+export interface SnoowrapCredentials {
+  userAgent: string;
+  clientId: string;
+  clientSecret: string;
+  username: string;
+  password: string;
 }
 
 export interface RedditComment {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
   bodyHTML: string;
   awards: Award[];
   parentID: string;
+  color: string | null;
 }
+
 export interface SkeletonRedditSubmission {
   sub: string;
   postID: string;
@@ -26,29 +28,17 @@ export interface SkeletonRedditSubmission {
   commentID?: string;
   redact: boolean;
 }
+
 export interface FleshedRedditSubmission extends SkeletonRedditSubmission {
   author: string;
   score: string;
-  postedDate?: Date;
   prettyDate: string;
-  bodyHTML: string | undefined | null;
+  bodyHTML: string | null;
   awards: Award[];
   title: string;
-  link?: string;
+  link: string | null;
   comments: RedditComment[];
   commentsCount: number;
   type: 'image' | 'link' | 'text';
-  redact: boolean;
+  color: string | null;
 }
-
-// export interface SharedditResponse {
-//     score: string,
-//     author: string,
-//     link: string,
-//     title: string,
-//     prettyDate: string,
-//     commentsCount: number,
-//     awards: [],
-//     bodyHTML: string | null,
-//     type:
-// }

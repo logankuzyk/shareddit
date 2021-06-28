@@ -1,11 +1,12 @@
 import Reddit from 'snoowrap';
+import uniqolor from 'uniqolor';
 
 import {
   SkeletonRedditSubmission,
   FleshedRedditSubmission,
   RedditComment,
 } from './types';
-import { determinePostType, longTime, prettyScore } from './util';
+import { determinePostType, longTime, prettyScore, buildAwards } from './util';
 import { login } from './getCredentials';
 
 const dotenv = require('dotenv').config();
@@ -14,25 +15,28 @@ const r = new Reddit(login());
 
 // Recursively goes through a comment's parent and builds an array. The base case is when the parent isn't a "thing" of type comment (t1).
 const buildCommentChain = async (
-  commentID: string
-): Promise<RedditComment[]> => {
+  commentID: string,
+  redact: boolean,
+  child?: RedditComment
+): Promise<RedditComment> => {
   //TODO: add something here to provent overflow
   const comment = r.getComment(commentID);
   const output: RedditComment = {
-    score: `${await prettyScore(await comment.score)} points`,
+    score: await prettyScore(await comment.score),
     author: await comment.author.name,
     bodyHTML: await comment.body_html,
-    prettyDate: await longTime(await comment.created_utc),
+    date: Number(String(await comment.created_utc) + '000'),
     parentID: await comment.parent_id,
     //@ts-ignore
-    awards: await comment.all_awardings,
+    awards: buildAwards(await comment.all_awardings),
+    color: redact ? uniqolor(await comment.author.name).color : null,
+    child: child ? child : undefined,
   };
   if (!output.parentID.startsWith('t1')) {
-    return [output];
+    return output;
   } else {
-    let arr = await buildCommentChain(output.parentID);
-    arr.unshift(output);
-    return arr;
+    const parent = await buildCommentChain(output.parentID, redact, output);
+    return parent;
   }
 };
 
@@ -42,20 +46,30 @@ const postInfo = async (
   redact: boolean
 ): Promise<FleshedRedditSubmission> => {
   const post = r.getSubmission(postID);
+  const type = await determinePostType(
+    await post.url,
+    await post.is_video,
+    await post.is_self
+  );
+  const link =
+    type === 'image' || type === 'text'
+      ? await post.url
+      : await post.preview.images[0].source.url;
   const output: FleshedRedditSubmission = {
     score: await prettyScore(await post.score),
     author: await post.author.name,
-    link: await post.url,
+    link: link,
     title: await post.title,
-    prettyDate: await longTime(await post.created_utc),
+    date: Number(String(await post.created_utc) + '000'),
     commentsCount: await post.num_comments,
     //@ts-ignore
-    awards: await post.all_awardings,
+    awards: buildAwards(await post.all_awardings),
     bodyHTML: await post.selftext_html,
-    type: await determinePostType(await post.url),
+    type: type,
     sub: sub,
     postID: postID,
     redact: redact,
+    color: redact ? uniqolor(await post.author.name).color : null,
   };
 
   return output;
@@ -69,7 +83,7 @@ export default async (
     const post: FleshedRedditSubmission = await postInfo(postID, sub, redact);
 
     if (commentID) {
-      post.comments = await buildCommentChain(commentID);
+      post.comments = await buildCommentChain(commentID, redact);
     }
 
     return post;

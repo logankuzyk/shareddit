@@ -31,22 +31,25 @@ export const parseQueryString = async (req: Request, res: Response) => {
     return res.send(sharedditSkeleton);
   } catch (err) {
     console.error(err);
-    return res.status(500).send();
+    return res.status(500).send({
+      status: 'error',
+      message: err.message,
+    });
   }
 };
 
 export const redirectRedditPath = async (req: Request, res: Response) => {
   try {
     const { params } = req;
-    const generationParams: SkeletonRedditSubmission = await validateParams(
-      params
-    );
 
     const query = queryString.stringify(params, { skipNull: true });
 
     return res.redirect(`/${query}`);
   } catch (err) {
     console.error(err);
-    return res.status(500).send();
+    return res.status(500).send({
+      status: 'error',
+      message: err.message,
+    });
   }
 };

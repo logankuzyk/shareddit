@@ -1,12 +1,22 @@
-export const determinePostType = async (
-  link: string
-): Promise<'image' | 'link' | 'text'> => {
-  const url = new URL(link);
-  let type: 'image' | 'link' | 'text';
+import { Award, SubmissionType } from './types';
 
-  if (url.hostname == 'www.reddit.com') {
-    //Image albums fall here too.
-    type = 'text';
+export const determinePostType = async (
+  link: string,
+  isVideo: boolean,
+  isSelf: boolean
+): Promise<SubmissionType> => {
+  const url = new URL(link);
+  let type: SubmissionType = 'link';
+
+  if (isVideo) {
+    type = 'video';
+  } else if (url.hostname == 'www.reddit.com') {
+    if (url.pathname.match(/gallery/)) {
+      // console.log(url.pathname);
+      type = 'album';
+    } else if (isSelf) {
+      type = 'text';
+    }
   } else if (
     url.pathname.indexOf('.jpg') >= 0 ||
     url.pathname.indexOf('.jpeg') >= 0 ||
@@ -14,8 +24,6 @@ export const determinePostType = async (
     url.pathname.indexOf('.png') >= 0
   ) {
     type = 'image';
-  } else {
-    type = 'link';
   }
 
   return type;
@@ -60,6 +68,19 @@ export const prettyScore = async (score: number): Promise<string> => {
     score = Number(score) / 1000;
     output = score.toString();
     output = output.substring(0, 4) + 'k';
+  }
+
+  return output;
+};
+
+export const buildAwards = (all_awardings: Award[]) => {
+  let output = [];
+  for (let award of all_awardings) {
+    output.push({
+      // @ts-ignore
+      src: award.resized_static_icons[2].url,
+      count: award.count > 1 ? award.count : 1,
+    });
   }
   return output;
 };
