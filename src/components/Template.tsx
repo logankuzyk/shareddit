@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, propNames } from "@chakra-ui/react";
 import React, { useContext } from "react";
 
 import { ImageTheme } from "../types";
@@ -9,35 +9,34 @@ type RedditThemePropertyMap<T> = {
   [key in ImageTheme]: T;
 };
 
-const styles: RedditThemePropertyMap<object> = {
-  old: {
-    backgroundColor: "white",
-    textAlign: "left",
-    fontFamily: "verdana, arial, helvetica, sans-serif",
-    fontSize: "x-small",
-    lineHeight: "normal",
-  },
-  new: {},
-};
-
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
-
-  const { TitleTemplate, CommentTemplate } = templates.old(data.content.type);
-
+  const { darkMode } = data;
+  const { TitleTemplate, CommentTemplate } = templates(data.content.type);
   return (
-    <Box
-      style={styles[data.theme]}
-      padding="10px"
-      borderRadius="12px"
-      id="reddit-preview"
-    >
-      <TitleTemplate />
-      {data.content.comments.length > 0 ? (
-        <CommentTemplate comments={data.content.comments} />
-      ) : (
-        <></>
-      )}
+    <Box padding="10px" borderRadius="12px" id="reddit-preview">
+      <Box
+        style={{
+          display: "flex",
+          borderRadius: "12px",
+          borderWidth: 1,
+          color: darkMode ? "#FFFFFF" : "#001219",
+          backgroundColor: darkMode ? "#001219" : "#FFFFFF",
+          borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
+          padding: 8,
+          flexDirection: "column",
+          fontFamily: "sans",
+          width: "100%",
+          fontSize: 16,
+        }}
+      >
+        <TitleTemplate {...data.content} />
+        {data.content.comments ? (
+          <CommentTemplate {...data.content.comments} />
+        ) : (
+          <></>
+        )}
+      </Box>
     </Box>
   );
 };
