@@ -1,10 +1,8 @@
-import { Award } from "./Award";
-import { ImageSubmission } from "./ImageSubmission";
-import { LinkSubmission } from "./LinkSubmission";
-import { TextSubmission } from "./TextSubmission";
 import { Comment } from "./Comment";
+import { ImageSubmission } from "./ImageSubmission";
+import { TextSubmission } from "./TextSubmission";
 
-import { SubmissionType } from "../../../types";
+import { SubmissionType } from "../../types";
 
 export default function (template: SubmissionType): {
   TitleTemplate: React.FC<any>;
@@ -20,6 +18,6 @@ export default function (template: SubmissionType): {
     case "text":
       return { TitleTemplate: TextSubmission, CommentTemplate: Comment };
     case "link":
-      return { TitleTemplate: LinkSubmission, CommentTemplate: Comment };
+      return { TitleTemplate: ImageSubmission, CommentTemplate: Comment };
   }
 }

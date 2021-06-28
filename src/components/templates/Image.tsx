@@ -17,7 +17,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         overflow: "hidden",
       }}
     >
-      <img src={src} width="100%" height="100%"></img>
+      <img src={src} width="100%" height="100%" />
     </Box>
   );
 };

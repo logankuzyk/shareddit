@@ -4,7 +4,7 @@ import { timeFormat } from "d3-time-format";
 
 import { Icon } from "./Icon";
 import { Text } from "./Text";
-import { RedditContext } from "../../RedditContext";
+import { RedditContext } from "../RedditContext";
 
 interface CommentProps {
   author: string;
@@ -45,15 +45,15 @@ export const Comment: React.FC<CommentProps> = ({
         style={{
           display: "flex",
           flexDirection: "row",
-          fontSize: 16,
+          fontSize: 12,
         }}
       >
         <Center>
-          <Box width={4} />
+          <Box width={2} />
           {author}
-          <Box width={4} />
+          <Box width={2} />
           <Icon icon="vote" text={score} />
-          <Box width={4} />
+          <Box width={2} />
           <Icon icon="date" text={dateString} />
         </Center>
       </Box>

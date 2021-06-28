@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RedditContext } from "../../RedditContext";
+import { RedditContext } from "../RedditContext";
 
 import { Box, Center } from "@chakra-ui/react";
 import { ArrowUpDownIcon, ChatIcon, CalendarIcon } from "@chakra-ui/icons";
@@ -34,8 +34,8 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
         borderWidth: 1,
         color: darkMode ? "#AAAAAA" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
-        padding: 8,
-        fontSize: 14,
+        padding: 6,
+        fontSize: 12,
       }}
     >
       <Center>

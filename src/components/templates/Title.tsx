@@ -4,7 +4,7 @@ import { timeFormat } from "d3-time-format";
 
 import { Text } from "./Text";
 import { Icon } from "./Icon";
-import { RedditContext } from "../../RedditContext";
+import { RedditContext } from "../RedditContext";
 
 interface TitleProps {
   author: string;
@@ -30,20 +30,7 @@ export const Title: React.FC<TitleProps> = ({
   const dateString = dateFormat(datePosted);
 
   return (
-    <Box
-      style={{
-        display: "flex",
-        borderRadius: "12px",
-        borderWidth: 1,
-        color: darkMode ? "#FFFFFF" : "#001219",
-        borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
-        padding: 8,
-        flexDirection: "column",
-        fontFamily: "sans",
-        width: "100%",
-        fontSize: 16,
-      }}
-    >
+    <>
       <Box
         style={{
           display: "flex",
@@ -88,6 +75,6 @@ export const Title: React.FC<TitleProps> = ({
           <Icon icon="comment" text={String(commentsCount)} />
         </Center>
       </Box>
-    </Box>
+    </>
   );
 };
