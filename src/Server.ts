@@ -39,6 +39,15 @@ if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
 }
 
+app.get(
+  '/.well-known/acme-challenge/yaO7HtPEo2yuoAKNAi3_wxoWd6BdyrBOCe4aalEGm0g',
+  (req, res) => {
+    res.send(
+      'yaO7HtPEo2yuoAKNAi3_wxoWd6BdyrBOCe4aalEGm0g.qDPViy8jdWwTTyV9oQsxXMi7WayMwum5IyUwyGXVNBw'
+    );
+  }
+);
+
 // Add APIs
 app.use('/', BaseRouter);
 
