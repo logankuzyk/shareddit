@@ -12,6 +12,7 @@ import logger from '@shared/Logger';
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
+const dotenv = require('dotenv').config();
 
 /************************************************************************************
  *                              Set basic express settings
