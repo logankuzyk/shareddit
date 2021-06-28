@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, VStack } from "@chakra-ui/react";
+import { Box, Center, Grid, VStack } from "@chakra-ui/react";
 import Helmet from "react-helmet";
 
 import { SharedditLogo } from "../components/SharedditLogo";
@@ -15,7 +15,9 @@ export const ImageGenerator: React.FC = () => {
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
           <SharedditLogo />
-          <Editor />
+          <Center>
+            <Editor />
+          </Center>
         </VStack>
       </Grid>
     </Box>
