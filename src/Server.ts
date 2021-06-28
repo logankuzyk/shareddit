@@ -2,6 +2,8 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import path from 'path';
 import helmet from 'helmet';
+import https from 'https';
+import fs from 'fs';
 
 import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
@@ -60,17 +62,16 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-/************************************************************************************
- *                              Serve front-end content
- ***********************************************************************************/
-
-// const viewsDir = path.join(__dirname, 'views');
-// app.set('views', viewsDir);
-// const staticDir = path.join(__dirname, 'public');
-// app.use(express.static(staticDir));
-// app.get('*', (req: Request, res: Response) => {
-//     res.sendFile('index.html', {root: viewsDir});
-// });
+https
+  .createServer({
+    key: fs.readFileSync(
+      '/etc/letsencrypt/live/server.shareddit.com/privkey.pem'
+    ),
+    cert: fs.readFileSync(
+      '/etc/letsencrypt/live/server.shareddit.com/fullchain.pem'
+    ),
+  })
+  .listen(443);
 
 // Export express instance
 export default app;
