@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 const corsProxy = require('cors-anywhere');
 
 export function start(): void {
@@ -17,6 +19,14 @@ export function start(): void {
       redirectSameOrigin: true,
       httpProxyOptions: {
         xfwd: true,
+      },
+      httpsOptions: {
+        key: fs.readFileSync(
+          '/etc/letsencrypt/live/server.shareddit.com/privkey.pem'
+        ),
+        cert: fs.readFileSync(
+          '/etc/letsencrypt/live/server.shareddit.com/fullchain.pem'
+        ),
       },
     })
     .listen(8080, '0.0.0.0', console.log('CORS Anywhere started'));
