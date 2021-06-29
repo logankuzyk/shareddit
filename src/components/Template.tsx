@@ -9,7 +9,7 @@ export const Template: React.FC = () => {
   const { darkMode } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
   return (
-    <Box padding="10px" borderRadius="12px" id="reddit-preview">
+    <Box id="reddit-preview" overflow="hidden">
       <Box
         style={{
           display: "flex",

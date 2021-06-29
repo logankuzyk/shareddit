@@ -15,8 +15,10 @@ export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
 
   return (
     <>
-      <Title {...props} />
-      <Image {...props} src={src} host={host} icon="image" />
+      <Title
+        {...props}
+        Content={<Image {...props} src={src} host={host} icon="image" />}
+      />
     </>
   );
 };

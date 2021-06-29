@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
@@ -11,6 +11,7 @@ interface TitleProps {
   title: string;
   sub: string;
   commentsCount: number;
+  Content?: ReactElement<any>;
 }
 
 export const Title: React.FC<TitleProps> = ({
@@ -20,9 +21,8 @@ export const Title: React.FC<TitleProps> = ({
   title,
   sub,
   commentsCount,
+  Content,
 }) => {
-  // const { darkMode } = useContext(RedditContext);
-
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");
   const dateString = dateFormat(datePosted);
@@ -40,6 +40,7 @@ export const Title: React.FC<TitleProps> = ({
         <Box width={2} />
         <Box style={{ textAlign: "left" }}>{title}</Box>
       </Box>
+      {Content ? <Box padding={2}>{Content}</Box> : <></>}
       <Box
         style={{
           display: "flex",
