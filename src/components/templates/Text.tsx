@@ -24,7 +24,7 @@ export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
       style={{
         display: "inline-block",
         textAlign: "left",
-        fontSize: 16,
+        fontSize: 14,
         padding: 6,
       }}
     ></Box>

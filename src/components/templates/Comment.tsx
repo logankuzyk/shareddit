@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Grid, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
 import { Icon } from "./Icon";
@@ -31,17 +31,17 @@ export const Comment: React.FC<CommentProps> = ({
     <Box
       style={{
         display: "flex",
-        borderRadius: "12px",
-        borderWidth: 1,
         color: darkMode ? "#FFFFFF" : "#001219",
-        borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         padding: 8,
         flexDirection: "column",
         fontFamily: "sans",
         width: "100%",
       }}
     >
-      <Box
+      <SimpleGrid
+        paddingLeft={2}
+        columns={3}
+        columnGap={2}
         style={{
           display: "flex",
           flexDirection: "row",
@@ -49,52 +49,46 @@ export const Comment: React.FC<CommentProps> = ({
         }}
       >
         <Center>
-          <Box width={2} />
-          {author}
-          <Box width={2} />
-          <Icon icon="vote" text={score} />
-          <Box width={2} />
-          <Icon icon="date" text={dateString} />
+          <Box>{author}</Box>
         </Center>
-      </Box>
-      <Box
-        style={{
-          marginTop: 12,
-          marginBottom: 2,
-          height: 1,
-          backgroundColor: "#AAAAAA",
-          width: "100%",
-        }}
-      />
+        <Box>
+          <Icon icon="vote" text={score} />
+        </Box>
+        <Box>
+          <Icon icon="date" text={dateString} />
+        </Box>
+      </SimpleGrid>
       <Box
         style={{
           display: "flex",
           flexDirection: "column",
           justifyItems: "left",
-          fontSize: 18,
           width: "100%",
           justifyContent: "space-evenly",
           whiteSpace: "normal",
         }}
       >
         <Text bodyHTML={bodyHTML} />
-        {child ? (
-          <>
-            <Box height={4} />
-            <Box style={{ display: "flex", flexDirection: "row" }}>
-              <Box
-                style={{
-                  width: "5%",
-                  height: "100%",
-                }}
-              />
+      </Box>
+      {child ? (
+        <>
+          <Box height={1} />
+          <Grid columns={2} p={2}>
+            <Box
+              style={{
+                minWidth: "5%",
+                height: "100%",
+                backgroundColor: "red",
+              }}
+            />
+            <Box width="auto">
               <Comment {...child} />
             </Box>
-          </>
-        ) : (
-          <></>
-        )}
-      </Box>
+          </Grid>
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };

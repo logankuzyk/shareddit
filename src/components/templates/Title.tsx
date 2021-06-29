@@ -1,9 +1,8 @@
 import React from "react";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
 import { Icon } from "./Icon";
-// import { RedditContext } from "../RedditContext";
 
 interface TitleProps {
   author: string;
@@ -43,37 +42,29 @@ export const Title: React.FC<TitleProps> = ({
       </Box>
       <Box
         style={{
-          marginTop: 6,
-          marginBottom: 5,
-          height: 1,
-          backgroundColor: "#AAAAAA",
-          width: "100%",
-        }}
-      />
-      <Box
-        style={{
           display: "flex",
           flexDirection: "row",
           padding: 8,
+          fontSize: 14,
         }}
       >
         {`in /r/${sub} by ${author}`}
       </Box>
-      <Box
+      <SimpleGrid
+        paddingLeft={2}
+        paddingBottom={2}
+        columns={3}
+        columnGap={2}
         style={{
           display: "flex",
           flexDirection: "row",
-          padding: 8,
+          fontSize: 12,
         }}
       >
-        <Center>
-          <Icon icon="vote" text={score} />
-          <Box width={4} />
-          <Icon icon="date" text={dateString} />
-          <Box width={4} />
-          <Icon icon="comment" text={String(commentsCount)} />
-        </Center>
-      </Box>
+        <Icon icon="vote" text={score} />
+        <Icon icon="date" text={dateString} />
+        <Icon icon="comment" text={String(commentsCount)} />
+      </SimpleGrid>
     </>
   );
 };

@@ -31,10 +31,14 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
       style={{
         display: "flex",
         borderRadius: "12px",
-        borderWidth: 1,
+        borderWidth: 1.5,
         color: darkMode ? "#AAAAAA" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
-        padding: 6,
+        backgroundColor: darkMode ? "#4d4d4d" : "#f5f0f0",
+        paddingTop: 2,
+        paddingBottom: 2,
+        paddingLeft: 4,
+        paddingRight: 4,
         fontSize: 12,
       }}
     >
