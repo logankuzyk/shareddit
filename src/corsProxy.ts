@@ -1,6 +1,6 @@
 const corsProxy = require('cors-anywhere');
 
-module.exports.start = () => {
+export function start(): void {
   corsProxy
     .createServer({
       originWhitelist: [],
@@ -20,4 +20,4 @@ module.exports.start = () => {
       },
     })
     .listen(8080, '0.0.0.0', console.log('CORS Anywhere started'));
-};
+}
