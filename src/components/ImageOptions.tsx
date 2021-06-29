@@ -7,7 +7,6 @@ interface ImageOptionsProps {}
 
 export const ImageOptions: React.FC<ImageOptionsProps> = () => {
   const { downloadAs, content } = useContext(RedditContext);
-  const filename = `shareddit - ${content.title}`;
 
   const download = () => {
     const node = document.getElementById("reddit-preview");
@@ -20,7 +19,6 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
     if (downloadAs === "png") {
       htmlToImage.toPng(node).then(async (dataURL) => {
         localStorage.setItem("shareddit-image", dataURL);
-        const image = localStorage.getItem("shareddit-image");
         window.location.href = "/download";
       });
     }
