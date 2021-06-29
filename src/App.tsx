@@ -7,6 +7,7 @@ import "./style/fonts.css";
 
 import { Home } from "./views/Home";
 import { ImageGenerator } from "./views/ImageGenerator";
+import { DownloadImage } from "./views/DownloadImage";
 import { NotFound } from "./views/NotFound";
 
 export const App = () => (
@@ -18,6 +19,9 @@ export const App = () => (
         </Route>
         <Route path="/generate">
           <ImageGenerator />
+        </Route>
+        <Route path="/download">
+          <DownloadImage />
         </Route>
         <Route>
           <NotFound />
