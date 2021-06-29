@@ -1,0 +1,1 @@
+docker run -d -it -p 80:80 --name=shareddit
