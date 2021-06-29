@@ -17,7 +17,12 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         overflow: "hidden",
       }}
     >
-      <img src={src} width="100%" height="100%" alt="reddit submission" />
+      <img
+        src={`https://cors-anywhere.herokuapp.com/${src}`}
+        width="100%"
+        height="100%"
+        alt="reddit submission"
+      />
     </Box>
   );
 };
