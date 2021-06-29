@@ -32,7 +32,7 @@ export const Comment: React.FC<CommentProps> = ({
       style={{
         display: "flex",
         color: darkMode ? "#FFFFFF" : "#001219",
-        padding: 8,
+        padding: "8 8 0 8",
         flexDirection: "column",
         fontFamily: "sans",
         width: "100%",
@@ -74,14 +74,7 @@ export const Comment: React.FC<CommentProps> = ({
         <>
           <Box height={1} />
           <Grid columns={2} p={2}>
-            <Box
-              style={{
-                minWidth: "5%",
-                height: "100%",
-                backgroundColor: "red",
-              }}
-            />
-            <Box width="auto">
+            <Box width="auto" paddingLeft={2}>
               <Comment {...child} />
             </Box>
           </Grid>

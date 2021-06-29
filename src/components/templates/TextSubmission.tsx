@@ -22,11 +22,12 @@ export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
               display: "flex",
               borderRadius: "12px",
               borderWidth: 1,
+              borderColor: "#AAAAAA",
               padding: 4,
               flexDirection: "column",
               fontFamily: "sans",
               fontSize: 16,
-              margin: 5,
+              margin: 4,
             }}
           >
             <Text {...props} bodyHTML={bodyHTML} />
