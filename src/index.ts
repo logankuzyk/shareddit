@@ -4,6 +4,7 @@ import logger from '@shared/Logger';
 import fs from 'fs';
 import http from 'http';
 import https from 'https';
+import corsProxy from 'cors-anywhere';
 
 const dotenv = require('dotenv').config();
 
@@ -23,3 +24,8 @@ https
     app
   )
   .listen(443);
+
+corsProxy.createServer({
+  originWhitelist: [],
+  requireHeader: [],
+});
