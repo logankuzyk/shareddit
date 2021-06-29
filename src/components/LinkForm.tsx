@@ -25,7 +25,7 @@ export const LinkForm: React.FC = () => {
   });
 
   return (
-    <Box width="100%">
+    <Box width="100%" maxWidth="80vw">
       <FormikProvider value={formik}>
         <Form>
           <Field

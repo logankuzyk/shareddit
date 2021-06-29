@@ -15,7 +15,7 @@ export const Home: React.FC = () => {
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
           <SharedditLogo />
-          <Text fontSize="5xl" fontWeight="semibold">
+          <Text fontSize="4xl" fontWeight="semibold">
             The best way to screenshot reddit content.
           </Text>
           <LinkForm />
