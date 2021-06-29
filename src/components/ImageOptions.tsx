@@ -6,7 +6,7 @@ import { DownloadButton } from "./input/DownloadButton";
 interface ImageOptionsProps {}
 
 export const ImageOptions: React.FC<ImageOptionsProps> = () => {
-  const { downloadAs, content } = useContext(RedditContext);
+  const { downloadAs } = useContext(RedditContext);
 
   const download = () => {
     const node = document.getElementById("reddit-preview");

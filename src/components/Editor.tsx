@@ -10,15 +10,7 @@ export const Editor: React.FC = () => {
     <Box textAlign="center" fontSize="xl" width="100%">
       <VStack maxW="lg" marginX="auto" spacing={4}>
         <RedditContextProvider>
-          <Box
-            style={{
-              borderRadius: "12px",
-              borderColor: "#0A9396",
-              borderWidth: "4px",
-            }}
-          >
-            <Template />
-          </Box>
+          <Template />
           <ImageOptions />
         </RedditContextProvider>
       </VStack>
