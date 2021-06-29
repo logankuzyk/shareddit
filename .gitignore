@@ -5,3 +5,4 @@ keys.json
 /dist
 *.log
 /src/pre-start/env
+redditrequest.js
