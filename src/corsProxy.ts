@@ -6,7 +6,7 @@ export function start(): void {
   corsProxy
     .createServer({
       originWhitelist: [],
-      requireHeader: ['origin', 'x-requested-with'],
+      requireHeader: [],
       removeHeaders: [
         'cookie1',
         'cookie2',
