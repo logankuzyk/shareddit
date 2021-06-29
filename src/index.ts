@@ -4,8 +4,8 @@ import logger from '@shared/Logger';
 import fs from 'fs';
 import http from 'http';
 import https from 'https';
-import corsProxy from 'cors-anywhere';
 
+const corsProxy = require('./corsProxy.js');
 const dotenv = require('dotenv').config();
 
 // Start the server
@@ -25,7 +25,4 @@ https
   )
   .listen(443);
 
-corsProxy.createServer({
-  originWhitelist: [],
-  requireHeader: [],
-});
+corsProxy.start();
