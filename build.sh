@@ -1,1 +1,1 @@
-docker run -d -it -p 80:80 --name=shareddit shareddit
+docker build -t shareddit-server .
