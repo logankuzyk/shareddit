@@ -9,9 +9,9 @@ const dotenv = require('dotenv').config();
 
 // Start the server
 const port = Number(80);
-// app.listen(port, () => {
-//   logger.info('Express server started on port: ' + port);
-// });
+app.listen(port, () => {
+  logger.info('Express server started on port: ' + port);
+});
 https
   .createServer(
     {
@@ -24,4 +24,4 @@ https
     },
     app
   )
-  .listen(80);
+  .listen(443);
