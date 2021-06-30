@@ -23,14 +23,28 @@ export const Template: React.FC = () => {
           fontFamily: "sans",
           width: "100%",
           fontSize: 16,
+          position: "relative",
         }}
       >
         <TitleTemplate {...data.content} />
+        <Box height={4} />
         {data.content.comments ? (
           <CommentTemplate {...data.content.comments} />
         ) : (
           <></>
         )}
+        <Box
+          position="absolute"
+          textAlign="right"
+          bottom={0}
+          width="100%"
+          fontSize={12}
+          paddingRight={4}
+          paddingBottom={1}
+          opacity={0.5}
+        >
+          {"📷 via shareddit.com"}
+        </Box>
       </Box>
     </Box>
   );
