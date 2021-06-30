@@ -19,25 +19,25 @@ export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
       <Title
         {...props}
         Content={
-          <Box
-            style={{
-              display: "flex",
-              borderRadius: "12px",
-              borderWidth: 1,
-              borderColor: colors(darkMode).borderColor,
-              padding: 4,
-              flexDirection: "column",
-              fontFamily: "sans",
-              fontSize: 16,
-              margin: 4,
-            }}
-          >
-            {bodyHTML !== null ? (
+          bodyHTML !== null ? (
+            <Box
+              style={{
+                display: "flex",
+                borderRadius: "12px",
+                borderWidth: 1,
+                borderColor: colors(darkMode).borderColor,
+                padding: 4,
+                flexDirection: "column",
+                fontFamily: "sans",
+                fontSize: 16,
+                margin: 4,
+              }}
+            >
               <Text {...props} bodyHTML={bodyHTML} />
-            ) : (
-              <></>
-            )}
-          </Box>
+            </Box>
+          ) : (
+            <></>
+          )
         }
       />
     </>
