@@ -8,9 +8,7 @@ import {
 
 import { RedditContext } from "../RedditContext";
 
-interface SliderProps {}
-
-export const ScaleSlider: React.FC<SliderProps> = ({}) => {
+export const ScaleSlider: React.FC = () => {
   const {
     setters: { updateImageScale },
   } = useContext(RedditContext);
