@@ -10,7 +10,10 @@ interface AwardsProps {
 }
 export const Awards: React.FC<AwardsProps> = ({ awards }) => {
   const { darkMode } = useContext(RedditContext);
-  let count = 0;
+  let totalAwards = awards
+    .map((award) => award.count)
+    .reduce((a, b) => a + b, 0);
+  const awardsToRender = awards.slice(0, 6);
 
   return (
     <Box
@@ -28,18 +31,22 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
         fontSize: 12,
       }}
     >
-      {awards.map((award) => {
-        count += award.count;
+      {awardsToRender.map((award) => {
+        totalAwards += award.count;
         return (
           <img
             height={16}
             width={16}
             alt="reddit award"
+            onError={(e) => {
+              //@ts-ignore
+              e.target.style.display = "none";
+            }}
             src={`https://server.shareddit.com:8080/${award.src}`}
           />
         );
       })}
-      {` ${count} ${count === 1 ? "award" : "awards"}`}
+      {` ${totalAwards} ${totalAwards === 1 ? "award" : "awards"}`}
     </Box>
   );
 };
