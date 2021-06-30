@@ -6,6 +6,8 @@ import { Icon } from "./Icon";
 import { Text } from "./Text";
 import { RedditContext } from "../RedditContext";
 import { colors } from "./styles";
+import { Award } from "../../types";
+import { Awards } from "./Awards";
 
 interface CommentProps {
   author: string;
@@ -13,6 +15,7 @@ interface CommentProps {
   date: number;
   bodyHTML: string;
   child?: CommentProps;
+  awards: Award[];
 }
 
 export const Comment: React.FC<CommentProps> = ({
@@ -21,6 +24,7 @@ export const Comment: React.FC<CommentProps> = ({
   date,
   bodyHTML,
   child,
+  awards,
 }) => {
   const { darkMode } = useContext(RedditContext);
 
@@ -57,6 +61,9 @@ export const Comment: React.FC<CommentProps> = ({
         </Box>
         <Box>
           <Icon icon="date" text={dateString} />
+        </Box>
+        <Box>
+          <Awards awards={awards} />
         </Box>
       </SimpleGrid>
       <Box

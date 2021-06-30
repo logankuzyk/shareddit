@@ -5,6 +5,8 @@ import { timeFormat } from "d3-time-format";
 import { Icon } from "./Icon";
 import { colors } from "./styles";
 import { RedditContext } from "../RedditContext";
+import { Award } from "../../types";
+import { Awards } from "./Awards";
 
 interface TitleProps {
   author: string;
@@ -14,6 +16,7 @@ interface TitleProps {
   sub: string;
   commentsCount: number;
   Content?: ReactElement<any>;
+  awards: Award[];
 }
 
 export const Title: React.FC<TitleProps> = ({
@@ -24,6 +27,7 @@ export const Title: React.FC<TitleProps> = ({
   sub,
   commentsCount,
   Content,
+  awards,
 }) => {
   const { darkMode } = useContext(RedditContext);
 
@@ -71,6 +75,7 @@ export const Title: React.FC<TitleProps> = ({
         <Icon icon="vote" text={score} />
         <Icon icon="date" text={dateString} />
         <Icon icon="comment" text={String(commentsCount)} />
+        <Awards awards={awards} />
       </SimpleGrid>
     </>
   );
