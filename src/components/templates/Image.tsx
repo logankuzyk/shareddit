@@ -14,7 +14,7 @@ interface ImageProps {
 }
 
 export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
-  const { darkMode } = useContext(RedditContext);
+  const { darkMode, options } = useContext(RedditContext);
 
   const icons = {
     link: <LinkIcon />,
@@ -30,12 +30,12 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         borderColor: colors(darkMode).borderColor,
         overflow: "hidden",
         position: "relative",
+        width: options.imageScale,
+        height: options.imageScale,
       }}
     >
       <img
         src={`https://server.shareddit.com:8080/${src}`}
-        width="100%"
-        height="100%"
         alt="reddit submission"
       />
       <Box

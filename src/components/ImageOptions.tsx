@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import * as htmlToImage from "html-to-image";
+
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./input/DownloadButton";
+import { ScaleSlider } from "./input/ScaleSlider";
 
 interface ImageOptionsProps {}
 
@@ -24,5 +26,10 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
     }
   };
 
-  return <DownloadButton download={download} />;
+  return (
+    <>
+      <ScaleSlider />
+      <DownloadButton download={download} />
+    </>
+  );
 };
