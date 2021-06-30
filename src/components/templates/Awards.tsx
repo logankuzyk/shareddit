@@ -43,6 +43,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
               e.target.style.display = "none";
             }}
             src={`https://server.shareddit.com:8080/${award.src}`}
+            key={totalAwards}
           />
         );
       })}
