@@ -1,6 +1,7 @@
 import { Comment } from "./Comment";
 import { ImageSubmission } from "./ImageSubmission";
 import { TextSubmission } from "./TextSubmission";
+import { LinkSubmission } from "./LinkSubmission";
 
 import { SubmissionType } from "../../types";
 
@@ -18,6 +19,6 @@ export default function templates(template: SubmissionType): {
     case "text":
       return { TitleTemplate: TextSubmission, CommentTemplate: Comment };
     case "link":
-      return { TitleTemplate: ImageSubmission, CommentTemplate: Comment };
+      return { TitleTemplate: LinkSubmission, CommentTemplate: Comment };
   }
 }
