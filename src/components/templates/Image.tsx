@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Icon } from "@chakra-ui/react";
 import { LinkIcon } from "@chakra-ui/icons";
 import { FaImage } from "@react-icons/all-files/fa/FaImage";
 import { FaFilm } from "@react-icons/all-files/fa/FaFilm";
+
+import { colors } from "./styles";
+import { RedditContext } from "../RedditContext";
 
 interface ImageProps {
   src: string;
@@ -11,6 +14,8 @@ interface ImageProps {
 }
 
 export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
+  const { darkMode } = useContext(RedditContext);
+
   const icons = {
     link: <LinkIcon />,
     image: <Icon as={FaImage} />,
@@ -22,7 +27,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
       style={{
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: "#AAAAAA",
+        borderColor: colors(darkMode).borderColor,
         overflow: "hidden",
         position: "relative",
       }}

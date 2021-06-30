@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { RedditContext } from "../RedditContext";
-
 import { Box, Center } from "@chakra-ui/react";
 import { ArrowUpDownIcon, ChatIcon, CalendarIcon } from "@chakra-ui/icons";
+
+import { RedditContext } from "../RedditContext";
+import { colors } from "./styles";
 
 interface IconProps {
   icon: "vote" | "comment" | "date";
@@ -32,9 +33,9 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
         display: "flex",
         borderRadius: "12px",
         borderWidth: 1,
-        color: darkMode ? "#AAAAAA" : "#001219",
-        borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
-        backgroundColor: darkMode ? "#4d4d4d" : "#f5f0f0",
+        color: colors(darkMode).color,
+        borderColor: colors(darkMode).borderColor,
+        backgroundColor: colors(darkMode).iconBackgroundColor,
         paddingTop: 2,
         paddingBottom: 2,
         paddingLeft: 4,

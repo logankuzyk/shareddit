@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { Text } from "./Text";
 import { Title } from "./Title";
 
 import { FleshedRedditSubmission } from "../../types";
+import { RedditContext } from "../RedditContext";
+import { colors } from "./styles";
 
 export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
   bodyHTML,
   ...props
 }) => {
-  if (bodyHTML === null) return <></>;
+  const { darkMode } = useContext(RedditContext);
 
   return (
     <>
@@ -22,7 +24,7 @@ export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
               display: "flex",
               borderRadius: "12px",
               borderWidth: 1,
-              borderColor: "#AAAAAA",
+              borderColor: colors(darkMode).borderColor,
               padding: 4,
               flexDirection: "column",
               fontFamily: "sans",
@@ -30,7 +32,11 @@ export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
               margin: 4,
             }}
           >
-            <Text {...props} bodyHTML={bodyHTML} />
+            {bodyHTML !== null ? (
+              <Text {...props} bodyHTML={bodyHTML} />
+            ) : (
+              <></>
+            )}
           </Box>
         }
       />

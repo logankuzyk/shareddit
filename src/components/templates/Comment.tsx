@@ -5,6 +5,7 @@ import { timeFormat } from "d3-time-format";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
 import { RedditContext } from "../RedditContext";
+import { colors } from "./styles";
 
 interface CommentProps {
   author: string;
@@ -31,7 +32,7 @@ export const Comment: React.FC<CommentProps> = ({
     <Box
       style={{
         display: "flex",
-        color: darkMode ? "#FFFFFF" : "#001219",
+        color: colors(darkMode).color,
         padding: "8 8 0 8",
         flexDirection: "column",
         fontFamily: "sans",

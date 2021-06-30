@@ -1,8 +1,10 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 
 import { Icon } from "./Icon";
+import { colors } from "./styles";
+import { RedditContext } from "../RedditContext";
 
 interface TitleProps {
   author: string;
@@ -23,6 +25,8 @@ export const Title: React.FC<TitleProps> = ({
   commentsCount,
   Content,
 }) => {
+  const { darkMode } = useContext(RedditContext);
+
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");
   const dateString = dateFormat(datePosted);
@@ -35,6 +39,7 @@ export const Title: React.FC<TitleProps> = ({
           flexDirection: "row",
           fontSize: 18,
           fontWeight: "bold",
+          color: colors(darkMode).color,
         }}
       >
         <Box width={2} />
@@ -47,6 +52,7 @@ export const Title: React.FC<TitleProps> = ({
           flexDirection: "row",
           padding: 8,
           fontSize: 14,
+          color: colors(darkMode).color,
         }}
       >
         {`in /r/${sub} by ${author}`}
