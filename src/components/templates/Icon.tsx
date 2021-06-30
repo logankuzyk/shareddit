@@ -44,7 +44,7 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
     >
       <Center>
         <IconTemplate />
-        <Box width={2} />
+        <Box width={1} />
         {text}
       </Center>
     </Box>
