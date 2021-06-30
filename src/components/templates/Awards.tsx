@@ -34,6 +34,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
           <img
             height={16}
             width={16}
+            alt="reddit award"
             src={`https://server.shareddit.com:8080/${award.src}`}
           />
         );
