@@ -1,5 +1,8 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
+import { LinkIcon } from "@chakra-ui/icons";
+import { FaImage } from "@react-icons/all-files/fa/FaImage";
+import { FaFilm } from "@react-icons/all-files/fa/FaFilm";
 
 interface ImageProps {
   src: string;
@@ -8,6 +11,12 @@ interface ImageProps {
 }
 
 export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
+  const icons = {
+    link: <LinkIcon />,
+    image: <Icon as={FaImage} />,
+    video: <Icon as={FaFilm} />,
+  };
+
   return (
     <Box
       style={{
@@ -15,6 +24,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         borderWidth: 1,
         borderColor: "#AAAAAA",
         overflow: "hidden",
+        position: "relative",
       }}
     >
       <img
@@ -23,6 +33,17 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         height="100%"
         alt="reddit submission"
       />
+      <Box
+        position="absolute"
+        background="rgba(0, 0, 0, 0.5)"
+        color="#AAAAAA"
+        textAlign="center"
+        bottom={0}
+        width="100%"
+        fontSize={12}
+      >
+        {icons[icon]} {host}
+      </Box>
     </Box>
   );
 };
