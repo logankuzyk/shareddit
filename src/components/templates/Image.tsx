@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Icon } from "@chakra-ui/react";
 import { LinkIcon } from "@chakra-ui/icons";
+import { Fade } from "@chakra-ui/transition";
 import { FaImage } from "@react-icons/all-files/fa/FaImage";
 import { FaFilm } from "@react-icons/all-files/fa/FaFilm";
 
@@ -23,32 +24,34 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
   };
 
   return (
-    <Box
-      style={{
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: colors(darkMode).borderColor,
-        overflow: "hidden",
-        position: "relative",
-        width: options.imageScale,
-        height: options.imageScale,
-      }}
-    >
-      <img
-        src={`https://server.shareddit.com:8080/${src}`}
-        alt="reddit submission"
-      />
+    <Fade in={true}>
       <Box
-        position="absolute"
-        background="rgba(0, 0, 0, 0.5)"
-        color="#AAAAAA"
-        textAlign="center"
-        bottom={0}
-        width="100%"
-        fontSize={12}
+        style={{
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: colors(darkMode).borderColor,
+          overflow: "hidden",
+          position: "relative",
+          width: options.imageScale,
+          height: options.imageScale,
+        }}
       >
-        {icons[icon]} {host}
+        <img
+          src={`https://server.shareddit.com:8080/${src}`}
+          alt="reddit submission"
+        />
+        <Box
+          position="absolute"
+          background="rgba(0, 0, 0, 0.5)"
+          color="#AAAAAA"
+          textAlign="center"
+          bottom={0}
+          width="100%"
+          fontSize={12}
+        >
+          {icons[icon]} {host}
+        </Box>
       </Box>
-    </Box>
+    </Fade>
   );
 };
