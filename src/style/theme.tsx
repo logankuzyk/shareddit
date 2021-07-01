@@ -16,7 +16,7 @@ export const theme = extendTheme({
       background: "#E2F3ED",
       highlights: "#0A9396",
       focus: "#087172",
-      input: "#FFF1EB",
+      input: "#f5f5f5",
     },
     button: {
       500: "#0A9396",
