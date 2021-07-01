@@ -11,6 +11,7 @@ export const SharedditLogo: React.FC = () => {
       fontFamily="Signika"
       fontSize="5xl"
       fontWeight="semibold"
+      cursor="pointer"
       onClick={onClick}
     >
       shareddit
