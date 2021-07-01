@@ -13,6 +13,11 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
   let totalAwards = awards
     .map((award) => award.count)
     .reduce((a, b) => a + b, 0);
+
+  if (totalAwards === 0) {
+    return <></>;
+  }
+
   const awardsToRender = awards.slice(0, 6);
 
   return (
