@@ -14,6 +14,7 @@ interface RedditContextState {
   };
   setters: {
     updateImageScale: () => void;
+    toggleDarkMode: () => void;
   };
 }
 
@@ -40,6 +41,7 @@ const initialState: RedditContextState = {
   },
   setters: {
     updateImageScale: () => {},
+    toggleDarkMode: () => {},
   },
 };
 
@@ -56,6 +58,10 @@ class RedditContextProvider extends Component {
           setters: {
             updateImageScale: (percent: number) => {
               this.setState({ options: { imageScale: `${percent}%` } });
+            },
+            toggleDarkMode: () => {
+              const darkModeEnabled = this.state.darkMode;
+              this.setState({ darkMode: !darkModeEnabled });
             },
           },
         });

@@ -4,6 +4,7 @@ import * as htmlToImage from "html-to-image";
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./input/DownloadButton";
 import { ScaleSlider } from "./input/ScaleSlider";
+import { Toggle } from "./input/DarkModeToggle";
 
 interface ImageOptionsProps {}
 
@@ -28,6 +29,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
 
   return (
     <>
+      <Toggle />
       <ScaleSlider />
       <DownloadButton download={download} />
     </>
