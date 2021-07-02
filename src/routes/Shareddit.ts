@@ -19,6 +19,10 @@ const validateParams = async (
   return output;
 };
 
+export const notFound = async (req: Request, res: Response) => {
+  return res.status(404);
+};
+
 export const parseQueryString = async (req: Request, res: Response) => {
   try {
     const query = req.path.substr(1, req.path.length);
