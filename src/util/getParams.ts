@@ -33,9 +33,6 @@ export const getParams = async (): Promise<FleshedRedditSubmission> => {
     window.location.pathname.length
   );
   const urlParams = queryString.parse(path);
-  // console.log(urlParams);
-  // const queryParams = validateParams(urlParams);
-  // console.log(queryParams);
   const query = queryString.stringify(urlParams);
   const queryURL = "https://server.shareddit.com/generate/" + query;
 
