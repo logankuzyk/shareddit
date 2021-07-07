@@ -3,9 +3,7 @@ import queryString from "query-string";
 
 import { FleshedRedditSubmission } from "../types";
 
-export const getParams = async (): Promise<
-  FleshedRedditSubmission | string
-> => {
+export const getParams = async (): Promise<FleshedRedditSubmission> => {
   const validateParams = (params: any) => {
     if (params && params.status && params.status.code === "error") {
       throw new Error(params.status.message);
@@ -23,8 +21,8 @@ export const getParams = async (): Promise<
       commentsCount: params.commentsCount,
       type: params.type,
       link: params.link,
+      thumbnail: params.thumbnail,
       redact: params.redact ? true : false,
-      color: params.color,
     };
 
     return output;
@@ -39,7 +37,7 @@ export const getParams = async (): Promise<
   // const queryParams = validateParams(urlParams);
   // console.log(queryParams);
   const query = queryString.stringify(urlParams);
-  const queryURL = "https://server.shareddit.com/" + query;
+  const queryURL = "https://server.shareddit.com/generate/" + query;
 
   try {
     const res = await axios.get(queryURL);
