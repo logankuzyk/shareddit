@@ -49,7 +49,7 @@ export const Title: React.FC<TitleProps> = ({
         <Box width={2} />
         <Box style={{ textAlign: "left" }}>{title}</Box>
       </Box>
-      {Content ? <Box padding={2}>{Content}</Box> : <></>}
+      {Content ? Content : <></>}
       <Box
         style={{
           display: "flex",

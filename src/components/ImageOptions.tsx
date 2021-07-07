@@ -30,7 +30,9 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
         );
         const {
           data: { uploadURL },
-        } = await axios.get("https://server.shareddit.com/getUploadURL");
+        } = await axios.get(
+          `http://localhost:3000/getUploadURL/type=${downloadAs}`
+        );
 
         if (!uploadURL) {
           alert(

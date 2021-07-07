@@ -1,4 +1,5 @@
 import React from "react";
+import { Wrap } from "@chakra-ui/react";
 
 import { Image } from "./Image";
 import { Title } from "./Title";
@@ -7,17 +8,42 @@ import { FleshedRedditSubmission } from "../../types";
 
 export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
   link,
+  thumbnail,
+  type,
   ...props
 }) => {
-  if (!link) return <></>;
-  const src = link;
+  if (thumbnail === null || link === null) return <></>;
   const host = new URL(link).hostname;
+
+  let count = 0;
 
   return (
     <>
       <Title
         {...props}
-        Content={<Image {...props} src={src} host={host} icon="image" />}
+        Content={
+          type === "album" && Array.isArray(thumbnail) ? (
+            <Wrap
+              shouldWrapChildren={false}
+              flexDirection="column"
+              alignItems="stretch"
+            >
+              {thumbnail.map((src) => (
+                <Image
+                  {...props}
+                  src={src}
+                  host={host}
+                  icon="image"
+                  key={count++}
+                />
+              ))}
+            </Wrap>
+          ) : Array.isArray(thumbnail) ? (
+            <></>
+          ) : (
+            <Image {...props} src={thumbnail} host={host} icon="image" />
+          )
+        }
       />
     </>
   );
