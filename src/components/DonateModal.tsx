@@ -12,7 +12,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/modal";
 
-import { Kofi } from "./Kofi";
+// import { Kofi } from "./Kofi";
 
 export const DonateModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
