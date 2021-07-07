@@ -17,7 +17,6 @@ export interface RedditComment {
   date: number;
   bodyHTML: string;
   awards: Award[];
-  color: string | null;
   child?: RedditComment;
   parentID: string;
 }
@@ -28,19 +27,17 @@ export interface FleshedRedditSubmission {
   bodyHTML: string | null;
   awards: Award[];
   title: string;
+  thumbnail: string | string[] | null;
   link: string | null;
   comments?: RedditComment;
   commentsCount: number;
   type: SubmissionType;
   redact: boolean;
   sub: string;
-  color: string | null;
 }
 
 export interface BackendResponse extends FleshedRedditSubmission {
   status: { message: string; code: "ok" | "error" | "loading" };
 }
-
-export type ImageTheme = "dark" | "light";
 
 export type SubmissionType = "image" | "link" | "text" | "album" | "video";
