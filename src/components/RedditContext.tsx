@@ -61,7 +61,7 @@ class RedditContextProvider extends Component {
         this.setState({
           setters: {
             updateImageScale: (percent: number) => {
-              this.setState({ options: { imageScale: `${percent}%` } });
+              this.setState({ imageScale: `${percent}%` });
             },
             toggleDarkMode: () => {
               const darkModeEnabled = this.state.darkMode;
