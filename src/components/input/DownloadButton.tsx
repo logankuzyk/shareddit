@@ -3,11 +3,16 @@ import { Button } from "@chakra-ui/react";
 
 interface DownloadButtonProps {
   download: () => void;
+  loading: boolean;
 }
 
-export const DownloadButton: React.FC<DownloadButtonProps> = ({ download }) => {
+export const DownloadButton: React.FC<DownloadButtonProps> = ({
+  download,
+  loading,
+}) => {
   return (
     <Button
+      isLoading={loading}
       onClick={download}
       size="lg"
       minHeight="64px"

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import * as htmlToImage from "html-to-image";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ import { Toggle } from "./input/DarkModeToggle";
 interface ImageOptionsProps {}
 
 export const ImageOptions: React.FC<ImageOptionsProps> = () => {
+  const [loading, setLoading] = useState(false);
   const { downloadAs } = useContext(RedditContext);
 
   const download = () => {
@@ -23,6 +24,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
     }
 
     if (downloadAs === "png") {
+      setLoading(true);
       htmlToImage.toPng(node).then(async (dataURL) => {
         const buf = Buffer.from(
           dataURL.replace(/^data:image\/(png|jpg);base64,/, ""),
@@ -31,10 +33,11 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
         const {
           data: { uploadURL },
         } = await axios.get(
-          `http://localhost:3000/getUploadURL/type=${downloadAs}`
+          `https://server.shareddit.com/getUploadURL/type=${downloadAs}`
         );
 
         if (!uploadURL) {
+          setLoading(false);
           alert(
             "There is an issue with AWS or the shareddit backend server. Please try again later."
           );
@@ -48,6 +51,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
               },
             })
             .then((res) => {
+              setLoading(false);
               if (res.status !== 200) {
                 console.log(
                   dataURL.replace(/^data:image\/(png|jpg);base64,/, "")
@@ -68,7 +72,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
     <>
       <Toggle />
       <ScaleSlider />
-      <DownloadButton download={download} />
+      <DownloadButton download={download} loading={loading} />
     </>
   );
 };
