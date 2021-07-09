@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
-import { ChevronUpIcon } from "@chakra-ui/icons";
 
 import { RedditContext } from "./RedditContext";
 import { Toggle } from "./input/Toggle";

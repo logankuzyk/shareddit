@@ -9,10 +9,7 @@ import { OptionsMenu } from "./OptionsMenu";
 
 export const Editor: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const {
-    downloadAs,
-    setters: { toggleDarkMode, toggleUsernames, toggleSubreddit },
-  } = useContext(RedditContext);
+  const { downloadAs } = useContext(RedditContext);
 
   const download = () => {
     const node = document.getElementById("reddit-preview");

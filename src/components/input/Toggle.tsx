@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import { Switch, Stack, Text } from "@chakra-ui/react";
-
-import { RedditContext } from "../RedditContext";
+import React from "react";
+import { Switch } from "@chakra-ui/react";
 
 interface ToggleProps {
   onToggle: () => void;
