@@ -30,6 +30,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^3.9.9",
+    "uniqolor": "^1.0.1",
     "url-params-parser": "^1.0.4",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.9"
