@@ -5,13 +5,16 @@ import axios from "axios";
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./input/DownloadButton";
 import { ScaleSlider } from "./input/ScaleSlider";
-import { Toggle } from "./input/DarkModeToggle";
+import { Toggle } from "./input/Toggle";
 
 interface ImageOptionsProps {}
 
 export const ImageOptions: React.FC<ImageOptionsProps> = () => {
   const [loading, setLoading] = useState(false);
-  const { downloadAs } = useContext(RedditContext);
+  const {
+    downloadAs,
+    setters: { toggleDarkMode },
+  } = useContext(RedditContext);
 
   const download = () => {
     const node = document.getElementById("reddit-preview");
@@ -70,7 +73,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
 
   return (
     <>
-      <Toggle />
+      <Toggle onToggle={toggleDarkMode} />
       <ScaleSlider />
       <DownloadButton download={download} loading={loading} />
     </>
