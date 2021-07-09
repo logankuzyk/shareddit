@@ -1,19 +1,17 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 
-interface DownloadButtonProps {
-  download: () => void;
-  loading: boolean;
+interface StyledButtonProps {
+  onClick?: () => void;
 }
 
-export const DownloadButton: React.FC<DownloadButtonProps> = ({
-  download,
-  loading,
+export const StyledButton: React.FC<StyledButtonProps> = ({
+  onClick = () => {},
+  ...props
 }) => {
   return (
     <Button
-      isLoading={loading}
-      onClick={download}
+      onClick={onClick}
       size="lg"
       minHeight="64px"
       color="brand.input"
@@ -25,9 +23,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
       colorScheme="button"
       _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
       _focus={{ borderColor: "brand.focus" }}
-      fontSize="lg"
-    >
-      download image
-    </Button>
+      {...props}
+    />
   );
 };
