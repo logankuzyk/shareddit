@@ -13,7 +13,7 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
   const [loading, setLoading] = useState(false);
   const {
     downloadAs,
-    setters: { toggleDarkMode },
+    setters: { toggleDarkMode, toggleUsernames, toggleSubreddit },
   } = useContext(RedditContext);
 
   const download = () => {
@@ -73,6 +73,8 @@ export const ImageOptions: React.FC<ImageOptionsProps> = () => {
 
   return (
     <>
+      <Toggle onToggle={toggleUsernames} />
+      <Toggle onToggle={toggleSubreddit} />
       <Toggle onToggle={toggleDarkMode} />
       <ScaleSlider />
       <DownloadButton download={download} loading={loading} />

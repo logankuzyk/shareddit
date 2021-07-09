@@ -15,7 +15,7 @@ interface ImageProps {
 }
 
 export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
-  const { darkMode, options } = useContext(RedditContext);
+  const { darkMode, imageScale } = useContext(RedditContext);
 
   const icons = {
     link: <LinkIcon />,
@@ -31,8 +31,8 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         borderColor: colors(darkMode).borderColor,
         overflow: "hidden",
         position: "relative",
-        width: options.imageScale,
-        height: options.imageScale,
+        width: imageScale,
+        height: imageScale,
       }}
     >
       <Fade in={true}>
@@ -48,10 +48,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
         textAlign="center"
         bottom={0}
         width="100%"
-        fontSize={
-          0.15 *
-          Number(options.imageScale.substr(0, options.imageScale.length - 1))
-        }
+        fontSize={0.15 * Number(imageScale.substr(0, imageScale.length - 1))}
       >
         {icons[icon]} {host}
       </Box>

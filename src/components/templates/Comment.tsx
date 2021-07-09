@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Center, Grid, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
+import uniqolor from "uniqolor";
 
 import { Icon } from "./Icon";
 import { Text } from "./Text";
@@ -26,11 +27,24 @@ export const Comment: React.FC<CommentProps> = ({
   child,
   awards,
 }) => {
-  const { darkMode } = useContext(RedditContext);
+  const { darkMode, censorUsernames } = useContext(RedditContext);
 
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");
   const dateString = dateFormat(datePosted);
+
+  const displayName = censorUsernames ? (
+    <Box
+      style={{
+        backgroundColor: `${uniqolor(author).color}`,
+        height: 18,
+        width: 64,
+        borderRadius: 2,
+      }}
+    ></Box>
+  ) : (
+    author
+  );
 
   return (
     <Box
@@ -54,7 +68,7 @@ export const Comment: React.FC<CommentProps> = ({
         }}
       >
         <Center>
-          <Box>{author}</Box>
+          <Box>{displayName}</Box>
         </Center>
         <Box>
           <Icon icon="vote" text={score} />

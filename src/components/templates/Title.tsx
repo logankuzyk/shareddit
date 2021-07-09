@@ -1,6 +1,7 @@
 import React, { ReactElement, useContext } from "react";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
+import uniqolor from "uniqolor";
 
 import { Icon } from "./Icon";
 import { colors } from "./styles";
@@ -29,11 +30,28 @@ export const Title: React.FC<TitleProps> = ({
   Content,
   awards,
 }) => {
-  const { darkMode } = useContext(RedditContext);
+  const { darkMode, censorUsernames, censorSubreddit } =
+    useContext(RedditContext);
 
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");
   const dateString = dateFormat(datePosted);
+
+  const displayName = censorUsernames ? (
+    <Box
+      style={{
+        backgroundColor: `${uniqolor(author).color}`,
+        height: 18,
+        width: 64,
+        marginLeft: 6,
+        borderRadius: 2,
+      }}
+    ></Box>
+  ) : (
+    author
+  );
+
+  const displaySub = censorSubreddit ? "a subreddit" : `/r/${sub}`;
 
   return (
     <>
@@ -59,7 +77,7 @@ export const Title: React.FC<TitleProps> = ({
           color: colors(darkMode).color,
         }}
       >
-        {`in /r/${sub} by ${author}`}
+        {`in ${displaySub} by `} {displayName}
       </Box>
       <SimpleGrid
         paddingLeft={2}

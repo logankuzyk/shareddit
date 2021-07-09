@@ -9,12 +9,14 @@ interface RedditContextState {
   status: { message: string; status: "ok" | "error" | "loading" };
   darkMode: boolean;
   downloadAs: "png" | "jpg";
-  options: {
-    imageScale: string;
-  };
+  imageScale: string;
+  censorUsernames: boolean;
+  censorSubreddit: boolean;
   setters: {
     updateImageScale: () => void;
     toggleDarkMode: () => void;
+    toggleUsernames: () => void;
+    toggleSubreddit: () => void;
   };
 }
 
@@ -36,12 +38,14 @@ const initialState: RedditContextState = {
   status: { message: "Loading...", status: "loading" },
   downloadAs: "png",
   darkMode: false,
-  options: {
-    imageScale: "100%",
-  },
+  imageScale: "100%",
+  censorUsernames: false,
+  censorSubreddit: false,
   setters: {
     updateImageScale: () => {},
     toggleDarkMode: () => {},
+    toggleUsernames: () => {},
+    toggleSubreddit: () => {},
   },
 };
 
@@ -62,6 +66,14 @@ class RedditContextProvider extends Component {
             toggleDarkMode: () => {
               const darkModeEnabled = this.state.darkMode;
               this.setState({ darkMode: !darkModeEnabled });
+            },
+            toggleUsernames: () => {
+              const censored = this.state.censorUsernames;
+              this.setState({ censorUsernames: !censored });
+            },
+            toggleSubreddit: () => {
+              const censored = this.state.censorSubreddit;
+              this.setState({ censorSubreddit: !censored });
             },
           },
         });
