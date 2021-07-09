@@ -31,7 +31,7 @@ const initialState: RedditContextState = {
     type: "image",
     link: "",
     redact: false,
-    color: null,
+    thumbnail: null,
   },
   status: { message: "Loading...", status: "loading" },
   downloadAs: "png",
