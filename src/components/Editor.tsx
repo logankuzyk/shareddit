@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import * as htmlToImage from "html-to-image";
 import axios from "axios";
+import { VStack } from "@chakra-ui/layout";
 
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./input/DownloadButton";
-import { ScaleSlider } from "./input/ScaleSlider";
-import { Toggle } from "./input/Toggle";
+import { OptionsMenu } from "./OptionsMenu";
 
 export const Editor: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -70,12 +70,9 @@ export const Editor: React.FC = () => {
   };
 
   return (
-    <>
-      <Toggle onToggle={toggleUsernames} />
-      <Toggle onToggle={toggleSubreddit} />
-      <Toggle onToggle={toggleDarkMode} />
-      <ScaleSlider />
+    <VStack maxW="lg" marginX="auto" spacing={4}>
+      <OptionsMenu />
       <DownloadButton download={download} loading={loading} />
-    </>
+    </VStack>
   );
 };
