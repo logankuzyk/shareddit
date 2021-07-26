@@ -16,7 +16,6 @@ export const Template: React.FC = () => {
         borderRadius: "12px",
         borderWidth: 1,
         color: darkMode ? "#FFFFFF" : "#001219",
-        backgroundColor: darkMode ? "#001219" : "#FFFFFF",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         flexDirection: "column",
         fontFamily: "sans",
@@ -32,7 +31,7 @@ export const Template: React.FC = () => {
         style={{
           position: "relative",
           padding: 12,
-          backgroundColor: "white",
+          backgroundColor: darkMode ? "#001219" : "#FFFFFF",
         }}
       >
         <TitleTemplate {...data.content} />
