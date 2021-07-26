@@ -9,27 +9,38 @@ export const Template: React.FC = () => {
   const { darkMode } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
   return (
-    <Box id="reddit-preview" overflow="hidden" marginBottom={4}>
+    <Box
+      marginBottom={4}
+      style={{
+        display: "flex",
+        borderRadius: "12px",
+        borderWidth: 1,
+        color: darkMode ? "#FFFFFF" : "#001219",
+        backgroundColor: darkMode ? "#001219" : "#FFFFFF",
+        borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
+        flexDirection: "column",
+        fontFamily: "sans",
+        width: "100%",
+        fontSize: 16,
+        overflow: "hidden",
+      }}
+    >
       <Box
+        id="reddit-preview"
+        overflow="hidden"
+        marginBottom={2}
         style={{
-          display: "flex",
-          borderRadius: "12px",
-          borderWidth: 1,
-          color: darkMode ? "#FFFFFF" : "#001219",
-          backgroundColor: darkMode ? "#001219" : "#FFFFFF",
-          borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
-          padding: 8,
-          flexDirection: "column",
-          fontFamily: "sans",
-          width: "100%",
-          fontSize: 16,
           position: "relative",
+          padding: 12,
+          backgroundColor: "white",
         }}
       >
         <TitleTemplate {...data.content} />
-        <Box height={4} />
         {data.content.comments ? (
-          <CommentTemplate {...data.content.comments} />
+          <>
+            <Box height={4} />
+            <CommentTemplate {...data.content.comments} />
+          </>
         ) : (
           <></>
         )}
@@ -39,8 +50,8 @@ export const Template: React.FC = () => {
           bottom={0}
           width="100%"
           fontSize={12}
-          paddingRight={4}
-          paddingBottom={1}
+          paddingRight={6}
+          marginTop={2}
           opacity={0.5}
         >
           {"📷 via shareddit.com"}
