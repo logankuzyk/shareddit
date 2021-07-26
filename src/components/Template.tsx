@@ -27,7 +27,6 @@ export const Template: React.FC = () => {
       <Box
         id="reddit-preview"
         overflow="hidden"
-        marginBottom={2}
         style={{
           position: "relative",
           padding: 12,
@@ -43,17 +42,19 @@ export const Template: React.FC = () => {
         ) : (
           <></>
         )}
-        <Box
-          position="absolute"
-          textAlign="right"
-          bottom={0}
-          width="100%"
-          fontSize={12}
-          paddingRight={6}
-          marginTop={2}
-          opacity={0.5}
-        >
-          {"📷 via shareddit.com"}
+        <Box marginBottom={1}>
+          <Box
+            position="absolute"
+            textAlign="right"
+            bottom={0}
+            width="100%"
+            fontSize={12}
+            paddingRight={6}
+            marginTop={2}
+            opacity={0.5}
+          >
+            {"📷 via shareddit.com"}
+          </Box>
         </Box>
       </Box>
     </Box>
