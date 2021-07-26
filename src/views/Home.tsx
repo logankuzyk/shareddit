@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Grid, VStack, Text } from "@chakra-ui/react";
+import { Box, Grid, VStack, Text, SimpleGrid, Center } from "@chakra-ui/react";
 import Helmet from "react-helmet";
 
 import { LinkForm } from "../components/LinkForm";
 import { SharedditLogo } from "../components/SharedditLogo";
+import { DonateModal } from "../components/DonateModal";
 
 export const Home: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ export const Home: React.FC = () => {
             The best way to screenshot reddit content.
           </Text>
           <LinkForm />
+          <DonateModal />
         </VStack>
       </Grid>
     </Box>
