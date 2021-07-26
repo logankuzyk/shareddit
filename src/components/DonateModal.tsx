@@ -37,7 +37,7 @@ export const DonateModal: React.FC = () => {
       </SimpleGrid>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent margin={12}>
           <ModalHeader>Hi, I'm Logan.</ModalHeader>
           <ModalCloseButton />
           <ModalBody>

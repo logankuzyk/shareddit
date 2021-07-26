@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 
 import { LinkForm } from "../components/LinkForm";
 import { SharedditLogo } from "../components/SharedditLogo";
-import { DonateModal } from "../components/DonateModal";
 
 export const Home: React.FC = () => {
   return (
@@ -20,7 +19,6 @@ export const Home: React.FC = () => {
             The best way to screenshot reddit content.
           </Text>
           <LinkForm />
-          <DonateModal />
         </VStack>
       </Grid>
     </Box>
