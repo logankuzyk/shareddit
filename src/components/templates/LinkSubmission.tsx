@@ -7,11 +7,21 @@ import { FleshedRedditSubmission } from "../../types";
 
 export const LinkSubmission: React.FC<FleshedRedditSubmission> = ({
   link,
+  thumbnail,
   ...props
 }) => {
-  if (!link) return <></>;
-  const src = link;
-  const host = new URL(link).hostname;
+  let src = "";
+  let host = "";
+
+  if (!thumbnail) return <></>;
+
+  if (Array.isArray(thumbnail)) {
+    src = thumbnail[0];
+  } else {
+    src = thumbnail;
+  }
+
+  if (link !== null) host = new URL(link).hostname;
 
   return (
     <>
