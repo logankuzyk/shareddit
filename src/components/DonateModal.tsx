@@ -1,6 +1,5 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
-import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import {
   Modal,

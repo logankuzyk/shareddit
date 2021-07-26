@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, VStack, Text, SimpleGrid, Center } from "@chakra-ui/react";
+import { Box, Grid, VStack, Text } from "@chakra-ui/react";
 import Helmet from "react-helmet";
 
 import { LinkForm } from "../components/LinkForm";
