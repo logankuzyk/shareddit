@@ -32,7 +32,7 @@ export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
                 <Image
                   {...props}
                   src={src}
-                  host={host}
+                  host={null}
                   icon="image"
                   key={count++}
                 />

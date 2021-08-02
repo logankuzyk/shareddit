@@ -10,7 +10,7 @@ import { RedditContext } from "../RedditContext";
 
 interface ImageProps {
   src: string;
-  host: string;
+  host: string | null;
   icon: "link" | "image" | "video";
 }
 
@@ -41,17 +41,21 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
           alt="reddit submission"
         />
       </Fade>
-      <Box
-        position="absolute"
-        background="rgba(0, 0, 0, 0.5)"
-        color="#AAAAAA"
-        textAlign="center"
-        bottom={0}
-        width="100%"
-        fontSize={0.15 * Number(imageScale.substr(0, imageScale.length - 1))}
-      >
-        {icons[icon]} {host}
-      </Box>
+      {host !== null ? (
+        <></>
+      ) : (
+        <Box
+          position="absolute"
+          background="rgba(0, 0, 0, 0.5)"
+          color="#AAAAAA"
+          textAlign="center"
+          bottom={0}
+          width="100%"
+          fontSize={0.15 * Number(imageScale.substr(0, imageScale.length - 1))}
+        >
+          {icons[icon]} {host}
+        </Box>
+      )}
     </WrapItem>
   );
 };
