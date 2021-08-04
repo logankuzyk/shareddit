@@ -41,3 +41,5 @@ export interface BackendResponse extends FleshedRedditSubmission {
 }
 
 export type SubmissionType = "image" | "link" | "text" | "album" | "video";
+
+export type Font = "Roboto" | "Ubuntu" | "Varela Round";

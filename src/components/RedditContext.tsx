@@ -1,7 +1,7 @@
 import React, { Component, createContext } from "react";
 import { Text } from "@chakra-ui/react";
 
-import { FleshedRedditSubmission } from "../types";
+import { FleshedRedditSubmission, Font } from "../types";
 import { getParams } from "../util/getParams";
 
 interface RedditContextState {
@@ -12,11 +12,13 @@ interface RedditContextState {
   imageScale: string;
   censorUsernames: boolean;
   censorSubreddit: boolean;
+  font: Font;
   setters: {
     updateImageScale: () => void;
     toggleDarkMode: () => void;
     toggleUsernames: () => void;
     toggleSubreddit: () => void;
+    updateFont: (font: string) => void;
   };
 }
 
@@ -41,11 +43,13 @@ const initialState: RedditContextState = {
   imageScale: "100%",
   censorUsernames: false,
   censorSubreddit: false,
+  font: "Ubuntu",
   setters: {
     updateImageScale: () => {},
     toggleDarkMode: () => {},
     toggleUsernames: () => {},
     toggleSubreddit: () => {},
+    updateFont: () => {},
   },
 };
 
@@ -74,6 +78,9 @@ class RedditContextProvider extends Component {
             toggleSubreddit: () => {
               const censored = this.state.censorSubreddit;
               this.setState({ censorSubreddit: !censored });
+            },
+            updateFont: (font: string) => {
+              this.setState({ font });
             },
           },
         });

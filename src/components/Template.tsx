@@ -6,7 +6,7 @@ import templates from "./templates";
 
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
-  const { darkMode } = data;
+  const { darkMode, font } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
   return (
     <Box
@@ -18,7 +18,7 @@ export const Template: React.FC = () => {
         color: darkMode ? "#FFFFFF" : "#001219",
         borderColor: darkMode ? "#AAAAAA" : "#AAAAAA",
         flexDirection: "column",
-        fontFamily: "sans",
+        fontFamily: font,
         width: "100%",
         fontSize: 16,
         overflow: "hidden",

@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
-import { Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+  Divider,
+} from "@chakra-ui/react";
 
 import { RedditContext } from "./RedditContext";
 import { Toggle } from "./input/Toggle";
 import { ScaleSlider } from "./input/ScaleSlider";
+import { FontSelect } from "./input/FontSelect";
 
 export const OptionsMenu: React.FC = () => {
   const {
@@ -34,14 +42,22 @@ export const OptionsMenu: React.FC = () => {
           <Toggle onToggle={toggleUsernames} />
           <Text marginLeft="auto">Hide usernames</Text>
         </MenuItem>
+        <Divider />
         <MenuItem>
           <Toggle onToggle={toggleSubreddit} />
           <Text marginLeft="auto">Hide subreddit</Text>
         </MenuItem>
+        <Divider />
         <MenuItem>
           <Toggle onToggle={toggleDarkMode} />
           <Text marginLeft="auto">Dark mode</Text>
         </MenuItem>
+        <Divider />
+        <MenuItem>
+          <FontSelect />
+          <Text marginLeft="auto">Font</Text>
+        </MenuItem>
+        <Divider />
         <MenuItem>
           <ScaleSlider />
         </MenuItem>
