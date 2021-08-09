@@ -13,12 +13,15 @@ interface RedditContextState {
   censorUsernames: boolean;
   censorSubreddit: boolean;
   font: Font;
+  commentsOnly: boolean;
+  visibleComments: [number, number];
   setters: {
     updateImageScale: () => void;
     toggleDarkMode: () => void;
     toggleUsernames: () => void;
     toggleSubreddit: () => void;
     updateFont: (font: string) => void;
+    toggleCommentsOnly: () => void;
   };
 }
 
@@ -44,12 +47,15 @@ const initialState: RedditContextState = {
   censorUsernames: false,
   censorSubreddit: false,
   font: "Ubuntu",
+  commentsOnly: false,
+  visibleComments: [0, 0],
   setters: {
     updateImageScale: () => {},
     toggleDarkMode: () => {},
     toggleUsernames: () => {},
     toggleSubreddit: () => {},
     updateFont: () => {},
+    toggleCommentsOnly: () => {},
   },
 };
 
@@ -81,6 +87,10 @@ class RedditContextProvider extends Component {
             },
             updateFont: (font: string) => {
               this.setState({ font });
+            },
+            toggleCommentsOnly: () => {
+              const { commentsOnly } = this.state;
+              this.setState({ commentsOnly: !commentsOnly });
             },
           },
         });

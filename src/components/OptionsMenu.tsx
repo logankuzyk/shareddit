@@ -5,7 +5,7 @@ import {
   MenuItem,
   MenuList,
   Text,
-  Divider,
+  MenuDivider,
 } from "@chakra-ui/react";
 
 import { RedditContext } from "./RedditContext";
@@ -15,8 +15,15 @@ import { FontSelect } from "./input/FontSelect";
 
 export const OptionsMenu: React.FC = () => {
   const {
-    setters: { toggleDarkMode, toggleUsernames, toggleSubreddit },
+    setters: {
+      toggleDarkMode,
+      toggleUsernames,
+      toggleSubreddit,
+      toggleCommentsOnly,
+    },
+    content: { comments },
   } = useContext(RedditContext);
+  const showCommentsOnlyOption = comments === undefined ? false : true;
 
   return (
     <Menu matchWidth={false} placement="top" closeOnSelect={false}>
@@ -42,21 +49,32 @@ export const OptionsMenu: React.FC = () => {
           <Toggle onToggle={toggleUsernames} />
           <Text marginLeft="auto">Hide usernames</Text>
         </MenuItem>
-        <Divider />
+        <MenuDivider />
         <MenuItem>
           <Toggle onToggle={toggleSubreddit} />
           <Text marginLeft="auto">Hide subreddit</Text>
         </MenuItem>
-        <Divider />
+        <MenuDivider />
         <MenuItem>
           <Toggle onToggle={toggleDarkMode} />
           <Text marginLeft="auto">Dark mode</Text>
         </MenuItem>
-        <Divider />
+        <MenuDivider />
+        {showCommentsOnlyOption ? (
+          <>
+            <MenuItem>
+              <Toggle onToggle={toggleCommentsOnly} />
+              <Text marginLeft="auto">Comments only</Text>
+            </MenuItem>
+            <MenuDivider />
+          </>
+        ) : (
+          <></>
+        )}
         <MenuItem>
           <FontSelect />
         </MenuItem>
-        <Divider />
+        <MenuDivider />
         <MenuItem>
           <ScaleSlider />
         </MenuItem>

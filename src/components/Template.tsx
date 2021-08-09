@@ -6,7 +6,7 @@ import templates from "./templates";
 
 export const Template: React.FC = () => {
   const data = useContext(RedditContext);
-  const { darkMode, font } = data;
+  const { darkMode, font, commentsOnly } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
   return (
     <Box
@@ -33,10 +33,10 @@ export const Template: React.FC = () => {
           backgroundColor: darkMode ? "#001219" : "#FFFFFF",
         }}
       >
-        <TitleTemplate {...data.content} />
+        {commentsOnly ? <></> : <TitleTemplate {...data.content} />}
         {data.content.comments ? (
           <>
-            <Box height={4} />
+            {commentsOnly ? <></> : <Box height={4} />}
             <CommentTemplate {...data.content.comments} />
           </>
         ) : (
