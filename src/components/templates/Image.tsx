@@ -41,7 +41,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
           alt="reddit submission"
         />
       </Fade>
-      {host !== null ? (
+      {host === null ? (
         <></>
       ) : (
         <Box

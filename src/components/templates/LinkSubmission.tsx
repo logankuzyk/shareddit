@@ -10,25 +10,16 @@ export const LinkSubmission: React.FC<FleshedRedditSubmission> = ({
   thumbnail,
   ...props
 }) => {
-  let src = "";
-  let host = "";
-
   if (!thumbnail) return <></>;
+  const src = Array.isArray(thumbnail) ? thumbnail[0] : thumbnail;
 
-  if (Array.isArray(thumbnail)) {
-    src = thumbnail[0];
-  } else {
-    src = thumbnail;
-  }
+  const host = link !== null ? new URL(link).hostname : null;
 
-  if (link !== null) host = new URL(link).hostname;
+  console.log(host);
 
   return (
     <>
-      <Title
-        {...props}
-        Content={<Image {...props} src={src} host={host} icon="link" />}
-      />
+      <Title {...props} Content={<Image src={src} host={host} icon="link" />} />
     </>
   );
 };

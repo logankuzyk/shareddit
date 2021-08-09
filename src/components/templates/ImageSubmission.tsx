@@ -13,7 +13,6 @@ export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
   ...props
 }) => {
   if (thumbnail === null || link === null) return <></>;
-  const host = new URL(link).hostname;
 
   let count = 0;
 
@@ -29,19 +28,13 @@ export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
               alignItems="stretch"
             >
               {thumbnail.map((src) => (
-                <Image
-                  {...props}
-                  src={src}
-                  host={null}
-                  icon="image"
-                  key={count++}
-                />
+                <Image src={src} host={null} icon="image" key={count++} />
               ))}
             </Wrap>
           ) : Array.isArray(thumbnail) ? (
             <></>
           ) : (
-            <Image {...props} src={thumbnail} host={host} icon="image" />
+            <Image {...props} src={thumbnail} host={null} icon="image" />
           )
         }
       />
