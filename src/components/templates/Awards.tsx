@@ -8,25 +8,26 @@ import { colors } from "./styles";
 interface AwardsProps {
   awards: Award[];
 }
+
 export const Awards: React.FC<AwardsProps> = ({ awards }) => {
   const { darkMode } = useContext(RedditContext);
   let totalAwards = awards
     .map((award) => award.count)
     .reduce((a, b) => a + b, 0);
-    
-if (totalAwards === 0) {
-  return <></>
-}
 
-  const awardsToRender = awards.slice(0, 6);
+  if (totalAwards === 0) {
+    return <></>;
+  }
+
+  const awardsToRender = awards.slice(0, 4);
 
   return (
     <Box
       style={{
         display: "flex",
         borderRadius: "12px",
-        borderWidth: 1,
-        color: colors(darkMode).color,
+        // borderWidth: 1,
+        color: colors(darkMode).iconTextColor,
         borderColor: colors(darkMode).borderColor,
         backgroundColor: colors(darkMode).iconBackgroundColor,
         paddingTop: 2,
@@ -52,6 +53,7 @@ if (totalAwards === 0) {
           />
         );
       })}
+      <Box width={1} />
       {` ${totalAwards} ${totalAwards === 1 ? "award" : "awards"}`}
     </Box>
   );
