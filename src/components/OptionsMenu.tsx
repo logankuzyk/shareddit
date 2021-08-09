@@ -55,7 +55,6 @@ export const OptionsMenu: React.FC = () => {
         <Divider />
         <MenuItem>
           <FontSelect />
-          <Text marginLeft="auto">Font</Text>
         </MenuItem>
         <Divider />
         <MenuItem>

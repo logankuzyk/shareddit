@@ -1,7 +1,18 @@
 import React, { useContext } from "react";
-import { Select } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+  Text,
+  Divider,
+  MenuOptionGroup,
+  MenuItemOption,
+  Button,
+} from "@chakra-ui/react";
 
 import { RedditContext } from "../RedditContext";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export const FontSelect: React.FC = () => {
   const {
@@ -9,19 +20,44 @@ export const FontSelect: React.FC = () => {
   } = useContext(RedditContext);
 
   return (
-    <Select
-      id="font-select"
-      width="auto"
-      onChange={(e) => {
-        const node = document.getElementById("font-select");
-        //@ts-ignore
-        const fontName = node ? node.value : null;
-        updateFont(fontName);
-      }}
-    >
-      <option value="Ubuntu">Ubuntu</option>
-      <option value="Roboto">Roboto</option>
-      <option value="Varela Round">Varela Round</option>
-    </Select>
+    <Menu>
+      {({ isOpen }) => (
+        <>
+          <MenuButton
+            isActive={isOpen}
+            as={Button}
+            rightIcon={<ChevronDownIcon />}
+            style={{
+              width: "100%",
+            }}
+          >
+            <Text style={{ fontWeight: 500 }}>Font</Text>
+          </MenuButton>
+          <MenuList>
+            <MenuItem
+              onClick={() => {
+                updateFont("Ubuntu");
+              }}
+            >
+              Ubuntu
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                updateFont("Varela Round");
+              }}
+            >
+              Varela Round
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                updateFont("Roboto");
+              }}
+            >
+              Roboto
+            </MenuItem>
+          </MenuList>
+        </>
+      )}
+    </Menu>
   );
 };
