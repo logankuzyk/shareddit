@@ -53,7 +53,6 @@ export const Comment: React.FC<CommentProps> = ({
         color: colors(darkMode).color,
         padding: "8 8 0 8",
         flexDirection: "column",
-        fontFamily: "sans",
         width: "100%",
       }}
     >

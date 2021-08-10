@@ -9,7 +9,7 @@ interface TextProps {
 }
 
 export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
-  const { darkMode } = useContext(RedditContext);
+  const { darkMode, font } = useContext(RedditContext);
 
   const styledBodyHTML = `<style>code {
       padding: 6px;
@@ -31,6 +31,7 @@ export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
         textAlign: "left",
         fontSize: 14,
         padding: 6,
+        fontFamily: `${font}`,
       }}
     ></Box>
   );
