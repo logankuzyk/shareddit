@@ -67,7 +67,14 @@ export const Title: React.FC<TitleProps> = ({
         <Box width={2} />
         <Box style={{ textAlign: "left" }}>{title}</Box>
       </Box>
-      {Content ? Content : <></>}
+      {Content ? (
+        <>
+          <Box height={1} />
+          {Content}
+        </>
+      ) : (
+        <></>
+      )}
       <Box
         style={{
           display: "flex",
