@@ -4,6 +4,7 @@ export const colors = (darkMode: boolean) => {
     color: darkMode ? "#AAAAAA" : "#001219",
     backgroundColor: darkMode ? "#001219" : "#FFFFFF",
     iconBackgroundColor: darkMode ? "#4d4d4d" : "#dbdbdb",
-    iconTextColor: darkMode ? "#999999" : "#575757",
+    iconTextColor: darkMode ? "#999999" : "#3d3d3d",
+    textBackgroundColor: darkMode ? "" : "#f0f0f0",
   };
 };

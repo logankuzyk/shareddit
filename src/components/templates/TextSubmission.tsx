@@ -26,6 +26,7 @@ export const TextSubmission: React.FC<FleshedRedditSubmission> = ({
                 borderRadius: "12px",
                 borderWidth: 1,
                 borderColor: colors(darkMode).borderColor,
+                backgroundColor: colors(darkMode).textBackgroundColor,
                 padding: 4,
                 flexDirection: "column",
                 fontFamily: "sans",
