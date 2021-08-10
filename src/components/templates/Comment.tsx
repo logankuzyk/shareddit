@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Center, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 import uniqolor from "uniqolor";
 
@@ -95,18 +95,13 @@ export const Comment: React.FC<CommentProps> = ({
       {child ? (
         <>
           <Box height={1} />
-          <Grid columns={2}>
-            <GridItem colStart={2}>
-              <Box
-                width="1px"
-                height="100%"
-                backgroundColor={colors(darkMode).iconBackgroundColor}
-              />
-            </GridItem>
-            <GridItem colStart={3} colEnd={6}>
-              <Comment {...child} />
-            </GridItem>
-          </Grid>
+          <Box
+            paddingLeft={4}
+            borderLeftWidth={2}
+            borderLeftColor={colors(darkMode).iconBackgroundColor}
+          >
+            <Comment {...child} />
+          </Box>
         </>
       ) : (
         <></>
