@@ -17,6 +17,7 @@ interface CommentProps {
   bodyHTML: string;
   child?: CommentProps;
   awards: Award[];
+  index?: number;
 }
 
 export const Comment: React.FC<CommentProps> = ({
@@ -26,8 +27,16 @@ export const Comment: React.FC<CommentProps> = ({
   bodyHTML,
   child,
   awards,
+  index,
 }) => {
-  const { darkMode, censorUsernames } = useContext(RedditContext);
+  const {
+    darkMode,
+    censorUsernames,
+    searchingForComment,
+    firstComment,
+    lastComment,
+    setters: { onCommentSelect },
+  } = useContext(RedditContext);
 
   const datePosted = new Date(date);
   const dateFormat = timeFormat("%d %b %Y");
@@ -46,6 +55,20 @@ export const Comment: React.FC<CommentProps> = ({
     author
   );
 
+  const newIndex = index === undefined ? 0 : index + 1;
+
+  if (firstComment !== undefined && lastComment !== undefined) {
+    if (newIndex >= firstComment) {
+      if (!(newIndex <= lastComment)) {
+        return <></>;
+      }
+    } else if (child) {
+      return <Comment {...child} index={newIndex} />;
+    } else {
+      return <></>;
+    }
+  }
+
   return (
     <Box
       style={{
@@ -56,40 +79,65 @@ export const Comment: React.FC<CommentProps> = ({
         width: "100%",
       }}
     >
-      <SimpleGrid
-        paddingLeft={2}
-        columns={3}
-        columnGap={2}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          fontSize: 12,
-        }}
-      >
-        <Center>
-          <Box>{displayName}</Box>
-        </Center>
-        <Box>
-          <Icon icon="vote" text={score} />
-        </Box>
-        <Box>
-          <Icon icon="date" text={dateString} />
-        </Box>
-        <Box>
-          <Awards awards={awards} />
-        </Box>
-      </SimpleGrid>
       <Box
         style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyItems: "left",
-          width: "100%",
-          justifyContent: "space-evenly",
-          whiteSpace: "normal",
+          position: "relative",
+          backgroundColor: searchingForComment
+            ? "rgb(0, 0, 0, 0.3)"
+            : "rgb(0,0,0,0)",
         }}
       >
-        <Text bodyHTML={bodyHTML} />
+        {searchingForComment ? (
+          <Box
+            position="absolute"
+            width="100%"
+            height="100%"
+            marginX="auto"
+            fontSize="5xl"
+            onClick={() => {
+              onCommentSelect(newIndex);
+            }}
+          >
+            {newIndex + 1}
+          </Box>
+        ) : (
+          <></>
+        )}
+        <SimpleGrid
+          paddingLeft={2}
+          columns={3}
+          columnGap={2}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            fontSize: 12,
+          }}
+        >
+          <Center>
+            <Box>{displayName}</Box>
+          </Center>
+          <Box>
+            <Icon icon="vote" text={score} />
+          </Box>
+          <Box>
+            <Icon icon="date" text={dateString} />
+          </Box>
+          <Box>
+            <Awards awards={awards} />
+          </Box>
+        </SimpleGrid>
+        <Box
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyItems: "left",
+            width: "100%",
+            justifyContent: "space-evenly",
+            whiteSpace: "normal",
+          }}
+        >
+          <Text bodyHTML={bodyHTML} />
+        </Box>
       </Box>
       {child ? (
         <>
@@ -99,7 +147,7 @@ export const Comment: React.FC<CommentProps> = ({
             borderLeftWidth={2}
             borderLeftColor={colors(darkMode).iconBackgroundColor}
           >
-            <Comment {...child} />
+            <Comment {...child} index={newIndex} />
           </Box>
         </>
       ) : (

@@ -12,6 +12,7 @@ import { RedditContext } from "./RedditContext";
 import { Toggle } from "./input/Toggle";
 import { ScaleSlider } from "./input/ScaleSlider";
 import { FontSelect } from "./input/FontSelect";
+import { CommentSelect } from "./input/CommentSelect";
 
 export const OptionsMenu: React.FC = () => {
   const {
@@ -73,6 +74,10 @@ export const OptionsMenu: React.FC = () => {
         )}
         <MenuItem>
           <FontSelect />
+        </MenuItem>
+        <MenuDivider />
+        <MenuItem>
+          <CommentSelect />
         </MenuItem>
         <MenuDivider />
         <MenuItem>

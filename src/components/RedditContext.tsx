@@ -14,7 +14,9 @@ interface RedditContextState {
   censorSubreddit: boolean;
   font: Font;
   commentsOnly: boolean;
-  visibleComments: [number, number];
+  searchingForComment: boolean;
+  firstComment?: number;
+  lastComment?: number;
   setters: {
     updateImageScale: () => void;
     toggleDarkMode: () => void;
@@ -22,6 +24,8 @@ interface RedditContextState {
     toggleSubreddit: () => void;
     updateFont: (font: string) => void;
     toggleCommentsOnly: () => void;
+    updateVisibleComments: () => void;
+    onCommentSelect: (index: number) => void;
   };
 }
 
@@ -48,14 +52,16 @@ const initialState: RedditContextState = {
   censorSubreddit: false,
   font: "Ubuntu",
   commentsOnly: false,
-  visibleComments: [0, 0],
+  searchingForComment: false,
   setters: {
     updateImageScale: () => {},
     toggleDarkMode: () => {},
     toggleUsernames: () => {},
     toggleSubreddit: () => {},
-    updateFont: () => {},
+    updateFont: (font: string) => {},
     toggleCommentsOnly: () => {},
+    updateVisibleComments: () => {},
+    onCommentSelect: (index: number) => {},
   },
 };
 
@@ -90,7 +96,35 @@ class RedditContextProvider extends Component {
             },
             toggleCommentsOnly: () => {
               const { commentsOnly } = this.state;
-              this.setState({ commentsOnly: !commentsOnly });
+              this.setState({
+                commentsOnly: !commentsOnly,
+                firstComment: undefined,
+                lastComment: undefined,
+                searchingForComment: false,
+              });
+            },
+            updateVisibleComments: () => {
+              this.setState({
+                firstComment: undefined,
+                lastComment: undefined,
+                searchingForComment: true,
+              });
+            },
+            onCommentSelect: (index: number) => {
+              if (this.state.firstComment === undefined) {
+                this.setState({ firstComment: index });
+              } else if (this.state.lastComment === undefined) {
+                this.setState({
+                  lastComment: index,
+                  searchingForComment: false,
+                });
+              } else {
+                this.setState({
+                  firstComment: undefined,
+                  lastComment: undefined,
+                });
+                this.state.setters.onCommentSelect(index);
+              }
             },
           },
         });
