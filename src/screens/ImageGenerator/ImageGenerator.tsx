@@ -2,10 +2,10 @@ import React from "react";
 import { Box, Center, Grid, VStack } from "@chakra-ui/react";
 import Helmet from "react-helmet";
 
-import { SharedditLogo } from "../components/SharedditLogo";
-import RedditContextProvider from "../components/RedditContext";
-import { Template } from "../components/Template";
-import { Editor } from "../components/Editor";
+import { SharedditLogo } from "../../components/SharedditLogo";
+import RedditContextProvider from "../../components/RedditContext";
+import { Template } from "../../components/Template";
+import { Editor } from "../../components/Editor";
 
 export const ImageGenerator: React.FC = () => {
   return (

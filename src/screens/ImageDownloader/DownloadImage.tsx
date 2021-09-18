@@ -1,8 +1,8 @@
 import React from "react";
 import { VStack, Box, Grid } from "@chakra-ui/react";
 
-import { GoBackButton } from "../components/input/GoBackButton";
-import { SharedditLogo } from "../components/SharedditLogo";
+import { GoBackButton } from "../../components/input/GoBackButton";
+import { SharedditLogo } from "../../components/SharedditLogo";
 
 export const DownloadImage: React.FC = () => {
   const src = localStorage.getItem("shareddit-image");

@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Grid, VStack, Text } from "@chakra-ui/react";
 import Helmet from "react-helmet";
 
-import { LinkForm } from "../components/LinkForm";
-import { SharedditLogo } from "../components/SharedditLogo";
+import { LinkForm } from "../../components/LinkForm";
+import { SharedditLogo } from "../../components/SharedditLogo";
 
 export const Home: React.FC = () => {
   return (

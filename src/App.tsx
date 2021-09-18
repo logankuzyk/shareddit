@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { theme } from "./style/theme";
 import "./style/fonts.css";
 
-import { Home } from "./views/Home";
-import { ImageGenerator } from "./views/ImageGenerator";
-import { DownloadImage } from "./views/DownloadImage";
-import { NotFound } from "./views/NotFound";
+import { Home } from "./screens/Home/Home";
+import { ImageGenerator } from "./screens/ImageGenerator/ImageGenerator";
+import { DownloadImage } from "./screens/ImageDownloader/DownloadImage";
+import { NotFound } from "./screens/NotFound";
 
 export const App = () => (
   <ChakraProvider theme={theme}>
