@@ -1,8 +1,8 @@
 import React, { Component, createContext } from "react";
 import { Text } from "@chakra-ui/react";
 
-import { FleshedRedditSubmission, Font } from "../types";
-import { getParams } from "../util/getParams";
+import { FleshedRedditSubmission, Font } from "../../../types";
+import { getParams } from "../../../util/getParams";
 
 interface RedditContextState {
   content: FleshedRedditSubmission;

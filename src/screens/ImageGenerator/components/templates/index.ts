@@ -3,7 +3,7 @@ import { ImageSubmission } from "./ImageSubmission";
 import { TextSubmission } from "./TextSubmission";
 import { LinkSubmission } from "./LinkSubmission";
 
-import { SubmissionType } from "../../types";
+import { SubmissionType } from "../../../../types";
 
 export default function templates(template: SubmissionType): {
   TitleTemplate: React.FC<any>;

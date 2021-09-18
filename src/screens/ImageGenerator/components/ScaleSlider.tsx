@@ -7,7 +7,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-import { RedditContext } from "../RedditContext";
+import { RedditContext } from "./RedditContext";
 
 export const ScaleSlider: React.FC = () => {
   const {

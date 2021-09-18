@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "@chakra-ui/react";
 
-import { RedditContext } from "../RedditContext";
+import { RedditContext } from "./RedditContext";
 
 export const CommentSelect: React.FC = () => {
   const {

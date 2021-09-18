@@ -8,11 +8,11 @@ import {
   MenuDivider,
 } from "@chakra-ui/react";
 
-import { RedditContext } from "./RedditContext";
-import { Toggle } from "./input/Toggle";
-import { ScaleSlider } from "./input/ScaleSlider";
-import { FontSelect } from "./input/FontSelect";
-import { CommentSelect } from "./input/CommentSelect";
+import { RedditContext } from "./components/RedditContext";
+import { Toggle } from "./components/Toggle";
+import { ScaleSlider } from "./components/ScaleSlider";
+import { FontSelect } from "./components/FontSelect";
+import { CommentSelect } from "./components/CommentSelect";
 
 export const OptionsMenu: React.FC = () => {
   const {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box } from "@chakra-ui/react";
 
-import { Award } from "../../types";
+import { Award } from "../../../../types";
 import { RedditContext } from "../RedditContext";
 import { colors } from "./styles";
 

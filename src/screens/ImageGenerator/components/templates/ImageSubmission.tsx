@@ -4,7 +4,7 @@ import { Wrap } from "@chakra-ui/react";
 import { Image } from "./Image";
 import { Title } from "./Title";
 
-import { FleshedRedditSubmission } from "../../types";
+import { FleshedRedditSubmission } from "../../../../types";
 
 export const ImageSubmission: React.FC<FleshedRedditSubmission> = ({
   link,

@@ -6,7 +6,7 @@ import uniqolor from "uniqolor";
 import { Icon } from "./Icon";
 import { colors } from "./styles";
 import { RedditContext } from "../RedditContext";
-import { Award } from "../../types";
+import { Award } from "../../../../types";
 import { Awards } from "./Awards";
 
 interface TitleProps {

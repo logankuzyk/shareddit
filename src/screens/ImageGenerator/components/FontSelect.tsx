@@ -8,7 +8,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { RedditContext } from "../RedditContext";
+import { RedditContext } from "./RedditContext";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export const FontSelect: React.FC = () => {

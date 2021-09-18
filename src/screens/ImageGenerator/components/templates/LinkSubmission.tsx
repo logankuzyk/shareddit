@@ -3,7 +3,7 @@ import React from "react";
 import { Image } from "./Image";
 import { Title } from "./Title";
 
-import { FleshedRedditSubmission } from "../../types";
+import { FleshedRedditSubmission } from "../../../../types";
 
 export const LinkSubmission: React.FC<FleshedRedditSubmission> = ({
   link,

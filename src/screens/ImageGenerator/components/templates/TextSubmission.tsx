@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 import { Text } from "./Text";
 import { Title } from "./Title";
 
-import { FleshedRedditSubmission } from "../../types";
+import { FleshedRedditSubmission } from "../../../../types";
 import { RedditContext } from "../RedditContext";
 import { colors } from "./styles";
 

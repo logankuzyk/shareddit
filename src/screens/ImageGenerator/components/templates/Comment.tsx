@@ -7,7 +7,7 @@ import { Icon } from "./Icon";
 import { Text } from "./Text";
 import { RedditContext } from "../RedditContext";
 import { colors } from "./styles";
-import { Award } from "../../types";
+import { Award } from "../../../../types";
 import { Awards } from "./Awards";
 
 interface CommentProps {

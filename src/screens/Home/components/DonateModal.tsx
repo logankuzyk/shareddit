@@ -14,7 +14,7 @@ import KofiButton from "kofi-button";
 import GitHubButton from "react-github-btn";
 import { Center, Text, SimpleGrid, Box, VStack } from "@chakra-ui/react";
 
-import { StyledButton } from "./input/StyledButton";
+import { StyledButton } from "../../shared/components/StyledButton";
 
 export const DonateModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
