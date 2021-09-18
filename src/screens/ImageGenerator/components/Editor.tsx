@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./DownloadButton";
-import { OptionsMenu } from "../OptionsMenu";
+import { OptionsMenu } from "./OptionsMenu";
 
 export const Editor: React.FC = () => {
   const [loading, setLoading] = useState(false);
