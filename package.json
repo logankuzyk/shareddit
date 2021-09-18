@@ -22,7 +22,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "html-to-image": "^1.6.2",
-    "kofi-button": "^1.0.7",
+    "kofi-button": "^1.0.8",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
