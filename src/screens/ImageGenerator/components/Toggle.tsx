@@ -3,8 +3,9 @@ import { Switch } from "@chakra-ui/react";
 
 interface ToggleProps {
   onToggle: () => void;
+  isChecked: boolean;
 }
 
-export const Toggle: React.FC<ToggleProps> = ({ onToggle }) => {
-  return <Switch size="md" onChange={onToggle} defaultChecked={false} />;
+export const Toggle: React.FC<ToggleProps> = ({ onToggle, isChecked }) => {
+  return <Switch size="md" onChange={onToggle} isChecked={isChecked} />;
 };

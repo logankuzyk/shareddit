@@ -14,6 +14,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 export const FontSelect: React.FC = () => {
   const {
     setters: { updateFont },
+    font,
   } = useContext(RedditContext);
 
   return (
@@ -24,6 +25,7 @@ export const FontSelect: React.FC = () => {
             isActive={isOpen}
             as={Button}
             rightIcon={<ChevronDownIcon />}
+            defaultValue={font}
             style={{
               width: "100%",
             }}

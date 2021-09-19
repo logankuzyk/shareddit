@@ -37,6 +37,10 @@ export const OptionsModal: React.FC = () => {
       toggleCommentsOnly,
     },
     content: { comments },
+    darkMode,
+    censorUsernames,
+    censorSubreddit,
+    commentsOnly,
   } = useContext(RedditContext);
   const showCommentsOnlyOption = comments === undefined ? false : true;
 
@@ -64,19 +68,25 @@ export const OptionsModal: React.FC = () => {
             <List alignContent="center" spacing={4}>
               <ListItem>
                 <Flex direction="row">
-                  <Toggle onToggle={toggleUsernames} />
+                  <Toggle
+                    isChecked={censorUsernames}
+                    onToggle={toggleUsernames}
+                  />
                   <Text marginLeft="auto">Hide usernames</Text>
                 </Flex>
               </ListItem>
               <ListItem>
                 <Flex direction="row">
-                  <Toggle onToggle={toggleSubreddit} />
+                  <Toggle
+                    isChecked={censorSubreddit}
+                    onToggle={toggleSubreddit}
+                  />
                   <Text marginLeft="auto">Hide subreddit</Text>
                 </Flex>
               </ListItem>
               <ListItem>
                 <Flex direction="row">
-                  <Toggle onToggle={toggleDarkMode} />
+                  <Toggle isChecked={darkMode} onToggle={toggleDarkMode} />
                   <Text marginLeft="auto">Dark mode</Text>
                 </Flex>
               </ListItem>
@@ -84,7 +94,10 @@ export const OptionsModal: React.FC = () => {
                 <>
                   <ListItem>
                     <Flex direction="row">
-                      <Toggle onToggle={toggleCommentsOnly} />
+                      <Toggle
+                        isChecked={commentsOnly}
+                        onToggle={toggleCommentsOnly}
+                      />
                       <Text marginLeft="auto">Comments only</Text>
                     </Flex>
                   </ListItem>
