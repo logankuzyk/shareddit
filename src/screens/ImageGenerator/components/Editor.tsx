@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 
 import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./DownloadButton";
-import { OptionsMenu } from "./OptionsMenu";
+import { OptionsModal } from "./OptionsModal";
 
 export const Editor: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ export const Editor: React.FC = () => {
 
   return (
     <VStack maxW="lg" marginX="auto" spacing={4}>
-      <OptionsMenu />
+      <OptionsModal />
       <DownloadButton download={download} loading={loading} />
     </VStack>
   );
