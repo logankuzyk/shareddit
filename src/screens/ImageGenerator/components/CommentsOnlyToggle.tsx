@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem, Flex, Text, Collapse, Center } from "@chakra-ui/react";
+import { ListItem, Flex, Text, Collapse } from "@chakra-ui/react";
 
 import { Toggle } from "./Toggle";
 import { CommentSelect } from "./CommentSelect";

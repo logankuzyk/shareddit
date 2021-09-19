@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React, { useContext } from "react";
+import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
 
 import { RedditContext } from "./RedditContext";
 import templates from "./templates";
@@ -36,6 +37,7 @@ export const Template: React.FC = () => {
         {commentsOnly ? <></> : <TitleTemplate {...data.content} />}
         {data.content.comments ? (
           <>
+            <CommentSelectInfoModal />
             {commentsOnly ? <></> : <Box height={4} />}
             <CommentTemplate {...data.content.comments} />
           </>
