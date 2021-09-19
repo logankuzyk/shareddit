@@ -3,18 +3,22 @@ import { Button } from "@chakra-ui/react";
 
 import { RedditContext } from "./RedditContext";
 
-export const CommentSelect: React.FC = () => {
+interface CommentSelectProps {
+  closeModal: () => void;
+}
+
+export const CommentSelect: React.FC<CommentSelectProps> = ({ closeModal }) => {
   const {
-    commentsOnly,
     setters: { updateVisibleComments },
   } = useContext(RedditContext);
 
   return (
     <Button
       fontWeight={500}
-      isDisabled={!commentsOnly}
+      marginX="auto"
       onClick={() => {
         updateVisibleComments();
+        closeModal();
       }}
     >
       Select comments to display

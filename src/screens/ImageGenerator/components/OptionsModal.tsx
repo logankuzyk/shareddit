@@ -25,6 +25,7 @@ import { FontSelect } from "./FontSelect";
 import { CommentSelect } from "./CommentSelect";
 import { RefreshButton } from "./RefreshButton";
 import { ScaleSlider } from "./ScaleSlider";
+import { CommentsOnlyToggle } from "./CommentsOnlyToggle";
 
 export const OptionsModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -90,21 +91,12 @@ export const OptionsModal: React.FC = () => {
                   <Text marginLeft="auto">Dark mode</Text>
                 </Flex>
               </ListItem>
-              {showCommentsOnlyOption ? (
-                <>
-                  <ListItem>
-                    <Flex direction="row">
-                      <Toggle
-                        isChecked={commentsOnly}
-                        onToggle={toggleCommentsOnly}
-                      />
-                      <Text marginLeft="auto">Comments only</Text>
-                    </Flex>
-                  </ListItem>
-                </>
-              ) : (
-                <></>
-              )}
+              <CommentsOnlyToggle
+                onToggle={toggleCommentsOnly}
+                isChecked={commentsOnly}
+                showCommentsOnlyOption={showCommentsOnlyOption}
+                closeModal={onClose}
+              />
               <ListItem>
                 <Flex direction="row">
                   <FontSelect />
@@ -112,13 +104,10 @@ export const OptionsModal: React.FC = () => {
                 </Flex>
               </ListItem>
               <ListItem>
-                <CommentSelect />
+                <ScaleSlider />
               </ListItem>
               <ListItem>
                 <RefreshButton />
-              </ListItem>
-              <ListItem>
-                <ScaleSlider />
               </ListItem>
             </List>
           </ModalBody>
