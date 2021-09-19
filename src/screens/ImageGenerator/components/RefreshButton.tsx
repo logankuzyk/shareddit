@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, Text, Box } from "@chakra-ui/react";
+import { FaRedoAlt } from "react-icons/fa";
 
 import { RedditContext } from "./RedditContext";
 
@@ -11,7 +12,7 @@ export const RefreshButton: React.FC = () => {
   return (
     <Button
       onClick={refreshContent}
-      size="lg"
+      size="md"
       minHeight="64px"
       color="brand.input"
       backgroundColor={"brand.highlights"}
@@ -24,7 +25,9 @@ export const RefreshButton: React.FC = () => {
       _focus={{ borderColor: "brand.focus" }}
       fontSize="lg"
     >
-      refresh reddit content
+      <Text>refresh reddit content</Text>
+      <Box w={2} />
+      <FaRedoAlt width={1} />
     </Button>
   );
 };
