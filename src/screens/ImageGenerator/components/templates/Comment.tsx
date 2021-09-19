@@ -80,29 +80,19 @@ export const Comment: React.FC<CommentProps> = ({
       }}
     >
       <Box
-        style={{
-          position: "relative",
-          backgroundColor: searchingForComment
-            ? "rgb(0, 0, 0, 0.3)"
-            : "rgb(0,0,0,0)",
-        }}
+        onClick={
+          searchingForComment ? () => onCommentSelect(newIndex) : () => {}
+        }
+        _hover={
+          searchingForComment
+            ? {
+                width: "100%",
+                backgroundColor: "rgb(10,147,150,0.4)",
+                borderRadius: 12,
+              }
+            : {}
+        }
       >
-        {searchingForComment ? (
-          <Box
-            position="absolute"
-            width="100%"
-            height="100%"
-            marginX="auto"
-            fontSize="5xl"
-            onClick={() => {
-              onCommentSelect(newIndex);
-            }}
-          >
-            {newIndex + 1}
-          </Box>
-        ) : (
-          <></>
-        )}
         <SimpleGrid
           paddingLeft={2}
           columns={3}
