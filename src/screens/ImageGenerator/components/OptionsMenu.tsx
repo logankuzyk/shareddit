@@ -13,6 +13,7 @@ import { Toggle } from "./Toggle";
 import { ScaleSlider } from "./ScaleSlider";
 import { FontSelect } from "./FontSelect";
 import { CommentSelect } from "./CommentSelect";
+import { RefreshButton } from "./RefreshButton";
 
 export const OptionsMenu: React.FC = () => {
   const {
@@ -78,6 +79,10 @@ export const OptionsMenu: React.FC = () => {
         <MenuDivider />
         <MenuItem>
           <CommentSelect />
+        </MenuItem>
+        <MenuDivider />
+        <MenuItem>
+          <RefreshButton />
         </MenuItem>
         <MenuDivider />
         <MenuItem>

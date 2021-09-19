@@ -4,7 +4,9 @@ import queryString from "query-string";
 import { FleshedRedditSubmission } from "../types";
 import { storeParams } from "./storeParams";
 
-export const getParams = async (): Promise<FleshedRedditSubmission> => {
+export const getParams = async (
+  refresh: boolean
+): Promise<FleshedRedditSubmission> => {
   const validateParams = (params: any) => {
     if (params && params.status && params.status.code === "error") {
       throw new Error(params.status.message);
@@ -38,7 +40,7 @@ export const getParams = async (): Promise<FleshedRedditSubmission> => {
 
   const cache = localStorage.getItem("shareddit-content");
 
-  if (cache !== null) {
+  if (cache !== null && !refresh) {
     const data = JSON.parse(cache);
 
     if (data.key === query) {

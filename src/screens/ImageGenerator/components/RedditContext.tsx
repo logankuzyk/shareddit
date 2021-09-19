@@ -26,6 +26,7 @@ interface RedditContextState {
     toggleCommentsOnly: () => void;
     updateVisibleComments: () => void;
     onCommentSelect: (index: number) => void;
+    refreshContent: () => void;
   };
 }
 
@@ -62,6 +63,7 @@ const initialState: RedditContextState = {
     toggleCommentsOnly: () => {},
     updateVisibleComments: () => {},
     onCommentSelect: (index: number) => {},
+    refreshContent: () => {},
   },
 };
 
@@ -71,7 +73,7 @@ class RedditContextProvider extends Component {
   state: RedditContextState = { ...initialState };
 
   componentDidMount() {
-    getParams().then((urlParams) => {
+    getParams(false).then((urlParams) => {
       if (!(typeof urlParams == "string")) {
         this.setState({ content: urlParams });
         this.setState({
@@ -125,6 +127,26 @@ class RedditContextProvider extends Component {
                 });
                 this.state.setters.onCommentSelect(index);
               }
+            },
+            refreshContent: () => {
+              this.setState({
+                status: {
+                  message: "Loading...",
+                  status: "loading",
+                },
+              });
+              getParams(true).then((urlParams) => {
+                if (typeof urlParams !== "string") {
+                  this.setState({
+                    content: urlParams,
+                    status: { message: "", status: "ok" },
+                  });
+                } else {
+                  this.setState({
+                    status: { message: urlParams, status: "error" },
+                  });
+                }
+              });
             },
           },
         });
