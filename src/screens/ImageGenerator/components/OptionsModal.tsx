@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   ModalCloseButton,
 } from "@chakra-ui/modal";
 import {
@@ -22,7 +21,6 @@ import { StyledButton } from "../../shared/components/StyledButton";
 import { RedditContext } from "./RedditContext";
 import { Toggle } from "./Toggle";
 import { FontSelect } from "./FontSelect";
-import { CommentSelect } from "./CommentSelect";
 import { RefreshButton } from "./RefreshButton";
 import { ScaleSlider } from "./ScaleSlider";
 import { CommentsOnlyToggle } from "./CommentsOnlyToggle";
@@ -111,7 +109,6 @@ export const OptionsModal: React.FC = () => {
               </ListItem>
             </List>
           </ModalBody>
-          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </StyledButton>
