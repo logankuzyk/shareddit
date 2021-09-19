@@ -26,11 +26,8 @@ export const FontSelect: React.FC = () => {
             as={Button}
             rightIcon={<ChevronDownIcon />}
             defaultValue={font}
-            style={{
-              width: "100%",
-            }}
           >
-            <Text style={{ fontWeight: 500 }}>Font</Text>
+            <Text style={{ fontWeight: 500 }}>{font}</Text>
           </MenuButton>
           <MenuList>
             <MenuItem

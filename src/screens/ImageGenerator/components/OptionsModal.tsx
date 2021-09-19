@@ -106,7 +106,10 @@ export const OptionsModal: React.FC = () => {
                 <></>
               )}
               <ListItem>
-                <FontSelect />
+                <Flex direction="row">
+                  <FontSelect />
+                  <Text marginLeft="auto">Font</Text>
+                </Flex>
               </ListItem>
               <ListItem>
                 <CommentSelect />
