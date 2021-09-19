@@ -7,6 +7,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalHeader,
+  ModalFooter,
 } from "@chakra-ui/react";
 import { RedditContext } from "./RedditContext";
 
@@ -17,7 +18,7 @@ export const CommentSelectInfoModal = () => {
   useEffect(() => {
     if (searchingForComment) {
       onOpen();
-      setTimeout(onClose, 2000);
+      setTimeout(onClose, 3000);
     }
   }, [searchingForComment, onClose, onOpen]);
 
@@ -31,6 +32,7 @@ export const CommentSelectInfoModal = () => {
           Click on the first comment you want to include in the image, then
           click on the last.
         </ModalBody>
+        <ModalFooter />
       </ModalContent>
     </Modal>
   );
