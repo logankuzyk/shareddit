@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Box, Center, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 import uniqolor from "uniqolor";
@@ -56,6 +56,16 @@ export const Comment: React.FC<CommentProps> = ({
   );
 
   const newIndex = index === undefined ? 0 : index + 1;
+  const [shouldHighlightComment, setShouldHighlightComment] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    if (newIndex === firstComment && !lastComment) {
+      setShouldHighlightComment(true);
+    } else {
+      setShouldHighlightComment(false);
+    }
+  }, [newIndex, firstComment, lastComment]);
 
   if (firstComment !== undefined && lastComment !== undefined) {
     if (newIndex >= firstComment) {
@@ -92,6 +102,12 @@ export const Comment: React.FC<CommentProps> = ({
               }
             : {}
         }
+        style={{
+          backgroundColor: shouldHighlightComment
+            ? "rgb(10, 147, 150, 0.4)"
+            : "",
+          borderRadius: 12,
+        }}
       >
         <SimpleGrid
           paddingLeft={2}
