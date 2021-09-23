@@ -2,8 +2,11 @@ import axios from "axios";
 import queryString from "query-string";
 
 import { FleshedRedditSubmission } from "../types";
+import { storeParams } from "./storeParams";
 
-export const getParams = async (): Promise<FleshedRedditSubmission> => {
+export const getParams = async (
+  refresh: boolean
+): Promise<FleshedRedditSubmission> => {
   const validateParams = (params: any) => {
     if (params && params.status && params.status.code === "error") {
       throw new Error(params.status.message);
@@ -34,13 +37,30 @@ export const getParams = async (): Promise<FleshedRedditSubmission> => {
   );
   const urlParams = queryString.parse(path);
   const query = queryString.stringify(urlParams);
+
+  const cache = localStorage.getItem("shareddit-content");
+
+  if (cache !== null && !refresh) {
+    const data = JSON.parse(cache);
+
+    if (data.key === query) {
+      return validateParams(data);
+    } else {
+      localStorage.removeItem("shareddit-content");
+    }
+  }
+
   const queryURL = "https://server.shareddit.com/generate/" + query;
 
   try {
     const res = await axios.get(queryURL);
-    return validateParams(res.data);
+    const validatedParams = validateParams(res.data);
+
+    storeParams(query, validatedParams);
+    return validatedParams;
   } catch (err) {
     console.error(err);
+    //@ts-ignore
     return err.message;
   }
 };

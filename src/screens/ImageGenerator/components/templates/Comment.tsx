@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Box, Center, SimpleGrid } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 import uniqolor from "uniqolor";
@@ -56,6 +56,16 @@ export const Comment: React.FC<CommentProps> = ({
   );
 
   const newIndex = index === undefined ? 0 : index + 1;
+  const [shouldHighlightComment, setShouldHighlightComment] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    if (newIndex === firstComment && !lastComment) {
+      setShouldHighlightComment(true);
+    } else {
+      setShouldHighlightComment(false);
+    }
+  }, [newIndex, firstComment, lastComment]);
 
   if (firstComment !== undefined && lastComment !== undefined) {
     if (newIndex >= firstComment) {
@@ -80,29 +90,25 @@ export const Comment: React.FC<CommentProps> = ({
       }}
     >
       <Box
+        onClick={
+          searchingForComment ? () => onCommentSelect(newIndex) : () => {}
+        }
+        _hover={
+          searchingForComment
+            ? {
+                width: "100%",
+                backgroundColor: "rgb(10,147,150,0.4)",
+                borderRadius: 12,
+              }
+            : {}
+        }
         style={{
-          position: "relative",
-          backgroundColor: searchingForComment
-            ? "rgb(0, 0, 0, 0.3)"
-            : "rgb(0,0,0,0)",
+          backgroundColor: shouldHighlightComment
+            ? "rgb(10, 147, 150, 0.4)"
+            : "",
+          borderRadius: 12,
         }}
       >
-        {searchingForComment ? (
-          <Box
-            position="absolute"
-            width="100%"
-            height="100%"
-            marginX="auto"
-            fontSize="5xl"
-            onClick={() => {
-              onCommentSelect(newIndex);
-            }}
-          >
-            {newIndex + 1}
-          </Box>
-        ) : (
-          <></>
-        )}
         <SimpleGrid
           paddingLeft={2}
           columns={3}
