@@ -89,12 +89,6 @@ export const OptionsModal: React.FC = () => {
                   <Text marginLeft="auto">Dark mode</Text>
                 </Flex>
               </ListItem>
-              <CommentsOnlyToggle
-                onToggle={toggleCommentsOnly}
-                isChecked={commentsOnly}
-                showCommentsOnlyOption={showCommentsOnlyOption}
-                closeModal={onClose}
-              />
               <ListItem>
                 <Flex direction="row">
                   <FontSelect />
@@ -104,6 +98,12 @@ export const OptionsModal: React.FC = () => {
               <ListItem>
                 <ScaleSlider />
               </ListItem>
+              <CommentsOnlyToggle
+                onToggle={toggleCommentsOnly}
+                isChecked={commentsOnly}
+                showCommentsOnlyOption={showCommentsOnlyOption}
+                closeModal={onClose}
+              />
               <ListItem>
                 <RefreshButton />
               </ListItem>
