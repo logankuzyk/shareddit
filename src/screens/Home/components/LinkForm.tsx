@@ -7,6 +7,7 @@ import { GenerateButton } from "./GenerateButton";
 import { RedditLinkInput } from "./RedditLinkInput";
 import { submitLink } from "../../../submitLink";
 import { DonateModal } from "./DonateModal";
+import { DemoButton } from "./DemoButton";
 
 export const LinkForm: React.FC = () => {
   const formik = useFormik({
@@ -33,13 +34,14 @@ export const LinkForm: React.FC = () => {
             name="link"
             component={RedditLinkInput}
             style={{ marginBottom: "var(--chakra-space-8)" }}
-          ></Field>
+          />
           <Field
             name="submit"
             type="submit"
             component={GenerateButton}
             style={{ marginBottom: "var(--chakra-space-4)" }}
-          ></Field>
+          />
+          <Field name="demo" component={DemoButton} />
           <DonateModal />
         </Form>
       </FormikProvider>
