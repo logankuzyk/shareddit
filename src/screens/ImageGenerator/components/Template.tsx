@@ -1,6 +1,6 @@
 import React, { useContext, Dispatch, SetStateAction } from "react";
 import { Box } from "@chakra-ui/react";
-import { v4 } from "uuid";
+import randomstring from "randomstring";
 
 import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
 import { RedditContext } from "./RedditContext";
@@ -14,7 +14,12 @@ interface TemplateProps {
 
 export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
   const data = useContext(RedditContext);
-  const { darkMode, font, commentsOnly } = data;
+  const {
+    darkMode,
+    font,
+    commentsOnly,
+    content: { sub },
+  } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
 
   const triggerDownload = (base64: string) => {
@@ -25,7 +30,10 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
     });
     const a = document.createElement("a");
 
-    a.setAttribute("download", `shareddit-${v4()}.png`);
+    a.setAttribute(
+      "download",
+      `shareddit-${sub}-${randomstring.generate(6)}.png`
+    );
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
 
@@ -61,7 +69,6 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
         height={svgData.height}
         id="shareddit-canvas"
       ></canvas>
-      <div id="shareddit-png"></div>
     </>
   ) : (
     <Box
