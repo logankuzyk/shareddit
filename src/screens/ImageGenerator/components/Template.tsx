@@ -1,15 +1,53 @@
 import { Box } from "@chakra-ui/react";
-import React, { useContext } from "react";
+import React, { useContext, Dispatch, SetStateAction } from "react";
 import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
 
 import { RedditContext } from "./RedditContext";
 import templates from "./templates";
+import { SvgAttributes } from "../index";
 
-export const Template: React.FC = () => {
+interface TemplateProps {
+  svgData: SvgAttributes;
+  setSvgData: Dispatch<SetStateAction<SvgAttributes>>;
+}
+
+export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
   const data = useContext(RedditContext);
   const { darkMode, font, commentsOnly } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
-  return (
+
+  const svgToImage = () => {
+    const imgNode = document.getElementById("shareddit-svg");
+    const canvasNode = document.getElementById("shareddit-canvas");
+    if (imgNode !== null && canvasNode !== null) {
+      //@ts-ignore
+      const ctx = canvasNode.getContext("2d");
+      ctx.drawImage(imgNode, 0, 0);
+      //@ts-ignore
+      const dataURL = canvasNode.toDataURL("image/png");
+      console.log(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+      setSvgData({
+        uri: "",
+        width: 0,
+        height: 0,
+      });
+    } else {
+      alert("canvas is null");
+    }
+  };
+
+  return svgData.uri !== "" ? (
+    <>
+      <img src={svgData.uri} id="shareddit-svg" onLoad={svgToImage} />
+      <canvas
+        style={{ marginBottom: 4 }}
+        width={svgData.width}
+        height={svgData.height}
+        id="shareddit-canvas"
+      ></canvas>
+      <div id="shareddit-png"></div>
+    </>
+  ) : (
     <Box
       marginBottom={4}
       style={{
