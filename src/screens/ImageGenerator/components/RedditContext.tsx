@@ -4,10 +4,6 @@ import { Text } from "@chakra-ui/react";
 import { FleshedRedditSubmission, Font } from "../../../types";
 import { getParams } from "../../../util/getParams";
 
-interface RedditContextProviderProps {
-  demo?: boolean;
-}
-
 interface RedditContextState {
   content: FleshedRedditSubmission;
   status: { message: string; status: "ok" | "error" | "loading" };
@@ -73,97 +69,90 @@ const initialState: RedditContextState = {
 
 export const RedditContext = createContext<RedditContextState>(initialState);
 
-class RedditContextProvider extends Component<
-  RedditContextProviderProps,
-  RedditContextState
-> {
+class RedditContextProvider extends Component {
   state: RedditContextState = { ...initialState };
 
   componentDidMount() {
-    if (this.props.demo) {
-    } else {
-      getParams(false).then((urlParams) => {
-        if (!(typeof urlParams == "string")) {
-          this.setState({ content: urlParams });
-          this.setState({
-            setters: {
-              updateImageScale: (percent: number) => {
-                this.setState({ imageScale: `${percent}%` });
-              },
-              toggleDarkMode: () => {
-                const darkModeEnabled = this.state.darkMode;
-                this.setState({ darkMode: !darkModeEnabled });
-              },
-              toggleUsernames: () => {
-                const censored = this.state.censorUsernames;
-                this.setState({ censorUsernames: !censored });
-              },
-              toggleSubreddit: () => {
-                const censored = this.state.censorSubreddit;
-                this.setState({ censorSubreddit: !censored });
-              },
-              updateFont: (font: Font) => {
-                this.setState({ font });
-              },
-              toggleCommentsOnly: () => {
-                const { commentsOnly } = this.state;
+    getParams(false).then((urlParams) => {
+      if (!(typeof urlParams == "string")) {
+        this.setState({ content: urlParams });
+        this.setState({
+          setters: {
+            updateImageScale: (percent: number) => {
+              this.setState({ imageScale: `${percent}%` });
+            },
+            toggleDarkMode: () => {
+              const darkModeEnabled = this.state.darkMode;
+              this.setState({ darkMode: !darkModeEnabled });
+            },
+            toggleUsernames: () => {
+              const censored = this.state.censorUsernames;
+              this.setState({ censorUsernames: !censored });
+            },
+            toggleSubreddit: () => {
+              const censored = this.state.censorSubreddit;
+              this.setState({ censorSubreddit: !censored });
+            },
+            updateFont: (font: Font) => {
+              this.setState({ font });
+            },
+            toggleCommentsOnly: () => {
+              const { commentsOnly } = this.state;
+              this.setState({
+                commentsOnly: !commentsOnly,
+                firstComment: undefined,
+                lastComment: undefined,
+                searchingForComment: false,
+              });
+            },
+            updateVisibleComments: () => {
+              this.setState({
+                firstComment: undefined,
+                lastComment: undefined,
+                searchingForComment: true,
+              });
+            },
+            onCommentSelect: (index: number) => {
+              if (this.state.firstComment === undefined) {
+                this.setState({ firstComment: index });
+              } else if (this.state.lastComment === undefined) {
                 this.setState({
-                  commentsOnly: !commentsOnly,
-                  firstComment: undefined,
-                  lastComment: undefined,
+                  lastComment: index,
                   searchingForComment: false,
                 });
-              },
-              updateVisibleComments: () => {
+              } else {
                 this.setState({
                   firstComment: undefined,
                   lastComment: undefined,
-                  searchingForComment: true,
                 });
-              },
-              onCommentSelect: (index: number) => {
-                if (this.state.firstComment === undefined) {
-                  this.setState({ firstComment: index });
-                } else if (this.state.lastComment === undefined) {
+                this.state.setters.onCommentSelect(index);
+              }
+            },
+            refreshContent: () => {
+              this.setState({
+                status: {
+                  message: "Loading...",
+                  status: "loading",
+                },
+              });
+              getParams(true).then((urlParams) => {
+                if (typeof urlParams !== "string") {
                   this.setState({
-                    lastComment: index,
-                    searchingForComment: false,
+                    content: urlParams,
+                    status: { message: "", status: "ok" },
                   });
                 } else {
                   this.setState({
-                    firstComment: undefined,
-                    lastComment: undefined,
+                    status: { message: urlParams, status: "error" },
                   });
-                  this.state.setters.onCommentSelect(index);
                 }
-              },
-              refreshContent: () => {
-                this.setState({
-                  status: {
-                    message: "Loading...",
-                    status: "loading",
-                  },
-                });
-                getParams(true).then((urlParams) => {
-                  if (typeof urlParams !== "string") {
-                    this.setState({
-                      content: urlParams,
-                      status: { message: "", status: "ok" },
-                    });
-                  } else {
-                    this.setState({
-                      status: { message: urlParams, status: "error" },
-                    });
-                  }
-                });
-              },
+              });
             },
-          });
-          this.setState({ status: { message: "", status: "ok" } });
-        } else
-          this.setState({ status: { message: urlParams, status: "error" } });
-      });
-    }
+          },
+        });
+        this.setState({ status: { message: "", status: "ok" } });
+      } else this.setState({ status: { message: urlParams, status: "error" } });
+    });
   }
 
   render() {
