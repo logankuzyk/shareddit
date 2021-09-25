@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { Field, Form, FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
 
@@ -27,24 +27,26 @@ export const LinkForm: React.FC = () => {
   });
 
   return (
-    <Box width="100%" maxWidth="80vw">
-      <FormikProvider value={formik}>
-        <Form>
-          <Field
-            name="link"
-            component={RedditLinkInput}
-            style={{ marginBottom: "var(--chakra-space-8)" }}
-          />
-          <Field
-            name="submit"
-            type="submit"
-            component={GenerateButton}
-            style={{ marginBottom: "var(--chakra-space-4)" }}
-          />
-          <Field name="demo" component={DemoButton} />
-          <DonateModal />
-        </Form>
-      </FormikProvider>
-    </Box>
+    <Center>
+      <Box width="100%" maxWidth="80vw">
+        <FormikProvider value={formik}>
+          <Form>
+            <Field
+              name="link"
+              component={RedditLinkInput}
+              style={{ marginBottom: "var(--chakra-space-8)" }}
+            />
+            <Field
+              name="submit"
+              type="submit"
+              component={GenerateButton}
+              style={{ marginBottom: "var(--chakra-space-4)" }}
+            />
+            <Field name="demo" component={DemoButton} />
+            <DonateModal />
+          </Form>
+        </FormikProvider>
+      </Box>
+    </Center>
   );
 };
