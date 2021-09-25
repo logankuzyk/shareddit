@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import * as htmlToImage from "html-to-image";
 import { VStack } from "@chakra-ui/layout";
 
 import { DownloadButton } from "./DownloadButton";
 import { OptionsModal } from "./OptionsModal";
-import {
-  Dispatch,
-  SetStateAction,
-} from "react-router/node_modules/@types/react";
 import { SvgAttributes } from "..";
 
 interface EditorProps {
+  svgData: SvgAttributes;
   setSvgData: Dispatch<SetStateAction<SvgAttributes>>;
 }
 
-export const Editor: React.FC<EditorProps> = ({ setSvgData }) => {
+export const Editor: React.FC<EditorProps> = ({ svgData, setSvgData }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const download = () => {
@@ -48,8 +45,13 @@ export const Editor: React.FC<EditorProps> = ({ setSvgData }) => {
         height: outputHeight,
       });
     });
-    setLoading(false);
   };
+
+  useEffect(() => {
+    if (svgData.uri === "") {
+      setLoading(false);
+    }
+  }, [svgData]);
 
   return (
     <VStack maxW="lg" marginX="auto" spacing={4}>

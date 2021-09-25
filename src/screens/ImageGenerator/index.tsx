@@ -22,7 +22,7 @@ export const ImageGenerator: React.FC = () => {
     <SharedditView>
       <RedditContextProvider>
         <Template svgData={svgData} setSvgData={setSvgData} />
-        <Editor setSvgData={setSvgData} />
+        <Editor svgData={svgData} setSvgData={setSvgData} />
       </RedditContextProvider>
     </SharedditView>
   );
