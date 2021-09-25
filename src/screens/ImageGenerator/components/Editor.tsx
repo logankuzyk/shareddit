@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import * as htmlToImage from "html-to-image";
 import { VStack } from "@chakra-ui/layout";
 
-import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./DownloadButton";
 import { OptionsModal } from "./OptionsModal";
 import {
@@ -17,7 +16,6 @@ interface EditorProps {
 
 export const Editor: React.FC<EditorProps> = ({ setSvgData }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const { downloadAs } = useContext(RedditContext);
 
   const download = () => {
     const node = document.getElementById("reddit-preview");

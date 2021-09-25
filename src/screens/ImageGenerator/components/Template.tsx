@@ -54,7 +54,7 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
 
   return svgData.uri !== "" ? (
     <>
-      <img src={svgData.uri} id="shareddit-svg" onLoad={svgToImage} />
+      <img src={svgData.uri} id="shareddit-svg" alt="" onLoad={svgToImage} />
       <canvas
         style={{ marginBottom: 4 }}
         width={svgData.width}

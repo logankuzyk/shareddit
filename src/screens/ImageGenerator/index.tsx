@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import RedditContextProvider from "./components/RedditContext";
 import { Template } from "./components/Template";
