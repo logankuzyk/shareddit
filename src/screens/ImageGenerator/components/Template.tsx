@@ -1,7 +1,8 @@
-import { Box } from "@chakra-ui/react";
 import React, { useContext, Dispatch, SetStateAction } from "react";
-import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
+import { Box } from "@chakra-ui/react";
+import { v4 } from "uuid";
 
+import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
 import { RedditContext } from "./RedditContext";
 import templates from "./templates";
 import { SvgAttributes } from "../index";
@@ -16,6 +17,21 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
   const { darkMode, font, commentsOnly } = data;
   const { TitleTemplate, CommentTemplate } = templates(data.content.type);
 
+  const triggerDownload = (base64: string) => {
+    const click = new MouseEvent("click", {
+      view: window,
+      bubbles: false,
+      cancelable: true,
+    });
+    const a = document.createElement("a");
+
+    a.setAttribute("download", `shareddit-${v4()}.png`);
+    a.setAttribute("href", base64);
+    a.setAttribute("target", "_blank");
+
+    a.dispatchEvent(click);
+  };
+
   const svgToImage = () => {
     const imgNode = document.getElementById("shareddit-svg");
     const canvasNode = document.getElementById("shareddit-canvas");
@@ -25,7 +41,7 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
       ctx.drawImage(imgNode, 0, 0);
       //@ts-ignore
       const dataURL = canvasNode.toDataURL("image/png");
-      console.log(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+      triggerDownload(dataURL);
       setSvgData({
         uri: "",
         width: 0,
