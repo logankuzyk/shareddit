@@ -23,8 +23,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
     video: <Icon as={FaFilm} />,
   };
 
-  const imageUrl = new URL(src);
-  const corsImageUrl = `${imageUrl.hostname}${imageUrl.pathname}`;
+  const corsImageUrl = src.replace("http://", "").replace("https://", "");
 
   return (
     <WrapItem
