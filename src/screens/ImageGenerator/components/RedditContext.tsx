@@ -18,11 +18,11 @@ interface RedditContextState {
   firstComment?: number;
   lastComment?: number;
   setters: {
-    updateImageScale: () => void;
+    updateImageScale: (percent: number) => void;
     toggleDarkMode: () => void;
     toggleUsernames: () => void;
     toggleSubreddit: () => void;
-    updateFont: (font: string) => void;
+    updateFont: (font: Font) => void;
     toggleCommentsOnly: () => void;
     updateVisibleComments: () => void;
     onCommentSelect: (index: number) => void;
@@ -55,11 +55,11 @@ const initialState: RedditContextState = {
   commentsOnly: false,
   searchingForComment: false,
   setters: {
-    updateImageScale: () => {},
+    updateImageScale: (percent: number) => {},
     toggleDarkMode: () => {},
     toggleUsernames: () => {},
     toggleSubreddit: () => {},
-    updateFont: (font: string) => {},
+    updateFont: (font: Font) => {},
     toggleCommentsOnly: () => {},
     updateVisibleComments: () => {},
     onCommentSelect: (index: number) => {},
@@ -93,7 +93,7 @@ class RedditContextProvider extends Component {
               const censored = this.state.censorSubreddit;
               this.setState({ censorSubreddit: !censored });
             },
-            updateFont: (font: string) => {
+            updateFont: (font: Font) => {
               this.setState({ font });
             },
             toggleCommentsOnly: () => {

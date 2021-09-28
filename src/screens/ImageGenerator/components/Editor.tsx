@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import * as htmlToImage from "html-to-image";
-import axios from "axios";
 import { VStack } from "@chakra-ui/layout";
 
-import { RedditContext } from "./RedditContext";
 import { DownloadButton } from "./DownloadButton";
 import { OptionsModal } from "./OptionsModal";
+import { SvgAttributes } from "..";
 
-export const Editor: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const { downloadAs } = useContext(RedditContext);
+interface EditorProps {
+  svgData: SvgAttributes;
+  setSvgData: Dispatch<SetStateAction<SvgAttributes>>;
+}
+
+export const Editor: React.FC<EditorProps> = ({ svgData, setSvgData }) => {
+  const [loading, setLoading] = useState<boolean>(false);
 
   const download = () => {
     const node = document.getElementById("reddit-preview");
@@ -21,50 +24,34 @@ export const Editor: React.FC = () => {
       return;
     }
 
-    if (downloadAs === "png") {
-      setLoading(true);
-      htmlToImage.toPng(node).then(async (dataURL) => {
-        const buf = Buffer.from(
-          dataURL.replace(/^data:image\/(png|jpg);base64,/, ""),
-          "base64"
-        );
-        const {
-          data: { uploadURL },
-        } = await axios.get(
-          `https://server.shareddit.com/getUploadURL/type=${downloadAs}`
-        );
+    setLoading(true);
+    htmlToImage.toSvg(node).then(async (dataURL) => {
+      //@ts-ignore
+      const { width, height } = dataURL.match(
+        /svg%22%20width%3D%22(?<width>[0-9]*)%22%20height%3D%22(?<height>[0-9]*)%22/
+      )?.groups;
 
-        if (!uploadURL) {
-          setLoading(false);
-          alert(
-            "There is an issue with AWS or the shareddit backend server. Please try again later."
-          );
-          return;
-        } else {
-          axios
-            .put(uploadURL, buf, {
-              headers: {
-                "Content-Encoding": "base64",
-                "Content-Type": "image/png",
-              },
-            })
-            .then((res) => {
-              setLoading(false);
-              if (res.status !== 200) {
-                console.log(
-                  dataURL.replace(/^data:image\/(png|jpg);base64,/, "")
-                );
-                alert(
-                  "Something went wrong, can't download image. The base 64 code is available in the console (press F12), you can turn that into an image here: https://codebeautify.org/base64-to-image-converter"
-                );
-              } else {
-                window.open(uploadURL.split("?")[0]);
-              }
-            });
-        }
+      const scale = 960 / width;
+      const outputHeight = scale * height;
+
+      dataURL = dataURL.replace(
+        /svg%22%20width%3D%22[0-9]*%22%20height%3D%22[0-9]*%22/,
+        `svg%22%20width%3D%22${960}%22%20height%3D%22${outputHeight}%22`
+      );
+
+      setSvgData({
+        uri: dataURL,
+        width: 960,
+        height: outputHeight,
       });
-    }
+    });
   };
+
+  useEffect(() => {
+    if (svgData.uri === "") {
+      setLoading(false);
+    }
+  }, [svgData]);
 
   return (
     <VStack maxW="lg" marginX="auto" spacing={4}>

@@ -38,6 +38,8 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
       }}
     >
       {awardsToRender.map((award) => {
+        const awardUrl = new URL(award.src);
+        const corsUrl = `${awardUrl.hostname}${awardUrl.pathname}`;
         totalAwards += award.count;
         return (
           <img
@@ -48,7 +50,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
               //@ts-ignore
               e.target.style.display = "none";
             }}
-            src={`https://server.shareddit.com:8080/${award.src}`}
+            src={`https://server.shareddit.com/cors/${corsUrl}`}
             key={totalAwards}
           />
         );

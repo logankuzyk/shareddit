@@ -5,9 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { theme } from "./style/theme";
 import "./style/fonts.css";
 
-import { Home } from "./screens/Home/Home";
-import { ImageGenerator } from "./screens/ImageGenerator/ImageGenerator";
-import { DownloadImage } from "./screens/ImageDownloader/DownloadImage";
+import { Home } from "./screens/Home";
+import { ImageGenerator } from "./screens/ImageGenerator";
 import { NotFound } from "./screens/NotFound";
 
 export const App = () => (
@@ -19,9 +18,6 @@ export const App = () => (
         </Route>
         <Route path="/generate">
           <ImageGenerator />
-        </Route>
-        <Route path="/download">
-          <DownloadImage />
         </Route>
         <Route>
           <NotFound />

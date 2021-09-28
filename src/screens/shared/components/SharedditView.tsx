@@ -1,13 +1,14 @@
 import React from "react";
 import { Box, Center, Grid, VStack } from "@chakra-ui/react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
-import { SharedditLogo } from "../shared/components/SharedditLogo";
-import RedditContextProvider from "./components/RedditContext";
-import { Template } from "./components/Template";
-import { Editor } from "./components/Editor";
+import { SharedditLogo } from "./SharedditLogo";
 
-export const ImageGenerator: React.FC = () => {
+interface SharedditViewProps {
+  children: any;
+}
+
+export const SharedditView: React.FC<SharedditViewProps> = ({ children }) => {
   return (
     <Box textAlign="center" fontSize="xl">
       <Helmet>
@@ -19,10 +20,7 @@ export const ImageGenerator: React.FC = () => {
           <SharedditLogo />
           <Center>
             <Box textAlign="center" fontSize="xl" width="100%">
-              <RedditContextProvider>
-                <Template />
-                <Editor />
-              </RedditContextProvider>
+              {children}
             </Box>
           </Center>
         </VStack>
