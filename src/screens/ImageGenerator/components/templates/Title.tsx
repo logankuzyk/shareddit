@@ -1,5 +1,5 @@
 import React, { ReactElement, useContext } from "react";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Wrap } from "@chakra-ui/react";
 import { timeFormat } from "d3-time-format";
 import uniqolor from "uniqolor";
 
@@ -97,10 +97,12 @@ export const Title: React.FC<TitleProps> = ({
           fontSize: 12,
         }}
       >
-        <Icon icon="vote" text={score} />
-        <Icon icon="date" text={dateString} />
-        <Icon icon="comment" text={String(commentsCount)} />
-        <Awards awards={awards} />
+        <Wrap>
+          <Icon icon="vote" text={score} />
+          <Icon icon="date" text={dateString} />
+          <Icon icon="comment" text={String(commentsCount)} />
+          <Awards awards={awards} />
+        </Wrap>
       </SimpleGrid>
     </>
   );
