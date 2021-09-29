@@ -34,7 +34,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
         paddingBottom: 2,
         paddingLeft: 4,
         paddingRight: 4,
-        fontSize: 12,
+        fontSize: 10,
       }}
     >
       {awardsToRender.map((award) => {
@@ -45,8 +45,8 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
         totalAwards += award.count;
         return (
           <img
-            height={16}
-            width={16}
+            height={12}
+            width={12}
             alt="reddit award"
             onError={(e) => {
               //@ts-ignore

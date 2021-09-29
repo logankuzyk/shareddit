@@ -40,7 +40,7 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
         paddingBottom: 2,
         paddingLeft: 4,
         paddingRight: 4,
-        fontSize: 12,
+        fontSize: 10,
       }}
     >
       <Center>
