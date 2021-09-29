@@ -14,6 +14,10 @@ export const SharedditView: React.FC<SharedditViewProps> = ({ children }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>shareddit</title>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z1Z9KMHZNX"
+        ></script>
       </Helmet>
       <Grid minH="100vh" p={3}>
         <VStack maxW="lg" marginX="auto" spacing={4}>
