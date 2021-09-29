@@ -38,9 +38,10 @@ export const Icon: React.FC<IconProps> = ({ icon, text }) => {
         backgroundColor: colors(darkMode).iconBackgroundColor,
         paddingTop: 2,
         paddingBottom: 2,
-        paddingLeft: 4,
-        paddingRight: 4,
+        paddingLeft: 6,
+        paddingRight: 6,
         fontSize: 10,
+        overflow: "hidden",
       }}
     >
       <Center>

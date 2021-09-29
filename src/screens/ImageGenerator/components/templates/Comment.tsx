@@ -112,7 +112,7 @@ export const Comment: React.FC<CommentProps> = ({
         <SimpleGrid
           paddingLeft={2}
           columns={3}
-          columnGap={2}
+          columnGap={1}
           style={{
             display: "flex",
             flexDirection: "row",
