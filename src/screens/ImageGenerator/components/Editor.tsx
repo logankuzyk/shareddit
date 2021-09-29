@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import * as htmlToImage from "html-to-image";
 import { VStack } from "@chakra-ui/layout";
+import ReactGA from "react-ga";
 
 import { DownloadButton } from "./DownloadButton";
 import { OptionsModal } from "./OptionsModal";
@@ -15,6 +16,10 @@ export const Editor: React.FC<EditorProps> = ({ svgData, setSvgData }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const download = () => {
+    ReactGA.event({
+      category: "Image Generation",
+      action: "Downloaded Image",
+    });
     const node = document.getElementById("reddit-preview");
 
     if (node === null) {

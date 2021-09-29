@@ -4,7 +4,6 @@ import RedditContextProvider from "./components/RedditContext";
 import { Template } from "./components/Template";
 import { Editor } from "./components/Editor";
 import { SharedditView } from "../shared/components/SharedditView";
-
 export interface SvgAttributes {
   uri: string;
   width: number;

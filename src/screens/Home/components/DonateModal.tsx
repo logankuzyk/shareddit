@@ -13,13 +13,23 @@ import {
 import KofiButton from "kofi-button";
 import GitHubButton from "react-github-btn";
 import { Center, Text, SimpleGrid, Box, VStack } from "@chakra-ui/react";
+import ReactGA from "react-ga";
 
 import { StyledButton } from "../../shared/components/StyledButton";
 
 export const DonateModal: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const onClickHandler = () => {
+    onOpen();
+    ReactGA.event({
+      category: "General Engagement",
+      action: "Opened Donate Modal",
+    });
+  };
+
   return (
-    <StyledButton onClick={onOpen}>
+    <StyledButton onClick={onClickHandler}>
       <SimpleGrid
         paddingLeft={2}
         columns={3}

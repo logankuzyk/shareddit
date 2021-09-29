@@ -1,5 +1,6 @@
 import axios from "axios";
 import queryString from "query-string";
+import ReactGA from "react-ga";
 
 import { FleshedRedditSubmission } from "../types";
 import { storeParams } from "./storeParams";
@@ -44,6 +45,10 @@ export const getParams = async (
     const data = JSON.parse(cache);
 
     if (data.key === query) {
+      ReactGA.event({
+        category: "Content Fetching",
+        action: "Retrieved Cached Data",
+      });
       return validateParams(data);
     } else {
       localStorage.removeItem("shareddit-content");
@@ -55,6 +60,11 @@ export const getParams = async (
   try {
     const res = await axios.get(queryURL);
     const validatedParams = validateParams(res.data);
+
+    ReactGA.event({
+      category: "Content Fetching",
+      action: "Fetched Content From Backend",
+    });
 
     storeParams(query, validatedParams);
     return validatedParams;
