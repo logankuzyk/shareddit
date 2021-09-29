@@ -82,6 +82,7 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
         flexDirection: "column",
         fontFamily: font,
         width: "100%",
+        maxWidth: "90vw",
         fontSize: 16,
         overflow: "hidden",
       }}
