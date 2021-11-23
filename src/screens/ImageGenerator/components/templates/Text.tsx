@@ -11,7 +11,7 @@ interface TextProps {
 export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
   const { darkMode, font } = useContext(RedditContext);
 
-  const styledBodyHTML = `<style>code {
+  const body = `<style>code {
       padding: 6px;
       margin-top: 4px;
       margin-bottom: 4px;
@@ -21,11 +21,11 @@ export const Text: React.FC<TextProps> = ({ bodyHTML }) => {
       border-radius: 12px;
       white-space: pre-wrap;
       display: block;
-    }</style>${bodyHTML}`;
+    }</style>${bodyHTML.trim().replaceAll("\n\n", "<br>")}`;
 
   return (
     <Box
-      dangerouslySetInnerHTML={{ __html: styledBodyHTML }}
+      dangerouslySetInnerHTML={{ __html: body }}
       style={{
         display: "inline-block",
         textAlign: "left",
