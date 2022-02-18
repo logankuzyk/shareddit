@@ -22,7 +22,5 @@ export const login = (): SnoowrapCredentials => {
     password: process.env.PASSWORD,
   };
 
-  console.log(credentials);
-
   return credentials;
 };
