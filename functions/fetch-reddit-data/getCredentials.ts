@@ -1,6 +1,6 @@
-import { SnoowrapCredentials } from './types';
+import { SnoowrapCredentials } from "./types";
 
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 
 export const login = (): SnoowrapCredentials => {
   if (!process.env.USERAGENT)
@@ -21,6 +21,8 @@ export const login = (): SnoowrapCredentials => {
     username: process.env.REDDIT_USERNAME,
     password: process.env.PASSWORD,
   };
+
+  console.log(credentials);
 
   return credentials;
 };
