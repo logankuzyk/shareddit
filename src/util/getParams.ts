@@ -55,7 +55,7 @@ export const getParams = async (
     }
   }
 
-  const queryURL = "/netlify/functions/fetch-reddit-data" + query;
+  const queryURL = "/.netlify/functions/fetch-reddit-data" + query;
 
   try {
     const res = await axios.get(queryURL);
