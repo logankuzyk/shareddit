@@ -11,24 +11,28 @@ import { ImageGenerator } from "./screens/ImageGenerator";
 import { NotFound } from "./screens/NotFound";
 
 export const App = () => {
-  ReactGA.initialize("UA-51247116-3");
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  if (!window.location.pathname.startsWith("/functions")) {
+    ReactGA.initialize("UA-51247116-3");
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
-  return (
-    <ChakraProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/generate">
-            <ImageGenerator />
-          </Route>
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
-      </Router>
-    </ChakraProvider>
-  );
+    return (
+      <ChakraProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/generate">
+              <ImageGenerator />
+            </Route>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+      </ChakraProvider>
+    );
+  } else {
+    return <div />;
+  }
 };
