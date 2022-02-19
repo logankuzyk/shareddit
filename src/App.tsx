@@ -9,6 +9,7 @@ import "./style/fonts.css";
 import { Home } from "./screens/Home";
 import { ImageGenerator } from "./screens/ImageGenerator";
 import { NotFound } from "./screens/NotFound";
+import { RedirectRedditPath } from "./screens/RedirectRedditPath";
 
 export const App = () => {
   ReactGA.initialize("UA-51247116-3");
@@ -23,6 +24,9 @@ export const App = () => {
           </Route>
           <Route path="/generate">
             <ImageGenerator />
+          </Route>
+          <Route path="/r">
+            <RedirectRedditPath />
           </Route>
           <Route>
             <NotFound />
