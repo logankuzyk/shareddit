@@ -55,7 +55,7 @@ export const getParams = async (
     }
   }
 
-  const queryURL = "https://server.shareddit.com/generate/" + query;
+  const queryURL = "/.netlify/functions/fetch-reddit-data?" + query;
 
   try {
     const res = await axios.get(queryURL);
@@ -63,7 +63,7 @@ export const getParams = async (
 
     ReactGA.event({
       category: "Content Fetching",
-      action: "Fetched Content From Backend",
+      action: "Fetched Content From Cloud Function",
     });
 
     storeParams(query, validatedParams);
