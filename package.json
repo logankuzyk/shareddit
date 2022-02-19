@@ -20,7 +20,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "html-to-image": "^1.6.2",
-    "kofi-button": "^1.0.8",
+    "kofi-button": "^1.1.1",
     "query-string": "^7.0.0",
     "randomstring": "^1.2.1",
     "react": "^17.0.2",

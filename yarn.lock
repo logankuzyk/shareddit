@@ -8007,12 +8007,10 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
 
-kofi-button@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/kofi-button/-/kofi-button-1.0.8.tgz#f6e46b60ed8046e0504d06bd2cadb17a4230db97"
-  integrity sha512-V0DnaGpsbGrGcbwjcxkgy6kF95k1AZxmTA/H580kMsCkDi4c5EBeGCHJDxP22XsF92Kkh2KkH+A4fO/er1wL4Q==
-  dependencies:
-    react "^17.0.2"
+kofi-button@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/kofi-button/-/kofi-button-1.1.1.tgz#79d34e65697ee8bb93467529b7d905e715c07bc1"
+  integrity sha512-6LjKH46C5L0WXgd7lcCCZ6sZyrtjv7tLA5XLBnuayyzrSDRP6yQKt00zL7IH2QxixqQtyxAqpefwUglmmtD9IA==
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"
