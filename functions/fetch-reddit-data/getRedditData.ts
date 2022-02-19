@@ -1,4 +1,4 @@
-import * as Reddit from "snoowrap";
+const Reddit = require("snoowrap");
 
 import {
   SkeletonRedditSubmission,
