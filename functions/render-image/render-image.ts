@@ -1,10 +1,31 @@
 import { Handler } from "@netlify/functions";
-import * as puppeteer from "puppeteer";
+import chromium from "chrome-aws-lambda";
 
 export const handler: Handler = async (event, context) => {
+  if (
+    !event ||
+    !event.queryStringParameters ||
+    !event.queryStringParameters.redditPath
+  ) {
+    return {
+      statusCode: 400,
+      body: "Bad request",
+    };
+  }
+
   const { redditPath } = event.queryStringParameters;
-  const path = decodeURI(redditPath);
-  const browser = await puppeteer.launch({
+  const path = redditPath ? decodeURI(redditPath) : "";
+  const executablePath = await chromium.executablePath;
+
+  if (!executablePath) {
+    return {
+      statusCode: 500,
+      body: "Error opening browser",
+    };
+  }
+
+  const browser = await chromium.puppeteer.launch({
+    executablePath,
     headless: true,
     defaultViewport: {
       width: 1080,
@@ -20,8 +41,10 @@ export const handler: Handler = async (event, context) => {
   const page = await browser.newPage();
   await page.goto(`https://shareddit.com${path}`);
   const copy = await page.waitForSelector("#copy");
-  copy.focus();
-  copy.click();
+  if (copy) {
+    copy.focus();
+    copy.click();
+  }
 
   const data = await navigator.clipboard.readText();
 
