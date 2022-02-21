@@ -48,7 +48,10 @@ export const handler: Handler = async (event, context) => {
     await copy.click();
   }
 
-  const data = await navigator.clipboard.readText();
+  let data = "";
+  await page.evaluate(async () => {
+    data = await window.navigator.clipboard.readText();
+  });
 
   if (browser) {
     await browser.close();
