@@ -1,6 +1,7 @@
 import React, { useContext, Dispatch, SetStateAction } from "react";
 import { Box } from "@chakra-ui/react";
 import randomstring from "randomstring";
+import ReactGA from "react-ga";
 
 import { CommentSelectInfoModal } from "./CommentSelectInfoModal";
 import { RedditContext } from "./RedditContext";
@@ -38,6 +39,27 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
     a.setAttribute("target", "_blank");
 
     a.dispatchEvent(click);
+    ReactGA.event({
+      category: "Image Generation",
+      action: "Downloaded Image",
+    });
+  };
+
+  const triggerCopy = (base64: string) => {
+    navigator.clipboard.writeText(base64);
+
+    // i.style.display = "none";
+    // i.setAttribute("value", base64);
+    // i.setAttribute("readonly", "");
+    // i.select();
+    // document.execCommand("copy");
+
+    // document.body.removeChild(i);
+
+    ReactGA.event({
+      category: "Image Generation",
+      action: "Downloaded Image",
+    });
   };
 
   const svgToImage = () => {
@@ -49,11 +71,16 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
       ctx.drawImage(imgNode, 0, 0);
       //@ts-ignore
       const dataURL = canvasNode.toDataURL("image/png");
-      triggerDownload(dataURL);
+      if (svgData.mode === "download") {
+        triggerDownload(dataURL);
+      } else {
+        triggerCopy(dataURL);
+      }
       setSvgData({
         uri: "",
         width: 0,
         height: 0,
+        mode: "download",
       });
     } else {
       alert("canvas is null");
