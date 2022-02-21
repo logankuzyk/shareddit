@@ -12,6 +12,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
 }) => {
   return (
     <Button
+      id="download"
       isLoading={loading}
       onClick={download}
       size="lg"
