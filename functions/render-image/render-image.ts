@@ -43,11 +43,15 @@ export const handler: Handler = async (event, context) => {
   await page.goto(`https://shareddit.com${path}`);
   const copy = await page.waitForSelector("#copy");
   if (copy) {
-    copy.focus();
-    copy.click();
+    await copy.focus();
+    await copy.click();
   }
 
   const data = await navigator.clipboard.readText();
+
+  if (browser) {
+    await browser.close();
+  }
 
   return { statusCode: 200, body: data };
 };
