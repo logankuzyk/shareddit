@@ -1,5 +1,6 @@
 import { Handler } from "@netlify/functions";
 import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core";
 
 export const handler: Handler = async (event, context) => {
   if (
@@ -24,9 +25,9 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
-  const browser = await chromium.puppeteer.launch({
+  const browser = await puppeteer.launch({
     executablePath,
-    headless: true,
+    headless: chromium.headless,
     defaultViewport: {
       width: 1080,
       height: 2280,
