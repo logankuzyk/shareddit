@@ -41,16 +41,17 @@ export const handler: Handler = async (event, context) => {
   ]);
 
   const page = await browser.newPage();
-  await page.goto(`https://shareddit.com${path}`);
+  await page.goto(`https://shareddit.com${path}`, {
+    waitUntil: "networkidle0",
+  });
   const copy = await page.waitForSelector("#copy");
   if (copy) {
     await copy.focus();
     await copy.click();
   }
 
-  let data = "";
-  await page.evaluate(async () => {
-    data = await window.navigator.clipboard.readText();
+  const data = await page.evaluate(async () => {
+    return await window.navigator.clipboard.readText();
   });
 
   if (browser) {
