@@ -8,6 +8,7 @@ export interface SvgAttributes {
   uri: string;
   width: number;
   height: number;
+  mode: "download" | "copy";
 }
 
 export const ImageGenerator: React.FC = () => {
@@ -15,6 +16,7 @@ export const ImageGenerator: React.FC = () => {
     uri: "",
     width: 0,
     height: 0,
+    mode: "download",
   });
 
   return (
