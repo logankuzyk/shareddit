@@ -46,19 +46,15 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
   };
 
   const triggerCopy = (base64: string) => {
-    navigator.clipboard.writeText(base64);
+    const type = "image/png";
+    const blob = new Blob([base64], { type });
+    const data = [new ClipboardItem({ [type]: blob })];
 
-    // i.style.display = "none";
-    // i.setAttribute("value", base64);
-    // i.setAttribute("readonly", "");
-    // i.select();
-    // document.execCommand("copy");
-
-    // document.body.removeChild(i);
+    navigator.clipboard.write(data);
 
     ReactGA.event({
       category: "Image Generation",
-      action: "Downloaded Image",
+      action: "Copied Image",
     });
   };
 
