@@ -45,9 +45,10 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
     });
   };
 
-  const triggerCopy = (base64: string) => {
+  const triggerCopy = async (base64: string) => {
+    const blob = await fetch(base64).then((res) => res.blob());
     const type = "image/png";
-    const blob = new Blob([base64], { type });
+    // const blob = new Blob([b64blob], { type });
     const data = [new ClipboardItem({ [type]: blob })];
 
     navigator.clipboard.write(data);
