@@ -22,6 +22,9 @@ export const ImageGenerator: React.FC = () => {
   return (
     <SharedditView>
       <RedditContextProvider>
+        <div id="headless-interface">
+          <input id="image-base64" style={{ display: "none" }} />
+        </div>
         <Template svgData={svgData} setSvgData={setSvgData} />
         <Editor svgData={svgData} setSvgData={setSvgData} />
       </RedditContextProvider>
