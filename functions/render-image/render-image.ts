@@ -39,11 +39,11 @@ export const handler: Handler = async (event, context) => {
   await browserContext.overridePermissions(origin, ["clipboard-read"]);
 
   const page = await browser.newPage();
-  await page.goto(`https://shareddit.com${path}`, {
+  await page.goto(`${origin}${path}`, {
     waitUntil: "networkidle0",
   });
 
-  const data = await getData(page, origin, path);
+  const data = await getData(page);
 
   if (browser) {
     await browser.close();
@@ -56,17 +56,9 @@ export const handler: Handler = async (event, context) => {
   }
 };
 
-const getData = async (
-  page: Page,
-  origin: string,
-  path: string
-): Promise<string | undefined> => {
-  await page.goto(`${origin}${path}`, {
-    waitUntil: "networkidle0",
-  });
+const getData = async (page: Page): Promise<string | undefined> => {
   const copy = await page.waitForSelector("#copy");
   if (copy) {
-    console.log("hi");
     await copy.focus();
     await copy.click();
     const loaded = await page.waitForSelector("#loaded");
