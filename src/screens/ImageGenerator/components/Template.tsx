@@ -37,8 +37,10 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
     );
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
-
     a.dispatchEvent(click);
+
+    document.removeChild(a);
+
     ReactGA.event({
       category: "Image Generation",
       action: "Downloaded Image",
@@ -49,6 +51,18 @@ export const Template: React.FC<TemplateProps> = ({ svgData, setSvgData }) => {
     const blob = await fetch(base64).then((res) => res.blob());
     const type = "image/png";
     const data = [new ClipboardItem({ [type]: blob })];
+
+    const input = document.getElementById("image-base64");
+
+    if (input) {
+      input.setAttribute("value", base64);
+      const dest = document.getElementById("headless-interface");
+      if (dest) {
+        const a = document.createElement("a");
+        a.setAttribute("id", "loaded");
+        dest.appendChild(a);
+      }
+    }
 
     navigator.clipboard.write(data);
 
