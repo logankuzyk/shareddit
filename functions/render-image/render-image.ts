@@ -1,6 +1,6 @@
 import { Handler } from "@netlify/functions";
 import chromium from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
+import puppeteer, { Page } from "puppeteer-core";
 
 export const handler: Handler = async (event, context) => {
   if (
@@ -14,8 +14,8 @@ export const handler: Handler = async (event, context) => {
     };
   }
 
-  const { redditPath } = event.queryStringParameters;
-  const path = redditPath ? decodeURI(redditPath) : "";
+  const origin = "https://shareddit.com";
+  const { redditPath: path } = event.queryStringParameters;
   const executablePath = await chromium.executablePath;
 
   if (!executablePath) {
@@ -35,28 +35,49 @@ export const handler: Handler = async (event, context) => {
     },
   });
   const browserContext = browser.defaultBrowserContext();
-  browserContext.overridePermissions("https://shareddit.com", [
-    "clipboard-read",
-    "clipboard-write",
-  ]);
+  await browserContext.overridePermissions(origin, ["clipboard-write"]);
+  await browserContext.overridePermissions(origin, ["clipboard-read"]);
 
   const page = await browser.newPage();
   await page.goto(`https://shareddit.com${path}`, {
     waitUntil: "networkidle0",
   });
-  const copy = await page.waitForSelector("#copy");
-  if (copy) {
-    await copy.focus();
-    await copy.click();
-  }
 
-  const data = await page.evaluate(
-    `(async () => await navigator.clipboard.readText())()`
-  );
+  const data = await getData(page, origin, path);
 
   if (browser) {
     await browser.close();
   }
 
-  return { statusCode: 200, body: data };
+  if (data) {
+    return { statusCode: 200, body: data };
+  } else {
+    return { statusCode: 500, body: "Something went wrong" };
+  }
+};
+
+const getData = async (
+  page: Page,
+  origin: string,
+  path: string
+): Promise<string | undefined> => {
+  await page.goto(`${origin}${path}`, {
+    waitUntil: "networkidle0",
+  });
+  const copy = await page.waitForSelector("#copy");
+  if (copy) {
+    console.log("hi");
+    await copy.focus();
+    await copy.click();
+    const loaded = await page.waitForSelector("#loaded");
+    if (loaded) {
+      const input = await page.waitForSelector("#image-base64");
+      if (input) {
+        //Had to do it to em
+        //@ts-ignore
+        const data = await input.evaluate((el) => el.value);
+        return data;
+      }
+    }
+  }
 };
