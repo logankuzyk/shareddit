@@ -1,5 +1,4 @@
 import React from "react";
-import { Image as ChakraImage } from "@chakra-ui/react";
 
 import { RedditSubmission } from "../../../types/reddit";
 
@@ -11,12 +10,7 @@ export const Image: React.FC<ImageProps> = ({ submission }) => {
   const { url } = submission;
 
   if (url) {
-    return (
-      <ChakraImage
-        source={{ uri: url }}
-        style={{ height: 360, width: "100%" }}
-      />
-    );
+    return <img src={url} style={{ height: "100%", width: "100%" }} />;
   } else {
     return <></>;
   }

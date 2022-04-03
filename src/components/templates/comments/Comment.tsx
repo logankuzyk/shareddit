@@ -19,8 +19,8 @@ export const Comment: React.FC<CommentProps> = ({
   if (data.type === "comment") {
     const showChildren = true;
     const { author, date, scoreString, body } = data;
-    const depth = useMemo(() => (data.depth ? data.depth : 0), [data.depth]);
-    const paddingRight = useMemo(() => depth * 18, [depth]);
+    const depth = data.depth ? data.depth : 0;
+    const paddingRight = depth * 18;
 
     return (
       <>
@@ -29,7 +29,7 @@ export const Comment: React.FC<CommentProps> = ({
             key={data.id}
             style={{ paddingLeft: 18, paddingRight, marginTop: 6 }}
           >
-            <Flex marginBottom={8}>
+            <Flex marginBottom={8} flexDirection="column">
               <Flex marginTop={8}>
                 <Tagline content={[author, scoreString, date]} type="comment" />
               </Flex>

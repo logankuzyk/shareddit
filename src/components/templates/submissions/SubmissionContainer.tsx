@@ -3,7 +3,12 @@ import { Flex } from "@chakra-ui/react";
 
 export const SubmissionContainer: React.FC = ({ children }) => {
   return (
-    <Flex paddingX={18} paddingY={12} backgroundColor="#FFFFFF">
+    <Flex
+      paddingX={18}
+      paddingY={12}
+      backgroundColor="#FFFFFF"
+      flexDirection="column"
+    >
       {children}
     </Flex>
   );
