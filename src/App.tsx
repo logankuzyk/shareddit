@@ -3,11 +3,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactGA from "react-ga";
 
-import { theme } from "./style/theme";
-import "./style/fonts.css";
+import { theme } from "./styles/theme";
+import "./styles/fonts.css";
 
-import { Home } from "./screens/Home";
-import { ImageGenerator } from "./screens/ImageGenerator";
+import { HomeScreenProvider } from "./screens/Home";
+import { EditorScreenProvider } from "./screens/Editor";
 import { NotFound } from "./screens/NotFound";
 import { RedirectRedditPath } from "./screens/RedirectRedditPath";
 
@@ -20,10 +20,10 @@ export const App = () => {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <HomeScreenProvider />
           </Route>
           <Route path="/generate">
-            <ImageGenerator />
+            <EditorScreenProvider />
           </Route>
           <Route path="/r">
             <RedirectRedditPath />
