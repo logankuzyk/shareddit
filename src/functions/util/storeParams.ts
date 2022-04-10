@@ -1,4 +1,4 @@
-import { FleshedRedditSubmission } from "../types";
+import { FleshedRedditSubmission } from "../../types";
 
 export const storeParams = (query: string, params: FleshedRedditSubmission) => {
   const key = query;

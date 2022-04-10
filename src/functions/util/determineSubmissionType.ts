@@ -1,4 +1,4 @@
-import { RawSubmission, RedditLinkType } from "../types/reddit";
+import { RawSubmission, RedditLinkType } from "../../types/reddit";
 
 export const determineSubmissionType = (
   submission: RawSubmission

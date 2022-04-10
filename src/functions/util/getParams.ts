@@ -2,7 +2,7 @@ import axios from "axios";
 import queryString from "query-string";
 import ReactGA from "react-ga";
 
-import { FleshedRedditSubmission } from "../types";
+import { FleshedRedditSubmission } from "../../types";
 import { storeParams } from "./storeParams";
 
 export const getParams = async (

@@ -1,4 +1,4 @@
-import { RawSubmission, RedditSubmission } from "../types/reddit";
+import { RawSubmission, RedditSubmission } from "../../types/reddit";
 import { determineSubmissionType } from "./determineSubmissionType";
 import { parseDate } from "./parseDate";
 import { parseScore } from "./parseScore";
