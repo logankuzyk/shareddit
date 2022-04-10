@@ -1,8 +1,8 @@
 import { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
 
-import { parseComments } from "../util/parseComments";
-import { parseSubmission } from "../util/parseSubmission";
+import { parseComments } from "../functions/util/parseComments";
+import { parseSubmission } from "../functions/util/parseSubmission";
 import { useAxios } from "./useAxios";
 import {
   Listing,
@@ -25,12 +25,13 @@ const fetchRedditData = async (
   const commentListing = res.data[1];
 
   const modhash = submissionListing.data.modhash;
-  const submission = submissionListing.data.children[0].data;
+  const rawSubmission = submissionListing.data.children[0].data;
   const rawComments = commentListing.data.children;
 
+  const submission = parseSubmission(rawSubmission, modhash);
   const comments = parseComments(rawComments, modhash);
 
-  return [parseSubmission(submission, modhash), comments];
+  return [submission, comments];
 };
 
 export const useRedditData = (subreddit: string, postId: string) => {
