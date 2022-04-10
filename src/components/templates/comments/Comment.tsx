@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React from "react";
 import { Flex } from "@chakra-ui/react";
-// import { View, TouchableOpacity } from "react-native";
 
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
@@ -23,14 +22,14 @@ export const Comment: React.FC<CommentProps> = ({
     const paddingRight = depth * 18;
 
     return (
-      <>
+      <Flex direction="column">
         <ChildIndent depth={depth}>
           <Flex
             key={data.id}
-            style={{ paddingLeft: 18, paddingRight, marginTop: 6 }}
+            style={{ paddingLeft: 18, paddingRight, marginTop: 2 }}
           >
-            <Flex marginBottom={8} flexDirection="column">
-              <Flex marginTop={8}>
+            <Flex marginBottom={4} flexDirection="column">
+              <Flex>
                 <Tagline content={[author, scoreString, date]} type="comment" />
               </Flex>
               <Flex>{body}</Flex>
@@ -48,7 +47,7 @@ export const Comment: React.FC<CommentProps> = ({
         ) : (
           <></>
         )}
-      </>
+      </Flex>
     );
   } else {
     // Comment was more children object

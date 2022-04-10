@@ -20,19 +20,16 @@ export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
     <SubmissionContainer>
       {linkType !== "self" ? (
         <>
-          <SubmissionContent
-            style={{ marginBottom: 8 }}
-            submission={submission}
-          />
+          <SubmissionContent submission={submission} />
           <Title>{title}</Title>
-          <Flex marginTop={6}>
+          <Flex>
             <Tagline content={tagline} type="submission" />
           </Flex>
         </>
       ) : (
         <>
           <Title>{title}</Title>
-          <SubmissionContent submission={submission} marginY={8} />
+          <SubmissionContent submission={submission} />
           <Flex>
             <Tagline content={tagline} type="submission" />
           </Flex>

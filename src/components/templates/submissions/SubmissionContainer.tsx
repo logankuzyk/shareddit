@@ -5,7 +5,7 @@ export const SubmissionContainer: React.FC = ({ children }) => {
   return (
     <Flex
       paddingX={18}
-      paddingY={12}
+      paddingY={4}
       backgroundColor="#FFFFFF"
       flexDirection="column"
     >

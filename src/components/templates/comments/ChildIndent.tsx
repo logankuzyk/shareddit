@@ -27,9 +27,9 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     return <>{children}</>;
   } else {
     return (
-      <Flex flexDirection="row">
+      <Flex direction="row">
         {indentColors.map((color) => (
-          <Flex marginLeft={18} width={2} backgroundColor={color} />
+          <div style={{ marginLeft: 18, width: 5, backgroundColor: color }} />
         ))}
         {children}
       </Flex>

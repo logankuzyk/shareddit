@@ -6,32 +6,31 @@ import { Image } from "../media/Image";
 import { SelfText } from "../media/SelfText";
 import { VideoThumbnail } from "../media/VideoThumbnail";
 
-export interface SubmissionContentProps extends FlexProps {
+export interface SubmissionContentProps {
   submission: RedditSubmission;
 }
 
 export const SubmissionContent: React.FC<SubmissionContentProps> = ({
   submission,
-  ...props
 }) => {
   // Content handlers will be activated onPress once they're implemented
   const { linkType } = submission;
 
   if (linkType === "image") {
     return (
-      <Flex {...props}>
+      <Flex marginBottom={4}>
         <Image submission={submission} />
       </Flex>
     );
   } else if (linkType === "self") {
     return (
-      <Flex {...props}>
+      <Flex marginBottom={4}>
         <SelfText submission={submission} />
       </Flex>
     );
   } else if (linkType === "video") {
     return (
-      <Flex {...props}>
+      <Flex marginBottom={4}>
         <VideoThumbnail submission={submission} />
       </Flex>
     );
