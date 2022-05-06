@@ -27,12 +27,25 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     return <>{children}</>;
   } else {
     return (
-      <Flex direction="row">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
         {indentColors.map((color) => (
-          <div style={{ marginLeft: 18, width: 5, backgroundColor: color }} />
+          <div
+            style={{
+              display: "flex",
+              marginLeft: 18,
+              width: 2,
+              flexShrink: 0,
+              backgroundColor: color,
+            }}
+          />
         ))}
         {children}
-      </Flex>
+      </div>
     );
   }
 };
