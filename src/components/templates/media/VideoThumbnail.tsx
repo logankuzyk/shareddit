@@ -26,7 +26,6 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
             height="100%"
             backgroundColor="rgba(0,0,0,0.2)"
             position="absolute"
-            display="flex"
             justifyContent="center"
             alignItems="center"
           >
