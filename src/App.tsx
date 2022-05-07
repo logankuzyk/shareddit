@@ -11,6 +11,7 @@ import { HomeScreenProvider } from "./screens/Home";
 import { EditorScreenProvider } from "./screens/Editor";
 import { NotFound } from "./screens/NotFound";
 import { RedirectRedditPath } from "./screens/RedirectRedditPath";
+import { SharedditView } from "./views/SharedditView";
 
 export const App = () => {
   ReactGA.initialize("UA-51247116-3");
@@ -24,16 +25,22 @@ export const App = () => {
         <Router>
           <Switch>
             <Route exact path="/">
-              <HomeScreenProvider />
+              <SharedditView>
+                <HomeScreenProvider />
+              </SharedditView>
             </Route>
             <Route path="/generate">
-              <EditorScreenProvider />
+              <SharedditView>
+                <EditorScreenProvider />
+              </SharedditView>
             </Route>
             <Route path="/r">
               <RedirectRedditPath />
             </Route>
             <Route>
-              <NotFound />
+              <SharedditView>
+                <NotFound />
+              </SharedditView>
             </Route>
           </Switch>
         </Router>
