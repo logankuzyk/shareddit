@@ -1,5 +1,4 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
 
 import { SubmissionContainer } from "./SubmissionContainer";
 import { Title } from "../../typography/Title";
@@ -12,9 +11,7 @@ interface SubmissionCardProps {
 }
 
 export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
-  const { title, author, id, subreddit, date, linkType, scoreString } =
-    submission;
-  const tagline = [author, scoreString, date];
+  const { title, author, subreddit, date, linkType, scoreString } = submission;
 
   return (
     <SubmissionContainer>
@@ -22,19 +19,20 @@ export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
         <>
           <SubmissionContent submission={submission} />
           <Title>{title}</Title>
-          <Flex>
-            <Tagline content={tagline} type="submission" />
-          </Flex>
         </>
       ) : (
         <>
           <Title>{title}</Title>
           <SubmissionContent submission={submission} />
-          <Flex>
-            <Tagline content={tagline} type="submission" />
-          </Flex>
         </>
       )}
+      <Tagline
+        username={author}
+        score={scoreString}
+        date={date}
+        subreddit={subreddit}
+        type="submission"
+      />
     </SubmissionContainer>
   );
 };

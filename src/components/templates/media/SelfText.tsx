@@ -14,7 +14,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
   if (selftext) {
     return (
       <Flex
-        padding={8}
+        padding={2}
         borderWidth={1}
         borderRadius={4}
         backgroundColor={colors.grey["100"]}

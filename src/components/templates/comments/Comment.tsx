@@ -30,7 +30,12 @@ export const Comment: React.FC<CommentProps> = ({
           >
             <Flex marginBottom={4} flexDirection="column">
               <Flex>
-                <Tagline content={[author, scoreString, date]} type="comment" />
+                <Tagline
+                  username={author}
+                  score={scoreString}
+                  date={date}
+                  type="comment"
+                />
               </Flex>
               <Flex>{body}</Flex>
             </Flex>

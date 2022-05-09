@@ -4,25 +4,36 @@ import { Flex } from "@chakra-ui/react";
 import { Caption } from "../typography/Caption";
 
 interface TaglineProps {
-  content: Array<string>;
   type: "submission" | "comment";
+  username: string;
+  score: string;
+  date: string;
+  subreddit?: string;
+  flair?: string;
 }
 
-export const Tagline: React.FC<TaglineProps> = ({ content }) => {
+export const Tagline: React.FC<TaglineProps> = ({
+  username,
+  score,
+  date,
+  subreddit,
+}) => {
   return (
-    <Flex
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
-    >
-      {content.map((item, index, array) => {
-        if (index !== array.length - 1) {
-          return <Caption key={index.toString()}>{item} • </Caption>;
-        } else {
-          return <Caption key={index.toString()}>{item}</Caption>;
-        }
-      })}
+    <Flex flexWrap="wrap" direction="row" gap={1}>
+      <Caption>{username}</Caption>
+      <Caption>{"•"}</Caption>
+      <Caption>{score}</Caption>
+      <Caption>{"•"}</Caption>
+      <Caption>{date}</Caption>
+      {subreddit && (
+        <>
+          <Caption>{"•"}</Caption>
+          <Caption>
+            {"/r/"}
+            {subreddit}
+          </Caption>
+        </>
+      )}
     </Flex>
   );
 };
