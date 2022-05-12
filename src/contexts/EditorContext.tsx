@@ -1,24 +1,26 @@
 import React, { useContext, createContext } from "react";
 
-export interface EditorContext {
+import { light, Theme } from "../styles/themes";
+
+export interface EditorContextValue {
   fontSize: "small" | "medium" | "large";
   imageScale: string;
   censorUsernames: boolean;
   censorSubreddit: boolean;
-  theme: "light" | "dark";
+  theme: Theme;
   showComments: boolean;
 }
 
-const initialState: EditorContext = {
+const initialState: EditorContextValue = {
   fontSize: "medium",
   imageScale: "100%",
   censorUsernames: false,
   censorSubreddit: false,
-  theme: "light",
+  theme: light,
   showComments: true,
 };
 
-const EditorContext = createContext<EditorContext>(initialState);
+const EditorContext = createContext<EditorContextValue>(initialState);
 
 export const useEditorContext = () => {
   return useContext(EditorContext);
