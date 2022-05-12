@@ -12,7 +12,7 @@ export const RootComment: React.FC<RootCommentProps> = ({ data }) => {
   const submissionFullname = data.parent_id;
 
   return (
-    <Flex paddingRight={18} backgroundColor="#FFFFFF">
+    <Flex paddingRight={18} paddingLeft={18}>
       <Comment data={data} submissionFullname={submissionFullname} />
     </Flex>
   );

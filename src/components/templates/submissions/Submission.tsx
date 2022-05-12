@@ -15,17 +15,7 @@ export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
 
   return (
     <SubmissionContainer>
-      {linkType !== "self" ? (
-        <>
-          <SubmissionContent submission={submission} />
-          <Title>{title}</Title>
-        </>
-      ) : (
-        <>
-          <Title>{title}</Title>
-          <SubmissionContent submission={submission} />
-        </>
-      )}
+      <Title>{title}</Title>
       <Tagline
         username={author}
         score={scoreString}
@@ -33,6 +23,7 @@ export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
         subreddit={subreddit}
         type="submission"
       />
+      <SubmissionContent submission={submission} />
     </SubmissionContainer>
   );
 };

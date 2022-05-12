@@ -3,6 +3,7 @@ import { Flex } from "@chakra-ui/react";
 
 import { RedditSubmission } from "../../../types/reddit";
 import { colors } from "../../../styles/colors";
+import { Paragraph } from "../../typography/Paragraph";
 
 interface SelfTextProps {
   submission: RedditSubmission;
@@ -20,7 +21,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
         backgroundColor={colors.grey["100"]}
         borderColor={colors.grey["300"]}
       >
-        <Flex>{selftext}</Flex>
+        <Paragraph>{selftext}</Paragraph>
       </Flex>
     );
   } else {
