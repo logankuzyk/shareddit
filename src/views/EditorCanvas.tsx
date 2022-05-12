@@ -1,8 +1,8 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
+import { useEditorContext } from "../contexts/EditorContext";
 import { RedditSubmission, RedditComment, MoreChildren } from "../types/reddit";
-import { EditorContextProvider } from "../contexts/EditorContext";
 import { Submission } from "../components/templates/submissions/Submission";
 import { RootComment } from "../components/templates/comments/RootComment";
 
@@ -15,18 +15,19 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   submission,
   comments,
 }) => {
+  const { theme } = useEditorContext();
+  const backgroundColor = theme.main["100"];
+
   return (
     <Flex
       flexDirection="column"
       alignItems="left"
       justifyContent="center"
-      maxWidth="40vw"
       textAlign="left"
+      backgroundColor={backgroundColor}
     >
-      <EditorContextProvider>
-        <Submission submission={submission} />
-        <RootComment data={comments[0]} />
-      </EditorContextProvider>
+      <Submission submission={submission} />
+      <RootComment data={comments[0]} />
     </Flex>
   );
 };

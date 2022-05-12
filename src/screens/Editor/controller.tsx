@@ -1,6 +1,7 @@
 import React from "react";
 
 import { EditorScreenView } from "./view";
+import { EditorContextProvider } from "../../contexts/EditorContext";
 import { useRedditData } from "../../hooks/useRedditData";
 
 interface EditorScreenControllerProps {
@@ -22,11 +23,13 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   const svgToImage = async () => {};
 
   return (
-    <EditorScreenView
-      data={data}
-      isLoading={isLoading}
-      isError={isError}
-      isSuccess={isSuccess}
-    />
+    <EditorContextProvider>
+      <EditorScreenView
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+      />
+    </EditorContextProvider>
   );
 };
