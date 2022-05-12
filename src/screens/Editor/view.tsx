@@ -1,4 +1,5 @@
 import React from "react";
+import { Flex } from "@chakra-ui/react";
 
 import {
   RedditSubmission,
@@ -6,6 +7,7 @@ import {
   MoreChildren,
 } from "../../types/reddit";
 import { EditorCanvas } from "../../views/EditorCanvas";
+import { EditorInterface } from "../../views/EditorInterface";
 
 interface EditorScreenViewProps {
   data: [RedditSubmission, (RedditComment | MoreChildren)[]] | undefined;
@@ -23,7 +25,12 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
   if (isSuccess && data) {
     const submission = data[0];
     const comments = data[1];
-    return <EditorCanvas submission={submission} comments={comments} />;
+    return (
+      <Flex direction="row" gap={48}>
+        <EditorCanvas submission={submission} comments={comments} />
+        <EditorInterface />
+      </Flex>
+    );
   } else {
     return <></>;
   }
