@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, FlexProps } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import { RedditSubmission } from "../../../types/reddit";
 import { Image } from "../media/Image";
@@ -16,25 +16,12 @@ export const SubmissionContent: React.FC<SubmissionContentProps> = ({
   // Content handlers will be activated onPress once they're implemented
   const { linkType } = submission;
 
-  if (linkType === "image") {
-    return (
-      <Flex marginBottom={4}>
-        <Image submission={submission} />
-      </Flex>
-    );
-  } else if (linkType === "self") {
-    return (
-      <Flex marginBottom={4}>
-        <SelfText submission={submission} />
-      </Flex>
-    );
-  } else if (linkType === "video") {
-    return (
-      <Flex marginBottom={4}>
-        <VideoThumbnail submission={submission} />
-      </Flex>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <Flex>
+      {linkType === "image" && <Image submission={submission} />}
+      {linkType === "self" && <SelfText submission={submission} />}
+      {linkType === "video" && <VideoThumbnail submission={submission} />}
+      {linkType === "external" && <></>}
+    </Flex>
+  );
 };
