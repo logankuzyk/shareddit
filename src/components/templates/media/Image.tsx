@@ -10,7 +10,13 @@ export const Image: React.FC<ImageProps> = ({ submission }) => {
   const { url } = submission;
 
   if (url) {
-    return <img src={url} style={{ height: "100%", width: "100%" }} />;
+    return (
+      <img
+        alt="reddit content"
+        src={url}
+        style={{ height: "100%", width: "100%" }}
+      />
+    );
   } else {
     return <></>;
   }
