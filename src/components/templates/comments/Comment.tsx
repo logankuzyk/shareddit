@@ -1,6 +1,11 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
+import { useEditorContext } from "../../../contexts/EditorContext";
+import {
+  censorSubreddits,
+  censorUsernames,
+} from "../../../functions/util/censorText";
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
 import { Tagline } from "../Tagline";
@@ -16,10 +21,20 @@ export const Comment: React.FC<CommentProps> = ({
   data,
   submissionFullname,
 }) => {
+  const { isCensorSubreddits, isCensorUsernames } = useEditorContext();
   if (data.type === "comment") {
     const showChildren = true;
-    const { author, date, scoreString, body } = data;
+    const { author, date, scoreString, body: commentBody } = data;
     const depth = data.depth ? data.depth : 0;
+
+    const body =
+      commentBody && isCensorSubreddits && isCensorUsernames
+        ? censorSubreddits(censorUsernames(commentBody))
+        : commentBody && isCensorSubreddits
+        ? censorSubreddits(commentBody)
+        : commentBody && isCensorUsernames
+        ? censorUsernames(commentBody)
+        : commentBody;
 
     return (
       <Flex direction="column">

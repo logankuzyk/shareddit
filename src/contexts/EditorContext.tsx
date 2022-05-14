@@ -5,8 +5,8 @@ import { light, Theme } from "../styles/themes";
 export interface EditorContextValue {
   fontSize: "small" | "medium" | "large";
   imageScale: string;
-  censorUsernames: boolean;
-  censorSubreddit: boolean;
+  isCensorUsernames: boolean;
+  isCensorSubreddits: boolean;
   theme: Theme;
   showComments: boolean;
 }
@@ -14,8 +14,8 @@ export interface EditorContextValue {
 const initialState: EditorContextValue = {
   fontSize: "medium",
   imageScale: "100%",
-  censorUsernames: false,
-  censorSubreddit: false,
+  isCensorUsernames: false,
+  isCensorSubreddits: false,
   theme: light,
   showComments: true,
 };
