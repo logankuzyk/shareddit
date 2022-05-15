@@ -14,7 +14,12 @@ export const Image: React.FC<ImageProps> = ({ submission }) => {
       <img
         alt="reddit content"
         src={url}
-        style={{ height: "100%", width: "100%" }}
+        style={{
+          height: "100%",
+          width: "100%",
+          borderWidth: 1,
+          borderRadius: 8,
+        }}
       />
     );
   } else {

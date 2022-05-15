@@ -15,7 +15,7 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
 
   if (thumbnail) {
     return (
-      <Flex>
+      <Flex borderWidth={1} borderRadius={8} overflow="hidden">
         <Flex position="relative">
           <Image
             source={{ uri: thumbnail }}

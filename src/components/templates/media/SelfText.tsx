@@ -34,7 +34,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
       <Flex
         padding={2}
         borderWidth={1}
-        borderRadius={4}
+        borderRadius={8}
         backgroundColor={backgroundColor}
         borderColor={borderColor}
       >
