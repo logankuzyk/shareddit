@@ -11,13 +11,14 @@ interface SubmissionCardProps {
 }
 
 export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
-  const { title, author, subreddit, date, scoreString } = submission;
+  const { title, author, subreddit, date, scoreString, userFlair } = submission;
 
   return (
     <SubmissionContainer>
       <Title>{title}</Title>
       <Tagline
         username={author}
+        flair={userFlair}
         score={scoreString}
         date={date}
         subreddit={subreddit}

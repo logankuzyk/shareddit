@@ -9,6 +9,12 @@ export interface Listing<T> {
 }
 
 export interface RedditContent {
+  author_flair_richtext: RawFlair;
+  author_flair_background_color: string;
+  author_flair_text_color: "dark" | "light";
+  link_flair_richtext?: RawFlair;
+  link_flair_background_color?: string;
+  link_flair_text_color?: string;
   created_utc: number;
   created: number;
   id: string;
@@ -195,6 +201,8 @@ export interface RedditSubmission extends RawSubmission {
   date: string;
   scoreString: string;
   modhash: string;
+  flair?: RedditFlair;
+  userFlair?: RedditFlair;
 }
 
 export interface RedditComment extends RawComment {
@@ -203,11 +211,13 @@ export interface RedditComment extends RawComment {
   replyTree: Array<RedditComment | MoreChildren>;
   scoreString: string;
   modhash: string;
+  flair?: RedditFlair;
 }
 
 export interface RedditUser extends RawUser {
   type: "user";
   date: string;
+  flair: RedditFlair;
 }
 
 export type RedditLinkType = "self" | "video" | "image" | "external";
@@ -239,4 +249,12 @@ export interface Paginated<T> {
   after: string | null | undefined;
   before: string | null | undefined;
   data: T;
+}
+
+export type RawFlair = [{ u?: string }, { t?: string }];
+export interface RedditFlair {
+  img?: string;
+  text?: string;
+  textColor?: string;
+  backgroundColor?: string;
 }
