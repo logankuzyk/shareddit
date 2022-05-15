@@ -16,7 +16,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
     return (
       <BadgeContainer backgroundColor={theme.main[100]}>
         {awards.map((award) => (
-          <>
+          <React.Fragment key={award.img}>
             <img
               style={{
                 display: "flex",
@@ -27,7 +27,7 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
               alt="flair icon"
             />
             <Caption>{award.count}</Caption>
-          </>
+          </React.Fragment>
         ))}
       </BadgeContainer>
     );
