@@ -20,7 +20,7 @@ const fetchRedditData = async (
 ): Promise<[RedditSubmission, Array<RedditComment | MoreChildren>]> => {
   const res = await axios.get<
     [Listing<ListedRawSubmission>, Listing<ListedRawComment>]
-  >(`/r/${subreddit}/comments/${postId}/.json`);
+  >(`/r/${subreddit}/comments/${postId}/.json?raw_json=1`);
   const submissionListing = res.data[0];
   const commentListing = res.data[1];
 
