@@ -45,7 +45,7 @@ export const Comment: React.FC<CommentProps> = ({
               marginTop: 4,
               marginBottom: 4,
             }}
-            flexDirection="column"
+            direction="column"
           >
             <Flex>
               <Tagline
@@ -58,17 +58,14 @@ export const Comment: React.FC<CommentProps> = ({
             <Paragraph>{body}</Paragraph>
           </Flex>
         </ChildIndent>
-        {showChildren ? (
+        {showChildren &&
           data.replyTree.map((comment) => (
             <Comment
               data={comment}
               submissionFullname={submissionFullname}
               key={comment.id}
             />
-          ))
-        ) : (
-          <></>
-        )}
+          ))}
       </Flex>
     );
   } else {

@@ -11,7 +11,7 @@ export const EditorInterface: React.FC<EditorInterfaceProps> = () => {
 
   return (
     <Flex
-      flexDirection="column"
+      direction="column"
       alignItems="left"
       justifyContent="center"
       textAlign="left"

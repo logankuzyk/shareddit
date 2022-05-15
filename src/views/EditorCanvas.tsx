@@ -20,7 +20,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
 
   return (
     <Flex
-      flexDirection="column"
+      direction="column"
       alignItems="left"
       justifyContent="center"
       textAlign="left"
