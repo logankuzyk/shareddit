@@ -24,7 +24,15 @@ export const Comment: React.FC<CommentProps> = ({
   const { isCensorSubreddits, isCensorUsernames } = useEditorContext();
   if (data.type === "comment") {
     const showChildren = true;
-    const { author, date, scoreString, body: commentBody, id, flair } = data;
+    const {
+      author,
+      date,
+      scoreString,
+      body: commentBody,
+      id,
+      flair,
+      awards,
+    } = data;
     const depth = data.depth ? data.depth : 0;
 
     const body =
@@ -49,6 +57,7 @@ export const Comment: React.FC<CommentProps> = ({
           >
             <Flex>
               <Tagline
+                awards={awards}
                 username={author}
                 flair={flair}
                 score={scoreString}

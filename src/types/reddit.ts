@@ -15,6 +15,7 @@ export interface RedditContent {
   link_flair_richtext?: RawFlair;
   link_flair_background_color?: string;
   link_flair_text_color?: string;
+  all_awardings: Array<RawAward>;
   created_utc: number;
   created: number;
   id: string;
@@ -31,6 +32,12 @@ export interface RedditContent {
   spoiler: boolean;
   archived: boolean;
   stickied: boolean;
+}
+
+export interface RawAward {
+  name: string;
+  count: number;
+  resized_static_icons: Array<{ url: string; width: number; height: number }>;
 }
 
 export interface RawComment extends RedditContent {
@@ -203,6 +210,7 @@ export interface RedditSubmission extends RawSubmission {
   modhash: string;
   flair?: RedditFlair;
   userFlair?: RedditFlair;
+  awards?: RedditAward[];
 }
 
 export interface RedditComment extends RawComment {
@@ -212,6 +220,7 @@ export interface RedditComment extends RawComment {
   scoreString: string;
   modhash: string;
   flair?: RedditFlair;
+  awards?: RedditAward[];
 }
 
 export interface RedditUser extends RawUser {
@@ -257,4 +266,9 @@ export interface RedditFlair {
   text?: string;
   textColor?: string;
   backgroundColor?: string;
+}
+
+export interface RedditAward {
+  img: string;
+  count: number;
 }

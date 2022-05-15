@@ -3,7 +3,8 @@ import { Flex } from "@chakra-ui/react";
 
 import { Caption } from "../../typography/Caption";
 import { Flair } from "./Flair";
-import { RedditFlair } from "../../../types/reddit";
+import { Awards } from "./Awards";
+import { RedditAward, RedditFlair } from "../../../types/reddit";
 
 interface TaglineProps {
   type: "submission" | "comment";
@@ -12,6 +13,7 @@ interface TaglineProps {
   date: string;
   subreddit?: string;
   flair?: RedditFlair;
+  awards: RedditAward[] | undefined;
 }
 
 export const Tagline: React.FC<TaglineProps> = ({
@@ -20,6 +22,7 @@ export const Tagline: React.FC<TaglineProps> = ({
   date,
   subreddit,
   flair,
+  awards,
 }) => {
   return (
     <Flex flexWrap="wrap" direction="row" alignItems="center" gap={1}>
@@ -38,9 +41,15 @@ export const Tagline: React.FC<TaglineProps> = ({
         <>
           <Caption>{"•"}</Caption>
           <Caption>
-            {"/r/"}
+            {"r/"}
             {subreddit}
           </Caption>
+        </>
+      )}
+      {awards && (
+        <>
+          <Caption>{"•"}</Caption>
+          <Awards awards={awards} />
         </>
       )}
     </Flex>

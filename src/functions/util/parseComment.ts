@@ -1,4 +1,5 @@
 import { RedditComment, RawComment } from "../../types/reddit";
+import { parseAwards } from "./parseAwards";
 import { parseComments } from "./parseComments";
 import { parseDate } from "./parseDate";
 import { parseFlair } from "./parseFlair";
@@ -23,5 +24,6 @@ export const parseComment = (
     ),
     modhash,
     replyTree: replies,
+    awards: parseAwards(comment.all_awardings),
   };
 };

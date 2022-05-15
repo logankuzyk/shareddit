@@ -1,5 +1,6 @@
 import { RawSubmission, RedditSubmission } from "../../types/reddit";
 import { determineSubmissionType } from "./determineSubmissionType";
+import { parseAwards } from "./parseAwards";
 import { parseDate } from "./parseDate";
 import { parseFlair } from "./parseFlair";
 import { parseScore } from "./parseScore";
@@ -30,5 +31,6 @@ export const parseSubmission = (
     ),
     modhash,
     date: parseDate(submission.created),
+    awards: parseAwards(submission.all_awardings),
   };
 };
