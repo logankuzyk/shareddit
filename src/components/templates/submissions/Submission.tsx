@@ -3,7 +3,7 @@ import React from "react";
 import { SubmissionContainer } from "./SubmissionContainer";
 import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
-import { Tagline } from "../Tagline";
+import { Tagline } from "../tagline/Tagline";
 import { SubmissionContent } from "./SubmissionContent";
 
 interface SubmissionCardProps {
@@ -11,7 +11,7 @@ interface SubmissionCardProps {
 }
 
 export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
-  const { title, author, subreddit, date, linkType, scoreString } = submission;
+  const { title, author, subreddit, date, scoreString } = submission;
 
   return (
     <SubmissionContainer>

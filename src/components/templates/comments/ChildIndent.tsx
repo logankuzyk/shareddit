@@ -5,11 +5,13 @@ import { colors } from "../../../styles/colors";
 
 interface ChildIndentProps {
   depth: number;
+  id: string;
   children: React.ReactNode;
 }
 
 export const ChildIndent: React.FC<ChildIndentProps> = ({
   depth,
+  id,
   children,
 }) => {
   const replyColors = [
@@ -29,7 +31,12 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
     return (
       <Flex direction="row" gap={3}>
         {indentColors.map((color) => (
-          <Flex width="2px" flexShrink={0} backgroundColor={color} />
+          <Flex
+            width="2px"
+            flexShrink={0}
+            backgroundColor={color}
+            key={`${id}-${color}`}
+          />
         ))}
         {children}
       </Flex>

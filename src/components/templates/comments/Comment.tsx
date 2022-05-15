@@ -8,7 +8,7 @@ import {
 } from "../../../functions/util/censorText";
 import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
-import { Tagline } from "../Tagline";
+import { Tagline } from "../tagline/Tagline";
 import { Paragraph } from "../../typography/Paragraph";
 
 interface CommentProps {
@@ -24,7 +24,7 @@ export const Comment: React.FC<CommentProps> = ({
   const { isCensorSubreddits, isCensorUsernames } = useEditorContext();
   if (data.type === "comment") {
     const showChildren = true;
-    const { author, date, scoreString, body: commentBody } = data;
+    const { author, date, scoreString, body: commentBody, id } = data;
     const depth = data.depth ? data.depth : 0;
 
     const body =
@@ -38,9 +38,9 @@ export const Comment: React.FC<CommentProps> = ({
 
     return (
       <Flex direction="column">
-        <ChildIndent depth={depth}>
+        <ChildIndent depth={depth} id={id}>
           <Flex
-            key={data.id}
+            key={id}
             style={{
               marginTop: 4,
               marginBottom: 4,
