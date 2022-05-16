@@ -1,6 +1,5 @@
 import React from "react";
 
-import { useEditorContext } from "../../../contexts/EditorContext";
 import { BadgeContainer } from "./BadgeContainer";
 import { RedditAward } from "../../../types/reddit";
 import { Caption } from "../../typography/Caption";
@@ -10,11 +9,9 @@ interface AwardsProps {
 }
 
 export const Awards: React.FC<AwardsProps> = ({ awards }) => {
-  const { theme } = useEditorContext();
-
   if (awards) {
     return (
-      <BadgeContainer backgroundColor={theme.main[100]}>
+      <BadgeContainer>
         {awards.map((award) => (
           <React.Fragment key={award.img}>
             <img

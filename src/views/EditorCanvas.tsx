@@ -16,7 +16,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   comments,
 }) => {
   const { theme } = useEditorContext();
-  const backgroundColor = theme.main["100"];
+  const backgroundColor = theme.background["100"];
 
   return (
     <Flex

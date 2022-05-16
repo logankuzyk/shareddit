@@ -28,7 +28,7 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
     return (
       <Flex direction="row" gap={48}>
         <EditorCanvas submission={submission} comments={comments} />
-        <EditorInterface />
+        {/* <EditorInterface /> */}
       </Flex>
     );
   } else {

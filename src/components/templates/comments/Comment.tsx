@@ -21,7 +21,7 @@ export const Comment: React.FC<CommentProps> = ({
   data,
   submissionFullname,
 }) => {
-  const { isCensorSubreddits, isCensorUsernames } = useEditorContext();
+  const { isCensorSubreddits, isCensorUsernames, theme } = useEditorContext();
   if (data.type === "comment") {
     const showChildren = true;
     const {
@@ -65,7 +65,7 @@ export const Comment: React.FC<CommentProps> = ({
                 type="comment"
               />
             </Flex>
-            <Paragraph>{body}</Paragraph>
+            <Paragraph color={theme.contrast[300]}>{body}</Paragraph>
           </Flex>
         </ChildIndent>
         {showChildren &&

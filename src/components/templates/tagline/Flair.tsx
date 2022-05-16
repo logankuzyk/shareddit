@@ -1,6 +1,7 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
 
+import { lightFlairText, darkFlairText } from "../../../styles/themes";
+import { BadgeContainer } from "./BadgeContainer";
 import { RedditFlair } from "../../../types/reddit";
 import { Caption } from "../../typography/Caption";
 
@@ -9,27 +10,22 @@ interface FlairProps {
 }
 
 export const Flair: React.FC<FlairProps> = ({ flair }) => {
+  const textColor = flair.textColor === "dark" ? darkFlairText : lightFlairText;
   return (
-    <Flex
-      alignItems="center"
-      justifyContent="center"
-      gap={2}
-      borderWidth={1}
-      borderRadius={4}
-      padding={1}
+    <BadgeContainer
       backgroundColor={flair.backgroundColor}
-      shrink={1}
+      borderColor={flair.backgroundColor}
     >
       <img
         style={{
           display: "flex",
-          width: "1em",
-          height: "1em",
+          width: "0.7em",
+          height: "0.7em",
         }}
         src={flair.img}
         alt="flair icon"
       />
-      <Caption>{flair.text}</Caption>
-    </Flex>
+      <Caption color={textColor}>{flair.text}</Caption>
+    </BadgeContainer>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useEditorContext } from "../../../contexts/EditorContext";
 import { SubmissionContainer } from "./SubmissionContainer";
 import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
@@ -11,12 +12,13 @@ interface SubmissionCardProps {
 }
 
 export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
+  const { theme } = useEditorContext();
   const { title, author, subreddit, date, scoreString, userFlair, awards } =
     submission;
 
   return (
     <SubmissionContainer>
-      <Title>{title}</Title>
+      <Title color={theme.contrast[300]}>{title}</Title>
       <Tagline
         username={author}
         awards={awards}

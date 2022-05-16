@@ -17,8 +17,8 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
   const { theme, isCensorSubreddits, isCensorUsernames } = useEditorContext();
   const { selftext } = submission;
 
-  const backgroundColor = theme.main["100"];
-  const borderColor = theme.main["300"];
+  const backgroundColor = theme.background["100"];
+  const borderColor = theme.background["300"];
 
   const body =
     selftext && isCensorSubreddits && isCensorUsernames
@@ -38,7 +38,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
         backgroundColor={backgroundColor}
         borderColor={borderColor}
       >
-        <Paragraph>{body}</Paragraph>
+        <Paragraph color={theme.contrast[300]}>{body}</Paragraph>
       </Flex>
     );
   } else {

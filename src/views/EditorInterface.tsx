@@ -7,7 +7,7 @@ interface EditorInterfaceProps {}
 
 export const EditorInterface: React.FC<EditorInterfaceProps> = () => {
   const { theme } = useEditorContext();
-  const backgroundColor = theme.main["100"];
+  const backgroundColor = theme.background["100"];
 
   return (
     <Flex

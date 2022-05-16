@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { colors } from "../../../styles/colors";
+import { useEditorContext } from "../../../contexts/EditorContext";
 
 interface ChildIndentProps {
   depth: number;
@@ -14,16 +14,21 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
   id,
   children,
 }) => {
+  const { theme } = useEditorContext();
+
   const replyColors = [
-    colors.purple["500"],
-    colors.indigo["500"],
-    colors.green["500"],
-    colors.amber["500"],
-    colors.deepOrange["500"],
-    colors.red["500"],
+    theme.accents[500],
+    theme.accents[400],
+    theme.accents[300],
+    theme.accents[200],
+    theme.accents[100],
   ];
 
-  const indentColors = replyColors.slice(0, depth);
+  const indentColors = [];
+
+  for (let i = 0; i < depth; i++) {
+    indentColors[i] = replyColors[i % replyColors.length];
+  }
 
   if (depth === 0) {
     return <>{children}</>;

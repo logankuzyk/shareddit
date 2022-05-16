@@ -1,6 +1,6 @@
 import React, { useContext, createContext } from "react";
 
-import { light, Theme } from "../styles/themes";
+import { lightTheme, Theme } from "../styles/themes";
 
 export interface EditorContextValue {
   fontSize: "small" | "medium" | "large";
@@ -16,7 +16,7 @@ const initialState: EditorContextValue = {
   imageScale: "100%",
   isCensorUsernames: false,
   isCensorSubreddits: false,
-  theme: light,
+  theme: lightTheme,
   showComments: true,
 };
 

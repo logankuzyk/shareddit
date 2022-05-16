@@ -1,6 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
+import { useEditorContext } from "../../../contexts/EditorContext";
 import { Caption } from "../../typography/Caption";
 import { Flair } from "./Flair";
 import { Awards } from "./Awards";
@@ -24,8 +25,15 @@ export const Tagline: React.FC<TaglineProps> = ({
   flair,
   awards,
 }) => {
+  const { theme } = useEditorContext();
   return (
-    <Flex flexWrap="wrap" direction="row" alignItems="center" gap={1}>
+    <Flex
+      flexWrap="wrap"
+      direction="row"
+      alignItems="center"
+      gap={1}
+      color={theme.contrast[100]}
+    >
       <Caption fontWeight={700}>{username}</Caption>
       <Caption>{"•"}</Caption>
       {flair && (
