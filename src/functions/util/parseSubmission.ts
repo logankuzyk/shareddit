@@ -30,7 +30,7 @@ export const parseSubmission = (
       submission.author_flair_background_color
     ),
     modhash,
-    date: parseDate(submission.created),
+    date: parseDate(submission.created, true),
     awards: parseAwards(submission.all_awardings),
   };
 };

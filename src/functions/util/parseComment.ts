@@ -15,7 +15,7 @@ export const parseComment = (
   return {
     ...comment,
     type: "comment",
-    date: parseDate(comment.created),
+    date: parseDate(comment.created, true),
     scoreString: parseScore(comment.score),
     flair: parseFlair(
       comment.author_flair_richtext,

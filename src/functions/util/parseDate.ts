@@ -9,6 +9,7 @@ export const parseDate = (date: number, absolute?: boolean) => {
   if (absolute) {
     return new Date(epoch).toDateString();
   }
+
   if (delta >= msPerDay) {
     const num = Math.floor(delta / msPerDay);
     return num !== 1 ? `${num} days ago` : `${num} day ago`;
