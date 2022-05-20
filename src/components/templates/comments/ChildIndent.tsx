@@ -40,7 +40,7 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
             width="2px"
             flexShrink={0}
             backgroundColor={color}
-            key={`${id}-${color}`}
+            key={`${id}-${depth--}`}
           />
         ))}
         {children}
