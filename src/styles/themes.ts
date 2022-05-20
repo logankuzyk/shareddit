@@ -17,9 +17,10 @@ export const lightFlairText: string = "#D8DEE9";
 
 export const lightTheme: Theme = {
   background: {
-    "100": "#ECEFF4",
-    "200": "#E5E9F0",
-    "300": "#D8DEE9",
+    "100": "#FFFFFF",
+    "200": "#ECEFF4",
+    "300": "#E5E9F0",
+    "400": "#D8DEE9",
   },
   accents: {
     "100": "#BF616A",
