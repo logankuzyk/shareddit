@@ -11,7 +11,6 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/modal";
 import KofiButton from "kofi-button";
-import GitHubButton from "react-github-btn";
 import { Center, Text, SimpleGrid, Box, VStack } from "@chakra-ui/react";
 import ReactGA from "react-ga";
 
@@ -76,14 +75,6 @@ export const DonateModal: React.FC = () => {
                     title="Donate"
                     kofiID="N4N31JDNX"
                   />
-                  <GitHubButton
-                    href="https://github.com/logankuzyk"
-                    data-color-scheme="no-preference: light; light: light; dark: dark;"
-                    data-size="large"
-                    aria-label="Follow @logankuzyk on GitHub"
-                  >
-                    Follow @logankuzyk
-                  </GitHubButton>
                 </Center>
               </SimpleGrid>
             </VStack>

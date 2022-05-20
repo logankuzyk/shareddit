@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 // import { FontAwesome5 } from "@expo/vector-icons";
 
 import { RedditSubmission } from "../../../types/reddit";
@@ -17,9 +17,15 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
     return (
       <Flex borderWidth={1} borderRadius={8} overflow="hidden">
         <Flex position="relative">
-          <Image
-            source={{ uri: thumbnail }}
-            style={{ height: 360, width: "100%" }}
+          <img
+            alt="reddit content"
+            src={thumbnail}
+            style={{
+              height: "100%",
+              width: "100%",
+              borderWidth: 1,
+              borderRadius: 8,
+            }}
           />
           <Flex
             width="100%"
