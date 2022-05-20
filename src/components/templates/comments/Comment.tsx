@@ -32,9 +32,9 @@ export const Comment: React.FC<CommentProps> = ({
       id,
       flair,
       awards,
+      is_submitter,
     } = data;
     const depth = data.depth ? data.depth : 0;
-
     const body =
       commentBody && isCensorSubreddits && isCensorUsernames
         ? censorSubreddits(censorUsernames(commentBody))
@@ -59,6 +59,7 @@ export const Comment: React.FC<CommentProps> = ({
               <Tagline
                 awards={awards}
                 username={author}
+                isSubmitter={is_submitter}
                 flair={flair}
                 score={scoreString}
                 date={date}

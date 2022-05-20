@@ -5,6 +5,7 @@ import { useEditorContext } from "../../../contexts/EditorContext";
 import { Caption } from "../../typography/Caption";
 import { Flair } from "./Flair";
 import { Awards } from "./Awards";
+import { BadgeContainer } from "./BadgeContainer";
 import { RedditAward, RedditFlair } from "../../../types/reddit";
 
 interface TaglineProps {
@@ -15,6 +16,7 @@ interface TaglineProps {
   subreddit?: string;
   flair?: RedditFlair;
   awards: RedditAward[] | undefined;
+  isSubmitter?: boolean;
 }
 
 export const Tagline: React.FC<TaglineProps> = ({
@@ -24,6 +26,7 @@ export const Tagline: React.FC<TaglineProps> = ({
   subreddit,
   flair,
   awards,
+  isSubmitter,
 }) => {
   const { theme } = useEditorContext();
   return (
@@ -36,6 +39,14 @@ export const Tagline: React.FC<TaglineProps> = ({
     >
       <Caption fontWeight={700}>{username}</Caption>
       <Caption>{"•"}</Caption>
+      {isSubmitter && (
+        <>
+          <BadgeContainer backgroundColor={theme.special.highlight}>
+            <Caption>OP</Caption>
+          </BadgeContainer>
+          <Caption>{"•"}</Caption>
+        </>
+      )}
       {flair && (
         <>
           <Flair flair={flair} />

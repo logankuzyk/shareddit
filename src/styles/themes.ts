@@ -10,6 +10,9 @@ export interface Theme {
   contrast: {
     [K in ColorWeight]?: string;
   };
+  special: {
+    highlight: string;
+  };
 }
 
 export const darkFlairText: string = "#4C566A";
@@ -35,5 +38,8 @@ export const lightTheme: Theme = {
     "200": "#434C5E",
     "300": "#3B4252",
     "400": "#2E3440",
+  },
+  special: {
+    highlight: "#88C0D0",
   },
 };
