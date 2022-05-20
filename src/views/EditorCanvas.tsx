@@ -21,6 +21,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   return (
     <Flex
       direction="column"
+      gap={2}
       alignItems="left"
       justifyContent="center"
       textAlign="left"
