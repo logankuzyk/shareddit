@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { useEditorContext } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../contexts/EditorContext";
 import { RedditSubmission } from "../../../types/reddit";
 import { Paragraph } from "../../typography/Paragraph";
 import {
@@ -14,7 +14,7 @@ interface SelfTextProps {
 }
 
 export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
-  const { theme, isCensorSubreddits, isCensorUsernames } = useEditorContext();
+  const { theme, isCensorSubreddits, isCensorUsernames } = useEditorData();
   const { selftext } = submission;
 
   const backgroundColor = theme.background["100"];

@@ -1,7 +1,8 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { useEditorContext } from "../../../contexts/EditorContext";
+import uniqolor from "uniqolor";
+import { useEditorData } from "../../../contexts/EditorContext";
 import { Caption } from "../../typography/Caption";
 import { Flair } from "./Flair";
 import { Awards } from "./Awards";
@@ -17,6 +18,8 @@ interface TaglineProps {
   flair?: RedditFlair;
   awards: RedditAward[] | undefined;
   isSubmitter?: boolean;
+  censorUser: boolean;
+  censorSubreddit?: boolean;
 }
 
 export const Tagline: React.FC<TaglineProps> = ({
@@ -27,8 +30,10 @@ export const Tagline: React.FC<TaglineProps> = ({
   flair,
   awards,
   isSubmitter,
+  censorUser,
+  censorSubreddit = false,
 }) => {
-  const { theme } = useEditorContext();
+  const { theme } = useEditorData();
   return (
     <Flex
       flexWrap="wrap"
@@ -37,7 +42,16 @@ export const Tagline: React.FC<TaglineProps> = ({
       gap={1}
       color={theme.contrast[100]}
     >
-      <Caption fontWeight={700}>{username}</Caption>
+      {!censorUser ? (
+        <Caption fontWeight={700}>{username}</Caption>
+      ) : (
+        <Flex
+          width={12}
+          height={4}
+          borderRadius={4}
+          backgroundColor={uniqolor(username).color}
+        />
+      )}
       <Caption>{"•"}</Caption>
       {isSubmitter && (
         <>
@@ -59,10 +73,7 @@ export const Tagline: React.FC<TaglineProps> = ({
       {subreddit && (
         <>
           <Caption>{"•"}</Caption>
-          <Caption>
-            {"r/"}
-            {subreddit}
-          </Caption>
+          <Caption>{censorSubreddit ? "a subreddit" : subreddit}</Caption>
         </>
       )}
       {awards && (

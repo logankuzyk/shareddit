@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { useEditorContext } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../contexts/EditorContext";
 
 interface ChildIndentProps {
   depth: number;
@@ -14,7 +14,7 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
   id,
   children,
 }) => {
-  const { theme } = useEditorContext();
+  const { theme } = useEditorData();
 
   const replyColors = [
     theme.accents[500],

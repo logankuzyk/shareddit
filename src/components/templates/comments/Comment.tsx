@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { useEditorContext } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../contexts/EditorContext";
 import {
   censorSubreddits,
   censorUsernames,
@@ -21,7 +21,7 @@ export const Comment: React.FC<CommentProps> = ({
   data,
   submissionFullname,
 }) => {
-  const { isCensorSubreddits, isCensorUsernames, theme } = useEditorContext();
+  const { isCensorSubreddits, isCensorUsernames, theme } = useEditorData();
   if (data.type === "comment") {
     const showChildren = true;
     const {
@@ -57,6 +57,7 @@ export const Comment: React.FC<CommentProps> = ({
           >
             <Flex>
               <Tagline
+                censorUser={isCensorUsernames}
                 awards={awards}
                 username={author}
                 isSubmitter={is_submitter}
