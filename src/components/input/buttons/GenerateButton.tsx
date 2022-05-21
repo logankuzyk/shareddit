@@ -1,6 +1,6 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
 import { FieldProps, getIn } from "formik";
+import React from "react";
 
 export const GenerateButton: React.FC<FieldProps> = ({
   field,
@@ -13,22 +13,22 @@ export const GenerateButton: React.FC<FieldProps> = ({
 
   return (
     <Button
-      size="lg"
-      minHeight="64px"
-      color="brand.input"
-      backgroundColor={error ? "error.400" : "brand.highlights"}
-      border="4px"
-      borderColor={error ? "error.400" : "brand.highlights"}
-      width="100%"
-      borderRadius="12px"
-      colorScheme="button"
-      isLoading={form.isSubmitting}
+      _focus={error ? {} : { borderColor: "brand.focus" }}
       _hover={
         error
           ? { borderColor: "error.600", backgroundColor: "error.500" }
           : { borderColor: "button.600", backgroundColor: "button.600" }
       }
-      _focus={error ? {} : { borderColor: "brand.focus" }}
+      backgroundColor={error ? "error.400" : "brand.highlights"}
+      border="4px"
+      borderColor={error ? "error.400" : "brand.highlights"}
+      borderRadius="12px"
+      color="brand.input"
+      colorScheme="button"
+      isLoading={form.isSubmitting}
+      minHeight="64px"
+      size="lg"
+      width="100%"
       {...props}
       {...field}
     >

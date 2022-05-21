@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuList,
@@ -7,9 +7,9 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+import React, { useContext } from "react";
 
 // import { RedditContext } from "../../screens/ImageGenerator/components/RedditContext";
-import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export const FontSelect: React.FC = () => {
   // const {

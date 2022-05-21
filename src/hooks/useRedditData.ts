@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 
 import { parseComments } from "../functions/util/parseComments";
 import { parseSubmission } from "../functions/util/parseSubmission";
-import { useAxios } from "./useAxios";
 import {
   Listing,
   RedditComment,
@@ -12,6 +11,7 @@ import {
   ListedRawComment,
   ListedRawSubmission,
 } from "../types/reddit";
+import { useAxios } from "./useAxios";
 
 const fetchRedditData = async (
   axios: AxiosInstance,

@@ -1,16 +1,16 @@
-import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import * as React from "react";
+import ReactGA from "react-ga";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ReactGA from "react-ga";
 
-import { theme } from "./styles/theme";
 import "./styles/fonts.css";
 
-import { HomeScreenProvider } from "./screens/Home";
 import { EditorScreenProvider } from "./screens/Editor";
+import { HomeScreenProvider } from "./screens/Home";
 import { NotFound } from "./screens/NotFound";
 import { RedirectRedditPath } from "./screens/RedirectRedditPath";
+import { theme } from "./styles/theme";
 import { SharedditView } from "./views/SharedditView";
 
 export const App = () => {
@@ -24,7 +24,7 @@ export const App = () => {
       <QueryClientProvider client={client}>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route path="/" exact>
               <SharedditView>
                 <HomeScreenProvider />
               </SharedditView>

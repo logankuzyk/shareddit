@@ -70,6 +70,7 @@ export type PreviewEntry = {
 };
 
 export interface RawSubmission extends RedditContent {
+  subreddit_name_prefixed: string;
   title: string;
   domain: string;
   is_self: boolean;

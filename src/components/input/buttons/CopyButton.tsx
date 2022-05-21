@@ -1,5 +1,5 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
+import React from "react";
 
 interface CopyButtonProps {
   copy: () => void;
@@ -9,21 +9,21 @@ interface CopyButtonProps {
 export const CopyButton: React.FC<CopyButtonProps> = ({ copy, loading }) => {
   return (
     <Button
-      id="copy"
-      isLoading={loading}
-      onClick={copy}
-      size="lg"
-      minHeight="64px"
-      color="brand.input"
+      _focus={{ borderColor: "brand.focus" }}
+      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
       backgroundColor={"brand.highlights"}
       border="4px"
       borderColor={"brand.highlights"}
-      width="100%"
       borderRadius="12px"
+      color="brand.input"
       colorScheme="button"
-      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
-      _focus={{ borderColor: "brand.focus" }}
       fontSize="lg"
+      id="copy"
+      isLoading={loading}
+      minHeight="64px"
+      size="lg"
+      width="100%"
+      onClick={copy}
     >
       copy image
     </Button>

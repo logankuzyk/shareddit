@@ -1,13 +1,13 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
-
+import React from "react";
 import uniqolor from "uniqolor";
+
 import { useEditorData } from "../../../contexts/EditorContext";
+import { RedditAward, RedditFlair } from "../../../types/reddit";
 import { Caption } from "../../typography/Caption";
-import { Flair } from "./Flair";
 import { Awards } from "./Awards";
 import { BadgeContainer } from "./BadgeContainer";
-import { RedditAward, RedditFlair } from "../../../types/reddit";
+import { Flair } from "./Flair";
 
 interface TaglineProps {
   type: "submission" | "comment";
@@ -36,20 +36,20 @@ export const Tagline: React.FC<TaglineProps> = ({
   const { theme } = useEditorData();
   return (
     <Flex
-      flexWrap="wrap"
-      direction="row"
       alignItems="center"
-      gap={1}
       color={theme.contrast[100]}
+      direction="row"
+      flexWrap="wrap"
+      gap={1}
     >
       {!censorUser ? (
         <Caption fontWeight={700}>{username}</Caption>
       ) : (
         <Flex
-          width={12}
-          height={4}
-          borderRadius={4}
           backgroundColor={uniqolor(username).color}
+          borderRadius={4}
+          height={4}
+          width={12}
         />
       )}
       <Caption>{"•"}</Caption>

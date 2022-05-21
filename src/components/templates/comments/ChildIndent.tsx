@@ -1,5 +1,5 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 import { useEditorData } from "../../../contexts/EditorContext";
 
@@ -37,10 +37,10 @@ export const ChildIndent: React.FC<ChildIndentProps> = ({
       <Flex direction="row" gap={3}>
         {indentColors.map((color) => (
           <Flex
-            width="2px"
-            flexShrink={0}
             backgroundColor={color}
+            flexShrink={0}
             key={`${id}-${depth--}`}
+            width="2px"
           />
         ))}
         {children}

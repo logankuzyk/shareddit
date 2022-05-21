@@ -1,8 +1,9 @@
+import { Fade } from "@chakra-ui/react";
 import React from "react";
 
-import { EditorScreenView } from "./view";
 import { EditorContextProvider } from "../../contexts/EditorContext";
 import { useRedditData } from "../../hooks/useRedditData";
+import { EditorScreenView } from "./view";
 
 interface EditorScreenControllerProps {
   subreddit: string;
@@ -26,8 +27,8 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
     <EditorContextProvider>
       <EditorScreenView
         data={data}
-        isLoading={isLoading}
         isError={isError}
+        isLoading={isLoading}
         isSuccess={isSuccess}
       />
     </EditorContextProvider>

@@ -1,5 +1,5 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
+import React from "react";
 
 interface DownloadButtonProps {
   download: () => void;
@@ -12,21 +12,21 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
 }) => {
   return (
     <Button
-      id="download"
-      isLoading={loading}
-      onClick={download}
-      size="lg"
-      minHeight="64px"
-      color="brand.input"
+      _focus={{ borderColor: "brand.focus" }}
+      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
       backgroundColor={"brand.highlights"}
       border="4px"
       borderColor={"brand.highlights"}
-      width="100%"
       borderRadius="12px"
+      color="brand.input"
       colorScheme="button"
-      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
-      _focus={{ borderColor: "brand.focus" }}
       fontSize="lg"
+      id="download"
+      isLoading={loading}
+      minHeight="64px"
+      size="lg"
+      width="100%"
+      onClick={download}
     >
       download image
     </Button>

@@ -1,13 +1,13 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 import { useEditorData } from "../../../contexts/EditorContext";
-import { RedditSubmission } from "../../../types/reddit";
-import { Paragraph } from "../../typography/Paragraph";
 import {
   censorUsernames,
   censorSubreddits,
 } from "../../../functions/util/censorText";
+import { RedditSubmission } from "../../../types/reddit";
+import { Paragraph } from "../../typography/Paragraph";
 
 interface SelfTextProps {
   submission: RedditSubmission;
@@ -32,11 +32,11 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
   if (selftext) {
     return (
       <Flex
-        padding={2}
-        borderWidth={1}
-        borderRadius={8}
         backgroundColor={backgroundColor}
         borderColor={borderColor}
+        borderRadius={8}
+        borderWidth={1}
+        padding={2}
       >
         <Paragraph color={theme.contrast[300]}>{body}</Paragraph>
       </Flex>

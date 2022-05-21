@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import {
   Modal,
@@ -16,6 +15,7 @@ import {
   List,
   Flex,
 } from "@chakra-ui/react";
+import React, { useContext } from "react";
 
 // import { StyledButton } from "../../../components/buttons/StyledButton";
 // import { RedditContext } from "./RedditContext";

@@ -1,5 +1,5 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 import { Heading } from "../typography/Heading";
 
@@ -13,7 +13,7 @@ export const EditorOption: React.FC<EditorOptionProps> = ({
   label,
 }) => {
   return (
-    <Flex gap={1} alignItems="center" justifyContent="center">
+    <Flex alignItems="center" gap={1} justifyContent="center">
       <Heading>{label}</Heading>
       {children}
     </Flex>

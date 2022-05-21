@@ -1,14 +1,12 @@
-import React from "react";
 import { Flex, Switch } from "@chakra-ui/react";
+import React from "react";
 
-import { EditorOption } from "./EditorOption";
 import { useEditorData } from "../../contexts/EditorContext";
 import { useEditorMutation } from "../../contexts/EditorContext";
 import { Seperator } from "../Seperator";
+import { EditorOption } from "./EditorOption";
 
-interface EditorInterfaceProps {}
-
-export const EditorInterface: React.FC<EditorInterfaceProps> = () => {
+export const EditorInterface: React.FC = () => {
   const {
     fontSize,
     imageScale,
@@ -21,29 +19,29 @@ export const EditorInterface: React.FC<EditorInterfaceProps> = () => {
 
   return (
     <Flex
-      direction="column"
-      justifyContent="center"
-      textAlign="left"
-      borderRadius={8}
-      gap={2}
-      paddingX={18}
-      paddingY={4}
       alignItems="left"
       backgroundColor="#ffffff"
+      borderRadius={8}
+      direction="column"
+      gap={2}
+      justifyContent="center"
+      paddingX={18}
+      paddingY={4}
+      textAlign="left"
     >
       <EditorOption label="Censor Usernames">
         <Switch
-          onChange={() => setProperty("isCensorUsernames", !isCensorUsernames)}
           isChecked={isCensorUsernames}
+          onChange={() => setProperty("isCensorUsernames", !isCensorUsernames)}
         />
       </EditorOption>
       <Seperator />
       <EditorOption label="Censor Subreddits">
         <Switch
+          isChecked={isCensorSubreddits}
           onChange={() =>
             setProperty("isCensorSubreddits", !isCensorSubreddits)
           }
-          isChecked={isCensorSubreddits}
         />
       </EditorOption>
     </Flex>

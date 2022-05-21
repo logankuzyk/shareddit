@@ -17,7 +17,7 @@ export const EditorScreenProvider: React.FC<
   const postId = params.get("postID");
 
   if (subreddit && postId) {
-    return <EditorScreenController subreddit={subreddit} postId={postId} />;
+    return <EditorScreenController postId={postId} subreddit={subreddit} />;
   } else {
     return <></>;
   }

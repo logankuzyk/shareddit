@@ -1,6 +1,6 @@
-import React from "react";
 import { Input } from "@chakra-ui/react";
 import { FieldProps, getIn } from "formik";
+import React from "react";
 
 export const RedditLinkInput: React.FC<FieldProps> = ({
   field,
@@ -13,21 +13,21 @@ export const RedditLinkInput: React.FC<FieldProps> = ({
 
   return (
     <Input
-      size="lg"
-      minHeight="64px"
-      placeholder="enter reddit URL"
+      _focus={{ borderColor: error ? "error.400" : "brand.focus" }}
+      _hover={
+        error ? { borderColor: "error.600" } : { borderColor: "button.600" }
+      }
       backgroundColor="brand.input"
-      textAlign="center"
-      marginTop="var(--chakra-space-6)"
-      fontWeight="semibold"
       border="4px"
       borderColor={error ? "error.400" : "button.500"}
       borderRadius="12px"
       colorScheme="button"
-      _hover={
-        error ? { borderColor: "error.600" } : { borderColor: "button.600" }
-      }
-      _focus={{ borderColor: error ? "error.400" : "brand.focus" }}
+      fontWeight="semibold"
+      marginTop="var(--chakra-space-6)"
+      minHeight="64px"
+      placeholder="enter reddit URL"
+      size="lg"
+      textAlign="center"
       //Form validation
       // isInvalid={error}
       {...field}

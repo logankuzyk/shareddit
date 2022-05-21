@@ -15,8 +15,8 @@ export interface Theme {
   };
 }
 
-export const darkFlairText: string = "#4C566A";
-export const lightFlairText: string = "#D8DEE9";
+export const darkFlairText = "#4C566A";
+export const lightFlairText = "#D8DEE9";
 
 export const lightTheme: Theme = {
   background: {

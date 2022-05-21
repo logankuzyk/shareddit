@@ -1,9 +1,9 @@
 import React from "react";
 
 import { lightFlairText, darkFlairText } from "../../../styles/themes";
-import { BadgeContainer } from "./BadgeContainer";
 import { RedditFlair } from "../../../types/reddit";
 import { Caption } from "../../typography/Caption";
+import { BadgeContainer } from "./BadgeContainer";
 
 interface FlairProps {
   flair: RedditFlair;
@@ -17,13 +17,13 @@ export const Flair: React.FC<FlairProps> = ({ flair }) => {
       borderColor={flair.backgroundColor}
     >
       <img
+        alt="flair icon"
+        src={flair.img}
         style={{
           display: "flex",
           width: "0.7em",
           height: "0.7em",
         }}
-        src={flair.img}
-        alt="flair icon"
       />
       <Caption color={textColor}>{flair.text}</Caption>
     </BadgeContainer>

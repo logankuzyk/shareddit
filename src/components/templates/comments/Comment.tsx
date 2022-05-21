@@ -1,15 +1,15 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 import { useEditorData } from "../../../contexts/EditorContext";
 import {
   censorSubreddits,
   censorUsernames,
 } from "../../../functions/util/censorText";
-import { ChildIndent } from "./ChildIndent";
 import { RedditComment, MoreChildren } from "../../../types/reddit";
-import { Tagline } from "../tagline/Tagline";
 import { Paragraph } from "../../typography/Paragraph";
+import { Tagline } from "../tagline/Tagline";
+import { ChildIndent } from "./ChildIndent";
 
 interface CommentProps {
   data: RedditComment | MoreChildren;
@@ -48,23 +48,23 @@ export const Comment: React.FC<CommentProps> = ({
       <Flex direction="column">
         <ChildIndent depth={depth} id={id}>
           <Flex
+            direction="column"
             key={id}
             style={{
               marginTop: 4,
               marginBottom: 4,
             }}
-            direction="column"
           >
             <Flex>
               <Tagline
-                censorUser={isCensorUsernames}
                 awards={awards}
-                username={author}
-                isSubmitter={is_submitter}
-                flair={flair}
-                score={scoreString}
+                censorUser={isCensorUsernames}
                 date={date}
+                flair={flair}
+                isSubmitter={is_submitter}
+                score={scoreString}
                 type="comment"
+                username={author}
               />
             </Flex>
             <Paragraph color={theme.contrast[300]}>{body}</Paragraph>
@@ -74,8 +74,8 @@ export const Comment: React.FC<CommentProps> = ({
           data.replyTree.map((comment) => (
             <Comment
               data={comment}
-              submissionFullname={submissionFullname}
               key={comment.id}
+              submissionFullname={submissionFullname}
             />
           ))}
       </Flex>

@@ -1,6 +1,6 @@
-import React from "react";
 import { Button } from "@chakra-ui/react";
 import { CSSProperties } from "@emotion/serialize";
+import React from "react";
 
 interface StyledButtonProps {
   onClick?: () => void;
@@ -14,20 +14,20 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
 }) => {
   return (
     <Button
-      onClick={onClick}
-      size="lg"
-      minHeight="64px"
-      color="brand.input"
+      _focus={{ borderColor: "brand.focus" }}
+      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
       backgroundColor={"brand.highlights"}
       border="4px"
       borderColor={"brand.highlights"}
-      width="100%"
       borderRadius="12px"
+      color="brand.input"
       colorScheme="button"
-      _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
-      _focus={{ borderColor: "brand.focus" }}
-      //@ts-ignore
+      minHeight="64px"
+      size="lg"
       style={style}
+      width="100%"
+      //@ts-ignore
+      onClick={onClick}
       {...props}
     />
   );

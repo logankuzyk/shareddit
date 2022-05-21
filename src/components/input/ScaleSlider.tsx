@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import {
   Slider,
   SliderTrack,
@@ -6,6 +5,7 @@ import {
   SliderThumb,
   Box,
 } from "@chakra-ui/react";
+import React, { useContext } from "react";
 
 // import { RedditContext } from "./RedditContext";
 

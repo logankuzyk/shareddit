@@ -2,7 +2,7 @@ import { RawAward, RedditAward } from "../../types/reddit";
 
 export const parseAwards = (awards: RawAward[]): RedditAward[] | undefined => {
   const output = [];
-  for (let award of awards) {
+  for (const award of awards) {
     const img = award.resized_static_icons.filter(
       (award) => award.height === 64
     )[0].url;

@@ -3,3 +3,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:regular,semibold,bold,&subset=latin,latin-ext");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:regular,semibold,bold,&subset=latin,latin-ext");
 @import url("https://fonts.googleapis.com/css?family=Varela+Round:regular,semibold,bold,&subset=latin,latin-ext");
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

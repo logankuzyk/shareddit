@@ -1,13 +1,13 @@
-import React from "react";
-import * as yup from "yup";
 import { Box, Center } from "@chakra-ui/react";
 import { Field, Form, FormikProvider, useFormik } from "formik";
+import React from "react";
+import * as yup from "yup";
 
-import { SharedditView } from "../../views/SharedditView";
-import { Heading } from "../../components/typography/Heading";
 import { GenerateButton } from "../../components/input/buttons/GenerateButton";
 import { RedditLinkInput } from "../../components/input/RedditLinkInput";
 import { DonateModal } from "../../components/modals/DonateModal";
+import { Heading } from "../../components/typography/Heading";
+import { SharedditView } from "../../views/SharedditView";
 
 interface HomeScreenViewProps {
   submitHandler: (input: string) => void;
@@ -36,19 +36,19 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
     <SharedditView>
       <Heading>The best way to screenshot reddit content.</Heading>
       <Center>
-        <Box width="100%" maxWidth="80vw">
+        <Box maxWidth="80vw" width="100%">
           <FormikProvider value={formik}>
             <Form>
               <Field
-                name="link"
                 component={RedditLinkInput}
+                name="link"
                 style={{ marginBottom: "var(--chakra-space-8)" }}
               />
               <Field
-                name="submit"
-                type="submit"
                 component={GenerateButton}
+                name="submit"
                 style={{ marginBottom: "var(--chakra-space-4)" }}
+                type="submit"
               />
               <DonateModal />
             </Form>

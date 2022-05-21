@@ -1,10 +1,10 @@
 import React from "react";
 
 import { useEditorData } from "../../../contexts/EditorContext";
-import { SubmissionContainer } from "./SubmissionContainer";
-import { Title } from "../../typography/Title";
 import { RedditSubmission } from "../../../types/reddit";
+import { Title } from "../../typography/Title";
 import { Tagline } from "../tagline/Tagline";
+import { SubmissionContainer } from "./SubmissionContainer";
 import { SubmissionContent } from "./SubmissionContent";
 
 interface SubmissionCardProps {
@@ -27,15 +27,15 @@ export const Submission: React.FC<SubmissionCardProps> = ({ submission }) => {
     <SubmissionContainer>
       <Title color={theme.contrast[300]}>{title}</Title>
       <Tagline
-        censorUser={isCensorUsernames}
-        censorSubreddit={isCensorSubreddits}
-        username={author}
         awards={awards}
+        censorSubreddit={isCensorSubreddits}
+        censorUser={isCensorUsernames}
+        date={date}
         flair={userFlair}
         score={scoreString}
-        date={date}
         subreddit={subreddit_name_prefixed}
         type="submission"
+        username={author}
       />
       <SubmissionContent submission={submission} />
     </SubmissionContainer>

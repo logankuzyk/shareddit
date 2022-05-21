@@ -1,8 +1,8 @@
 import React from "react";
 
-import { BadgeContainer } from "./BadgeContainer";
 import { RedditAward } from "../../../types/reddit";
 import { Caption } from "../../typography/Caption";
+import { BadgeContainer } from "./BadgeContainer";
 
 interface AwardsProps {
   awards: RedditAward[] | undefined;
@@ -15,13 +15,13 @@ export const Awards: React.FC<AwardsProps> = ({ awards }) => {
         {awards.map((award) => (
           <React.Fragment key={award.img}>
             <img
+              alt="flair icon"
+              src={award.img}
               style={{
                 display: "flex",
                 width: "0.7em",
                 height: "0.7em",
               }}
-              src={award.img}
-              alt="flair icon"
             />
             <Caption>{award.count}</Caption>
           </React.Fragment>

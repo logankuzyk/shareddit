@@ -1,9 +1,8 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 import { colors } from "../styles/colors";
 
-interface SeperatorProps {}
-export const Seperator: React.FC<SeperatorProps> = ({}) => {
-  return <Flex height="1px" backgroundColor={colors.grey["300"]} />;
+export const Seperator: React.FC = () => {
+  return <Flex backgroundColor={colors.grey["300"]} height="1px" />;
 };

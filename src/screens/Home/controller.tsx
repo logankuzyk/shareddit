@@ -1,6 +1,6 @@
+import queryString from "query-string";
 import React from "react";
 import { UrlParser } from "url-params-parser";
-import queryString from "query-string";
 
 import { HomeScreenView } from "./view";
 

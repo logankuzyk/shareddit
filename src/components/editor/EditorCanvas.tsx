@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
 import { Flex, FlexProps } from "@chakra-ui/react";
+import React, { useEffect, useRef } from "react";
 
 import { useEditorData } from "../../contexts/EditorContext";
 import {
@@ -7,8 +7,8 @@ import {
   RedditComment,
   MoreChildren,
 } from "../../types/reddit";
-import { Submission } from "../templates/submissions/Submission";
 import { RootComment } from "../templates/comments/RootComment";
+import { Submission } from "../templates/submissions/Submission";
 
 interface EditorCanvasProps extends FlexProps {
   submission: RedditSubmission;
@@ -41,14 +41,14 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
 
   return (
     <Flex
+      alignItems="left"
+      backgroundColor={backgroundColor}
       borderRadius={8}
       gap={2}
-      alignItems="left"
       justifyContent="center"
-      textAlign="left"
-      backgroundColor={backgroundColor}
       overflowY="scroll"
       ref={scrollRef}
+      textAlign="left"
       {...props}
     >
       <Flex direction="column" id="image-canvas">

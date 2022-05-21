@@ -1,9 +1,9 @@
-import React from "react";
 import { Flex } from "@chakra-ui/react";
+import React from "react";
 
 export const SubmissionContainer: React.FC = ({ children }) => {
   return (
-    <Flex paddingX={18} paddingTop={4} gap={2} direction="column">
+    <Flex direction="column" gap={2} paddingTop={4} paddingX={18}>
       {children}
     </Flex>
   );
