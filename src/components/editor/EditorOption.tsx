@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { Heading } from "../typography/Heading";
+import { Paragraph } from "../typography/Paragraph";
 
 interface EditorOptionProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export const EditorOption: React.FC<EditorOptionProps> = ({
 }) => {
   return (
     <Flex alignItems="center" gap={1} justifyContent="center">
-      <Heading>{label}</Heading>
+      <Paragraph>{label}</Paragraph>
       {children}
     </Flex>
   );
