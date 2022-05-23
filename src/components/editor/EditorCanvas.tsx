@@ -1,4 +1,4 @@
-import { Flex, FlexProps } from "@chakra-ui/react";
+import { Flex, FlexProps, Spinner } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 
 import { useEditorData } from "../../contexts/EditorContext";
@@ -11,13 +11,17 @@ import { RootComment } from "../templates/comments/RootComment";
 import { Submission } from "../templates/submissions/Submission";
 
 interface EditorCanvasProps extends FlexProps {
-  submission: RedditSubmission;
-  comments: (RedditComment | MoreChildren)[];
+  isLoading: boolean;
+  isError: boolean;
+  submission: RedditSubmission | undefined;
+  comments: (RedditComment | MoreChildren)[] | undefined;
 }
 
 export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   submission,
   comments,
+  isLoading,
+  isError,
   ...props
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -52,8 +56,13 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       {...props}
     >
       <Flex direction="column" id="image-canvas">
-        <Submission submission={submission} />
-        <RootComment data={comments[0]} />
+        {comments && submission && (
+          <>
+            <Submission submission={submission} />
+            <RootComment data={comments[0]} />
+          </>
+        )}
+        {isLoading && <Spinner />}
       </Flex>
     </Flex>
   );

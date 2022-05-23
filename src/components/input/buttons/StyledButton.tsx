@@ -8,7 +8,7 @@ interface StyledButtonProps {
 }
 
 export const StyledButton: React.FC<StyledButtonProps> = ({
-  onClick = () => {},
+  onClick,
   style,
   ...props
 }) => {
@@ -24,9 +24,7 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
       colorScheme="button"
       minHeight="64px"
       size="lg"
-      style={style}
       width="100%"
-      //@ts-ignore
       onClick={onClick}
       {...props}
     />

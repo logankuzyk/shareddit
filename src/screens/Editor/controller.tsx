@@ -14,10 +14,7 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   subreddit,
   postId,
 }) => {
-  const { data, isLoading, isError, isSuccess } = useRedditData(
-    subreddit,
-    postId
-  );
+  const { data, isLoading, isError } = useRedditData(subreddit, postId);
 
   const handleDownload = async () => {};
   const handleCopy = async () => {};
@@ -25,12 +22,7 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
 
   return (
     <EditorContextProvider>
-      <EditorScreenView
-        data={data}
-        isError={isError}
-        isLoading={isLoading}
-        isSuccess={isSuccess}
-      />
+      <EditorScreenView data={data} isError={isError} isLoading={isLoading} />
     </EditorContextProvider>
   );
 };
