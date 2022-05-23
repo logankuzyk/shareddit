@@ -9,14 +9,7 @@ import { EditorOption } from "./EditorOption";
 import { EditorOptionSection } from "./EditorOptionSection";
 
 export const EditorInterface: React.FC = () => {
-  const {
-    fontSize,
-    imageScale,
-    isCensorUsernames,
-    isCensorSubreddits,
-    theme,
-    showComments,
-  } = useEditorData();
+  const { isCensorUsernames, isCensorSubreddits } = useEditorData();
   const { setProperty } = useEditorMutation();
 
   return (

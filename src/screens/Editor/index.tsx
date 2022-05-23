@@ -2,11 +2,7 @@ import React from "react";
 
 import { EditorScreenController } from "./controller";
 
-interface EditorScreenProviderProps {}
-
-export const EditorScreenProvider: React.FC<
-  EditorScreenProviderProps
-> = ({}) => {
+export const EditorScreenProvider: React.FC = () => {
   const params = new URLSearchParams(
     `?${window.location.pathname.substring(
       10,

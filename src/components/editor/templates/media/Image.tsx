@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RedditSubmission } from "../../../types/reddit";
+import { RedditSubmission } from "../../../../types/reddit";
 
 interface ImageProps {
   submission: RedditSubmission;

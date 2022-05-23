@@ -1,4 +1,3 @@
-import { Fade } from "@chakra-ui/react";
 import React from "react";
 
 import { EditorContextProvider } from "../../contexts/EditorContext";
@@ -16,9 +15,9 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
 }) => {
   const { data, isLoading, isError } = useRedditData(subreddit, postId);
 
-  const handleDownload = async () => {};
-  const handleCopy = async () => {};
-  const svgToImage = async () => {};
+  // const handleDownload = async () => {};
+  // const handleCopy = async () => {};
+  // const svgToImage = async () => {};
 
   return (
     <EditorContextProvider>

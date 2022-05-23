@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { RedditComment, MoreChildren } from "../../../types/reddit";
+import { RedditComment, MoreChildren } from "../../../../types/reddit";
 import { Comment } from "./Comment";
 
 interface RootCommentProps {

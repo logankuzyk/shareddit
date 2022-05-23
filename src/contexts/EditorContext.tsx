@@ -32,18 +32,20 @@ const initialState: EditorContextState = {
 };
 
 const initialFunctions: EditorContextFunctions = {
-  setProperty: () => {},
+  setProperty: () => {
+    return undefined;
+  },
 };
 
 const EditorDataContext = createContext<EditorContextState>(initialState);
 const EditorMutationContext =
   createContext<EditorContextFunctions>(initialFunctions);
 
-export const useEditorData = () => {
+export const useEditorData = (): EditorContextState => {
   return useContext(EditorDataContext);
 };
 
-export const useEditorMutation = () => {
+export const useEditorMutation = (): EditorContextFunctions => {
   return useContext(EditorMutationContext);
 };
 
@@ -59,11 +61,11 @@ export class EditorContextProvider extends React.Component<
   setProperty = <K extends keyof EditorContextState>(
     key: K,
     value: EditorContextState[K]
-  ) => {
+  ): void => {
     this.setState({ ...this.state, [key]: value });
   };
 
-  render() {
+  render(): JSX.Element {
     return (
       <EditorDataContext.Provider value={this.state}>
         <EditorMutationContext.Provider

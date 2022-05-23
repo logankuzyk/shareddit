@@ -1,13 +1,13 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { useEditorData } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../../contexts/EditorContext";
 import {
   censorSubreddits,
   censorUsernames,
-} from "../../../functions/util/censorText";
-import { RedditComment, MoreChildren } from "../../../types/reddit";
-import { Paragraph } from "../../typography/Paragraph";
+} from "../../../../functions/util/censorText";
+import { RedditComment, MoreChildren } from "../../../../types/reddit";
+import { Paragraph } from "../../../typography/Paragraph";
 import { Tagline } from "../tagline/Tagline";
 import { ChildIndent } from "./ChildIndent";
 

@@ -7,8 +7,8 @@ import {
   RedditComment,
   MoreChildren,
 } from "../../types/reddit";
-import { RootComment } from "../templates/comments/RootComment";
-import { Submission } from "../templates/submissions/Submission";
+import { RootComment } from "./templates/comments/RootComment";
+import { Submission } from "./templates/submissions/Submission";
 
 interface EditorCanvasProps extends FlexProps {
   isLoading: boolean;
@@ -63,6 +63,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
           </>
         )}
         {isLoading && <Spinner />}
+        {isError && <></>}
       </Flex>
     </Flex>
   );

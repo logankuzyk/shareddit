@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { useEditorData } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../../contexts/EditorContext";
 
 interface ChildIndentProps {
   depth: number;

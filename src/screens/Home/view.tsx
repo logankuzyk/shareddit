@@ -5,7 +5,6 @@ import * as yup from "yup";
 
 import { GenerateButton } from "../../components/input/buttons/GenerateButton";
 import { RedditLinkInput } from "../../components/input/RedditLinkInput";
-import { DonateModal } from "../../components/modals/DonateModal";
 import { Heading } from "../../components/typography/Heading";
 import { SharedditView } from "../../views/SharedditView";
 
@@ -50,7 +49,6 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({
                 style={{ marginBottom: "var(--chakra-space-4)" }}
                 type="submit"
               />
-              <DonateModal />
             </Form>
           </FormikProvider>
         </Box>

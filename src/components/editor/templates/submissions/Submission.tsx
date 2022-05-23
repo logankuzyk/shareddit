@@ -1,8 +1,8 @@
 import React from "react";
 
-import { useEditorData } from "../../../contexts/EditorContext";
-import { RedditSubmission } from "../../../types/reddit";
-import { Title } from "../../typography/Title";
+import { useEditorData } from "../../../../contexts/EditorContext";
+import { RedditSubmission } from "../../../../types/reddit";
+import { Title } from "../../../typography/Title";
 import { Tagline } from "../tagline/Tagline";
 import { SubmissionContainer } from "./SubmissionContainer";
 import { SubmissionContent } from "./SubmissionContent";

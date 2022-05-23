@@ -4,11 +4,7 @@ import { UrlParser } from "url-params-parser";
 
 import { HomeScreenView } from "./view";
 
-interface HomeScreenControllerProps {}
-
-export const HomeScreenController: React.FC<
-  HomeScreenControllerProps
-> = ({}) => {
+export const HomeScreenController: React.FC = () => {
   const submitHandler = async (input: string) => {
     try {
       const params = UrlParser(

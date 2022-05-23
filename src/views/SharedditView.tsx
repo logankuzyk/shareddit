@@ -4,11 +4,7 @@ import { Helmet } from "react-helmet";
 
 import { SharedditLogo } from "../components/SharedditLogo";
 
-interface SharedditViewProps {
-  children: any;
-}
-
-export const SharedditView: React.FC<SharedditViewProps> = ({ children }) => {
+export const SharedditView: React.FC = ({ children }) => {
   return (
     <Box fontSize="xl" textAlign="center">
       <Helmet>

@@ -1,13 +1,13 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { useEditorData } from "../../../contexts/EditorContext";
+import { useEditorData } from "../../../../contexts/EditorContext";
 import {
   censorUsernames,
   censorSubreddits,
-} from "../../../functions/util/censorText";
-import { RedditSubmission } from "../../../types/reddit";
-import { Paragraph } from "../../typography/Paragraph";
+} from "../../../../functions/util/censorText";
+import { RedditSubmission } from "../../../../types/reddit";
+import { Paragraph } from "../../../typography/Paragraph";
 
 interface SelfTextProps {
   submission: RedditSubmission;

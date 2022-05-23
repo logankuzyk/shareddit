@@ -1,8 +1,8 @@
 import React from "react";
 
-import { lightFlairText, darkFlairText } from "../../../styles/themes";
-import { RedditFlair } from "../../../types/reddit";
-import { Caption } from "../../typography/Caption";
+import { lightFlairText, darkFlairText } from "../../../../styles/themes";
+import { RedditFlair } from "../../../../types/reddit";
+import { Caption } from "../../../typography/Caption";
 import { BadgeContainer } from "./BadgeContainer";
 
 interface FlairProps {

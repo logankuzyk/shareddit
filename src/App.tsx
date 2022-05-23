@@ -13,7 +13,7 @@ import { RedirectRedditPath } from "./screens/RedirectRedditPath";
 import { theme } from "./styles/theme";
 import { SharedditView } from "./views/SharedditView";
 
-export const App = () => {
+export const App = (): JSX.Element => {
   ReactGA.initialize("UA-51247116-3");
   ReactGA.pageview(window.location.pathname + window.location.search);
 

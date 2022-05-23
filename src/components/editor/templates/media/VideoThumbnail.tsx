@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import React from "react";
 // import { FontAwesome5 } from "@expo/vector-icons";
 
-import { RedditSubmission } from "../../../types/reddit";
+import { RedditSubmission } from "../../../../types/reddit";
 
 interface VideoThumbnailProps {
   submission: RedditSubmission;

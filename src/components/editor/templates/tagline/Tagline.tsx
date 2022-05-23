@@ -2,9 +2,9 @@ import { Flex } from "@chakra-ui/react";
 import React from "react";
 import uniqolor from "uniqolor";
 
-import { useEditorData } from "../../../contexts/EditorContext";
-import { RedditAward, RedditFlair } from "../../../types/reddit";
-import { Caption } from "../../typography/Caption";
+import { useEditorData } from "../../../../contexts/EditorContext";
+import { RedditAward, RedditFlair } from "../../../../types/reddit";
+import { Caption } from "../../../typography/Caption";
 import { Awards } from "./Awards";
 import { BadgeContainer } from "./BadgeContainer";
 import { Flair } from "./Flair";

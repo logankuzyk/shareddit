@@ -1,7 +1,7 @@
 import React from "react";
 
-import { RedditAward } from "../../../types/reddit";
-import { Caption } from "../../typography/Caption";
+import { RedditAward } from "../../../../types/reddit";
+import { Caption } from "../../../typography/Caption";
 import { BadgeContainer } from "./BadgeContainer";
 
 interface AwardsProps {

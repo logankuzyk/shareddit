@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 
-import { RedditSubmission } from "../../../types/reddit";
+import { RedditSubmission } from "../../../../types/reddit";
 import { Image } from "../media/Image";
 import { SelfText } from "../media/SelfText";
 import { VideoThumbnail } from "../media/VideoThumbnail";

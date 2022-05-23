@@ -135,8 +135,6 @@ export interface RawUser {
   pref_show_trending: boolean;
   pref_show_presence: boolean;
   snoovatar_img: string;
-  snoovatar_size?: any;
-  gold_expiration?: any;
   has_gold_subscription: boolean;
   is_sponsor: boolean;
   num_friends: number;
@@ -154,7 +152,6 @@ export interface RawUser {
   is_gold: boolean;
   is_mod: boolean;
   awarder_karma: number;
-  suspension_expiration_utc?: any;
   has_stripe_subscription: boolean;
   is_suspended: boolean;
   pref_video_autoplay: boolean;
