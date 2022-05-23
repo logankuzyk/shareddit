@@ -8,11 +8,11 @@ export const Primary: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <Button
       _hover={{
-        backgroundColor: lightTheme.accents[500],
+        backgroundColor: lightTheme.buttons.primary.focus,
         color: lightTheme.background[300],
       }}
       alignItems="center"
-      backgroundColor={lightTheme.accents[500]}
+      backgroundColor={lightTheme.buttons.primary.normal}
       borderRadius={8}
       color={lightTheme.background[100]}
       gap={2}

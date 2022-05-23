@@ -1,5 +1,10 @@
 import { ColorWeight } from "./colors";
 
+interface ButtonColor {
+  normal: string;
+  focus: string;
+}
+
 export interface Theme {
   background: {
     [K in ColorWeight]?: string;
@@ -12,6 +17,10 @@ export interface Theme {
   };
   special: {
     highlight: string;
+  };
+  buttons: {
+    primary: ButtonColor;
+    secondary: ButtonColor;
   };
 }
 
@@ -41,5 +50,9 @@ export const lightTheme: Theme = {
   },
   special: {
     highlight: "#88C0D0",
+  },
+  buttons: {
+    primary: { normal: "#81A1C1", focus: "#5E81AC" },
+    secondary: { normal: "#8FBCBB", focus: "#88C0D0" },
   },
 };
