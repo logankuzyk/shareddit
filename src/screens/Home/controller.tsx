@@ -5,7 +5,7 @@ import { UrlParser } from "url-params-parser";
 import { HomeScreenView } from "./view";
 
 export const HomeScreenController: React.FC = () => {
-  const submitHandler = async (input: string) => {
+  const handleSubmit = async (input: string) => {
     try {
       const params = UrlParser(
         input,
@@ -18,5 +18,5 @@ export const HomeScreenController: React.FC = () => {
     }
   };
 
-  return <HomeScreenView submitHandler={submitHandler} />;
+  return <HomeScreenView onSubmit={handleSubmit} />;
 };

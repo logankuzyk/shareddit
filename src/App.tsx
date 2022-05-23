@@ -24,7 +24,7 @@ export const App = (): JSX.Element => {
       <QueryClientProvider client={client}>
         <Router>
           <Switch>
-            <Route path="/" exact>
+            <Route path="/">
               <SharedditView>
                 <HomeScreenProvider />
               </SharedditView>
