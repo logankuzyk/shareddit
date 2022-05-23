@@ -1,21 +1,46 @@
-import { Box, Center } from "@chakra-ui/react";
-import React from "react";
-import * as yup from "yup";
+import { Flex } from "@chakra-ui/react";
+import React, { useState, ChangeEvent } from "react";
 
-import { Heading } from "../../components/typography/Heading";
-import { SharedditView } from "../../views/SharedditView";
+import { PrimaryButton } from "../../components/buttons";
+import { Input } from "../../components/Input";
+import { Title, Caption } from "../../components/typography/";
+import { lightTheme } from "../../styles/themes";
 
 interface HomeScreenViewProps {
   onSubmit: (input: string) => void;
 }
 
-export const HomeScreenView: React.FC<HomeScreenViewProps> = () => {
+export const HomeScreenView: React.FC<HomeScreenViewProps> = ({ onSubmit }) => {
+  const [input, setInput] = useState<string>("");
+  const [error, setError] = useState<string>("");
+
+  const handleChange = (newInput: string) => {
+    setInput(newInput);
+  };
+
+  const handleSubmit = () => {
+    try {
+      setError("");
+      onSubmit(input);
+    } catch (error: unknown) {
+      setError((error as Error).message);
+    }
+  };
+
   return (
-    <SharedditView>
-      <Heading>The best way to screenshot reddit content.</Heading>
-      <Center>
-        <Box maxWidth="80vw" width="100%"></Box>
-      </Center>
-    </SharedditView>
+    <Flex direction="column" gap={2}>
+      <Title>The best way to screenshot reddit content.</Title>
+      <Input
+        placeholder="reddit url"
+        value={input}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          handleChange(event.currentTarget.value)
+        }
+      />
+      <PrimaryButton onClick={() => handleSubmit()}>
+        Generate Image
+      </PrimaryButton>
+      <Caption color={lightTheme.accents[100]}>{error}</Caption>
+    </Flex>
   );
 };

@@ -1,20 +1,29 @@
-import queryString from "query-string";
 import React from "react";
-import { UrlParser } from "url-params-parser";
 
 import { HomeScreenView } from "./view";
 
 export const HomeScreenController: React.FC = () => {
-  const handleSubmit = async (input: string) => {
+  const handleSubmit = (input: string) => {
+    const redditUrlFormat =
+      /\/r\/(?<sub>[\w]+)\/comments\/(?<postID>[\w]+)[/\w]*\/*(?<commentID>[\w]*)/;
+
     try {
-      const params = UrlParser(
-        input,
-        "/r/:sub/comments/:postID/:title/:commentID"
-      ).namedParams;
-      const query = queryString.stringify(params);
-      window.location.pathname = `/generate/${query}`;
-    } catch (err) {
-      console.error(err);
+      if (!input) {
+        return;
+      }
+      const url = new URL(input);
+      const { pathname } = url;
+      if (!redditUrlFormat.test(pathname)) {
+        throw new Error("Please enter a reddit submission or comment URL");
+      }
+      const redditParams = redditUrlFormat.exec(pathname)?.groups as Record<
+        string,
+        string
+      >;
+      const urlParams = new URLSearchParams(redditParams);
+      window.location.href = `/generate?${urlParams.toString()}`;
+    } catch (error: unknown) {
+      throw Error(error as string);
     }
   };
 

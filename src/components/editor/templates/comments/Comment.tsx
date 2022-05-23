@@ -28,7 +28,7 @@ export const Comment: React.FC<CommentProps> = ({
       author,
       date,
       scoreString,
-      body: commentBody,
+      body_html: commentBody,
       id,
       flair,
       awards,
@@ -67,7 +67,9 @@ export const Comment: React.FC<CommentProps> = ({
                 username={author}
               />
             </Flex>
-            <Paragraph color={theme.contrast[300]}>{body}</Paragraph>
+            <Paragraph color={theme.contrast[300]}>
+              <a dangerouslySetInnerHTML={{ __html: body }} />
+            </Paragraph>
           </Flex>
         </ChildIndent>
         {showChildren &&

@@ -7,6 +7,7 @@ import { EditorScreenView } from "./view";
 interface EditorScreenControllerProps {
   subreddit: string;
   postId: string;
+  commentId: string | null;
 }
 
 export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({

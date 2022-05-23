@@ -3,7 +3,7 @@ import React from "react";
 
 import { useEditorData } from "../../contexts/EditorContext";
 import { useEditorMutation } from "../../contexts/EditorContext";
-import { PrimaryButton } from "../input/buttons";
+import { PrimaryButton } from "../buttons";
 import { Seperator } from "../Seperator";
 import { EditorOption } from "./EditorOption";
 import { EditorOptionSection } from "./EditorOptionSection";

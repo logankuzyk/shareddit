@@ -1,26 +1,26 @@
-import { Box, Center, Grid, VStack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
-import { Helmet } from "react-helmet";
 
 import { SharedditLogo } from "../components/SharedditLogo";
+import { lightTheme } from "../styles/themes";
 
 export const SharedditView: React.FC = ({ children }) => {
   return (
-    <Box fontSize="xl" textAlign="center">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>shareddit</title>
-      </Helmet>
-      <Grid minH="100vh" p={3}>
-        <VStack marginX="auto" maxW="lg" spacing={4}>
-          <SharedditLogo />
-          <Center>
-            <Box fontSize="xl" textAlign="center" width="100%">
-              {children}
-            </Box>
-          </Center>
-        </VStack>
-      </Grid>
-    </Box>
+    <Flex
+      backgroundColor={lightTheme.background[200]}
+      fontSize="xl"
+      textAlign="center"
+    >
+      <Flex
+        alignItems="center"
+        direction="column"
+        justifyContent="flex-start"
+        minHeight="100vh"
+        width="100vw"
+      >
+        <SharedditLogo />
+        {children}
+      </Flex>
+    </Flex>
   );
 };

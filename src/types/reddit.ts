@@ -43,7 +43,7 @@ export interface RawAward {
 export interface RawComment extends RedditContent {
   parent_id: string; // technically parent fullname
   is_submitter: boolean;
-  body: string;
+  body_html: string;
   depth: number;
   replies?: Listing<ListedRawComment>;
 }
@@ -75,7 +75,7 @@ export interface RawSubmission extends RedditContent {
   domain: string;
   is_self: boolean;
   locked: boolean;
-  selftext?: string;
+  selftext_html?: string;
   is_original_content: boolean;
   clicked: boolean;
   thumbnail: string;

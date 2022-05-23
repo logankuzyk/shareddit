@@ -21,8 +21,7 @@
     "react-scripts": "4.0.3",
     "uniqolor": "^1.0.1",
     "url-params-parser": "^1.0.4",
-    "web-vitals": "^0.2.4",
-    "yup": "^0.32.9"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

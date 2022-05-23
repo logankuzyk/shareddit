@@ -1,16 +1,20 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
 import React from "react";
 
-import { Heading } from "../../typography/Heading";
+import { lightTheme } from "../../styles/themes";
+import { Heading } from "../typography/Heading";
 
 export const Primary: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <Button
-      // _focus={{ borderColor: "brand.focus" }}
-      // _hover={{ borderColor: "button.600", backgroundColor: "button.600" }}
+      _hover={{
+        backgroundColor: lightTheme.accents[500],
+        color: lightTheme.background[300],
+      }}
       alignItems="center"
+      backgroundColor={lightTheme.accents[500]}
       borderRadius={8}
-      borderWidth={1}
+      color={lightTheme.background[100]}
       gap={2}
       justifyContent="center"
       padding={1}

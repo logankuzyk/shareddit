@@ -4,6 +4,7 @@ import React from "react";
 import { EditorCanvas } from "../../components/editor/EditorCanvas";
 import { EditorInterface } from "../../components/editor/EditorInterface";
 import { Title } from "../../components/typography/Title";
+import { lightTheme } from "../../styles/themes";
 import {
   RedditSubmission,
   RedditComment,
@@ -26,7 +27,7 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
   return (
     <Fade in>
       <Flex
-        backgroundColor="lightgrey"
+        backgroundColor={lightTheme.background[400]}
         borderRadius={8}
         gap={12}
         maxHeight="80vh"
