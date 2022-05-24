@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./styles/fonts.css";
+import "./styles/redditText.css";
+import "./styles/scrollBar.css";
 
 import { EditorScreenProvider } from "./screens/Editor";
 import { HomeScreenProvider } from "./screens/Home";

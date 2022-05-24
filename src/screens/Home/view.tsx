@@ -1,4 +1,4 @@
-import { Flex, FormControl } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 
 import { PrimaryButton } from "../../components/buttons";
