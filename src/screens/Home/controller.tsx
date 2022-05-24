@@ -5,7 +5,7 @@ import { HomeScreenView } from "./view";
 export const HomeScreenController: React.FC = () => {
   const handleSubmit = (input: string) => {
     const redditUrlFormat =
-      /\/r\/(?<sub>[\w]+)\/comments\/(?<postID>[\w]+)[/\w]*\/*(?<commentID>[\w]*)/;
+      /\/r\/(?<sub>[\w]+)\/comments\/(?<postID>[\w]+)\/*[\w]*\/*(?<commentID>[\w]*)/;
 
     try {
       if (!input) {
@@ -20,6 +20,7 @@ export const HomeScreenController: React.FC = () => {
         string,
         string
       >;
+      console.log(redditParams);
       const urlParams = new URLSearchParams(redditParams);
       window.location.href = `/generate?${urlParams.toString()}`;
     } catch (error: unknown) {
