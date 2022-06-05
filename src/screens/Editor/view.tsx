@@ -27,9 +27,12 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
   return (
     <Fade in>
       <Flex
-        backgroundColor={lightTheme.background[400]}
+        borderColor={lightTheme.background[400]}
         borderRadius={8}
+        borderWidth={1}
+        boxShadow="xl"
         gap={12}
+        marginX={80}
         maxHeight="80vh"
         overflow="hidden"
         padding={2}

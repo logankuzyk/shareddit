@@ -13,7 +13,7 @@ export const EditorOption: React.FC<EditorOptionProps> = ({
   label,
 }) => {
   return (
-    <Flex alignItems="center" gap={1} justifyContent="center">
+    <Flex alignItems="center" gap={1} justifyContent="space-between">
       <Paragraph>{label}</Paragraph>
       {children}
     </Flex>

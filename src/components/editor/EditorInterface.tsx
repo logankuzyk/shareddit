@@ -7,9 +7,17 @@ import { PrimaryButton } from "../buttons";
 import { Seperator } from "../Seperator";
 import { EditorOption } from "./EditorOption";
 import { EditorOptionSection } from "./EditorOptionSection";
+import { NumberInput } from "./NumberInput";
 
 export const EditorInterface: React.FC = () => {
-  const { isCensorUsernames, isCensorSubreddits } = useEditorData();
+  const {
+    isCensorUsernames,
+    isCensorSubreddits,
+    showComments,
+    commentReplies,
+    replyDepth,
+    topLevelComments,
+  } = useEditorData();
   const { setProperty } = useEditorMutation();
 
   return (
@@ -18,7 +26,7 @@ export const EditorInterface: React.FC = () => {
       backgroundColor="#ffffff"
       borderRadius={8}
       direction="column"
-      gap={2}
+      gap={6}
       justifyContent="center"
       paddingX={18}
       paddingY={4}
@@ -40,13 +48,62 @@ export const EditorInterface: React.FC = () => {
             }
           />
         </EditorOption>
-        <Seperator />
         <EditorOption label="Censor Subreddits">
           <Switch
             isChecked={isCensorSubreddits}
             onChange={() =>
               setProperty("isCensorSubreddits", !isCensorSubreddits)
             }
+          />
+        </EditorOption>
+      </EditorOptionSection>
+      <Seperator />
+      <EditorOptionSection label="Comments">
+        <EditorOption label="Show Comments">
+          <Switch
+            isChecked={showComments}
+            onChange={() => setProperty("showComments", !showComments)}
+          />
+        </EditorOption>
+        {showComments && (
+          <EditorOption label="Number of Top Level Comments">
+            <NumberInput
+              defaultValue={topLevelComments}
+              max={50}
+              min={0}
+              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              //   setProperty(
+              //     "topLevelComments",
+              //     event.currentTarget.valueAsNumber
+              //   )
+              // }
+            />
+          </EditorOption>
+        )}
+        <EditorOption label="Comment Reply Depth">
+          <NumberInput
+            defaultValue={replyDepth}
+            max={50}
+            min={0}
+            // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            //   setProperty(
+            //     "topLevelComments",
+            //     event.currentTarget.valueAsNumber
+            //   )
+            // }
+          />
+        </EditorOption>
+        <EditorOption label="Number of Replies to Each Comment">
+          <NumberInput
+            defaultValue={commentReplies}
+            max={50}
+            min={0}
+            // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            //   setProperty(
+            //     "topLevelComments",
+            //     event.currentTarget.valueAsNumber
+            //   )
+            // }
           />
         </EditorOption>
       </EditorOptionSection>

@@ -13,6 +13,9 @@ export interface EditorContextState {
   isCensorSubreddits: boolean;
   theme: Theme;
   showComments: boolean;
+  topLevelComments: number;
+  commentReplies: number;
+  replyDepth: number;
 }
 
 export interface EditorContextFunctions {
@@ -29,6 +32,9 @@ const initialState: EditorContextState = {
   isCensorSubreddits: false,
   theme: lightTheme,
   showComments: true,
+  topLevelComments: 5,
+  commentReplies: 5,
+  replyDepth: 3,
 };
 
 const initialFunctions: EditorContextFunctions = {

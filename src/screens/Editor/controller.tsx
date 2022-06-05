@@ -13,12 +13,13 @@ interface EditorScreenControllerProps {
 export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   subreddit,
   postId,
+  commentId,
 }) => {
-  const { data, isLoading, isError } = useRedditData(subreddit, postId);
-
-  // const handleDownload = async () => {};
-  // const handleCopy = async () => {};
-  // const svgToImage = async () => {};
+  const { data, isLoading, isError } = useRedditData(
+    subreddit,
+    postId,
+    commentId
+  );
 
   return (
     <EditorContextProvider>

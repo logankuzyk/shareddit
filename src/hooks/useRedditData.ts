@@ -16,11 +16,15 @@ import { useAxios } from "./useAxios";
 const fetchRedditData = async (
   axios: AxiosInstance,
   subreddit: string,
-  postId: string
+  postId: string,
+  commentId: string | null
 ): Promise<[RedditSubmission, Array<RedditComment | MoreChildren>]> => {
+  const endpoint = commentId
+    ? `/r/${subreddit}/comments/${postId}/title/${commentId}.json?context=10000&raw_json=1`
+    : `/r/${subreddit}/comments/${postId}/.json?raw_json=1`;
   const res = await axios.get<
     [Listing<ListedRawSubmission>, Listing<ListedRawComment>]
-  >(`/r/${subreddit}/comments/${postId}/.json?raw_json=1`);
+  >(endpoint);
   const submissionListing = res.data[0];
   const commentListing = res.data[1];
 
@@ -34,9 +38,13 @@ const fetchRedditData = async (
   return [submission, comments];
 };
 
-export const useRedditData = (subreddit: string, postId: string) => {
+export const useRedditData = (
+  subreddit: string,
+  postId: string,
+  commentId: string | null
+) => {
   const axios = useAxios();
-  return useQuery(["comments", subreddit, postId], () =>
-    fetchRedditData(axios, subreddit, postId)
+  return useQuery(["comments", subreddit, postId, commentId], () =>
+    fetchRedditData(axios, subreddit, postId, commentId)
   );
 };

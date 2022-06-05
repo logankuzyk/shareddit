@@ -21,9 +21,14 @@ export const Comment: React.FC<CommentProps> = ({
   data,
   submissionFullname,
 }) => {
-  const { isCensorSubreddits, isCensorUsernames, theme } = useEditorData();
-  if (data.type === "comment") {
-    const showChildren = true;
+  const {
+    isCensorSubreddits,
+    isCensorUsernames,
+    theme,
+    replyDepth,
+    commentReplies,
+  } = useEditorData();
+  if (data.type === "comment" && data.depth <= replyDepth) {
     const {
       author,
       date,
@@ -72,14 +77,13 @@ export const Comment: React.FC<CommentProps> = ({
             </Paragraph>
           </Flex>
         </ChildIndent>
-        {showChildren &&
-          data.replyTree.map((comment) => (
-            <Comment
-              data={comment}
-              key={comment.id}
-              submissionFullname={submissionFullname}
-            />
-          ))}
+        {data.replyTree.slice(0, commentReplies).map((comment) => (
+          <Comment
+            data={comment}
+            key={comment.id}
+            submissionFullname={submissionFullname}
+          />
+        ))}
       </Flex>
     );
   } else {
