@@ -1,3 +1,7 @@
 .md > * > li {
   margin-left: 2em;
 }
+
+a {
+  color: #5e81ac !important;
+}
