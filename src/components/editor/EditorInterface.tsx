@@ -80,32 +80,36 @@ export const EditorInterface: React.FC = () => {
             />
           </EditorOption>
         )}
-        <EditorOption label="Comment Reply Depth">
-          <NumberInput
-            defaultValue={replyDepth}
-            max={50}
-            min={0}
-            // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            //   setProperty(
-            //     "topLevelComments",
-            //     event.currentTarget.valueAsNumber
-            //   )
-            // }
-          />
-        </EditorOption>
-        <EditorOption label="Number of Replies to Each Comment">
-          <NumberInput
-            defaultValue={commentReplies}
-            max={50}
-            min={0}
-            // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            //   setProperty(
-            //     "topLevelComments",
-            //     event.currentTarget.valueAsNumber
-            //   )
-            // }
-          />
-        </EditorOption>
+        {showComments && (
+          <EditorOption label="Comment Reply Depth">
+            <NumberInput
+              defaultValue={replyDepth}
+              max={50}
+              min={0}
+              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              //   setProperty(
+              //     "topLevelComments",
+              //     event.currentTarget.valueAsNumber
+              //   )
+              // }
+            />
+          </EditorOption>
+        )}
+        {showComments && (
+          <EditorOption label="Number of Replies to Each Comment">
+            <NumberInput
+              defaultValue={commentReplies}
+              max={50}
+              min={0}
+              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              //   setProperty(
+              //     "topLevelComments",
+              //     event.currentTarget.valueAsNumber
+              //   )
+              // }
+            />
+          </EditorOption>
+        )}
       </EditorOptionSection>
     </Flex>
   );

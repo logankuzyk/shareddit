@@ -25,7 +25,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   ...props
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { theme } = useEditorData();
+  const { theme, showComments } = useEditorData();
   const backgroundColor = theme.background["100"];
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
         {comments && submission && (
           <>
             <Submission submission={submission} />
-            <RootComment data={comments[0]} />
+            {showComments && <RootComment data={comments[0]} />}
           </>
         )}
         {isLoading && <Spinner />}
