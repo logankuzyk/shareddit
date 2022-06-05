@@ -73,7 +73,7 @@ export const Comment: React.FC<CommentProps> = ({
               />
             </Flex>
             <Paragraph color={theme.contrast[300]}>
-              <p dangerouslySetInnerHTML={{ __html: body }} />
+              <a dangerouslySetInnerHTML={{ __html: body }} />
             </Paragraph>
           </Flex>
         </ChildIndent>
