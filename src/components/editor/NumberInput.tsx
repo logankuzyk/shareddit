@@ -4,24 +4,13 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  NumberInputProps as _NumberInputProps,
+  NumberInputProps,
 } from "@chakra-ui/react";
 import React from "react";
 
-export interface NumberInputProps extends _NumberInputProps {
-  defaultValue: number;
-  min?: number;
-  max?: number;
-  onChange?: () => void;
-}
-
-export const NumberInput: React.FC<NumberInputProps> = ({
-  defaultValue,
-  max,
-  min,
-}) => {
+export const NumberInput: React.FC<NumberInputProps> = (props) => {
   return (
-    <_NumberInput defaultValue={defaultValue} max={max} min={min} size="sm">
+    <_NumberInput {...props}>
       <NumberInputField />
       <NumberInputStepper>
         <NumberIncrementStepper />

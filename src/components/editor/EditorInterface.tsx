@@ -71,12 +71,9 @@ export const EditorInterface: React.FC = () => {
               defaultValue={topLevelComments}
               max={50}
               min={0}
-              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              //   setProperty(
-              //     "topLevelComments",
-              //     event.currentTarget.valueAsNumber
-              //   )
-              // }
+              onChange={(valueAsString, valueAsNumber) =>
+                setProperty("topLevelComments", valueAsNumber)
+              }
             />
           </EditorOption>
         )}
@@ -86,12 +83,9 @@ export const EditorInterface: React.FC = () => {
               defaultValue={replyDepth}
               max={50}
               min={0}
-              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              //   setProperty(
-              //     "topLevelComments",
-              //     event.currentTarget.valueAsNumber
-              //   )
-              // }
+              onChange={(valueAsString, valueAsNumber) =>
+                setProperty("replyDepth", valueAsNumber)
+              }
             />
           </EditorOption>
         )}
@@ -101,12 +95,9 @@ export const EditorInterface: React.FC = () => {
               defaultValue={commentReplies}
               max={50}
               min={0}
-              // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              //   setProperty(
-              //     "topLevelComments",
-              //     event.currentTarget.valueAsNumber
-              //   )
-              // }
+              onChange={(valueAsString, valueAsNumber) =>
+                setProperty("commentReplies", valueAsNumber)
+              }
             />
           </EditorOption>
         )}
