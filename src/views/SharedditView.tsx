@@ -9,6 +9,7 @@ export const SharedditView: React.FC = ({ children }) => {
     <Flex
       backgroundColor={lightTheme.background[200]}
       fontSize="xl"
+      paddingBottom={18}
       textAlign="center"
     >
       <Flex

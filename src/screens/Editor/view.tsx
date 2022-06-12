@@ -1,4 +1,4 @@
-import { Flex, Fade } from "@chakra-ui/react";
+import { Flex, Fade, Grid } from "@chakra-ui/react";
 import React from "react";
 
 import { EditorCanvas } from "../../components/editor/EditorCanvas";
@@ -26,18 +26,18 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
   const comments = data ? data[1] : undefined;
   return (
     <Fade in>
-      <Flex
+      <Grid
         borderColor={lightTheme.background[400]}
         borderRadius={8}
         borderWidth={1}
         boxShadow="xl"
         gap={12}
         marginX={80}
-        maxHeight="80vh"
         overflow="hidden"
         padding={2}
+        templateColumns="3fr 1fr"
       >
-        <Flex direction="column" gap={2}>
+        <Flex direction="column" gap={2} gridColumn={1}>
           <Title>Image Preview</Title>
           <EditorCanvas
             comments={comments}
@@ -46,11 +46,11 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
             submission={submission}
           />
         </Flex>
-        <Flex direction="column" gap={2}>
+        <Flex direction="column" gap={2} gridColumn={2}>
           <Title>Image Options</Title>
           <EditorInterface />
         </Flex>
-      </Flex>
+      </Grid>
     </Fade>
   );
 };

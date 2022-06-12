@@ -48,6 +48,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       alignItems="left"
       backgroundColor={backgroundColor}
       borderRadius={8}
+      boxShadow="sm"
       gap={2}
       justifyContent="center"
       overflowY="scroll"
