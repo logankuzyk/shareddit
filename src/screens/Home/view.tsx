@@ -32,7 +32,7 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({ onSubmit }) => {
     <Grid columnGap="24px" templateColumns="1fr 720px 1fr">
       <b style={{ gridColumn: 1 }} />
       <Flex direction="column" gap="24px" gridColumn="2">
-        <Title>The reddit screenshot tool.</Title>
+        <Title>The comprehensive reddit screenshot tool.</Title>
         <form
           style={{ display: "flex", gap: 8, flexDirection: "column" }}
           onSubmit={(event: FormEvent) => handleSubmit(event)}
