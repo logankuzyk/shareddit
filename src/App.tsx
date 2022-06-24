@@ -17,14 +17,13 @@ import { SharedditView } from "./views/SharedditView";
 
 export const App = (): JSX.Element => {
   // ReactGA.initialize("UA-51247116-3");
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  // ReactGA.pageview(window.location.pathname + window.location.search);
 
   const client = new QueryClient();
 
   return (
     <ChakraProvider>
       <QueryClientProvider client={client}>
-        {" "}
         <Helmet>
           <meta charSet="utf-8" />
           <title>shareddit</title>
