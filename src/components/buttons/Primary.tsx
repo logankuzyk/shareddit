@@ -7,8 +7,12 @@ import { Heading } from "../typography/Heading";
 export const Primary: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <Button
+      _active={{
+        backgroundColor: lightTheme.buttons.primary.active,
+        color: lightTheme.background[300],
+      }}
       _hover={{
-        backgroundColor: lightTheme.buttons.primary.focus,
+        backgroundColor: lightTheme.buttons.primary.hover,
         color: lightTheme.background[300],
       }}
       alignItems="center"

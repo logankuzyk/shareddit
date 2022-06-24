@@ -2,7 +2,8 @@ import { ColorWeight } from "./colors";
 
 interface ButtonColor {
   normal: string;
-  focus: string;
+  hover: string;
+  active: string;
 }
 
 export interface Theme {
@@ -52,7 +53,7 @@ export const lightTheme: Theme = {
     highlight: "#88C0D0",
   },
   buttons: {
-    primary: { normal: "#81A1C1", focus: "#5E81AC" },
-    secondary: { normal: "#8FBCBB", focus: "#88C0D0" },
+    primary: { normal: "#81A1C1", hover: "#658cb3", active: "#436689" },
+    secondary: { normal: "#88C0D0", hover: "#5ba8be", active: "#3a7f92" },
   },
 };
