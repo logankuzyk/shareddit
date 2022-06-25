@@ -29,8 +29,12 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Grid columnGap="24px" templateColumns="1fr 720px 1fr">
-      <b style={{ gridColumn: 1 }} />
+    <Grid
+      gap="12px"
+      gridAutoFlow="column"
+      templateColumns="1fr minmax(240px, 1fr) 1fr"
+      templateRows="1fr"
+    >
       <Flex direction="column" gap="24px" gridColumn="2">
         <Title>The comprehensive reddit screenshot tool.</Title>
         <form
@@ -55,11 +59,10 @@ export const HomeScreenView: React.FC<HomeScreenViewProps> = ({ onSubmit }) => {
         <Paragraph>
           shareddit helps you capture the whole context of the reddit post with
           a single image. No more cropping, no more scribbling out usernames,
-          shareddit is an all-in-one tool to save or share your favorite reddit
+          shareddit is the all-in-one tool to save or share your favorite reddit
           moments.
         </Paragraph>
       </Flex>
-      <b style={{ gridColumn: 3 }} />
     </Grid>
   );
 };
