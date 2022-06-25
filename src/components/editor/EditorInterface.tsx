@@ -28,7 +28,6 @@ export const EditorInterface: React.FC = () => {
       boxShadow="sm"
       direction="column"
       gap={6}
-      justifyContent="center"
       paddingX={18}
       paddingY={4}
       textAlign="left"

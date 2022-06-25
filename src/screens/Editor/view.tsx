@@ -31,25 +31,22 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
         borderRadius={8}
         borderWidth={1}
         boxShadow="xl"
-        gap={12}
-        marginX={80}
+        gap="12px"
+        gridAutoFlow="column"
+        gridTemplateColumns="3fr 1fr"
+        gridTemplateRows="32px 1fr"
         overflow="hidden"
         padding={2}
-        templateColumns="3fr 1fr"
       >
-        <Flex direction="column" gap={2} gridColumn={1}>
-          <Title>Image Preview</Title>
-          <EditorCanvas
-            comments={comments}
-            isError={isError}
-            isLoading={isLoading}
-            submission={submission}
-          />
-        </Flex>
-        <Flex direction="column" gap={2} gridColumn={2}>
-          <Title>Image Options</Title>
-          <EditorInterface />
-        </Flex>
+        <Title>Image Preview</Title>
+        <EditorCanvas
+          comments={comments}
+          isError={isError}
+          isLoading={isLoading}
+          submission={submission}
+        />
+        <Title>Image Options</Title>
+        <EditorInterface />
       </Grid>
     </Fade>
   );
