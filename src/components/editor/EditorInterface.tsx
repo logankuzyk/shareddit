@@ -24,12 +24,12 @@ export const EditorInterface: React.FC = () => {
     <Flex
       alignItems="left"
       backgroundColor="#ffffff"
-      borderRadius={8}
+      borderRadius="8px"
       boxShadow="sm"
       direction="column"
-      gap={6}
-      paddingX={18}
-      paddingY={4}
+      gap="6px"
+      paddingX="18px"
+      paddingY="4px"
       textAlign="left"
     >
       <PrimaryButton

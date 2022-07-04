@@ -1,10 +1,9 @@
-import { Flex, Fade, Grid } from "@chakra-ui/react";
-import React from "react";
+import { Fade, Grid } from "@chakra-ui/react";
+import React, { useRef } from "react";
 
 import { EditorCanvas } from "../../components/editor/EditorCanvas";
 import { EditorInterface } from "../../components/editor/EditorInterface";
 import { Title } from "../../components/typography/Title";
-import { lightTheme } from "../../styles/themes";
 import {
   RedditSubmission,
   RedditComment,
@@ -24,25 +23,24 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
 }) => {
   const submission = data ? data[0] : undefined;
   const comments = data ? data[1] : undefined;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
     <Fade in>
       <Grid
-        borderColor={lightTheme.background[400]}
-        borderRadius={8}
-        borderWidth={1}
-        boxShadow="xl"
-        gap="12px"
         gridAutoFlow="column"
-        gridTemplateColumns="3fr 1fr"
+        gridColumnGap="12px"
+        gridTemplateColumns="1fr 1fr"
         gridTemplateRows="32px 1fr"
-        overflow="hidden"
-        padding={2}
+        maxHeight="85vh"
       >
         <Title>Image Preview</Title>
         <EditorCanvas
           comments={comments}
           isError={isError}
           isLoading={isLoading}
+          overflowY="scroll"
+          scrollRef={scrollRef}
           submission={submission}
         />
         <Title>Image Options</Title>
