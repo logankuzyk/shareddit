@@ -1,5 +1,6 @@
 import React from "react";
 
+import { EditorContextProvider } from "../../contexts/EditorContext";
 import { EditorScreenController } from "./controller";
 
 export const EditorScreenProvider: React.FC = () => {
@@ -12,11 +13,13 @@ export const EditorScreenProvider: React.FC = () => {
 
   if (subreddit && postId) {
     return (
-      <EditorScreenController
-        commentId={commentId}
-        postId={postId}
-        subreddit={subreddit}
-      />
+      <EditorContextProvider>
+        <EditorScreenController
+          commentId={commentId}
+          postId={postId}
+          subreddit={subreddit}
+        />
+      </EditorContextProvider>
     );
   } else {
     return <></>;

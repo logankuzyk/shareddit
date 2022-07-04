@@ -1,6 +1,6 @@
 import React from "react";
 
-import { EditorContextProvider } from "../../contexts/EditorContext";
+import { useEditorData } from "../../contexts/EditorContext";
 import { useRedditData } from "../../hooks/useRedditData";
 import { EditorScreenView } from "./view";
 
@@ -15,15 +15,15 @@ export const EditorScreenController: React.FC<EditorScreenControllerProps> = ({
   postId,
   commentId,
 }) => {
+  const { commentSort } = useEditorData();
   const { data, isLoading, isError } = useRedditData(
     subreddit,
     postId,
-    commentId
+    commentId,
+    commentSort
   );
 
   return (
-    <EditorContextProvider>
-      <EditorScreenView data={data} isError={isError} isLoading={isLoading} />
-    </EditorContextProvider>
+    <EditorScreenView data={data} isError={isError} isLoading={isLoading} />
   );
 };

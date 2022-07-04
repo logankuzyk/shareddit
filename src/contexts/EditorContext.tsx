@@ -1,6 +1,7 @@
 import React, { useContext, createContext } from "react";
 
 import { lightTheme, Theme } from "../styles/themes";
+import { CommentSort } from "../types/reddit";
 
 export interface EditorContextProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ export interface EditorContextState {
   topLevelComments: number;
   commentReplies: number;
   replyDepth: number;
+  commentSort: CommentSort;
 }
 
 export interface EditorContextFunctions {
@@ -35,6 +37,7 @@ const initialState: EditorContextState = {
   topLevelComments: 5,
   commentReplies: 5,
   replyDepth: 3,
+  commentSort: "best",
 };
 
 const initialFunctions: EditorContextFunctions = {

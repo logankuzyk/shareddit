@@ -270,3 +270,7 @@ export interface RedditAward {
   img: string;
   count: number;
 }
+
+export const SORT_TYPES = ["best", "top", "controversial", "old"] as const;
+type CommentSortTuple = typeof SORT_TYPES;
+export type CommentSort = CommentSortTuple[number];

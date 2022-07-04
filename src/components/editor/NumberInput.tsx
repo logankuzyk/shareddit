@@ -10,7 +10,7 @@ import React from "react";
 
 export const NumberInput: React.FC<NumberInputProps> = (props) => {
   return (
-    <_NumberInput {...props}>
+    <_NumberInput maxWidth="max-content" size="sm" {...props}>
       <NumberInputField />
       <NumberInputStepper>
         <NumberIncrementStepper />
