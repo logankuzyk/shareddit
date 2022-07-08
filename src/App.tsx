@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
-import ReactGA from "react-ga";
+// import ReactGA from "react-ga";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
