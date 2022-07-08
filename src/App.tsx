@@ -1,7 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
 import ReactGA from "react-ga";
-import { Helmet } from "react-helmet";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -23,10 +22,10 @@ export const App = (): JSX.Element => {
   return (
     <ChakraProvider>
       <QueryClientProvider client={client}>
-        <Helmet>
+        <head>
           <meta charSet="utf-8" />
           <title>shareddit</title>
-        </Helmet>
+        </head>
         <Router>
           <Switch>
             <Route path="/generate">

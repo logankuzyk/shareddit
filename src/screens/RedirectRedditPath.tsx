@@ -1,4 +1,3 @@
-import queryString from "query-string";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { UrlParser } from "url-params-parser";
@@ -9,6 +8,6 @@ export const RedirectRedditPath: React.FC = () => {
     path,
     "/r/:sub/comments/:postID/:title/:commentID"
   ).namedParams;
-  const query = queryString.stringify(params);
-  return <Redirect to={`/generate/${query}`} />;
+  const query = new URLSearchParams(params);
+  return <Redirect to={`/generate/?${query}`} />;
 };

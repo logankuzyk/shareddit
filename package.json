@@ -1,5 +1,5 @@
 {
-  "name": "shareddit-site",
+  "name": "shareddit",
   "version": "1.6.0",
   "private": true,
   "dependencies": {
@@ -9,13 +9,10 @@
     "@emotion/styled": "^11.3.0",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
-    "axios": "^0.21.1",
-    "framer-motion": "^4.1.17",
-    "query-string": "^7.0.0",
+    "axios": "^0.27.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
-    "react-helmet": "^6.1.0",
     "react-query": "^3.34.16",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -49,7 +46,6 @@
   "devDependencies": {
     "@types/react": "^16.14.8",
     "@types/react-dom": "^16.9.13",
-    "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
     "@types/url-params-parser": "^1.0.0",
     "eslint-config-prettier": "^8.5.0",
