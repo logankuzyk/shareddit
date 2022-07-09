@@ -22,6 +22,7 @@
     "framer-motion": "^4.1.17",
     "html-to-image": "^1.6.2",
     "kofi-button": "^1.1.1",
+    "netlify-cli": "^10.7.1",
     "puppeteer-core": "^10.1.0",
     "query-string": "^7.0.0",
     "randomstring": "^1.2.1",
@@ -71,7 +72,6 @@
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
     "@types/url-params-parser": "^1.0.0",
-    "netlify-cli": "^11.0.2",
     "typescript": "^4.5.5"
   }
 }
