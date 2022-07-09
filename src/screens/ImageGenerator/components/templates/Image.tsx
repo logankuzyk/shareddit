@@ -23,8 +23,6 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
     video: <Icon as={FaFilm} />,
   };
 
-  const corsImageUrl = src.replace("http://", "").replace("https://", "");
-
   return (
     <WrapItem
       style={{
@@ -38,10 +36,7 @@ export const Image: React.FC<ImageProps> = ({ src, host, icon }) => {
       }}
     >
       <Fade in={true}>
-        <img
-          src={`https://server.shareddit.com/cors/${corsImageUrl}`}
-          alt="reddit submission"
-        />
+        <img src={src} alt="reddit submission" />
       </Fade>
       {host === null ? (
         <></>
