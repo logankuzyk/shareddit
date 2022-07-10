@@ -1,4 +1,3 @@
-import { Flex } from "@chakra-ui/react";
 import React from "react";
 
 import { RedditSubmission } from "../../../../types/reddit";
@@ -17,11 +16,11 @@ export const SubmissionContent: React.FC<SubmissionContentProps> = ({
   const { linkType } = submission;
 
   return (
-    <Flex>
+    <>
       {linkType === "image" && <Image submission={submission} />}
       {linkType === "self" && <SelfText submission={submission} />}
       {linkType === "video" && <VideoThumbnail submission={submission} />}
       {linkType === "external" && <></>}
-    </Flex>
+    </>
   );
 };

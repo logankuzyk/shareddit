@@ -9,8 +9,10 @@ import {
   MoreChildren,
 } from "../../types/reddit";
 import { Paragraph } from "../typography";
+import { CommentHeader } from "./CommentHeader";
 import { RootComment } from "./templates/comments/RootComment";
 import { Submission } from "./templates/submissions/Submission";
+import { ViaShareddit } from "./ViaShareddit";
 
 interface EditorCanvasProps extends FlexProps {
   isLoading: boolean;
@@ -32,6 +34,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   const backgroundColor = theme.background["100"];
   const align = !isLoading && !isError ? "left" : "center";
   const justify = !isLoading && !isError ? "left" : "center";
+  const commentsBeingShown = Boolean(comments?.length && showComments);
 
   return (
     <Flex
@@ -40,7 +43,7 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       borderRadius="8px"
       boxShadow="sm"
       direction="column"
-      gap="2px"
+      gap="8px"
       id="image-canvas"
       justify={justify}
       overflowY="scroll"
@@ -48,9 +51,18 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       textAlign="left"
       {...props}
     >
-      {submission && <Submission submission={submission} />}
+      {submission && (
+        <>
+          <Submission
+            commentsBeingShown={commentsBeingShown}
+            submission={submission}
+          />
+          <ViaShareddit />
+        </>
+      )}
       {comments && showComments && (
         <>
+          <CommentHeader />
           {comments.slice(0, topLevelComments).map((comment) => (
             <RootComment data={comment} key={comment.id} />
           ))}
