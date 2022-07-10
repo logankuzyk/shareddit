@@ -40,6 +40,7 @@ export const Comment: React.FC<CommentProps> = ({
       is_submitter,
     } = data;
     const depth = data.depth ? data.depth : 0;
+    const marginTop = depth === 0 ? "0px" : "4px";
     const body =
       commentBody && isCensorSubreddits && isCensorUsernames
         ? censorSubreddits(censorUsernames(commentBody))
@@ -56,8 +57,8 @@ export const Comment: React.FC<CommentProps> = ({
             direction="column"
             key={id}
             style={{
-              marginTop: 4,
-              marginBottom: 4,
+              marginTop,
+              marginBottom: "4px",
             }}
           >
             <Flex>

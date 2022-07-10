@@ -17,8 +17,8 @@ export const Image: React.FC<ImageProps> = ({ submission }) => {
         style={{
           height: "100%",
           width: "100%",
-          borderWidth: 1,
-          borderRadius: 8,
+          borderWidth: "1px",
+          borderRadius: "8px",
         }}
       />
     );
