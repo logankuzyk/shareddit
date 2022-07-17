@@ -8,7 +8,7 @@ import {
   RedditComment,
   MoreChildren,
 } from "../../types/reddit";
-import { Paragraph } from "../typography";
+import { Paragraph, Title } from "../typography";
 import { CommentHeader } from "./CommentHeader";
 import { RootComment } from "./templates/comments/RootComment";
 import { Submission } from "./templates/submissions/Submission";
@@ -19,7 +19,6 @@ interface EditorCanvasProps extends FlexProps {
   isError: boolean;
   submission: RedditSubmission | undefined;
   comments: (RedditComment | MoreChildren)[] | undefined;
-  scrollRef: React.RefObject<HTMLDivElement>;
 }
 
 export const EditorCanvas: React.FC<EditorCanvasProps> = ({
@@ -27,7 +26,6 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   comments,
   isLoading,
   isError,
-  scrollRef,
   ...props
 }) => {
   const { theme, showComments, topLevelComments } = useEditorData();
@@ -37,43 +35,44 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   const commentsBeingShown = Boolean(comments?.length && showComments);
 
   return (
-    <Flex
-      align={align}
-      backgroundColor={backgroundColor}
-      borderRadius="8px"
-      boxShadow="sm"
-      id="reddit-preview"
-      justify={justify}
-      overflowY="scroll"
-      ref={scrollRef}
-      textAlign="left"
-      {...props}
-    >
-      <Flex direction="column" gap="8px">
-        {submission && (
-          <>
-            <Submission
-              commentsBeingShown={commentsBeingShown}
-              submission={submission}
-            />
-            <ViaShareddit />
-          </>
-        )}
-        {comments && showComments && (
-          <>
-            <CommentHeader />
-            {comments.slice(0, topLevelComments).map((comment) => (
-              <RootComment data={comment} key={comment.id} />
-            ))}
-          </>
+    <Flex alignItems="center" direction="column" maxWidth="100vw">
+      <Title height="32px">Image Preview</Title>
+      <Flex
+        align={align}
+        backgroundColor={backgroundColor}
+        borderRadius="8px"
+        id="reddit-preview"
+        justify={justify}
+        overflowY="scroll"
+        textAlign="left"
+        {...props}
+      >
+        <Flex direction="column" gap="8px">
+          {submission && (
+            <>
+              <Submission
+                commentsBeingShown={commentsBeingShown}
+                submission={submission}
+              />
+              <ViaShareddit />
+            </>
+          )}
+          {comments && showComments && (
+            <>
+              <CommentHeader />
+              {comments.slice(0, topLevelComments).map((comment) => (
+                <RootComment data={comment} key={comment.id} />
+              ))}
+            </>
+          )}
+        </Flex>
+        {isLoading && <Spinner />}
+        {isError && (
+          <Paragraph color={lightTheme.accents[100]}>
+            Something went wrong 😔
+          </Paragraph>
         )}
       </Flex>
-      {isLoading && <Spinner />}
-      {isError && (
-        <Paragraph color={lightTheme.accents[100]}>
-          Something went wrong 😔
-        </Paragraph>
-      )}
     </Flex>
   );
 };

@@ -34,9 +34,10 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
       <Flex
         backgroundColor={backgroundColor}
         borderColor={borderColor}
-        borderRadius={8}
-        borderWidth={1}
-        padding={2}
+        borderRadius="8px"
+        borderWidth="1px"
+        maxWidth="100%"
+        padding="2px"
       >
         <Paragraph color={theme.contrast[300]}>
           {body && <a dangerouslySetInnerHTML={{ __html: body }} />}
