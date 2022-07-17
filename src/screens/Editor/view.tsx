@@ -37,7 +37,6 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
           isError={isError}
           isLoading={isLoading}
           maxHeight="calc(100vh - 96px - 32px)"
-          overflowY="scroll"
           submission={submission}
         />
         <EditorInterface />

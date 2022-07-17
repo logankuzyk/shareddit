@@ -90,7 +90,10 @@ export class EditorContextProvider extends React.Component<
     ) as HTMLCanvasElement;
     if (imgNode !== null && canvasNode !== null) {
       const ctx = canvasNode.getContext("2d");
-      ctx?.drawImage(imgNode, 0, 0);
+      if (!ctx) return;
+      ctx.fillStyle = this.state.theme.background["100"] ?? "white";
+      ctx.fillRect(0, 0, this.state.width, this.state.height);
+      ctx.drawImage(imgNode, 0, 0);
       const b64 = canvasNode.toDataURL("image/png");
       this.downloadImage(b64);
     } else {
@@ -110,28 +113,6 @@ export class EditorContextProvider extends React.Component<
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
     a.dispatchEvent(click);
-
-    document.removeChild(a);
-  };
-
-  copyImage = async (base64: string) => {
-    const blob = await fetch(base64).then((res) => res.blob());
-    const type = "image/png";
-    const data = [new ClipboardItem({ [type]: blob })];
-
-    const input = document.getElementById("image-base64");
-
-    if (input) {
-      input.setAttribute("value", base64);
-      const dest = document.getElementById("headless-interface");
-      if (dest) {
-        const a = document.createElement("a");
-        a.setAttribute("id", "loaded");
-        dest.appendChild(a);
-      }
-    }
-
-    navigator.clipboard.write(data);
   };
 
   makeDataURL = async () => {
@@ -144,21 +125,17 @@ export class EditorContextProvider extends React.Component<
       return;
     }
 
-    const rawDataURL = await htmlToImage.toSvg(node, { cacheBust: true });
-    const match = rawDataURL.match(
-      /svg%22%20width%3D%22(?<width>[0-9]*)%22%20height%3D%22(?<height>[0-9]*)%22/
-    );
-    if (match && match.groups) {
-      const height = node.clientHeight;
-      const width = node.clientWidth;
+    const height = node.scrollHeight;
+    const width = node.clientWidth;
+    const dataURL = await htmlToImage.toSvg(node, {
+      cacheBust: true,
+      canvasWidth: width,
+      canvasHeight: height,
+      width,
+      height,
+    });
 
-      const dataURL = rawDataURL.replace(
-        /svg%22%20width%3D%22[0-9]*%22%20height%3D%22[0-9]*%22/,
-        `svg%22%20width%3D%22${width}%22%20height%3D%22${height}%22`
-      );
-
-      return { dataURL, height, width };
-    }
+    return { dataURL, height, width };
   };
 
   download = async () => {
@@ -166,7 +143,7 @@ export class EditorContextProvider extends React.Component<
     if (!data) return;
     this.setState({
       svgUri: data.dataURL,
-      width: 960,
+      width: data.width,
       height: data.height,
     });
   };
@@ -181,7 +158,6 @@ export class EditorContextProvider extends React.Component<
           }}
         >
           {this.props.children}
-          <input id="image-base64" style={{ display: "none" }} />
           <img
             id="shareddit-svg"
             src={this.state.svgUri}
@@ -191,7 +167,10 @@ export class EditorContextProvider extends React.Component<
           <canvas
             height={this.state.height}
             id="shareddit-canvas"
-            style={{ display: "none" }}
+            style={{
+              backgroundColor: this.state.theme.background["100"],
+              display: "none",
+            }}
             width={this.state.width}
           />
         </EditorMutationContext.Provider>

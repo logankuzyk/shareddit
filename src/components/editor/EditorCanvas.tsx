@@ -35,15 +35,19 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
   const commentsBeingShown = Boolean(comments?.length && showComments);
 
   return (
-    <Flex alignItems="center" direction="column" maxWidth="100vw">
+    <Flex
+      alignItems="center"
+      borderRadius="8px"
+      direction="column"
+      maxWidth="100vw"
+    >
       <Title height="32px">Image Preview</Title>
       <Flex
         align={align}
         backgroundColor={backgroundColor}
-        borderRadius="8px"
+        height="100%"
         id="reddit-preview"
         justify={justify}
-        overflowY="scroll"
         textAlign="left"
         {...props}
       >
