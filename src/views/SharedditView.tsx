@@ -1,19 +1,19 @@
-import { Flex } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import React from "react";
 
 import { SharedditLogo } from "../components/SharedditLogo";
 
 export const SharedditView: React.FC = ({ children }) => {
   return (
-    <Flex
+    <Grid
       alignItems="center"
-      direction="column"
-      fontSize="xl"
-      paddingBottom={18}
+      gridTemplateRows="96px 1fr"
+      maxHeight="100vh"
+      paddingBottom="18px"
       textAlign="center"
     >
       <SharedditLogo />
       {children}
-    </Flex>
+    </Grid>
   );
 };

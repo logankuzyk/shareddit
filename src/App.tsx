@@ -22,10 +22,6 @@ export const App = (): JSX.Element => {
   return (
     <ChakraProvider>
       <QueryClientProvider client={client}>
-        <head>
-          <meta charSet="utf-8" />
-          <title>shareddit</title>
-        </head>
         <Router>
           <Switch>
             <Route path="/generate">

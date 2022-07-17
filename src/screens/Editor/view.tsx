@@ -32,7 +32,7 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
         gridColumnGap="12px"
         gridTemplateColumns="1fr 1fr"
         gridTemplateRows="32px 1fr"
-        maxHeight="85vh"
+        maxHeight="calc(100vh - 96px)"
       >
         <Title>Image Preview</Title>
         <EditorCanvas
