@@ -22,7 +22,7 @@ export const EditorInterface: React.FC = () => {
     topLevelComments,
     commentSort,
   } = useEditorData();
-  const { setProperty } = useEditorMutation();
+  const { setProperty, download } = useEditorMutation();
 
   return (
     <Flex
@@ -36,13 +36,7 @@ export const EditorInterface: React.FC = () => {
       paddingY="4px"
       textAlign="left"
     >
-      <PrimaryButton
-        onClick={() => {
-          alert("hi");
-        }}
-      >
-        Download Image
-      </PrimaryButton>
+      <PrimaryButton onClick={download}>Download Image</PrimaryButton>
       <EditorOptionSection label="Privacy">
         <EditorOption label="Censor Usernames">
           <Toggle

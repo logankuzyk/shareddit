@@ -42,32 +42,32 @@ export const EditorCanvas: React.FC<EditorCanvasProps> = ({
       backgroundColor={backgroundColor}
       borderRadius="8px"
       boxShadow="sm"
-      direction="column"
-      gap="8px"
-      id="image-canvas"
+      id="reddit-preview"
       justify={justify}
       overflowY="scroll"
       ref={scrollRef}
       textAlign="left"
       {...props}
     >
-      {submission && (
-        <>
-          <Submission
-            commentsBeingShown={commentsBeingShown}
-            submission={submission}
-          />
-          <ViaShareddit />
-        </>
-      )}
-      {comments && showComments && (
-        <>
-          <CommentHeader />
-          {comments.slice(0, topLevelComments).map((comment) => (
-            <RootComment data={comment} key={comment.id} />
-          ))}
-        </>
-      )}
+      <Flex direction="column" gap="8px">
+        {submission && (
+          <>
+            <Submission
+              commentsBeingShown={commentsBeingShown}
+              submission={submission}
+            />
+            <ViaShareddit />
+          </>
+        )}
+        {comments && showComments && (
+          <>
+            <CommentHeader />
+            {comments.slice(0, topLevelComments).map((comment) => (
+              <RootComment data={comment} key={comment.id} />
+            ))}
+          </>
+        )}
+      </Flex>
       {isLoading && <Spinner />}
       {isError && (
         <Paragraph color={lightTheme.accents[100]}>
