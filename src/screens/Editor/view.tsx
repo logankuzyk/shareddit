@@ -32,6 +32,7 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
         maxHeight="calc(100vh - 96px)"
         maxWidth="100vw"
       >
+        <EditorInterface />
         <EditorCanvas
           comments={comments}
           isError={isError}
@@ -39,7 +40,6 @@ export const EditorScreenView: React.FC<EditorScreenViewProps> = ({
           maxHeight="calc(100vh - 96px - 32px)"
           submission={submission}
         />
-        <EditorInterface />
       </Grid>
     </Fade>
   );
