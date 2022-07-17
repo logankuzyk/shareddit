@@ -36,7 +36,7 @@ export const Comment: React.FC<CommentProps> = ({
       body_html: commentBody,
       id,
       flair,
-      awards,
+      awardCount,
       is_submitter,
     } = data;
     const depth = data.depth ? data.depth : 0;
@@ -63,8 +63,8 @@ export const Comment: React.FC<CommentProps> = ({
           >
             <Flex>
               <Tagline
-                awards={awards}
                 censorUser={isCensorUsernames}
+                count={awardCount}
                 date={date}
                 flair={flair}
                 isSubmitter={is_submitter}

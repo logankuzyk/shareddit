@@ -16,7 +16,7 @@ interface TaglineProps {
   date: string;
   subreddit?: string;
   flair?: RedditFlair;
-  awards: RedditAward[] | undefined;
+  count: number;
   isSubmitter?: boolean;
   censorUser: boolean;
   censorSubreddit?: boolean;
@@ -28,7 +28,7 @@ export const Tagline: React.FC<TaglineProps> = ({
   date,
   subreddit,
   flair,
-  awards,
+  count,
   isSubmitter,
   censorUser,
   censorSubreddit = false,
@@ -76,10 +76,10 @@ export const Tagline: React.FC<TaglineProps> = ({
           <Caption>{censorSubreddit ? "a subreddit" : subreddit}</Caption>
         </>
       )}
-      {awards && (
+      {count !== 0 && (
         <>
           <Caption>{"•"}</Caption>
-          <Awards awards={awards} />
+          <Awards count={count} />
         </>
       )}
     </Flex>

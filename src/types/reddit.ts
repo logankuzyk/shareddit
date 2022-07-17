@@ -37,6 +37,7 @@ export interface RedditContent {
 export interface RawAward {
   name: string;
   count: number;
+  resized_icons: Array<{ url: string; width: number; height: number }>;
   resized_static_icons: Array<{ url: string; width: number; height: number }>;
 }
 
@@ -208,7 +209,7 @@ export interface RedditSubmission extends RawSubmission {
   modhash: string;
   flair?: RedditFlair;
   userFlair?: RedditFlair;
-  awards?: RedditAward[];
+  awardCount: number;
 }
 
 export interface RedditComment extends RawComment {
@@ -218,7 +219,7 @@ export interface RedditComment extends RawComment {
   scoreString: string;
   modhash: string;
   flair?: RedditFlair;
-  awards?: RedditAward[];
+  awardCount: number;
 }
 
 export interface RedditUser extends RawUser {
@@ -267,7 +268,7 @@ export interface RedditFlair {
 }
 
 export interface RedditAward {
-  img: string;
+  // img: string;
   count: number;
 }
 

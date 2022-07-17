@@ -24,6 +24,6 @@ export const parseComment = (
     ),
     modhash,
     replyTree: replies,
-    awards: parseAwards(comment.all_awardings),
+    awardCount: parseAwards(comment.all_awardings),
   };
 };

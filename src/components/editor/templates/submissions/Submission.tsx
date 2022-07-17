@@ -24,7 +24,7 @@ export const Submission: React.FC<SubmissionCardProps> = ({
     date,
     scoreString,
     userFlair,
-    awards,
+    awardCount,
   } = submission;
 
   const paddingBottom = commentsBeingShown ? 0 : 4;
@@ -32,15 +32,15 @@ export const Submission: React.FC<SubmissionCardProps> = ({
   return (
     <Flex
       direction="column"
-      gap="2px"
+      gap="8px"
       paddingBottom={paddingBottom}
       paddingX="18px"
     >
       <Title color={theme.contrast[300]}>{title}</Title>
       <Tagline
-        awards={awards}
         censorSubreddit={isCensorSubreddits}
         censorUser={isCensorUsernames}
+        count={awardCount}
         date={date}
         flair={userFlair}
         score={scoreString}

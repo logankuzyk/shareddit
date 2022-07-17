@@ -31,6 +31,6 @@ export const parseSubmission = (
     ),
     modhash,
     date: parseDate(submission.created, true),
-    awards: parseAwards(submission.all_awardings),
+    awardCount: parseAwards(submission.all_awardings),
   };
 };
