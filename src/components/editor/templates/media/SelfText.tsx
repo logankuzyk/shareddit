@@ -37,7 +37,7 @@ export const SelfText: React.FC<SelfTextProps> = ({ submission }) => {
         borderRadius="8px"
         borderWidth="1px"
         maxWidth="100%"
-        padding="2px"
+        padding="8px"
       >
         <Paragraph color={theme.contrast[300]}>
           {body && <a dangerouslySetInnerHTML={{ __html: body }} />}
