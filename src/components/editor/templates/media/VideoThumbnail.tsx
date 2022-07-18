@@ -1,6 +1,5 @@
-import { Flex } from "@chakra-ui/react";
+import { Icon, Flex } from "@chakra-ui/react";
 import React from "react";
-// import { FontAwesome5 } from "@expo/vector-icons";
 
 import { RedditSubmission } from "../../../../types/reddit";
 
@@ -11,37 +10,37 @@ interface VideoThumbnailProps {
 export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   submission,
 }) => {
-  const { thumbnail } = submission;
+  const { preview } = submission;
 
-  if (thumbnail) {
-    return (
-      <Flex borderRadius={8} borderWidth={1} overflow="hidden">
-        <Flex position="relative">
-          <img
-            alt="reddit content"
-            src={thumbnail}
-            style={{
-              height: "100%",
-              width: "100%",
-              borderWidth: 1,
-              borderRadius: 8,
-            }}
-          />
-          <Flex
-            alignItems="center"
-            backgroundColor="rgba(0,0,0,0.2)"
-            height="100%"
-            justifyContent="center"
-            position="absolute"
-            width="100%"
-          >
-            {/* Pretend play button? */}
-            {/* <FontAwesome5 color="white" size={32} name="play" /> */}
-          </Flex>
-        </Flex>
-      </Flex>
-    );
-  } else {
+  if (!preview) {
     return <></>;
   }
+
+  const { url } = preview.images[0].source;
+
+  return (
+    <Flex borderRadius="8px" borderWidth="1px" overflow="hidden">
+      <Flex justifyContent="center" position="relative">
+        <img
+          alt="reddit content"
+          src={url}
+          style={{ display: "flex", height: "100%", width: "100%" }}
+        />
+        <Flex
+          alignItems="center"
+          backgroundColor="rgba(0,0,0,0.1)"
+          height="100%"
+          justifyContent="center"
+          position="absolute"
+          width="100%"
+        >
+          <Icon display="flex" fill="white" height="48px" width="48px">
+            <svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="9.33 6.69 9.33 19.39 19.3 13.04 9.33 6.69" />
+            </svg>
+          </Icon>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
 };

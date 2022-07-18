@@ -82,7 +82,7 @@ export interface RawSubmission extends RedditContent {
   thumbnail: string;
   is_video: boolean;
   preview?: {
-    images: [source: PreviewEntry, resolutions: PreviewEntry[]];
+    images: { source: PreviewEntry; resolutions: PreviewEntry[] }[];
   };
   url?: string;
 }
