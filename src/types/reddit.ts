@@ -85,6 +85,8 @@ export interface RawSubmission extends RedditContent {
     images: { source: PreviewEntry; resolutions: PreviewEntry[] }[];
   };
   url?: string;
+  is_gallery: boolean;
+  media_metadata: { [key: string]: { s: { u: string } } };
 }
 
 export interface RawSubreddit {
@@ -228,7 +230,7 @@ export interface RedditUser extends RawUser {
   flair: RedditFlair;
 }
 
-export type RedditLinkType = "self" | "video" | "image" | "external";
+export type RedditLinkType = "self" | "video" | "image" | "album" | "external";
 
 export interface RedditSubreddit extends RawSubreddit {
   type: "subreddit";
