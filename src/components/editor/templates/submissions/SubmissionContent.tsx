@@ -19,7 +19,7 @@ export const SubmissionContent: React.FC<SubmissionContentProps> = ({
 
   return (
     <>
-      {linkType === "image" && <Image submission={submission} />}
+      {linkType === "image" && <Image src={submission.url ?? ""} />}
       {linkType === "self" && <SelfText submission={submission} />}
       {linkType === "video" && <VideoThumbnail submission={submission} />}
       {linkType === "album" && <Album submission={submission} />}

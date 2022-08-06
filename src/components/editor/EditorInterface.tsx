@@ -21,6 +21,7 @@ export const EditorInterface: React.FC<FlexProps> = () => {
     replyDepth,
     topLevelComments,
     commentSort,
+    imageColumns,
   } = useEditorData();
   const { setProperty, download } = useEditorMutation();
 
@@ -53,6 +54,19 @@ export const EditorInterface: React.FC<FlexProps> = () => {
               isChecked={isCensorSubreddits}
               onChange={() =>
                 setProperty("isCensorSubreddits", !isCensorSubreddits)
+              }
+            />
+          </EditorOption>
+        </EditorOptionSection>
+        <Seperator />
+        <EditorOptionSection label="Submission">
+          <EditorOption label="Number of Image Album Columns">
+            <NumberInput
+              defaultValue={imageColumns}
+              max={50}
+              min={0}
+              onChange={(valueAsString, valueAsNumber) =>
+                setProperty("imageColumns", valueAsNumber)
               }
             />
           </EditorOption>

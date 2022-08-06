@@ -11,6 +11,7 @@ export interface EditorContextProps {
 export interface EditorContextState {
   fontSize: "small" | "medium" | "large";
   imageScale: string;
+  imageColumns: number;
   isCensorUsernames: boolean;
   isCensorSubreddits: boolean;
   theme: Theme;
@@ -35,6 +36,7 @@ export interface EditorContextFunctions {
 const initialState: EditorContextState = {
   fontSize: "medium",
   imageScale: "100%",
+  imageColumns: 3,
   isCensorUsernames: false,
   isCensorSubreddits: false,
   theme: lightTheme,
@@ -128,7 +130,7 @@ export class EditorContextProvider extends React.Component<
     const height = node.scrollHeight;
     const width = node.clientWidth;
     const dataURL = await htmlToImage.toSvg(node, {
-      cacheBust: true,
+      cacheBust: false,
       canvasWidth: width,
       canvasHeight: height,
       width,

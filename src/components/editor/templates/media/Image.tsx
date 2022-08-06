@@ -1,28 +1,24 @@
 import React from "react";
 
-import { RedditSubmission } from "../../../../types/reddit";
+import { useEditorData } from "../../../../contexts/EditorContext";
 
 interface ImageProps {
-  submission: RedditSubmission;
+  src: string;
 }
 
-export const Image: React.FC<ImageProps> = ({ submission }) => {
-  const { url } = submission;
+export const Image: React.FC<ImageProps> = ({ src }) => {
+  const { imageScale } = useEditorData();
 
-  if (url) {
-    return (
-      <img
-        alt="reddit content"
-        src={url}
-        style={{
-          height: "100%",
-          width: "100%",
-          borderWidth: "1px",
-          borderRadius: "8px",
-        }}
-      />
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <img
+      alt="reddit content"
+      src={src}
+      style={{
+        height: imageScale,
+        width: imageScale,
+        borderWidth: "1px",
+        borderRadius: "8px",
+      }}
+    />
+  );
 };
