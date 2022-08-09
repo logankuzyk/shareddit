@@ -3,7 +3,11 @@ import React from "react";
 
 import { SharedditLogo } from "../components/SharedditLogo";
 
-export const SharedditView: React.FC = ({ children }) => {
+interface SharedditViewProps {
+  children: React.ReactNode;
+}
+
+export const SharedditView: React.FC<SharedditViewProps> = ({ children }) => {
   return (
     <Grid
       alignItems="center"

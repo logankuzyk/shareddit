@@ -9,7 +9,7 @@ export const EditorScreenProvider: React.FC = () => {
     if (window) {
       setRedditParams(window.location.search);
     }
-  });
+  }, []);
 
   const params = new URLSearchParams(redditParams);
 

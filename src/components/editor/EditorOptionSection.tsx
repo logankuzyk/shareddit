@@ -5,6 +5,7 @@ import { Heading } from "../typography/Heading";
 
 interface EditorOptionSectionProps {
   label: string;
+  children: React.ReactNode;
 }
 
 export const EditorOptionSection: React.FC<EditorOptionSectionProps> = ({

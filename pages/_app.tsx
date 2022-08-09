@@ -1,29 +1,31 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { AppProps } from "next/app";
 import Head from "next/head";
+import React from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
 
 import "../src/styles/fonts.css";
 import "../src/styles/redditText.css";
 
 import { SharedditView } from "../src/views/SharedditView";
 
-export default ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   const client = new QueryClient();
 
   return (
     <ChakraProvider>
       <Head>
         <head>
-          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="theme-color" content="#000000" />
+          <link href="%PUBLIC_URL%/favicon.ico" rel="icon" />
+          <meta content="width=device-width, initial-scale=1" name="viewport" />
+          <meta content="#000000" name="theme-color" />
           <meta
-            name="description"
             content="The comprehensive reddit screenshot tool."
+            name="description"
           />
-          <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+          <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon" />
 
-          <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+          <link href="%PUBLIC_URL%/manifest.json" rel="manifest" />
 
           <title>shareddit</title>
         </head>
@@ -37,3 +39,5 @@ export default ({ Component, pageProps }) => {
     </ChakraProvider>
   );
 };
+
+export default App;
