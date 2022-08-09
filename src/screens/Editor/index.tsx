@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { EditorContextProvider } from "../../contexts/EditorContext";
 import { EditorScreenController } from "./controller";
 
 export const EditorScreenProvider: React.FC = () => {
-  const redditParams = window.location.search;
+  const [redditParams, setRedditParams] = useState<string>("");
+  useEffect(() => {
+    if (window) {
+      setRedditParams(window.location.search);
+    }
+  });
+
   const params = new URLSearchParams(redditParams);
 
   const subreddit = params.get("sub");

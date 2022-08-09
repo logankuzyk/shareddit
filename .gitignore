@@ -26,5 +26,5 @@ yarn-error.log*
 jet-logger.log*
 
 
-# Local Netlify folder
-.netlify
+# Local Next folder
+.next
