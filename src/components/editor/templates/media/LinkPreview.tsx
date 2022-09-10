@@ -5,6 +5,7 @@ import React from "react";
 import { useEditorData } from "../../../../contexts/EditorContext";
 import { RedditSubmission } from "../../../../types/reddit";
 import { Caption } from "../../../typography";
+import { Image } from "./Image";
 
 interface LinkPreviewProps {
   submission: RedditSubmission;
@@ -23,11 +24,7 @@ export const LinkPreview: React.FC<LinkPreviewProps> = ({ submission }) => {
   return (
     <Flex borderRadius="8px" borderWidth="1px" overflow="hidden">
       <Flex justifyContent="center" position="relative">
-        <img
-          alt="reddit content"
-          src={url}
-          style={{ display: "flex", height: "100%", width: "100%" }}
-        />
+        <Image src={url} />
         <Flex
           alignItems="center"
           backgroundColor="rgba(0,0,0,0.3)"

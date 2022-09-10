@@ -90,13 +90,18 @@ export class EditorContextProvider extends React.Component<
     const canvasNode = document.getElementById(
       "shareddit-canvas"
     ) as HTMLCanvasElement;
+
     if (imgNode !== null && canvasNode !== null) {
       const ctx = canvasNode.getContext("2d");
+
       if (!ctx) return;
+
       ctx.fillStyle = this.state.theme.background["100"] ?? "white";
       ctx.fillRect(0, 0, this.state.width, this.state.height);
       ctx.drawImage(imgNode, 0, 0);
+
       const b64 = canvasNode.toDataURL("image/png");
+
       this.downloadImage(b64);
     } else {
       alert("canvas is null");
@@ -115,6 +120,7 @@ export class EditorContextProvider extends React.Component<
     a.setAttribute("href", base64);
     a.setAttribute("target", "_blank");
     a.dispatchEvent(click);
+    a.remove();
   };
 
   makeDataURL = async () => {
@@ -130,11 +136,11 @@ export class EditorContextProvider extends React.Component<
     const height = node.scrollHeight;
     const width = node.clientWidth;
     const dataURL = await htmlToImage.toSvg(node, {
-      cacheBust: false,
       canvasWidth: width,
       canvasHeight: height,
       width,
       height,
+      includeQueryParams: true,
     });
 
     return { dataURL, height, width };
