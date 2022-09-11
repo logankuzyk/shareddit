@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { lightFlairText, darkFlairText } from "../../../../styles/themes";
 import { RedditFlair } from "../../../../types/reddit";
@@ -11,6 +11,15 @@ interface FlairProps {
 
 export const Flair: React.FC<FlairProps> = ({ flair }) => {
   const textColor = flair.textColor === "dark" ? darkFlairText : lightFlairText;
+  const src = flair.img ?? "";
+  const [corsSrc, setCorsSrc] = useState<string>(src);
+
+  useEffect(() => {
+    if (window) {
+      setCorsSrc("/api/cors?url=" + encodeURIComponent(src));
+    }
+  }, [src]);
+
   return (
     <BadgeContainer
       backgroundColor={flair.backgroundColor}
@@ -18,7 +27,7 @@ export const Flair: React.FC<FlairProps> = ({ flair }) => {
     >
       <img
         alt="flair icon"
-        src={flair.img}
+        src={corsSrc}
         style={{
           display: "flex",
           width: "0.7em",
