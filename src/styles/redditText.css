@@ -1,0 +1,7 @@
+.md > * > li {
+  margin-left: 2em;
+}
+
+.md > * > a {
+  color: #5e81ac !important;
+}
