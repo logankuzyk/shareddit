@@ -87,6 +87,7 @@ export interface RawSubmission extends RedditContent {
   url?: string;
   is_gallery: boolean;
   media_metadata: { [key: string]: { s: { u: string } } };
+  crosspost_parent?: string;
 }
 
 export interface RawSubreddit {
@@ -230,7 +231,13 @@ export interface RedditUser extends RawUser {
   flair: RedditFlair;
 }
 
-export type RedditLinkType = "self" | "video" | "image" | "album" | "external";
+export type RedditLinkType =
+  | "self"
+  | "video"
+  | "image"
+  | "album"
+  | "external"
+  | "crosspost";
 
 export interface RedditSubreddit extends RawSubreddit {
   type: "subreddit";
