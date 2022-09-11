@@ -83,31 +83,6 @@ export class EditorContextProvider extends React.Component<
     this.setState({ ...this.state, [key]: value });
   };
 
-  svgToBase64 = () => {
-    const imgNode = document.getElementById(
-      "shareddit-svg"
-    ) as CanvasImageSource;
-    const canvasNode = document.getElementById(
-      "shareddit-canvas"
-    ) as HTMLCanvasElement;
-
-    if (imgNode !== null && canvasNode !== null) {
-      const ctx = canvasNode.getContext("2d");
-
-      if (!ctx) return;
-
-      ctx.fillStyle = this.state.theme.background["100"] ?? "white";
-      ctx.fillRect(0, 0, this.state.width, this.state.height);
-      ctx.drawImage(imgNode, 0, 0);
-
-      const b64 = canvasNode.toDataURL("image/png");
-
-      this.downloadImage(b64);
-    } else {
-      alert("canvas is null");
-    }
-  };
-
   downloadImage = (base64: string) => {
     const click = new MouseEvent("click", {
       view: window,
@@ -133,27 +108,27 @@ export class EditorContextProvider extends React.Component<
       return;
     }
 
-    const height = node.scrollHeight;
     const width = node.clientWidth;
-    const dataURL = await htmlToImage.toSvg(node, {
-      canvasWidth: width,
-      canvasHeight: height,
+    const height = node.scrollHeight;
+
+    const dataURL = await htmlToImage.toPng(node, {
+      backgroundColor: "white",
+      pixelRatio: 2,
       width,
       height,
       includeQueryParams: true,
     });
 
-    return { dataURL, height, width };
+    return dataURL;
   };
 
   download = async () => {
     const data = await this.makeDataURL();
-    if (!data) return;
-    this.setState({
-      svgUri: data.dataURL,
-      width: data.width,
-      height: data.height,
-    });
+    if (!data) {
+      alert("Something went wrong");
+      return;
+    }
+    this.downloadImage(data);
   };
 
   render(): JSX.Element {
@@ -166,21 +141,6 @@ export class EditorContextProvider extends React.Component<
           }}
         >
           {this.props.children}
-          <img
-            id="shareddit-svg"
-            src={this.state.svgUri}
-            style={{ display: "none" }}
-            onLoad={this.svgToBase64}
-          />
-          <canvas
-            height={this.state.height}
-            id="shareddit-canvas"
-            style={{
-              backgroundColor: this.state.theme.background["100"],
-              display: "none",
-            }}
-            width={this.state.width}
-          />
         </EditorMutationContext.Provider>
       </EditorDataContext.Provider>
     );
