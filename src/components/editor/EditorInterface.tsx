@@ -22,6 +22,7 @@ export const EditorInterface: React.FC<FlexProps> = () => {
     topLevelComments,
     commentSort,
     imageColumns,
+    isLoading,
   } = useEditorData();
   const { setProperty, download } = useEditorMutation();
 
@@ -39,7 +40,9 @@ export const EditorInterface: React.FC<FlexProps> = () => {
         paddingY="4px"
         textAlign="left"
       >
-        <PrimaryButton onClick={download}>Download Image</PrimaryButton>
+        <PrimaryButton isLoading={isLoading} onClick={download}>
+          Download Image
+        </PrimaryButton>
         <EditorOptionSection label="Privacy">
           <EditorOption label="Censor Usernames">
             <Toggle

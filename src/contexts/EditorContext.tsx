@@ -23,6 +23,7 @@ export interface EditorContextState {
   width: number;
   height: number;
   svgUri: string;
+  isLoading: boolean;
 }
 
 export interface EditorContextFunctions {
@@ -48,6 +49,7 @@ const initialState: EditorContextState = {
   width: 0,
   height: 0,
   svgUri: "",
+  isLoading: false,
 };
 
 const initialFunctions: EditorContextFunctions = {
@@ -123,12 +125,14 @@ export class EditorContextProvider extends React.Component<
   };
 
   download = async () => {
+    this.setState({ isLoading: true });
     const data = await this.makeDataURL();
     if (!data) {
       alert("Something went wrong");
       return;
     }
     this.downloadImage(data);
+    this.setState({ isLoading: false });
   };
 
   render(): JSX.Element {
