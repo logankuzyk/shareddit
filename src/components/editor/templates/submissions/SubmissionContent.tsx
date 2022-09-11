@@ -1,6 +1,7 @@
 import React from "react";
 
 import { RedditSubmission } from "../../../../types/reddit";
+import { Title } from "../../../typography";
 import { Album } from "../media/Album";
 import { Image } from "../media/Image";
 import { LinkPreview } from "../media/LinkPreview";
@@ -14,16 +15,20 @@ export interface SubmissionContentProps {
 export const SubmissionContent: React.FC<SubmissionContentProps> = ({
   submission,
 }) => {
-  // Content handlers will be activated onPress once they're implemented
-  const { linkType } = submission;
-
-  return (
-    <>
-      {linkType === "image" && <Image src={submission.url ?? ""} />}
-      {linkType === "self" && <SelfText submission={submission} />}
-      {linkType === "video" && <VideoThumbnail submission={submission} />}
-      {linkType === "album" && <Album submission={submission} />}
-      {linkType === "external" && <LinkPreview submission={submission} />}
-    </>
-  );
+  switch (submission.linkType) {
+    case "image":
+      return <Image src={submission.url ?? ""} />;
+    case "self":
+      return <SelfText submission={submission} />;
+    case "video":
+      return <VideoThumbnail submission={submission} />;
+    case "album":
+      return <Album submission={submission} />;
+    case "external":
+      return <LinkPreview submission={submission} />;
+    default:
+      return (
+        <Title>This reddit submission type has not been implemented!</Title>
+      );
+  }
 };
