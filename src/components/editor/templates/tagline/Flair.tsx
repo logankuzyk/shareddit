@@ -16,7 +16,7 @@ export const Flair: React.FC<FlairProps> = ({ flair }) => {
 
   useEffect(() => {
     if (window) {
-      setCorsSrc("/api/cors?url=" + encodeURIComponent(src));
+      setCorsSrc("/reddit-flair/" + src.replace("https://", ""));
     }
   }, [src]);
 

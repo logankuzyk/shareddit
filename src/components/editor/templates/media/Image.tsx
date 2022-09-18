@@ -12,7 +12,7 @@ export const Image: React.FC<ImageProps> = ({ src }) => {
 
   useEffect(() => {
     if (window) {
-      setCorsSrc("/api/cors?url=" + encodeURIComponent(src));
+      setCorsSrc("/reddit-image/" + src.replace("https://", ""));
     }
   }, [src]);
 
