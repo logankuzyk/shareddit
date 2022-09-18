@@ -11,7 +11,7 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "ignorePatterns": ["**/*.babelIgnore.js"],
+  "ignorePatterns": ["**/*.js"],
   "rules": {
     "eqeqeq": ["error", "always", { "null": "ignore" }],
     "id-length": [
