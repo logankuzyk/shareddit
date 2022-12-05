@@ -11,4 +11,23 @@ module.exports = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/r/:sub/comments/:postId/:title/:commentId",
+        destination: "/generate?sub=:sub&postId=:postId&commentId=:commentId",
+        permanent: true,
+      },
+      {
+        source: "/r/:sub/comments/:postId",
+        destination: "/generate?sub=:sub&postId=:postId",
+        permanent: true,
+      },
+      {
+        source: "/r/:sub/comments/:postId/:title",
+        destination: "/generate?sub=:sub&postId=:postId",
+        permanent: true,
+      },
+    ];
+  },
 };
