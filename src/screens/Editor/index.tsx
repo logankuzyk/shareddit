@@ -14,8 +14,8 @@ export const EditorScreenProvider: React.FC = () => {
   const params = new URLSearchParams(redditParams);
 
   const subreddit = params.get("sub");
-  const postId = params.get("postID");
-  const commentId = params.get("commentID");
+  const postId = params.get("postId");
+  const commentId = params.get("commentId");
 
   if (subreddit && postId) {
     return (

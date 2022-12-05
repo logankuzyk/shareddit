@@ -5,7 +5,7 @@ import { HomeScreenView } from "./view";
 export const HomeScreenController: React.FC = () => {
   const handleSubmit = (input: string) => {
     const redditUrlFormat =
-      /\/r\/(?<sub>[\w]+)\/comments\/(?<postID>[\w]+)\/*[\w]*\/*(?<commentID>[\w]*)/;
+      /\/r\/(?<sub>[\w]+)\/comments\/(?<postId>[\w]+)\/*[\w]*\/*(?<commentId>[\w]*)/;
 
     try {
       if (!input) {
